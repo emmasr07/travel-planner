@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- The page the user sees: a form for budget, dates and interests, and (later) the itinerary with each item's source and quote time. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel Itinerary Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Travel Itinerary Planner</h1>
+    <p class="sub">Every flight, hotel and price comes from a live search, with the time it was quoted.</p>
+
+    <form id="trip-form">
+      <label>Destination <input name="destination" placeholder="e.g. Lisbon"></label>
+      <label>Budget (€) <input name="budget" type="number" min="0" placeholder="1200"></label>
+      <div class="row">
+        <label>From <input name="start" type="date"></label>
+        <label>To <input name="end" type="date"></label>
+      </div>
+      <label>Interests <input name="interests" placeholder="food, museums, hiking"></label>
+      <button type="submit" disabled>Plan my trip (coming soon)</button>
+    </form>
+
+    <section id="itinerary"></section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
