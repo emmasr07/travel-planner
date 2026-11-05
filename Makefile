@@ -1,6 +1,12 @@
 # make run starts the server; make verify runs every test (later: the 20 test itineraries).
+ifeq ($(OS),Windows_NT)
+PY := .venv/Scripts/python
+else
+PY := .venv/bin/python
+endif
+
 run:
-	uvicorn backend.main:app --reload
+	$(PY) -m uvicorn backend.main:app --reload
 
 verify:
-	pytest -q
+	$(PY) -m pytest -q
