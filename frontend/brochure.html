@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- Brochure: the kept experiences grouped by day and ordered by time, with a map, total and price-check note. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your trip brochure · Travel Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/mock-data.js" defer></script>
+  <script src="js/brochure.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="wordmark" href="index.html">Travel Planner</a>
+      <nav class="site-nav" aria-label="Brochure">
+        <a class="link-underline" href="experiences.html">Edit trip</a>
+        <button type="button" class="btn btn-secondary btn-sm" aria-disabled="true" title="Coming soon">Download PDF</button>
+        <button type="button" class="btn btn-primary btn-sm" aria-disabled="true" title="Coming soon">Share link</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <div class="brochure-head">
+      <p class="eyebrow">Your trip brochure</p>
+      <h1 class="title-xl" id="title"></h1>
+      <p class="body-lg muted" id="subtitle"></p>
+    </div>
+    <div class="cover" role="img" aria-label="Cover photo (placeholder)">Cover photo</div>
+
+    <div class="with-aside" id="plan">
+      <div class="main" id="days"></div>
+
+      <aside class="aside-wide aside-stack">
+        <section class="card map-card" aria-labelledby="map-title">
+          <h2 class="h3" id="map-title">Your trip on the map</h2>
+          <div class="map" id="map" role="img">
+            <span class="map-label caption">Map</span>
+          </div>
+          <ul class="plain legend" id="legend"></ul>
+        </section>
+
+        <section class="card total-card" aria-label="Total cost">
+          <div class="total-row">
+            <strong>Total</strong>
+            <p><span class="total-amount" id="total"></span> <span class="muted" id="total-of"></span></p>
+          </div>
+          <p class="over-note" id="over-note" hidden></p>
+          <p class="caption" id="checked-note"></p>
+        </section>
+      </aside>
+    </div>
+
+    <section class="card" id="empty" hidden>
+      <h2>No experiences kept yet</h2>
+      <p class="muted">Your brochure is built from the experiences you keep. <a href="experiences.html">Go back to your experiences</a> to pick some.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- Questionnaire: seven questions, one per screen, with Back/Next; answers are kept in sessionStorage. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan your trip · Travel Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/plan.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="wordmark" href="index.html">Travel Planner</a>
+      <p class="header-step" id="step-label">Step 1 of 7 · Destination</p>
+    </div>
+  </header>
+  <div class="progress" aria-hidden="true"><span id="progress-fill" style="width: 14.29%"></span></div>
+
+  <main class="container page">
+    <form class="card question" id="questionnaire" novalidate>
+
+      <section class="step" data-step="1" data-name="Destination">
+        <h1 tabindex="-1">Where are you going?</h1>
+        <p class="body-lg lead">One city works best. We'll find experiences there.</p>
+        <div class="question-body">
+          <label class="field">
+            <span class="field-label">City</span>
+            <input class="input" type="text" data-field="destination" placeholder="e.g. Lisbon" autocomplete="off">
+          </label>
+        </div>
+      </section>
+
+      <section class="step" data-step="2" data-name="Dates" hidden>
+        <h1 tabindex="-1">When are you going?</h1>
+        <p class="body-lg lead">Pick the first and the last day of your trip.</p>
+        <div class="question-body">
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">Start date</span>
+              <input class="input" type="date" data-field="startDate">
+            </label>
+            <label class="field">
+              <span class="field-label">End date</span>
+              <input class="input" type="date" data-field="endDate">
+            </label>
+          </div>
+          <p class="field-error" id="date-error" hidden>The end date must be on or after the start date.</p>
+        </div>
+      </section>
+
+      <section class="step" data-step="3" data-name="Group" hidden>
+        <h1 tabindex="-1">Who's going?</h1>
+        <p class="body-lg lead">Tell us who's coming and how many of you there are.</p>
+        <div class="question-body">
+          <div class="chips" role="group" aria-label="Who's going" data-field="groupType" data-mode="single">
+            <button type="button" class="chip" data-value="solo" aria-pressed="false">Solo</button>
+            <button type="button" class="chip" data-value="couple" aria-pressed="false">Couple</button>
+            <button type="button" class="chip" data-value="friends" aria-pressed="false">Friends</button>
+            <button type="button" class="chip" data-value="family" aria-pressed="false">Family</button>
+          </div>
+          <label class="field">
+            <span class="field-label">How many people?</span>
+            <input class="input input-short" type="number" min="1" max="30" step="1" inputmode="numeric" data-field="groupSize">
+          </label>
+        </div>
+      </section>
+
+      <section class="step" data-step="4" data-name="Age" hidden>
+        <h1 tabindex="-1">How old are you?</h1>
+        <p class="body-lg lead">Pick the range that fits most of your group.</p>
+        <div class="question-body">
+          <div class="chips" role="group" aria-label="Age range" data-field="ageRange" data-mode="single">
+            <button type="button" class="chip" data-value="18–24" aria-pressed="false">18–24</button>
+            <button type="button" class="chip" data-value="25–34" aria-pressed="false">25–34</button>
+            <button type="button" class="chip" data-value="35–49" aria-pressed="false">35–49</button>
+            <button type="button" class="chip" data-value="50+" aria-pressed="false">50+</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" data-step="5" data-name="Interests" hidden>
+        <h1 tabindex="-1">What do you want from this trip?</h1>
+        <p class="body-lg lead">Pick at least one. We use this to choose your experiences.</p>
+        <div class="question-body">
+          <div class="chips" role="group" aria-label="Interests" data-field="interests" data-mode="multi">
+            <button type="button" class="chip" data-value="culture" aria-pressed="false">Culture</button>
+            <button type="button" class="chip" data-value="food" aria-pressed="false">Food</button>
+            <button type="button" class="chip" data-value="nature" aria-pressed="false">Nature</button>
+            <button type="button" class="chip" data-value="nightlife" aria-pressed="false">Nightlife</button>
+            <button type="button" class="chip" data-value="relax" aria-pressed="false">Relax</button>
+            <button type="button" class="chip" data-value="adventure" aria-pressed="false">Adventure</button>
+            <button type="button" class="chip" data-value="shopping" aria-pressed="false">Shopping</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" data-step="6" data-name="Budget" hidden>
+        <h1 tabindex="-1">What's your budget for experiences?</h1>
+        <p class="body-lg lead">Activities, tours, food and events only. Flights and hotels are not included.</p>
+        <div class="question-body">
+          <label class="field">
+            <span class="field-label">Amount in euros</span>
+            <span class="input-money">
+              <input class="input" type="number" min="1" step="1" inputmode="numeric" data-field="budgetAmount" placeholder="250">
+            </span>
+          </label>
+          <div class="chips" role="group" aria-label="Budget is" data-field="budgetPer" data-mode="single">
+            <button type="button" class="chip" data-value="person" aria-pressed="false">Per person</button>
+            <button type="button" class="chip" data-value="total" aria-pressed="false">Total</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" data-step="7" data-name="Anything else" hidden>
+        <h1 tabindex="-1">Anything else?</h1>
+        <p class="body-lg lead">Optional. Tell us your pace and anything we should know.</p>
+        <div class="question-body">
+          <label class="field">
+            <span class="field-label">Pace</span>
+            <input class="range" type="range" min="1" max="5" step="1" data-field="pace" aria-valuetext="Balanced">
+            <span class="range-labels caption" aria-hidden="true"><span>Chill</span><span>Packed</span></span>
+          </label>
+          <label class="field">
+            <span class="field-label">Notes</span>
+            <textarea class="input" data-field="notes" placeholder='e.g. "no museums", "wheelchair access"'></textarea>
+          </label>
+        </div>
+      </section>
+
+      <div class="summary-box" id="summary" hidden>
+        <span class="label">Your trip so far</span>
+        <span id="summary-text"></span>
+      </div>
+
+      <div class="step-nav">
+        <button type="button" class="btn btn-secondary" id="back">Back</button>
+        <button type="submit" class="btn btn-primary" id="next" disabled>Next: dates</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

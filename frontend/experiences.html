@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- Experience list: suggested experiences with price, source and checked-at time; Remove/Restore update the budget bar live. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your experiences · Travel Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/mock-data.js" defer></script>
+  <script src="js/experiences.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="wordmark" href="index.html">Travel Planner</a>
+      <nav class="site-nav" aria-label="Trip">
+        <a class="link-underline" href="plan.html">Edit my answers</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <div class="page-head">
+      <h1 id="title">Your experiences</h1>
+      <p class="body-lg muted" id="subtitle"></p>
+    </div>
+
+    <div class="with-aside">
+      <div class="main">
+        <div class="card-grid" id="kept-grid"></div>
+        <div class="removed-list" id="removed-list" hidden></div>
+        <button type="button" class="btn btn-secondary btn-accent btn-block more-ideas" aria-disabled="true" title="Coming soon">
+          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>
+          More ideas
+        </button>
+      </div>
+
+      <aside class="aside-wide">
+        <section class="card budget" id="budget" aria-labelledby="budget-title">
+          <h2 id="budget-title">Your budget</h2>
+          <div class="budget-meter">
+            <div class="budget-head">
+              <p><span class="amount" id="budget-used"></span><span class="of" id="budget-of"></span></p>
+              <p class="caption" id="budget-per"></p>
+            </div>
+            <div class="budget-track" id="budget-track" role="progressbar" aria-label="Budget used" aria-valuemin="0">
+              <div class="budget-fill" id="budget-fill"></div>
+            </div>
+            <p class="budget-left" id="budget-left" aria-live="polite"></p>
+          </div>
+          <hr class="divider">
+          <div>
+            <p class="kept-title" id="kept-title"></p>
+            <ul class="plain kept-list" id="kept-list"></ul>
+          </div>
+          <div class="budget-actions">
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="build">Build my trip</button>
+            <button type="button" class="btn btn-secondary btn-block" id="fit" aria-disabled="true" title="Coming soon" hidden>Fit it to my budget</button>
+          </div>
+          <p class="caption">If you go over budget the bar turns red, this button switches off and "Fit it to my budget" appears.</p>
+        </section>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

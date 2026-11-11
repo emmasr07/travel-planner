@@ -1,30 +1,88 @@
 <!doctype html>
-<!-- The page the user sees: a form for budget, dates and interests, and (later) the itinerary with each item's source and quote time. -->
+<!-- Home: explains what the app does, shows an example trip and sends the user to the questionnaire. -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Travel Itinerary Planner</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/mock-data.js" defer></script>
+  <script src="js/index.js" defer></script>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container">
+      <a class="wordmark" href="index.html">Travel Planner</a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="nav-link" href="#how-it-works">How it works</a>
+        <a class="btn btn-primary btn-sm" href="plan.html">Plan my trip</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <h1>Travel Itinerary Planner</h1>
-    <p class="sub">Every flight, hotel and price comes from a live search, with the time it was quoted.</p>
+    <section class="section hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="eyebrow">Real experiences. Real prices.</p>
+        <h1 class="display" id="hero-title">Your trip, sorted in minutes.</h1>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="plan.html">Plan my trip</a>
+          <a class="btn btn-text" href="#how-it-works">
+            See how it works
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg>
+          </a>
+        </div>
 
-    <form id="trip-form">
-      <label>Destination <input name="destination" placeholder="e.g. Lisbon"></label>
-      <label>Budget (€) <input name="budget" type="number" min="0" placeholder="1200"></label>
-      <div class="row">
-        <label>From <input name="start" type="date"></label>
-        <label>To <input name="end" type="date"></label>
+        <!-- Example trip, filled from js/mock-data.js -->
+        <section class="card preview" aria-label="Example trip">
+          <div class="map" id="preview-map" role="img" aria-label="Map placeholder with the example trip's stops"></div>
+          <div class="preview-trip">
+            <div class="preview-head">
+              <h2 id="preview-city"></h2>
+              <p class="text-sm muted" id="preview-meta"></p>
+            </div>
+            <ul class="plain list-box" id="preview-list"></ul>
+            <div class="mini-budget">
+              <div class="row">
+                <strong id="preview-used"></strong>
+                <span class="muted" id="preview-left"></span>
+              </div>
+              <div class="budget-track"><div class="budget-fill" id="preview-fill"></div></div>
+            </div>
+          </div>
+        </section>
       </div>
-      <label>Interests <input name="interests" placeholder="food, museums, hiking"></label>
-      <button type="submit" disabled>Plan my trip (coming soon)</button>
-    </form>
+    </section>
 
-    <section id="itinerary"></section>
+    <section class="section section-alt" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <h2 class="h1 section-title" id="how-title">How it works</h2>
+        <ol class="plain grid-3">
+          <li class="card step-card">
+            <p class="eyebrow">Step 1</p>
+            <h3 class="h2">Tell us about your trip</h3>
+            <p>Destination, dates, who's going, what you're into, and your budget. Seven quick questions.</p>
+          </li>
+          <li class="card step-card">
+            <p class="eyebrow">Step 2</p>
+            <h3 class="h2">Pick your experiences</h3>
+            <p>Keep, remove or swap what we suggest. Your budget updates as you go.</p>
+          </li>
+          <li class="card step-card">
+            <p class="eyebrow">Step 3</p>
+            <h3 class="h2">Get your trip brochure</h3>
+            <p>A day-by-day plan with a map and booking links. Share it with your group or download it as a PDF.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
   </main>
-  <script src="app.js"></script>
+
+  <footer class="site-footer">
+    <div class="container">Travel Planner · a student project, AI in Strategic Management</div>
+  </footer>
 </body>
 </html>
