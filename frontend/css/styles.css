@@ -1,0 +1,184 @@
+/* Travel Planner design system: styles.css
+   Source of truth: the "Travel Planner" design system (tokens.json).
+   Rule: pages use these variables and classes. Never type a hex colour in HTML. */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  /* Colour */
+  --blue: #0a66e8;          /* the one accent: primary buttons, links, selected */
+  --blue-hover: #0852c2;
+  --blue-soft: #eaf2fe;     /* selected chip, best-time badge */
+  --ink: #1d1d1f;           /* text */
+  --ink-muted: #636366;     /* sources, timestamps, hints */
+  --surface: #ffffff;       /* cards, panels, header */
+  --surface-alt: #f5f5f7;   /* page background */
+  --line: #e5e5ea;          /* hairlines */
+  --line-strong: #d1d1d6;   /* secondary button and chip borders */
+  --success: #1a7f37;       /* budget bar, under budget */
+  --danger: #d70015;        /* budget bar, over budget */
+  --day-1: #0a66e8;
+  --day-2: #c75a00;
+  --day-3: #0e7c72;
+
+  /* Type */
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  /* Space */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-20: 80px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* Shadow and border */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --border-hair: 1px solid var(--line);
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--surface-alt);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p { margin: 0; }
+
+.display { font-size: 76px; line-height: 1.02; font-weight: 700; letter-spacing: -0.04em; }
+h1, .h1  { font-size: 40px; line-height: 1.12; font-weight: 700; letter-spacing: -0.025em; }
+h2, .h2  { font-size: 24px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; }
+h3, .h3  { font-size: 18px; line-height: 1.3;  font-weight: 600; letter-spacing: -0.01em; }
+.body-lg { font-size: 19px; line-height: 1.5; }
+.caption { font-size: 13px; line-height: 1.4; color: var(--ink-muted); }
+.muted   { color: var(--ink-muted); }
+.eyebrow { font-size: 15px; font-weight: 600; color: var(--blue); }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: var(--blue-hover); }
+
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* ---------- 3. Layout ---------- */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-8); }
+
+.site-header { background: var(--surface); border-bottom: var(--border-hair); }
+.site-header .container {
+  min-height: 64px; display: flex; align-items: center;
+  justify-content: space-between; gap: var(--space-4); flex-wrap: wrap;
+}
+.wordmark { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+
+.progress { height: 3px; background: var(--line); }
+.progress > span { display: block; height: 100%; background: var(--blue); }
+
+/* Main column + side panel; the panel stacks under the main column on narrow screens */
+.with-aside { display: flex; flex-wrap: wrap; gap: var(--space-8); align-items: flex-start; }
+.with-aside > main, .with-aside > .main { flex: 999 1 560px; min-width: 0; }
+.with-aside > aside { flex: 1 1 300px; min-width: 0; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-6); }
+
+.section { padding: var(--space-20) 0; }
+.section-alt { background: var(--surface-alt); }
+
+/* ---------- 4. Components ---------- */
+
+/* Button: .btn + .btn-primary | .btn-secondary | .btn-text */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  height: 48px; padding: 0 var(--space-6);
+  border-radius: var(--radius-pill); border: 1px solid transparent;
+  font: 600 15px var(--font-sans); cursor: pointer;
+  transition: background 0.15s ease-out, border-color 0.15s ease-out;
+}
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: var(--blue-hover); color: #fff; }
+.btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+.btn-secondary:hover { border-color: var(--ink-muted); color: var(--ink); }
+.btn-text { background: transparent; color: var(--blue); padding: 0 var(--space-2); }
+.btn-lg { height: 52px; padding: 0 30px; font-size: 17px; }
+.btn-sm { height: 40px; padding: 0 var(--space-4); font-size: 14px; }
+.btn:disabled { background: var(--line); border-color: var(--line); color: var(--ink-muted); cursor: default; }
+
+/* Chip: questionnaire choices. Add .is-on when selected (and aria-pressed="true") */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 44px; padding: 0 18px;
+  border-radius: var(--radius-pill); border: 1px solid var(--line-strong);
+  background: var(--surface); color: var(--ink);
+  font: 500 15px var(--font-sans); cursor: pointer;
+}
+.chip.is-on { background: var(--blue-soft); border: 1.5px solid var(--blue); color: var(--blue); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* Card */
+.card {
+  background: var(--surface); border: var(--border-hair);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+}
+
+/* Experience card */
+.experience { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-3); transition: box-shadow 0.2s ease-out; }
+.experience:hover { box-shadow: var(--shadow-lg); }
+.experience .photo { height: 150px; border-radius: 10px; background: var(--surface-alt); object-fit: cover; width: 100%; }
+.experience .body { padding: var(--space-1) var(--space-2) var(--space-2); display: flex; flex-direction: column; gap: var(--space-3); flex-grow: 1; }
+.experience .price { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+.experience .why { font-size: 13px; font-weight: 500; color: var(--blue); }
+.experience .actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); border-top: var(--border-hair); padding-top: var(--space-3); margin-top: auto; }
+.experience.is-removed { box-shadow: none; border-style: dashed; border-color: #c7c7cc; padding: 14px 20px; flex-direction: row; align-items: center; justify-content: space-between; }
+.experience.is-removed .name { text-decoration: line-through; color: var(--ink-muted); }
+
+/* Best-time badge (a button: clicking it lets the user change the time) */
+.time-badge {
+  align-self: flex-start; display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  min-height: 44px; padding: 6px 14px; border: none; border-radius: var(--radius-md);
+  background: var(--blue-soft); font-family: inherit; text-align: left; cursor: pointer;
+}
+.time-badge .when { font-size: 14px; font-weight: 600; color: var(--blue); }
+.time-badge .reason { font-size: 13px; color: var(--ink); }
+
+/* Small pill badge */
+.badge { display: inline-block; padding: 4px 10px; border-radius: var(--radius-pill); background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 600; }
+
+/* Budget bar: add .is-over on the wrapper when over budget */
+.budget .amount { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.budget-track { height: 8px; border-radius: var(--radius-pill); background: var(--surface-alt); overflow: hidden; }
+.budget-fill { height: 100%; border-radius: var(--radius-pill); background: var(--success); transition: width 0.2s ease-out; }
+.budget.is-over .budget-fill { background: var(--danger); }
+.budget.is-over .budget-left { color: var(--danger); font-weight: 600; }
+
+/* Map pin, coloured per day */
+.pin {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 14px; font-weight: 600;
+  border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.pin.day-1 { background: var(--day-1); }
+.pin.day-2 { background: var(--day-2); }
+.pin.day-3 { background: var(--day-3); }
+
+/* ---------- 5. Small screens ---------- */
+@media (max-width: 640px) {
+  .container { padding: 0 var(--space-4); }
+  .display { font-size: 48px; }
+  h1, .h1 { font-size: 32px; }
+}
