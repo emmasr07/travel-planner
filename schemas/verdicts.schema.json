@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "deliver_verdicts",
+  "description": "What the verifier agent returns: one verdict per experience it received. See docs/data-model.md, section 3e.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["verdicts"],
+  "properties": {
+    "verdicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "verdict", "url_read", "passage", "contested_fields", "note"],
+        "properties": {
+          "id": { "type": "string" },
+          "verdict": { "type": "string", "enum": ["confirmed", "contradicted", "not_sure"] },
+          "url_read": { "type": "string" },
+          "passage": { "type": "string", "description": "Copied word for word from the page; empty if it did not load." },
+          "contested_fields": { "type": "array", "items": { "type": "string" } },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  }
+}

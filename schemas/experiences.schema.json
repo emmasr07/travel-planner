@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "deliver_experiences",
+  "description": "What the researcher agent returns. Checked by the code before anything is shown. See docs/data-model.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["experiences"],
+  "properties": {
+    "experiences": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 15,
+      "items": { "$ref": "#/$defs/experience" }
+    }
+  },
+  "$defs": {
+    "time": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
+
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "url", "retrieved_at", "quote"],
+      "properties": {
+        "provider": { "type": "string", "enum": ["viator", "geoapify", "web"] },
+        "url": { "type": "string", "pattern": "^https?://" },
+        "retrieved_at": { "type": "string", "format": "date-time" },
+        "quote": { "type": ["string", "null"], "description": "Required (a sentence copied from the page) when provider is web; null for API data." }
+      },
+      "if": { "properties": { "provider": { "const": "web" } } },
+      "then": { "properties": { "quote": { "type": "string", "minLength": 20 } } }
+    },
+
+    "suggestion_text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "kind"],
+      "properties": {
+        "text": { "type": "string", "minLength": 3 },
+        "kind": { "const": "suggestion" }
+      }
+    },
+
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "name", "description", "category", "tags", "location", "duration_min", "price",
+        "opening_hours", "months", "min_age", "rating", "indoor_outdoor", "accessibility",
+        "suitable_for", "booking_url", "photo_url", "certainty", "doubts",
+        "best_time", "why_fits", "schedule"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "name": { "type": "string", "minLength": 2 },
+        "description": { "type": "string", "maxLength": 300 },
+        "category": { "type": "string", "enum": ["culture", "food", "nature", "nightlife", "relax", "adventure", "shopping"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+
+        "location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["city", "address", "lat", "lng", "timezone", "source"],
+          "properties": {
+            "city": { "type": "string" },
+            "address": { "type": ["string", "null"] },
+            "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+            "lng": { "type": "number", "minimum": -180, "maximum": 180 },
+            "timezone": { "type": "string" },
+            "source": { "$ref": "#/$defs/source" }
+          }
+        },
+
+        "duration_min": { "type": ["integer", "null"], "minimum": 1 },
+
+        "price": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["amount", "currency", "per", "amount_eur", "fx", "source"],
+          "properties": {
+            "amount": { "type": ["number", "null"], "minimum": 0 },
+            "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+            "per": { "type": "string", "enum": ["person", "group", "free"] },
+            "amount_eur": { "type": "null", "description": "Always null from the agent: filled by the code." },
+            "fx": { "type": "null", "description": "Always null from the agent: filled by the code." },
+            "source": { "anyOf": [{ "$ref": "#/$defs/source" }, { "type": "null" }] }
+          }
+        },
+
+        "opening_hours": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["text", "slots", "source"],
+              "properties": {
+                "text": { "type": "string" },
+                "slots": { "type": "array", "items": { "$ref": "#/$defs/time" } },
+                "source": { "$ref": "#/$defs/source" }
+              }
+            }
+          ]
+        },
+
+        "months": { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 12 } },
+        "min_age": { "type": ["integer", "null"], "minimum": 0 },
+
+        "rating": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["value", "scale", "review_count", "source"],
+              "properties": {
+                "value": { "type": "number", "minimum": 0 },
+                "scale": { "type": "number", "minimum": 1 },
+                "review_count": { "type": ["integer", "null"], "minimum": 0 },
+                "source": { "$ref": "#/$defs/source" }
+              }
+            }
+          ]
+        },
+
+        "indoor_outdoor": { "type": "string", "enum": ["indoor", "outdoor", "mixed", "unknown"] },
+
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["wheelchair", "notes", "source"],
+          "properties": {
+            "wheelchair": { "type": "string", "enum": ["yes", "limited", "no", "unknown"] },
+            "notes": { "type": ["string", "null"] },
+            "source": { "anyOf": [{ "$ref": "#/$defs/source" }, { "type": "null" }] }
+          }
+        },
+
+        "suitable_for": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["values", "kind"],
+          "properties": {
+            "values": { "type": "array", "items": { "type": "string", "enum": ["solo", "couple", "friends", "family", "business"] } },
+            "kind": { "type": "string", "enum": ["fact", "suggestion"] }
+          }
+        },
+
+        "booking_url": { "type": "string", "pattern": "^https?://" },
+        "photo_url": { "type": ["string", "null"] },
+
+        "certainty": { "type": "string", "enum": ["high", "medium", "low"] },
+        "doubts": { "type": ["string", "null"] },
+
+        "best_time": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["slot", "start", "reason", "kind"],
+          "properties": {
+            "slot": { "type": "string", "enum": ["early_morning", "morning", "midday", "afternoon", "sunset", "evening", "night"] },
+            "start": { "$ref": "#/$defs/time" },
+            "reason": { "type": "string", "minLength": 5 },
+            "kind": { "const": "suggestion" }
+          }
+        },
+
+        "why_fits": { "$ref": "#/$defs/suggestion_text" },
+
+        "schedule": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["day", "start", "end"],
+          "properties": {
+            "day": { "type": "integer", "minimum": 1 },
+            "start": { "$ref": "#/$defs/time" },
+            "end": { "$ref": "#/$defs/time" }
+          }
+        }
+      }
+    }
+  }
+}
