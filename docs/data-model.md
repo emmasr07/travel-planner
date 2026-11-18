@@ -123,7 +123,8 @@ A list, one entry per check: `{ "name", "result": "ok" | "warn" | "fail" | "skip
 
 | Field | Who | Values |
 |---|---|---|
-| `user.status` | user | kept / removed (every suggestion starts as kept) |
+| `user.status` | user | kept / removed (suggestions start as kept up to the pace limit per day, best fit first; the rest start removed) |
+| `user.alternative` | code | `true` on a candidate the code left out to keep the pace; gone once the user keeps or removes it |
 | `user.position` | user | order within the day after reordering |
 | `status` | code | **verified** (all checks ok + confirmed) / **to_check** (any warn or not_sure: shown with a note, the user decides) / **rejected** (any fail or contradicted: not shown) |
 

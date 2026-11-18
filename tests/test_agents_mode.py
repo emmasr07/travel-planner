@@ -1,11 +1,14 @@
 # The whole pipeline through the API in MODE=agents (docs/backend-logic.md sections 3 and 7): any destination, the
 # researcher and verifier sessions, prices converted with Frankfurter, the source check on the pages the researcher
 # read, each agent step and each session's cost in the trip file. The Anthropic client and every HTTP call are fakes.
+import json
+
 import pytest
 from fastapi.testclient import TestClient
 
 from backend import main, store
 from tests.agent_helpers import PAGE_URL, WEB, delivery, fake_http, install, set_up, verdicts
+from tests.factories import experience
 from tests.fake_anthropic import idle, tool_use, usage
 
 client = TestClient(main.app)
@@ -89,3 +92,91 @@ def test_agents_mode_without_the_lock_file_is_503(monkeypatch):
     r = client.post("/api/trips", json=BODY)
     assert r.status_code == 503
     assert "agents mode is not set up" in r.json()["detail"] and "scripts.create_agents" in r.json()["detail"]
+
+
+# --- more candidates than the pace allows (first real trip: 10 for 2 days at a balanced pace, 5 a day) -----------
+
+DAYS = [2, 1, 1, 2, 2, 1, 1, 2, 1, 2]           # the order the first real trip came in
+TIMES = [("09:00", "11:00"), ("11:30", "13:30"), ("14:00", "16:00"), ("16:30", "18:30"), ("19:00", "21:00")]
+TWO_DAYS = {"end_date": "2026-12-05"}
+
+
+def five_a_day(**over_by_id):
+    seen, exps = {1: 0, 2: 0}, []
+    for i, day in enumerate(DAYS):
+        start, end = TIMES[seen[day]]
+        seen[day] += 1
+        exps.append(experience(f"cand-{i}", name=f"Candidate {i}", schedule={"day": day, "start": start, "end": end},
+                               **over_by_id.get(f"cand-{i}", {})))
+    return exps
+
+
+def kept_by_day(trip):
+    out = {}
+    for e in trip["experiences"]:
+        if e["user"]["status"] == "kept" and e["status"] != "rejected":
+            out.setdefault(e["schedule"]["day"], []).append(e["id"])
+    return out
+
+
+def check(e, name):
+    return next(c for c in e["checks"] if c["name"] == name)
+
+
+def test_the_code_keeps_the_best_fit_up_to_the_pace_and_the_rest_are_alternatives(monkeypatch):
+    exps = five_a_day()
+    fake = install(monkeypatch, research_script(exps), verify_script([e["id"] for e in exps]))
+    trip = new_trip(**TWO_DAYS)
+    assert trip["status"] == "ready", trip["error"]
+
+    assert kept_by_day(trip) == {2: ["cand-0", "cand-3", "cand-4"], 1: ["cand-1", "cand-2", "cand-5"]}
+    by_id = {e["id"]: e for e in trip["experiences"]}
+    for i in ("cand-6", "cand-7", "cand-8", "cand-9"):
+        assert by_id[i]["user"] == {"status": "removed", "position": None, "alternative": True}
+        assert check(by_id[i], "pace") == {"name": "pace", "result": "skip",
+                                           "detail": "an alternative: restore it to add it to your plan"}
+    for day, ids in kept_by_day(trip).items():
+        for i in ids:
+            assert check(by_id[i], "pace") == {"name": "pace", "result": "ok", "detail": f"3 of 3 on day {day}"}
+            assert "alternative" not in by_id[i]["user"]
+    assert trip["totals"]["kept"] == 6
+    assert any(s["who"] == "code" and s["text"] == "6 kept for 2 days at a balanced pace (up to 3 a day), best fit "
+               "first; 4 more start as alternatives you can restore" for s in trip["steps"])
+    sent = json.loads([e for e in fake.sent if e["type"] == "user.message"][1]["content"][0]["text"])
+    assert len(sent["experiences"]) == 10                           # alternatives are verified too
+
+
+def test_a_rejected_candidate_takes_no_place(monkeypatch):
+    exps = five_a_day(**{"cand-1": {"min_age": 99}})
+    install(monkeypatch, research_script(exps), verify_script([e["id"] for e in exps]))
+    trip = new_trip(**TWO_DAYS)
+    by_id = {e["id"]: e for e in trip["experiences"]}
+    assert by_id["cand-1"]["status"] == "rejected" and by_id["cand-1"]["user"] == {"status": "kept", "position": None}
+    assert kept_by_day(trip)[1] == ["cand-2", "cand-5", "cand-6"]
+    assert any(s["text"].startswith("6 kept for 2 days") and "3 more start as alternatives" in s["text"]
+               for s in trip["steps"])
+
+
+def test_an_alternative_moves_up_when_the_verifier_contradicts_a_kept_one(monkeypatch):
+    exps = five_a_day()
+    answer = verdicts([e["id"] for e in exps])
+    answer["verdicts"][1].update(verdict="contradicted", contested_fields=["price.amount"])   # cand-1, day 1
+    install(monkeypatch, research_script(exps), [[tool_use("deliver_verdicts", answer)], []])
+    trip = new_trip(**TWO_DAYS)
+    assert kept_by_day(trip)[1] == ["cand-2", "cand-5", "cand-6"]
+    assert {e["id"]: e["user"]["status"] for e in trip["experiences"]}["cand-8"] == "removed"
+
+
+def test_restoring_an_alternative_makes_it_the_users_choice(monkeypatch):
+    exps = five_a_day()
+    install(monkeypatch, research_script(exps), verify_script([e["id"] for e in exps]))
+    trip_id = new_trip(**TWO_DAYS)["id"]
+    r = client.post(f"/api/trips/{trip_id}/experiences/cand-6", json={"status": "kept"})
+    assert r.status_code == 200, r.text
+    by_id = {e["id"]: e for e in r.json()["experiences"]}
+    assert by_id["cand-6"]["user"] == {"status": "kept", "position": None}
+    assert check(by_id["cand-6"], "pace")["detail"] == "4 experiences on day 1; a balanced pace allows 3"
+    by_id = {e["id"]: e for e in client.post(f"/api/trips/{trip_id}/experiences/cand-6",
+                                             json={"status": "removed"}).json()["experiences"]}
+    assert check(by_id["cand-6"], "pace")["detail"] == "removed by you"
+    assert check(by_id["cand-8"], "pace")["detail"] == "an alternative: restore it to add it to your plan"

@@ -153,6 +153,13 @@ def run_pipeline(trip_id):
             e["user"] = {"status": "kept", "position": None}
             e["verdict"] = None
         checks.check_all(profile, exps, pages=agents.source_pages(exps, pages))   # None in demo: not read
+        alternatives = _keep_best_fit(profile, exps)
+        if alternatives:
+            days, pace = checks.trip_days(profile), profile["pace"]
+            kept = sum(budget.counts(e) for e in exps)
+            step("code", f"{kept} kept for {days} {'day' if days == 1 else 'days'} at a {pace} "
+                         f"pace (up to {checks.PACE_LIMIT[pace]} a day), best fit first; {alternatives} more start as "
+                         "alternatives you can restore")
         trip["experiences"] = exps
         _refresh(trip)
         trip["status"] = "verifying"
@@ -165,7 +172,7 @@ def run_pipeline(trip_id):
         by_id = {v["id"]: v for v in verdicts["verdicts"]}
         for e in exps:
             e["verdict"] = by_id.get(e["id"])
-        checks.recheck(profile, exps)
+        _keep_best_fit(profile, exps)      # again: one the verifier contradicted gives its place to an alternative
         _refresh(trip)
         trip["status"] = "ready"
         count = {s: sum(e["status"] == s for e in exps) for s in ("verified", "to_check", "rejected")}
@@ -175,6 +182,33 @@ def run_pipeline(trip_id):
         trip["status"] = "failed"
         trip["error"] = f"{type(exc).__name__}: {exc}"
         store.save(trip)
+
+
+def _keep_best_fit(profile, exps):
+    """The researcher lists 10-15 candidates, best fit first, and the pace allows fewer (chill 2, balanced 3, packed 4
+    a day). Going down the list, one is kept while its day has room; the others start removed, as alternatives the
+    user can restore. Rejected ones take no place (they stay hidden, as before). Returns how many are alternatives."""
+    for e in exps:
+        e["user"] = {"status": "kept", "position": None}
+    checks.recheck(profile, exps)                    # which are rejected, whatever is kept
+    limit, used, alternatives = checks.PACE_LIMIT[profile["pace"]], {}, 0
+    for e in exps:
+        day = e["schedule"]["day"]
+        if e["status"] == "rejected":
+            continue
+        if used.get(day, 0) < limit:
+            used[day] = used.get(day, 0) + 1
+        else:
+            e["user"] = {"status": "removed", "position": None, "alternative": True}
+            alternatives += 1
+    checks.recheck(profile, exps)
+    return alternatives
+
+
+def _set_status(e, status):
+    """The user's own keep or remove: from now on it is their choice, not a code alternative."""
+    e["user"]["status"] = status
+    e["user"].pop("alternative", None)
 
 
 def _convert_prices(exps, rates):
@@ -244,7 +278,7 @@ def change_experience(trip_id, exp_id, change: Change):
             if change.status == "kept" and e["status"] == "rejected":
                 reason = next((c["detail"] for c in e["checks"] if c["result"] == "fail"), "the verifier contradicted it")
                 raise WrongState(f"{e['name']} was rejected by the checks: {reason}")
-            e["user"]["status"] = change.status
+            _set_status(e, change.status)
             said.append(change.status)
         if change.day is not None or change.start is not None:
             days, s = checks.trip_days(profile), e["schedule"]
@@ -401,7 +435,7 @@ def pick_option(trip_id, option_id):
         said = f"picked {option['name']}"
         old = next((e for e in trip["experiences"] if e["id"] == search["for"]), None)
         if old is not None:
-            old["user"]["status"] = "removed"
+            _set_status(old, "removed")
             said += f" instead of {old['name']}"
         search["picked"] = option_id
         checks.recheck(trip["profile"], trip["experiences"])

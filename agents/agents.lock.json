@@ -1,0 +1,11 @@
+{
+  "environment_id": "env_01EXRt7P32MB5rNmxMuxmsNi",
+  "researcher": {
+    "id": "agent_017veTuUM29rp7hcH9HhtKvG",
+    "version": 2
+  },
+  "verifier": {
+    "id": "agent_01VSph8YXWjZuRHgL9zyoq2C",
+    "version": 1
+  }
+}

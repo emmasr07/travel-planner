@@ -251,7 +251,9 @@ def accessibility(e, profile):
 
 
 def _why_left_out(e):
-    return "removed by you" if e["user"]["status"] != "kept" else "rejected by the checks"
+    if e["user"]["status"] == "kept":
+        return "rejected by the checks"
+    return "an alternative: restore it to add it to your plan" if e["user"].get("alternative") else "removed by you"
 
 
 # --- all of them ------------------------------------------------------------------------------------------------

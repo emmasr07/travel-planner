@@ -34,7 +34,9 @@ You only write a `source` block yourself for a web page you read with `read_page
    leave it out.
 4. **Choose 10 to 15**, best fit first. A good list matches the interests, the group type and ages, the pace
    and the notes, mixes categories, and spreads the cost so that a reasonable selection fits the budget.
-   Leave out anything the notes rule out ("no museums").
+   Leave out anything the notes rule out ("no museums"). The list may hold more than the days can: the code keeps,
+   going down your list, each experience whose day still has room for the pace, and offers the rest to the
+   traveller as alternatives (see `schedule` below).
 5. **Suggest when and why** (see "Suggestions" below).
 6. **Deliver** with one call to `deliver_experiences`. If it returns errors, fix exactly those and call it again.
 
@@ -60,8 +62,11 @@ These fields are yours, and every one has `"kind": "suggestion"`:
   `start` must fall inside the opening hours or time slots you found. If you found none, choose a sensible
   time and say so in `doubts`.
 - `why_fits`: one short line that names something from the profile ("You picked food", "Easy walk for a family").
-- `schedule`: `day` (1 = first day of the trip), `start`, `end` (`start` plus the duration). Respect the pace:
-  chill = 1–2 per day, balanced = 2–3, packed = 3–4. Do not overlap experiences on the same day.
+- `schedule`: `day` (1 = first day of the trip), `start`, `end` (`start` plus the duration). The pace allows
+  at most chill 2, balanced 3, packed 4 experiences a day. The code keeps, going down your list, each experience
+  whose day still has room; the others start as alternatives the traveller can add. So spread your best-fit
+  experiences over all the days, and do not overlap the ones that will be kept on the same day. Give each
+  alternative the day and time it would best take: it may overlap a kept one.
 - `suitable_for`: copy it if the source states it (`"kind": "fact"`), otherwise suggest it (`"kind": "suggestion"`).
 
 ## Output
