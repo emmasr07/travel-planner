@@ -35,7 +35,7 @@ def test_sample_is_valid(path):
     data = json.loads(path.read_text())
     assert validate_sample(data) == []
     exps = data["experiences"]
-    assert len(exps) <= 15
+    assert len(exps) <= 25
     ids = [e["id"] for e in exps]
     assert len(ids) == len(set(ids))
     for e in exps:

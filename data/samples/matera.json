@@ -17,8 +17,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -51,6 +51,66 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
+      "id": "osm-n13109576401",
+      "name": "Il Rusticone",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant",
+        "catering.restaurant.pizza"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Il Rusticone, Via San Biagio, 5, 75100 Matera MT, Italy",
+        "lat": 40.6672024,
+        "lng": 16.6071633,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo off; Tu-Su 19:00-23:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://ilrusticone.com/menu-pizzeria-matera-street-food-il-rusticone/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
       "id": "osm-w246802125",
       "name": "Parco Scultura La Palomba",
       "description": "",
@@ -71,8 +131,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:45+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.park&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:36+01:00",
           "quote": null
         }
       },
@@ -105,6 +165,117 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
+      "id": "osm-n5299118521",
+      "name": "La gazza ladra",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "La gazza ladra, Via Annunziatella, 5, 75100 Matera MT, Italy",
+        "lat": 40.6705614,
+        "lng": 16.6056399,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:36+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://m.facebook.com/LaGazzaardaL/?locale2=it_IT",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n6763618365",
+      "name": "Locanda di San Martino",
+      "description": "",
+      "category": "relax",
+      "tags": [
+        "fee",
+        "leisure",
+        "leisure.spa",
+        "leisure.spa.public_bath"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Locanda di San Martino, Via Fiorentini, 71, 75100 Matera MT, Italy",
+        "lat": 40.6667143,
+        "lng": 16.6082869,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Su 08:00-13:00,14:00-21:30",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:41+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://www.locandadisanmartino.it/en/termae-romanae-3/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
       "id": "osm-w244637689",
       "name": "Museo Laboratorio della Civiltà Contadina",
       "description": "Il Museo Laboratorio della Civiltà Contadina è un museo etno-antropologico di Matera, ed è situato nell'antico rione dei Sassi. Il Museo è stato realizzato da Donato Cascione ed è gestito dall'omonima associazione culturale (ONLUS).",
@@ -123,8 +294,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -142,8 +313,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -166,28 +337,152 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w216895891",
-      "name": "Castello Tramontano",
+      "id": "osm-n2614103176",
+      "name": "Il Terrazzino",
       "description": "",
-      "category": "culture",
+      "category": "food",
       "tags": [
-        "building",
-        "building.historic",
-        "no_access",
-        "tourism",
-        "tourism.sights",
-        "tourism.sights.castle"
+        "catering",
+        "catering.restaurant",
+        "catering.restaurant.italian"
       ],
       "location": {
         "city": "Matera",
-        "address": "Castello Tramontano, Via Castello, 75100 Matera MT, Italy",
-        "lat": 40.6639162,
-        "lng": 16.6059525,
+        "address": "Il Terrazzino, Vico San Giuseppe, 7, 75100 Matera MT, Italy",
+        "lat": 40.666344,
+        "lng": 16.6071595,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Su 12:00-15:00,19:00-24:00; Tu 12:00-15:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.ilterrazzino.org/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n9300059997",
+      "name": "Area 8",
+      "description": "Cocktail bar nel cuore dei sassi, lo spazio si trova scendendo le scale che si trovano affianco palazzo lanfranchi sulla Dx.",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Area 8, Via Casalnuovo, 11,13,15, 75100 Matera MT, Italy",
+        "lat": 40.6627609,
+        "lng": 16.6103211,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:36+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Th-Su 19:00-02:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.area8.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n4191642969",
+      "name": "Spa Gattini",
+      "description": "La SPA di Palazzo Gattini evoca antiche sale da bagno gentilizie. Hammam, massaggi, trattamenti e idromassaggi per abbandonarsi al relax e regalarsi benessere",
+      "category": "relax",
+      "tags": [
+        "access",
+        "access.yes",
+        "fee",
+        "leisure",
+        "leisure.spa",
+        "leisure.spa.sauna"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Spa Gattini, Piazza Duomo, 13, 75100 Matera MT, Italy",
+        "lat": 40.6664504,
+        "lng": 16.611777,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:41+01:00",
           "quote": null
         }
       },
@@ -206,23 +501,18 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "no",
+        "wheelchair": "unknown",
         "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
-          "quote": null
-        }
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.isassidimatera.com/cosa-vedere/nelle-vicinanze/castello-tramontano/",
+      "booking_url": "https://www.palazzogattini.it/it/la-spa/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n13128033511",
@@ -241,8 +531,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -275,6 +565,108 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
+      "id": "osm-n8949033480",
+      "name": "Osteria San Giovanni",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant",
+        "catering.restaurant.italian",
+        "catering.restaurant.regional"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Osteria San Giovanni, Via San Biagio, 27, 75100 Matera MT, Italy",
+        "lat": 40.6674363,
+        "lng": 16.6076197,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.tierramatera.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n9791248451",
+      "name": "Bar \"La voglia Matta\"",
+      "description": "Da 15 anni il bar dei Materani",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Bar \"La voglia Matta\", Via dei Bizantini, 11 / F, 75100 Matera MT, Italy",
+        "lat": 40.678549,
+        "lng": 16.5872564,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:36+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.lavogliamatta-matera.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
       "id": "osm-n3103274392",
       "name": "La Casa di Ortega",
       "description": "",
@@ -291,8 +683,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -325,6 +717,120 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
+      "id": "osm-n9506671717",
+      "name": "Trattoria Lucana",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Trattoria Lucana, Via Lucana, 48, 75100 Matera MT, Italy",
+        "lat": 40.6675308,
+        "lng": 16.6045346,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://trattorialucana.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n2506843546",
+      "name": "La Focagna",
+      "description": "Pub storico della città dei sassi, si trova nella centrale via Ridola c'è sempre gente e si mangia bene, consigliato il periodo quando ci sono le castagne e il vino novello. Birre alla spina super top.",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.pub"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "La Focagna, Via Domenico Ridola, 4-11, 75100 Matera MT, Italy",
+        "lat": 40.6637611,
+        "lng": 16.6096362,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.pub&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:37+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo, We-Su 12:30-14:45, 19:00-23:00; Su 12:30-14:45",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.pub&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:37+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.pub&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:37+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.lafocagna.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
       "id": "osm-w243609821",
       "name": "Museo Archeologico Nazionale Domenico Ridola",
       "description": "",
@@ -343,8 +849,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -362,8 +868,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -376,8 +882,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -389,6 +895,117 @@
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n3526773861",
+      "name": "Alle Fornaci",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant",
+        "catering.restaurant.italian",
+        "gluten_free"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Alle Fornaci, Piazza Cesare Firrao, 7, 75100 Matera MT, Italy",
+        "lat": 40.668949,
+        "lng": 16.605534,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Sa 19:30-22:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.ristoranteallefornaci.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n9925126563",
+      "name": "Fish Pub Sapore di Mare",
+      "description": "Il primo fish Pub a Matera",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.pub"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Fish Pub Sapore di Mare, Via Sinni, 75100 Matera MT, Italy",
+        "lat": 40.6728355,
+        "lng": 16.5814521,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.pub&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:37+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.saporedimarematera.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n3103273454",
@@ -410,8 +1027,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -429,8 +1046,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -453,8 +1070,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -466,6 +1083,59 @@
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n5249129425",
+      "name": "Cola Cola",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant",
+        "catering.restaurant.italian",
+        "catering.restaurant.pizza",
+        "catering.restaurant.regional"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Cola Cola, Via Spartivento, 20, 75100 Matera MT, Italy",
+        "lat": 40.6661925,
+        "lng": 16.6091594,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://lacolacola.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n2229592221",
@@ -485,8 +1155,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -504,8 +1174,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -528,6 +1198,68 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
+      "id": "osm-n5272670342",
+      "name": "Fior di Cucuzza",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant",
+        "vegan",
+        "vegetarian",
+        "vegetarian.only"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Fior di Cucuzza, Via Rocco Scotellaro, 1, 75100 Matera MT, Italy",
+        "lat": 40.6651847,
+        "lng": 16.6084326,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-We,Fr-Su 12:30-15:00,19:30-23:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.fiordicucuzza.it",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
       "id": "osm-n13290217301",
       "name": "Museo del pane Matera",
       "description": "",
@@ -544,8 +1276,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -578,27 +1310,24 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n8850626805",
-      "name": "Raccolta delle acque",
-      "description": "",
-      "category": "culture",
+      "id": "osm-n9273092488",
+      "name": "EGO Ristorante",
+      "description": "Ristorante sensoriale con influenze tradizionali.",
+      "category": "food",
       "tags": [
-        "access_limited",
-        "access_limited.customers",
-        "tourism",
-        "tourism.sights",
-        "tourism.sights.archaeological_site"
+        "catering",
+        "catering.restaurant"
       ],
       "location": {
         "city": "Matera",
-        "address": "Raccolta delle acque, Via Purgatorio Vecchio, 12, 75100 Matera MT, Italy",
-        "lat": 40.6633837,
-        "lng": 16.611352,
+        "address": "EGO Ristorante, Via Tommaso Stigliani, 44, 75100 Matera MT, Italy",
+        "lat": 40.669437,
+        "lng": 16.6072834,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
           "quote": null
         }
       },
@@ -611,7 +1340,16 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "Mo, We-Su 19:15-22:00, 12:30-14:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
       "rating": null,
@@ -625,10 +1363,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "http://www.laraccoltadelleacquematera.it/",
+      "booking_url": "https://www.egogourmet.it/ego-ristorante-gourmet-matera-2/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-w244741856",
@@ -649,8 +1387,8 @@
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -668,8 +1406,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
           "quote": null
         }
       },
@@ -690,164 +1428,6 @@
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n4435891347",
-      "name": "Chiesa Rupestre Madonna degli Angeli",
-      "description": "",
-      "category": "culture",
-      "tags": [
-        "building",
-        "building.historic",
-        "tourism",
-        "tourism.sights",
-        "tourism.sights.archaeological_site"
-      ],
-      "location": {
-        "city": "Matera",
-        "address": "Chiesa Rupestre Madonna degli Angeli, Via Madonna delle Virtù, 75100 Matera MT, Italy",
-        "lat": 40.6698683,
-        "lng": 16.6132183,
-        "timezone": "Europe/Rome",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.isassidimatera.com/cosa-vedere/chiese-rupestri/madonna-degli-angeli/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n2510639051",
-      "name": "Chiesa Rupestre Madonna di Monteverde",
-      "description": "",
-      "category": "culture",
-      "tags": [
-        "building",
-        "building.historic",
-        "tourism",
-        "tourism.sights",
-        "tourism.sights.archaeological_site"
-      ],
-      "location": {
-        "city": "Matera",
-        "address": "Chiesa Rupestre Madonna di Monteverde, Madonna delle Vergini, 75100 Matera MT, Italy",
-        "lat": 40.6700792,
-        "lng": 16.6153605,
-        "timezone": "Europe/Rome",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.basilicataturistica.it/scopri-la-basilicata/matera-patrimonio-mondiale-dellumanita/le-chiese-di-matera/le-chiese-rupestri-di-matera/?privacy=updated",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n2648242439",
-      "name": "Chisa ruprestre santuario Madonna delle Tre Porte",
-      "description": "",
-      "category": "culture",
-      "tags": [
-        "no_access",
-        "tourism",
-        "tourism.sights",
-        "tourism.sights.archaeological_site"
-      ],
-      "location": {
-        "city": "Matera",
-        "address": "Chisa ruprestre santuario Madonna delle Tre Porte, Parco Murgia Timone 001, 75100 Matera MT, Italy",
-        "lat": 40.663199,
-        "lng": 16.6170312,
-        "timezone": "Europe/Rome",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T16:01:44+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.parcomurgia.it/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     }
   ]
 }

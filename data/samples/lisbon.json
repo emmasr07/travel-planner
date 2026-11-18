@@ -20,8 +20,8 @@
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -44,8 +44,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -59,25 +59,24 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap"
     },
     {
-      "id": "osm-n1801653047",
-      "name": "Miradouro do Castelo de São Jorge",
+      "id": "osm-n2003731541",
+      "name": "Ministerium Cantina",
       "description": "",
-      "category": "nature",
+      "category": "food",
       "tags": [
-        "tourism",
-        "tourism.attraction",
-        "tourism.attraction.viewpoint"
+        "catering",
+        "catering.restaurant"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Miradouro do Castelo de São Jorge, Praça de Armas, 1149-079 Lisbon, Portugal",
-        "lat": 38.7121155,
-        "lng": -9.133735,
+        "address": "Ministerium Cantina, Praça do Comércio, 1100-148 Lisbon, Portugal",
+        "lat": 38.7081204,
+        "lng": -9.1354935,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:17+01:00",
           "quote": null
         }
       },
@@ -104,7 +103,189 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.playocean.net/portugal/lisboa/miradouros/miradouro-do-castelo-de-sao-jorge",
+      "booking_url": "http://www.ministerium.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w97708551",
+      "name": "Museu Miguel Bombarda",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "heritage",
+        "natural",
+        "natural.protected_area",
+        "no_fee",
+        "no_fee.no"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Museu Miguel Bombarda, Rua Gomes Freire, 1150-176 Lisbon, Portugal",
+        "lat": 38.7255328,
+        "lng": -9.1421136,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "We 11:30-13:00; Sa 14:00-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://aparteoutsider.org/?page_id=74",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n6366304914",
+      "name": "Brew",
+      "description": "The Spot - Sports & Trendy Bar",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Brew, Rua Nova do Almada 14, 1200-288 Lisbon, Portugal",
+        "lat": 38.7092717,
+        "lng": -9.1388505,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Su-We 13:00-12:00, Th-Sa 13:00-01:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.brewportugal.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n13230741433",
+      "name": "Escala25",
+      "description": "",
+      "category": "adventure",
+      "tags": [
+        "entertainment",
+        "entertainment.activity_park",
+        "entertainment.activity_park.climbing",
+        "fee",
+        "sport",
+        "sport.sports_centre"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Escala25, Avenida da Índia 52, 1300-141 Lisbon, Portugal",
+        "lat": 38.7003518,
+        "lng": -9.178815,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:35:07+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://escala25.com/",
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
@@ -126,7 +307,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -145,7 +326,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -185,8 +366,8 @@
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -219,29 +400,24 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w565894105",
-      "name": "Portas do Sol",
+      "id": "osm-n2003731545",
+      "name": "Nosolo Italia",
       "description": "",
-      "category": "nature",
+      "category": "food",
       "tags": [
-        "highway",
-        "highway.footway",
-        "tourism",
-        "tourism.attraction",
-        "tourism.attraction.viewpoint",
-        "wheelchair",
-        "wheelchair.yes"
+        "catering",
+        "catering.restaurant"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Portas do Sol, 1100-487 Lisbon, Portugal",
-        "lat": 38.7119437,
-        "lng": -9.1300108,
+        "address": "Nosolo Italia, Praça do Comércio, 1100-148 Lisbon, Portugal",
+        "lat": 38.7079633,
+        "lng": -9.1354229,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:17+01:00",
           "quote": null
         }
       },
@@ -260,23 +436,204 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "yes",
+        "wheelchair": "unknown",
         "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:37+01:00",
-          "quote": null
-        }
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.visitlisboa.com/pt-pt/locais/miradouro-de-santa-luzia",
+      "booking_url": "https://nosoloitalia.com",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w40705510",
+      "name": "Jardim Botânico de Lisboa",
+      "description": "Foi plantado no séc. XIX, na antiga cerca do Colégio Real dos Nobres, para apoiar o ensino da Botânica e Princípios de Agricultura.",
+      "category": "nature",
+      "tags": [
+        "fee",
+        "heritage",
+        "leisure",
+        "leisure.park"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Jardim Botânico de Lisboa, 58, Santo António, Lisbon, Portugal",
+        "lat": 38.7185344,
+        "lng": -9.1488564,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:14+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "09:00-20:00; Oct 01-Mar 31: 09:00-17:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:14+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://museus.ulisboa.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n4292877138",
+      "name": "The George",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar",
+        "internet_access"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "The George, Rua do Crucifixo 58-62, 1100-184 Lisbon, Portugal",
+        "lat": 38.7102452,
+        "lng": -9.1387924,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 17:00-02:00; Sa 11:00-02:00; Su 11:00-01:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.thegeorgelisbon.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n3109770683",
+      "name": "Vertigo Climbing Center",
+      "description": "",
+      "category": "adventure",
+      "tags": [
+        "building",
+        "building.commercial",
+        "building.sport",
+        "entertainment",
+        "entertainment.activity_park",
+        "entertainment.activity_park.climbing",
+        "sport",
+        "sport.sports_centre"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Vertigo Climbing Center, Avenida Infante Dom Henrique Fracção S, 1950-408 Lisbon, Portugal",
+        "lat": 38.739902,
+        "lng": -9.1020322,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:35:07+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 10:00-22:00; Sa 10:00-20:00; Su 10:00-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:35:07+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.vertigoclimbing.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-w1009693064",
@@ -295,7 +652,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -345,8 +702,8 @@
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -379,29 +736,27 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-r19112367",
-      "name": "Miradouro Sophia de Mello Breyner Andresen",
-      "description": "Toponímia: Poeta 1919 - 2004. Início: Largo da Graça.",
-      "category": "nature",
+      "id": "osm-n2503325885",
+      "name": "Museu da Cerveja",
+      "description": "",
+      "category": "food",
       "tags": [
-        "highway",
-        "highway.pedestrian",
-        "tourism",
-        "tourism.attraction",
-        "tourism.attraction.viewpoint",
+        "catering",
+        "catering.restaurant",
+        "fee",
         "wheelchair",
-        "wheelchair.yes"
+        "wheelchair.limited"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Sophia de Mello Breyner Andersen Belvedere, 1100-266 Lisbon, Portugal",
-        "lat": 38.7163749,
-        "lng": -9.1315673,
+        "address": "Museu da Cerveja, Rua da Alfândega 62–65, 1100-148 Lisbon, Portugal",
+        "lat": 38.7083819,
+        "lng": -9.1356141,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:17+01:00",
           "quote": null
         }
       },
@@ -414,18 +769,27 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "Mo-Su 10:00-00:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:17+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "yes",
+        "wheelchair": "limited",
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:17+01:00",
           "quote": null
         }
       },
@@ -433,10 +797,198 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://revelar.lisboa.pt/explorar/toponimia/detalhe?tx_toponimia_pi1%5Baction%5D=show&tx_toponimia_pi1%5Bcontroller%5D=Toponimia&tx_toponimia_pi1%5Btopid%5D=4186",
+      "booking_url": "https://www.museudacerveja.pt/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-r9681789",
+      "name": "Quinta do Almaraz",
+      "description": "Escavação no estado de sondagem. Acesso ao público mediante inscrição nas visitas guiadas realizadas esporadicamente.",
+      "category": "nature",
+      "tags": [
+        "heritage",
+        "natural",
+        "natural.protected_area",
+        "tourism",
+        "tourism.sights",
+        "tourism.sights.archaeological_site"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Quinta do Almaraz, Rua Liberato Teles, 2800-279 Almada, Portugal",
+        "lat": 38.6859291,
+        "lng": -9.1524143,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:14+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "off",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:14+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://www.m-almada.pt/portal/page/portal/MUSEUS/ARQ_HIST/?mus=1&actualmenu=4197711&mus_nuc_arq_hist=7115639",
+      "photo_url": null,
+      "certainty": "low",
+      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n4986521256",
+      "name": "Bartô",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Bartô, Costa do Castelo, 1149-079 Lisbon, Portugal",
+        "lat": 38.7114227,
+        "lng": -9.1338261,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "22:00-02:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://www.barto.tk",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n9150346438",
+      "name": "Bicicletas Gira Estação 220",
+      "description": "Gira. Bicicletas de Lisboa",
+      "category": "adventure",
+      "tags": [
+        "internet_access",
+        "internet_access.free",
+        "rental",
+        "rental.bicycle"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Bicicletas Gira Estação 220, Rua do Comércio, 1100-150 Lisbon, Portugal",
+        "lat": 38.70877,
+        "lng": -9.1371535,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=rental.bicycle&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:35:28+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "24/7",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=rental.bicycle&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:35:28+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.gira-bicicletasdelisboa.pt",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-w96715414",
@@ -457,7 +1009,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -476,7 +1028,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -517,8 +1069,8 @@
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -536,8 +1088,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -560,26 +1112,78 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w40705510",
-      "name": "Jardim Botânico de Lisboa",
-      "description": "Foi plantado no séc. XIX, na antiga cerca do Colégio Real dos Nobres, para apoiar o ensino da Botânica e Princípios de Agricultura.",
+      "id": "osm-n4964044922",
+      "name": "RIB - Beef & Wine Lisboa",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "RIB - Beef & Wine Lisboa, Rua do Arsenal, 1149-019 Lisbon, Portugal",
+        "lat": 38.7082256,
+        "lng": -9.137773,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:17+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.pousadas.pt/pt/hotel/pousada-lisboa/restaurantes",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-r3327251",
+      "name": "Estufa Fria",
+      "description": "É constituída por três ambientes diferentes, a Estufa Fria, a Estufa Quente e a Estufa Doce, sendo que os dois últimos são envidraçados e permitem a existência de plantas que necessitam de mais calor e humidade.",
       "category": "nature",
       "tags": [
         "fee",
         "heritage",
         "leisure",
-        "leisure.park"
+        "leisure.park",
+        "leisure.park.garden",
+        "sport"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Jardim Botânico de Lisboa, 58, Santo António, Lisbon, Portugal",
-        "lat": 38.7185344,
-        "lng": -9.1488564,
+        "address": "Estufa Fria, Campo Pequeno, Lisbon, Portugal",
+        "lat": 38.7293283,
+        "lng": -9.1554966,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:14+01:00",
           "quote": null
         }
       },
@@ -593,12 +1197,12 @@
         "source": null
       },
       "opening_hours": {
-        "text": "09:00-20:00; Oct 01-Mar 31: 09:00-17:00",
+        "text": "Mo-Su 10:00-19:00",
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:14+01:00",
           "quote": null
         }
       },
@@ -615,10 +1219,110 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://museus.ulisboa.pt/",
+      "booking_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/estufa-fria-de-lisboa",
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n3232293867",
+      "name": "The Couch Sports Bar",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "The Couch Sports Bar, Rua do Alecrim 21A, 1200-014 Lisbon, Portugal",
+        "lat": 38.7073915,
+        "lng": -9.1435269,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.thecouch.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n2536815943",
+      "name": "Free Bike Tours Lisbon",
+      "description": "",
+      "category": "adventure",
+      "tags": [
+        "rental",
+        "rental.bicycle"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Free Bike Tours Lisbon, Rua dos Caminhos de Ferro 88, 1100-094 Lisbon, Portugal",
+        "lat": 38.7145392,
+        "lng": -9.1227753,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=rental.bicycle&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:35:28+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://scooterscool.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-w97277780",
@@ -642,7 +1346,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -661,7 +1365,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -675,7 +1379,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "retrieved_at": "2026-11-18T18:35:31+01:00",
           "quote": null
         }
       },
@@ -709,8 +1413,8 @@
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -728,8 +1432,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -742,8 +1446,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
           "quote": null
         }
       },
@@ -752,124 +1456,6 @@
         "kind": "fact"
       },
       "booking_url": "https://www.museudodinheiro.pt",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
-    },
-    {
-      "id": "osm-w307659634",
-      "name": "Jardim das Francesinhas",
-      "description": "No local onde em tempos se ergueu o Convento das Francesinhas, perto da Assembleia da República, situa-se agora o Jardim Lisboa Antiga, mais conhecido por Jardim das Francesinhas",
-      "category": "nature",
-      "tags": [
-        "leisure",
-        "leisure.park"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Jardim das Francesinhas, Prazeres, Lisbon, Portugal",
-        "lat": 38.7115508,
-        "lng": -9.1546285,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:37+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-lisboa-antiga-jardim-das-francesinhas",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-w317549565",
-      "name": "Mercado de Campo de Ourique",
-      "description": "",
-      "category": "shopping",
-      "tags": [
-        "building",
-        "building.catering",
-        "building.commercial",
-        "commercial.marketplace",
-        "wheelchair",
-        "wheelchair.yes"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Mercado de Campo de Ourique, Rua Coelho da Rocha 104, 1350-075 Lisbon, Portugal",
-        "lat": 38.7162138,
-        "lng": -9.1667796,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Su,We 10:00-00:00;Mo,Tu 10:00-23:00;Th-Sa 10:00-01:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "yes",
-        "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T16:01:38+01:00",
-          "quote": null
-        }
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://mercadodecampodeourique.pt/",
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet"

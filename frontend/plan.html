@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Questionnaire: seven questions, one per screen, with Back/Next; answers are kept in sessionStorage. -->
+<!-- Questionnaire: seven questions, one per screen, with Back/Next; answers are kept in sessionStorage and sent to POST /api/trips. -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/api.js" defer></script>
   <script src="js/plan.js" defer></script>
 </head>
 <body>
@@ -25,7 +26,7 @@
 
       <section class="step" data-step="1" data-name="Destination">
         <h1 tabindex="-1">Where are you going?</h1>
-        <p class="body-lg lead">One city works best. We'll find experiences there.</p>
+        <p class="body-lg lead" id="destination-lead">One city works best. We'll find experiences there.</p>
         <div class="question-body">
           <label class="field">
             <span class="field-label">City</span>
@@ -135,6 +136,8 @@
         <span class="label">Your trip so far</span>
         <span id="summary-text"></span>
       </div>
+
+      <p class="field-error" id="submit-error" role="alert" hidden></p>
 
       <div class="step-nav">
         <button type="button" class="btn btn-secondary" id="back">Back</button>

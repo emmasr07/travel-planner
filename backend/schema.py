@@ -1,5 +1,6 @@
 # The itinerary JSON format the model must return; every item needs source, price and quoted_at.
-# Also the experiences schema (schemas/experiences.schema.json) and its variant for the sample datasets.
+# Also the experiences schema (schemas/experiences.schema.json), its variant for the sample datasets, and the checks
+# of a researcher or verifier delivery.
 import copy
 import json
 from pathlib import Path
@@ -11,6 +12,9 @@ EXPERIENCES_SCHEMA = ROOT / "schemas" / "experiences.schema.json"
 
 # Filled by the agent later, so never in a sample.
 SUGGESTION_FIELDS = ("best_time", "why_fits", "schedule")
+# A sample may hold more than one delivery's worth (a delivery has at most 15): up to 25, so every interest
+# can have a few.
+SAMPLE_MAX_ITEMS = 25
 
 FX_BLOCK = {
     "type": "object",
@@ -42,9 +46,10 @@ def experiences_schema():
 
 def sample_schema():
     """The experiences schema for code-built samples: no suggestion fields (they are rejected if present),
-    no minimum count (never padded), at most 15, and amount_eur/fx as filled by the code."""
+    no minimum count (never padded), at most SAMPLE_MAX_ITEMS, and amount_eur/fx as filled by the code."""
     schema = copy.deepcopy(experiences_schema())
     schema["properties"]["experiences"].pop("minItems", None)
+    schema["properties"]["experiences"]["maxItems"] = SAMPLE_MAX_ITEMS
     experience = schema["$defs"]["experience"]
     for field in SUGGESTION_FIELDS:
         experience["required"].remove(field)
@@ -61,3 +66,30 @@ def validate_sample(data):
     validator = Draft202012Validator(sample_schema())
     return [f"{'/'.join(map(str, e.absolute_path)) or '(root)'}: {e.message}"
             for e in sorted(validator.iter_errors(data), key=lambda e: list(map(str, e.absolute_path)))]
+
+
+VERDICTS_SCHEMA = ROOT / "schemas" / "verdicts.schema.json"
+
+
+def _errors(schema, data):
+    validator = Draft202012Validator(schema)
+    return [f"{'/'.join(map(str, e.absolute_path)) or '(root)'}: {e.message}"
+            for e in sorted(validator.iter_errors(data), key=lambda e: list(map(str, e.absolute_path)))]
+
+
+def delivery_schema(min_items=True):
+    """What the researcher delivers. min_items=False for demo deliveries built from a sample, which is never padded."""
+    schema = experiences_schema()
+    if not min_items:
+        schema["properties"]["experiences"].pop("minItems", None)
+    return schema
+
+
+def validate_delivery(data, min_items=True):
+    """Error messages (path: message) for a researcher delivery; [] when valid."""
+    return _errors(delivery_schema(min_items), data)
+
+
+def validate_verdicts(data):
+    """Error messages (path: message) for a verifier delivery; [] when valid."""
+    return _errors(json.loads(VERDICTS_SCHEMA.read_text(encoding="utf-8")), data)

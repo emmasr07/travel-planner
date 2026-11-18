@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/mock-data.js" defer></script>
   <script src="js/index.js" defer></script>
 </head>
 <body>
@@ -36,7 +35,7 @@
           </a>
         </div>
 
-        <!-- Example trip, filled from js/mock-data.js -->
+        <!-- Example trip: a static illustration filled by js/index.js (no prices: those only come from the API) -->
         <section class="card preview" aria-label="Example trip">
           <div class="map" id="preview-map" role="img" aria-label="Map placeholder with the example trip's stops"></div>
           <div class="preview-trip">
@@ -45,13 +44,6 @@
               <p class="text-sm muted" id="preview-meta"></p>
             </div>
             <ul class="plain list-box" id="preview-list"></ul>
-            <div class="mini-budget">
-              <div class="row">
-                <strong id="preview-used"></strong>
-                <span class="muted" id="preview-left"></span>
-              </div>
-              <div class="budget-track"><div class="budget-fill" id="preview-fill"></div></div>
-            </div>
           </div>
         </section>
       </div>

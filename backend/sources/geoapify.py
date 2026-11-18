@@ -14,6 +14,7 @@ VAGUE_TYPES = {"unknown", "suburb", "district", "postcode", "city", "county", "s
 MIN_CONFIDENCE = 0.7
 NEAR_RADIUS_M = 30_000
 OSM_WHEELCHAIR = {"yes": "yes", "designated": "yes", "limited": "limited", "no": "no"}
+ENTRY_TAGS = ("male", "female", "lgbtq:men", "lgbtq:women")   # OSM tags that can say who may enter
 
 
 def find_place(name, city, *, near=None, client=None):
@@ -124,7 +125,7 @@ def search_places(center, categories, *, radius_m=5000, limit=100, client=None):
         raw = (props.get("datasource") or {}).get("raw") or {}
         out.append({
             "id": osm_id(raw),
-            "name": props.get("name"),
+            "name": None if props.get("name") is None else str(props["name"]),   # OSM has names like 25
             "lat": props.get("lat"),
             "lng": props.get("lon"),
             "address": props.get("formatted"),
@@ -133,6 +134,7 @@ def search_places(center, categories, *, radius_m=5000, limit=100, client=None):
             "website": props.get("website") or raw.get("website") or raw.get("contact:website"),
             "opening_hours": props.get("opening_hours") or raw.get("opening_hours"),
             "wheelchair": _wheelchair(props, raw),
+            "entry_tags": {k: raw[k] for k in ENTRY_TAGS if k in raw},
             "source": source_block(PROVIDER, url),
         })
     return out

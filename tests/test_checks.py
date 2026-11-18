@@ -1,0 +1,270 @@
+# backend/checks.py: the code checks of docs/backend-logic.md section 5, the final status per experience, and the
+# delivery check (schema, duplicate ids, schedule inside the trip). Prices are fixed test examples.
+import pytest
+
+from backend import checks
+from tests.factories import checked, experience, profile
+
+P = profile()   # Lisbon, Fri 4 - Sun 6 Dec 2026, 4 friends aged 25-34, EUR 250 per person, balanced pace
+
+
+def run(exps, prof=P, pages=None):
+    checks.check_all(prof, exps, pages)
+    return exps
+
+
+def result(e, name):
+    return next(c for c in e["checks"] if c["name"] == name)
+
+
+def res(e, name):
+    return result(e, name)["result"]
+
+
+def test_every_check_is_there_in_order():
+    [e] = run([checked()])
+    assert [c["name"] for c in e["checks"]] == ["schema", "source", "season", "age", "price", "hours", "overlap",
+                                                "pace", "accessibility"]
+    assert all(set(c) == {"name", "result", "detail"} for c in e["checks"])
+
+
+# --- source -------------------------------------------------------------------------------------------------
+
+WEB = {"provider": "web", "url": "https://example.org/hours", "retrieved_at": "2026-11-17T14:43:10+01:00",
+       "quote": "Tours depart daily at 10:00 and 14:00."}
+
+
+def with_web_quote():
+    return checked(opening_hours={"text": "Daily 10:00 and 14:00", "slots": ["10:00", "14:00"], "source": WEB})
+
+
+def test_source_skipped_when_pages_were_not_read():
+    [e] = run([with_web_quote()])
+    assert res(e, "source") == "skip"
+
+
+def test_source_quote_on_the_page():
+    page = "Welcome! Tours depart daily at 10:00 and 14:00. Book now."
+    [e] = run([with_web_quote()], pages={WEB["url"]: page})
+    assert res(e, "source") == "ok"
+
+
+def test_source_quote_missing_or_page_not_loaded():
+    [e] = run([with_web_quote()], pages={WEB["url"]: "Tours depart daily at 11:00."})
+    assert res(e, "source") == "warn"
+    [e] = run([with_web_quote()], pages={WEB["url"]: ""})
+    assert res(e, "source") == "warn" and "did not load" in result(e, "source")["detail"]
+
+
+def test_source_api_data_only_has_nothing_to_check():
+    [e] = run([checked()], pages={})
+    assert res(e, "source") == "skip"
+
+
+# --- season -------------------------------------------------------------------------------------------------
+
+def test_season():
+    [all_year] = run([checked(months=[])])
+    [summer] = run([checked(months=[4, 5, 6, 7, 8, 9, 10])])
+    [winter] = run([checked(months=[11, 12, 1])])
+    assert (res(all_year, "season"), res(summer, "season"), res(winter, "season")) == ("ok", "warn", "ok")
+
+
+def test_season_uses_the_scheduled_date():
+    trip = profile(start_date="2026-11-30", end_date="2026-12-02")   # day 1 in Nov, day 2 in Dec
+    [e] = run([checked(months=[12], schedule={"day": 1, "start": "10:00", "end": "12:00"})], trip)
+    assert res(e, "season") == "warn"
+    [e] = run([checked(months=[12], schedule={"day": 2, "start": "10:00", "end": "12:00"})], trip)
+    assert res(e, "season") == "ok"
+
+
+# --- age ----------------------------------------------------------------------------------------------------
+
+def test_age():
+    assert res(run([checked(min_age=None)])[0], "age") == "ok"
+    assert res(run([checked(min_age=18)])[0], "age") == "ok"                       # youngest is 25
+    assert res(run([checked(min_age=30)])[0], "age") == "fail"
+    young = profile(age_range="18-24")
+    assert res(run([checked(min_age=21)], young)[0], "age") == "fail"
+
+
+def test_age_for_families():
+    family = profile(group_type="family", age_range="35-49")
+    assert res(run([checked(min_age=12)], family)[0], "age") == "warn"             # youngest not known
+    with_kids = profile(group_type="family", age_range="35-49", youngest_age=8)
+    assert res(run([checked(min_age=12)], with_kids)[0], "age") == "fail"
+    assert res(run([checked(min_age=6)], with_kids)[0], "age") == "ok"
+
+
+# --- price --------------------------------------------------------------------------------------------------
+
+def test_price():
+    assert res(run([checked()])[0], "price") == "ok"                                # 35 per person
+    assert res(run([checked(price={"amount": 300.0})])[0], "price") == "fail"       # more than 250 alone
+    assert res(run([checked(price={"amount": None})])[0], "price") == "warn"        # no price
+    assert res(run([checked(price={"amount": None, "per": "free"})])[0], "price") == "ok"
+
+
+def test_price_in_a_currency_that_was_not_converted():
+    e = checked(price={"amount": 20.0, "currency": "GBP"})
+    e["price"]["amount_eur"] = None
+    [e] = run([e])
+    assert res(e, "price") == "warn" and "GBP" in result(e, "price")["detail"]
+
+
+def test_price_against_a_total_budget():
+    total = profile(budget={"amount": "250", "currency": "EUR", "per": "total"})
+    assert res(run([checked(price={"amount": 70.0})], total)[0], "price") == "fail"   # 70 x 4 = 280
+    assert res(run([checked(price={"amount": 60.0})], total)[0], "price") == "ok"
+
+
+# --- hours --------------------------------------------------------------------------------------------------
+
+def at(day, start, end, **over):
+    return checked(schedule={"day": day, "start": start, "end": end}, **over)
+
+
+def test_hours_inside_and_outside_osm_hours():
+    hours = {"opening_hours": {"text": "Mo-Sa 07:00-14:00", "slots": [], "source": {}}}
+    assert res(run([at(1, "10:00", "12:00", **hours)])[0], "hours") == "ok"         # Friday
+    assert res(run([at(1, "13:00", "15:00", **hours)])[0], "hours") == "warn"       # ends after closing
+    assert res(run([at(3, "10:00", "12:00", **hours)])[0], "hours") == "warn"       # Sunday: closed
+    assert "closed" in result(run([at(3, "10:00", "12:00", **hours)])[0], "hours")["detail"]
+
+
+def test_hours_after_midnight():
+    hours = {"opening_hours": {"text": "Th-Sa 10:00-01:00", "slots": [], "source": {}}}
+    assert res(run([at(2, "23:00", "00:30", **hours)])[0], "hours") == "ok"
+
+
+def test_hours_unknown_or_too_complex():
+    assert res(run([checked(opening_hours=None)])[0], "hours") == "warn"
+    complex_hours = {"opening_hours": {"text": "07:30 - sunset", "slots": [], "source": {}}}
+    e = run([checked(**complex_hours)])[0]
+    assert res(e, "hours") == "warn" and "too complex" in result(e, "hours")["detail"]
+
+
+def test_hours_with_start_times():
+    slots = {"opening_hours": {"text": "Daily 10:00 and 14:00", "slots": ["10:00", "14:00"], "source": {}}}
+    assert res(run([at(1, "14:00", "16:00", **slots)])[0], "hours") == "ok"
+    assert res(run([at(1, "11:00", "13:00", **slots)])[0], "hours") == "warn"
+
+
+def test_hours_mention_ignored_holiday_rules():
+    hours = {"opening_hours": {"text": "08:00-18:30; PH 10:00-17:30", "slots": [], "source": {}}}
+    e = run([checked(**hours)])[0]
+    assert res(e, "hours") == "ok" and "public-holiday" in result(e, "hours")["detail"]
+
+
+# --- overlap and pace ---------------------------------------------------------------------------------------
+
+def test_overlap_between_kept_items_on_the_same_day():
+    a = at(1, "10:00", "12:00", id="a", name="Tram 28")
+    b = at(1, "11:00", "13:00", id="b", name="Fado dinner")
+    c = at(2, "11:00", "13:00", id="c", name="Surf lesson")
+    run([a, b, c])
+    assert (res(a, "overlap"), res(b, "overlap"), res(c, "overlap")) == ("warn", "warn", "ok")
+    assert "Fado dinner" in result(a, "overlap")["detail"] and "Tram 28" in result(b, "overlap")["detail"]
+
+
+def test_touching_items_do_not_overlap():
+    a, b = at(1, "10:00", "12:00", id="a"), at(1, "12:00", "14:00", id="b")
+    run([a, b])
+    assert (res(a, "overlap"), res(b, "overlap")) == ("ok", "ok")
+
+
+def test_removed_and_rejected_items_are_left_out():
+    a, b = at(1, "10:00", "12:00", id="a"), at(1, "11:00", "13:00", id="b", kept=False)
+    c = at(1, "11:00", "13:00", id="c", min_age=99)                                   # fails the age check
+    run([a, b, c])
+    assert res(a, "overlap") == "ok"
+    assert (res(b, "overlap"), res(b, "pace")) == ("skip", "skip")
+    assert c["status"] == "rejected" and res(c, "overlap") == "skip"
+
+
+def test_pace():
+    day1 = [at(1, f"{h:02d}:00", f"{h + 1:02d}:00", id=f"e{h}") for h in (9, 11, 13, 15)]
+    run(day1)                                                                          # 4 on day 1, balanced allows 3
+    assert {res(e, "pace") for e in day1} == {"warn"}
+    run(day1, profile(pace="packed"))
+    assert {res(e, "pace") for e in day1} == {"ok"}
+    run(day1[:2], profile(pace="chill"))
+    assert {res(e, "pace") for e in day1[:2]} == {"ok"}
+
+
+# --- accessibility ------------------------------------------------------------------------------------------
+
+def test_accessibility():
+    needs = profile(notes="one of us uses a wheelchair")
+    assert res(run([checked()], needs)[0], "accessibility") == "warn"                 # unknown
+    assert res(run([checked(accessibility={"wheelchair": "no"})], needs)[0], "accessibility") == "warn"
+    assert res(run([checked(accessibility={"wheelchair": "yes"})], needs)[0], "accessibility") == "ok"
+    assert res(run([checked()])[0], "accessibility") == "skip"                        # no need in the notes
+
+
+# --- final status -------------------------------------------------------------------------------------------
+
+@pytest.mark.parametrize("results, verdict, status", [
+    (["ok"], "confirmed", "verified"),
+    (["ok", "skip"], "confirmed", "verified"),
+    (["ok"], "not_sure", "to_check"),
+    (["ok"], None, "to_check"),
+    (["ok", "warn"], "confirmed", "to_check"),
+    (["ok"], "contradicted", "rejected"),
+    (["fail"], "confirmed", "rejected"),
+])
+def test_final_status(results, verdict, status):
+    cs = [{"name": "x", "result": r, "detail": ""} for r in results]
+    assert checks.final_status(cs, {"verdict": verdict} if verdict else None) == status
+
+
+def test_recheck_keeps_schema_and_source_and_sets_status():
+    e = with_web_quote()
+    run([e], pages={WEB["url"]: "Tours depart daily at 10:00 and 14:00."})
+    e["verdict"] = {"verdict": "confirmed"}
+    e["schedule"] = {"day": 1, "start": "10:00", "end": "12:00"}
+    checks.recheck(P, [e])
+    assert res(e, "source") == "ok" and res(e, "schema") == "ok"
+    assert e["status"] == "verified"       # every check ok or skip, and the verifier confirmed
+    e["verdict"] = None
+    checks.recheck(P, [e])
+    assert e["status"] == "to_check"       # not verified yet
+
+
+# --- the delivery -------------------------------------------------------------------------------------------
+
+def delivery(*exps):
+    return {"experiences": list(exps)}
+
+
+def ten():
+    return [experience(f"item-{i}") for i in range(10)]
+
+
+def test_a_good_delivery_has_no_errors():
+    assert checks.delivery_errors(delivery(*ten()), P) == []
+
+
+def test_delivery_schema_errors_are_listed():
+    bad = ten()
+    bad[0]["price"]["amount_eur"] = 35.0                       # only the code fills amount_eur
+    del bad[1]["booking_url"]
+    errors = checks.delivery_errors(delivery(*bad), P)
+    assert any("experiences/0/price/amount_eur" in e for e in errors)
+    assert any("booking_url" in e for e in errors)
+
+
+def test_delivery_needs_ten_unless_never_padded():
+    assert any("too short" in e for e in checks.delivery_errors(delivery(experience()), P))
+    assert checks.delivery_errors(delivery(experience()), P, min_items=False) == []
+
+
+def test_delivery_duplicate_ids_and_schedule_outside_the_trip():
+    items = ten()
+    items[1]["id"] = items[0]["id"]
+    items[2]["schedule"] = {"day": 4, "start": "10:00", "end": "12:00"}              # a 3-day trip
+    items[3]["schedule"] = {"day": 1, "start": "10:00", "end": "13:00"}              # 120 min, not 180
+    errors = checks.delivery_errors(delivery(*items), P)
+    assert any("item-0" in e and "twice" in e for e in errors)
+    assert any("item-2" in e and "day 4" in e for e in errors)
+    assert any("item-3" in e and "end" in e for e in errors)

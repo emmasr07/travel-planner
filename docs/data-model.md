@@ -261,4 +261,4 @@ TAVILY_API_KEY=
 ## 8. Still to do in step 3
 
 - **Item 4:** the agent instructions (researcher and verifier) as prompt files, following these rules, plus a single-search mode for last-minute requests.
-- **Item 5:** `data/samples/<city>.json` for the test destinations (Lisbon, London, Matera): up to 15 real experiences each, never padded, fetched from the sources above in this format (facts only; `best_time`, `why_fits` and `schedule` come later from the agent). Built by `scripts/build_sample.py <city>`.
+- **Item 5:** `data/samples/<city>.json` for the test destinations (Lisbon, London, Matera): up to 25 real places each, mixed so every interest can have a few, never padded, fetched from the sources above in this format (facts only; `best_time`, `why_fits` and `schedule` come later from the agent). Built by `scripts/build_sample.py <city>`.

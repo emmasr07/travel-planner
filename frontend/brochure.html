@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Brochure: the kept experiences grouped by day and ordered by time, with a map, total and price-check note. -->
+<!-- Brochure: the sublist built by POST /api/trips/{id}/brochure: kept experiences grouped by day and ordered by time, with a map, total and price-check note. -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/mock-data.js" defer></script>
+  <script src="js/api.js" defer></script>
   <script src="js/brochure.js" defer></script>
 </head>
 <body>
@@ -17,7 +17,7 @@
     <div class="container">
       <a class="wordmark" href="index.html">Travel Planner</a>
       <nav class="site-nav" aria-label="Brochure">
-        <a class="link-underline" href="experiences.html">Edit trip</a>
+        <a class="link-underline" href="experiences.html" id="edit-trip">Edit trip</a>
         <button type="button" class="btn btn-secondary btn-sm" aria-disabled="true" title="Coming soon">Download PDF</button>
         <button type="button" class="btn btn-primary btn-sm" aria-disabled="true" title="Coming soon">Share link</button>
       </nav>
@@ -56,8 +56,8 @@
     </div>
 
     <section class="card" id="empty" hidden>
-      <h2>No experiences kept yet</h2>
-      <p class="muted">Your brochure is built from the experiences you keep. <a href="experiences.html">Go back to your experiences</a> to pick some.</p>
+      <h2 id="empty-title">No experiences kept yet</h2>
+      <p class="muted" id="empty-text">Your brochure is built from the experiences you keep. <a href="experiences.html">Go back to your experiences</a> to pick some.</p>
     </section>
   </main>
 </body>

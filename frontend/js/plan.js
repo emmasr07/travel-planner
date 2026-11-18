@@ -1,4 +1,5 @@
 // Questionnaire: shows one step at a time, keeps answers in sessionStorage, and only enables Next when the step is answered.
+// "Find experiences" sends the answers to POST /api/trips and opens the experience list for the new trip.
 
 (function () {
   const STORAGE_KEY = "tp.answers";
@@ -26,6 +27,12 @@
   const summary = document.getElementById("summary");
   const summaryText = document.getElementById("summary-text");
   const dateError = document.getElementById("date-error");
+  const submitError = document.getElementById("submit-error");
+  // Which step to reopen when the server says a field is wrong.
+  const FIELD_STEPS = {
+    destination: 1, start_date: 2, end_date: 2, group_type: 3, group_size: 3, age_range: 4,
+    interests: 5, budget: 6, pace: 7, notes: 7
+  };
 
   let answers = load();
   let current = 1;
@@ -144,6 +151,7 @@
       if (!chip) return;
       const field = group.dataset.field;
       const value = chip.dataset.value;
+      showSubmitError("");
 
       if (group.dataset.mode === "multi") {
         const set = new Set(answers[field]);
@@ -161,11 +169,59 @@
     });
   });
 
+  // The answers as the API's profile (docs/data-model.md): the pace slider becomes chill / balanced / packed and
+  // the age range uses a plain hyphen. The budget is always in euros.
+  function toProfile(a) {
+    const pace = Number(a.pace) <= 2 ? "chill" : Number(a.pace) >= 4 ? "packed" : "balanced";
+    return {
+      destination: a.destination.trim(),
+      start_date: a.startDate,
+      end_date: a.endDate,
+      group_type: a.groupType,
+      group_size: a.groupSize,
+      age_range: a.ageRange.replace("–", "-"),
+      interests: a.interests,
+      budget: { amount: Number(a.budgetAmount), currency: "EUR", per: a.budgetPer === "total" ? "total" : "person" },
+      pace,
+      notes: (a.notes || "").trim()
+    };
+  }
+
+  function showSubmitError(message) {
+    submitError.textContent = message;
+    submitError.hidden = !message;
+  }
+
+  async function findExperiences() {
+    nextBtn.disabled = true;
+    nextBtn.textContent = "Finding experiences…";
+    showSubmitError("");
+    try {
+      const { id } = await TP.api.post("/api/trips", toProfile(answers));
+      TP.rememberTrip(id);
+      window.location.href = `experiences.html?trip=${encodeURIComponent(id)}`;
+    } catch (error) {
+      const step = error.field ? FIELD_STEPS[error.field.split(".")[0]] : null;
+      if (step && step !== current) showStep(step, true);
+      else showStep(current, false);
+      showSubmitError(error.message.charAt(0).toUpperCase() + error.message.slice(1));
+    }
+  }
+
+  // Demo mode only has sample data for a few cities: say which on the first step.
+  TP.api.get("/api/config").then((config) => {
+    if (config.mode === "demo" && config.demo_destinations.length) {
+      document.getElementById("destination-lead").textContent =
+        `Demo mode: we have sample data for ${config.demo_destinations.join(", ")}.`;
+    }
+  }).catch(() => { /* the default text stays */ });
+
   // Text, date, number, range and textarea inputs.
   form.addEventListener("input", (event) => {
     const el = event.target;
     const field = el.dataset && el.dataset.field;
     if (!field || el.classList.contains("chips")) return;
+    showSubmitError("");
     if (NUMBER_FIELDS.includes(field)) {
       answers[field] = el.value === "" ? null : Number(el.value);
     } else {
@@ -183,7 +239,7 @@
     if (!VALID[current]()) return;
     if (current === steps.length) {
       save();
-      window.location.href = "experiences.html";
+      findExperiences();
     } else {
       showStep(current + 1, true);
     }

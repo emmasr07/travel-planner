@@ -19,8 +19,8 @@
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
           "quote": null
         }
       },
@@ -53,28 +53,26 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w4254099",
-      "name": "Victoria Embankment Gardens",
+      "id": "osm-w550944274",
+      "name": "Garfunkel's",
       "description": "",
-      "category": "nature",
+      "category": "food",
       "tags": [
-        "access",
-        "access.yes",
-        "leisure",
-        "leisure.park",
+        "catering",
+        "catering.restaurant",
         "wheelchair",
-        "wheelchair.limited"
+        "wheelchair.yes"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Victoria Embankment Gardens, Covent Garden, London, United Kingdom",
-        "lat": 51.5086429,
-        "lng": -0.1214183,
+        "address": "Garfunkel's, 3 Northumberland Avenue, London, WC2N 5BW, United Kingdom",
+        "lat": 51.5071459,
+        "lng": -0.1267972,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
           "quote": null
         }
       },
@@ -88,12 +86,12 @@
         "source": null
       },
       "opening_hours": {
-        "text": "Jan 01-Feb 15 08:30-16:30,Feb 16-Feb 29 08:30-17:30,Mar 01-Mar Su[4] 08:30-18:00,Mar Mo[4]-Mar 31 08:30-19:30,Apr 01-Apr 15 08:30-20:00,Apr 16-Apr 30 08:30-20:30,May 01-May 15 08:30-21:00,Mar 16-Jul 31 08:30-21:30,Aug 01-Aug 15 08:30-21:00,Aug 16-Aug 31 0",
+        "text": "Mo-We 08:00-22:30; Th-Sa 08:00-23:30; Su 08:00-22:30",
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
           "quote": null
         }
       },
@@ -102,12 +100,12 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "limited",
+        "wheelchair": "yes",
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
           "quote": null
         }
       },
@@ -115,10 +113,273 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.westminster.gov.uk/parks-and-open-spaces/victoria-embankment-gardens",
+      "booking_url": "https://www.garfunkels.co.uk/node/682",
       "photo_url": null,
-      "certainty": "low",
-      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []"
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n3272712570",
+      "name": "Sky Garden",
+      "description": "Sky Garden viewpoint is accessible to all, and entry is free of charge. Tickets are available to book online on a weekly basis, up to three weeks in advance of your visit.",
+      "category": "nature",
+      "tags": [
+        "no_fee",
+        "no_fee.no",
+        "tourism",
+        "tourism.attraction",
+        "tourism.attraction.viewpoint",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Sky Garden, 20 Fenchurch Street, City of London, EC3M 3BY, United Kingdom",
+        "lat": 51.511096,
+        "lng": -0.0836023,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:57+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 10:00-18:00; Sa-Su,PH 11:00-21:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:57+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:57+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://skygarden.london/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-w565171598",
+      "name": "The Lamb and Flag",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "building",
+        "building.catering",
+        "building.historic",
+        "catering",
+        "catering.pub",
+        "catering.taproom",
+        "heritage"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "The Lamb and Flag, 33 Rose Street, London, WC2E 9EB, United Kingdom",
+        "lat": 51.5117166,
+        "lng": -0.1256609,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:43+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Sa 11:00-23:00; Su 12:00-22:30",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:43+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:43+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.lambandflagcoventgarden.co.uk/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n12920922065",
+      "name": "Covent Garden Health Spa",
+      "description": "",
+      "category": "relax",
+      "tags": [
+        "leisure",
+        "leisure.spa",
+        "leisure.spa.sauna"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Covent Garden Health Spa, 29 Endell Street, London, WC2H 9BA, United Kingdom",
+        "lat": 51.5144751,
+        "lng": -0.1246798,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:23+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 12:00-23:30; Sa 12:00-02:00; Su 12:00-22:30",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:23+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.cghspa.uk/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w97209805",
+      "name": "VauxWall East Climbing Centre",
+      "description": "",
+      "category": "adventure",
+      "tags": [
+        "building",
+        "building.sport",
+        "entertainment",
+        "entertainment.activity_park",
+        "entertainment.activity_park.climbing",
+        "fee",
+        "sport",
+        "sport.sports_centre"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "VauxWall East Climbing Centre, 1 Lollard Street, London, SE11 6BD, United Kingdom",
+        "lat": 51.4923321,
+        "lng": -0.1145915,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:37:50+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 09:00-22:00; Sa-Su,PH 09:00-19:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:37:50+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://londonclimbingcentres.co.uk/centre/vauxeast/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n5551916749",
@@ -139,7 +400,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "retrieved_at": "2026-11-18T18:38:28+01:00",
           "quote": null
         }
       },
@@ -158,7 +419,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "retrieved_at": "2026-11-18T18:38:28+01:00",
           "quote": null
         }
       },
@@ -202,8 +463,8 @@
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
           "quote": null
         }
       },
@@ -221,8 +482,8 @@
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
           "quote": null
         }
       },
@@ -235,8 +496,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
           "quote": null
         }
       },
@@ -250,26 +511,135 @@
       "doubts": "no price source yet"
     },
     {
-      "id": "osm-w40879988",
-      "name": "St Anne's Churchyard",
+      "id": "osm-n559522541",
+      "name": "Prezzo",
       "description": "",
-      "category": "nature",
+      "category": "food",
       "tags": [
-        "dogs",
-        "dogs.leashed",
-        "leisure",
-        "leisure.park"
+        "catering",
+        "catering.restaurant",
+        "catering.restaurant.italian",
+        "wheelchair",
+        "wheelchair.yes"
       ],
       "location": {
         "city": "Greater London",
-        "address": "St Anne's Churchyard, Soho, London, United Kingdom",
-        "lat": 51.5122576,
-        "lng": -0.13246,
+        "address": "Prezzo, 31-32 Northumberland Avenue, London, WC2N 5HR, United Kingdom",
+        "lat": 51.507428,
+        "lng": -0.1265922,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.prezzo.co.uk/restaurants/london-northumberland-avenue/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-n11148594121",
+      "name": "The Lookout",
+      "description": "The Lookout in 8 Bishopsgate - free, pre booking required",
+      "category": "nature",
+      "tags": [
+        "tourism",
+        "tourism.attraction",
+        "tourism.attraction.viewpoint"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "The Lookout, Bishopsgate, City of London, EC2N 4BQ, United Kingdom",
+        "lat": 51.5140131,
+        "lng": -0.0836015,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:57+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.8bishopsgate.com/lookout",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w71408528",
+      "name": "Gordon's Wine Bar",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "building",
+        "building.catering",
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Gordon's Wine Bar, 47 Villiers Street, London, WC2N 6NE, United Kingdom",
+        "lat": 51.5079244,
+        "lng": -0.1233137,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:01+01:00",
           "quote": null
         }
       },
@@ -283,12 +653,12 @@
         "source": null
       },
       "opening_hours": {
-        "text": "week 1-13 Mo-Su 10:00-16:00; week 14-43 10:00-18:00; week 44-52 10:00-16:00",
+        "text": "Mo-Sa 11:00-23:00; Su 12:00-22:00",
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:01+01:00",
           "quote": null
         }
       },
@@ -301,8 +671,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:01+01:00",
           "quote": null
         }
       },
@@ -310,10 +680,133 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.westminster.gov.uk/westminster-parks-and-open-spaces/st-annes-churchyard",
+      "booking_url": "https://www.gordonswinebar.com/",
       "photo_url": null,
-      "certainty": "low",
-      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []"
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n2707263303",
+      "name": "The Locker Room",
+      "description": "",
+      "category": "relax",
+      "tags": [
+        "leisure",
+        "leisure.spa",
+        "leisure.spa.sauna"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "The Locker Room, 6-8 Cleaver Street, London, SE11 4DP, United Kingdom",
+        "lat": 51.4883427,
+        "lng": -0.1105585,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:23+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Th 11:00-00:00; Fr 10:00-00:00; Sa-Su 00:00-00:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:23+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.lockerroomsauna.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n11042290163",
+      "name": "The Font Borough",
+      "description": "",
+      "category": "adventure",
+      "tags": [
+        "entertainment",
+        "entertainment.activity_park",
+        "entertainment.activity_park.climbing",
+        "fee",
+        "sport",
+        "sport.sports_centre"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "The Font Borough, 185 Park Street, London, SE1 9BL, United Kingdom",
+        "lat": 51.5071808,
+        "lng": -0.0971764,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:37:50+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 06:30-22:30; Sa-Su 10:00-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:37:50+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.the-font.co.uk/borough",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-w857170614",
@@ -334,7 +827,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "retrieved_at": "2026-11-18T18:38:28+01:00",
           "quote": null
         }
       },
@@ -353,7 +846,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "retrieved_at": "2026-11-18T18:38:28+01:00",
           "quote": null
         }
       },
@@ -367,7 +860,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "retrieved_at": "2026-11-18T18:38:28+01:00",
           "quote": null
         }
       },
@@ -400,8 +893,8 @@
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
           "quote": null
         }
       },
@@ -424,8 +917,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
           "quote": null
         }
       },
@@ -439,24 +932,26 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap"
     },
     {
-      "id": "osm-w1414670408",
-      "name": "Southwood Garden",
+      "id": "osm-n6106646885",
+      "name": "50 Kalo di Ciro Salvo Pizzeria",
       "description": "",
-      "category": "nature",
+      "category": "food",
       "tags": [
-        "leisure",
-        "leisure.park"
+        "catering",
+        "catering.restaurant",
+        "wheelchair",
+        "wheelchair.yes"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Southwood Garden, Mayfair, London, United Kingdom",
-        "lat": 51.5084566,
-        "lng": -0.1371562,
+        "address": "50 Kalo di Ciro Salvo Pizzeria, 7 Northumberland Avenue, London, WC2N 5BY, United Kingdom",
+        "lat": 51.5070186,
+        "lng": -0.126327,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
           "quote": null
         }
       },
@@ -469,52 +964,109 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": {
-        "text": "08:00-18:30; PH 10:00-17:30",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
-          "quote": null
-        }
-      },
+      "opening_hours": null,
       "months": [],
       "min_age": null,
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "unknown",
+        "wheelchair": "yes",
         "notes": null,
-        "source": null
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
+          "quote": null
+        }
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.sjp.org.uk/southwood-garden/",
+      "booking_url": "https://50kalo.it/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
     },
     {
-      "id": "osm-n7277566692",
-      "name": "Seven Dials Market",
-      "description": "",
-      "category": "shopping",
+      "id": "osm-n11262672466",
+      "name": "Horizon 22",
+      "description": "Horizon 22 in 22 Bishopsgate - free, pre-booking required",
+      "category": "nature",
       "tags": [
-        "commercial.marketplace"
+        "no_fee",
+        "no_fee.no",
+        "tourism",
+        "tourism.attraction",
+        "tourism.attraction.viewpoint",
+        "wheelchair",
+        "wheelchair.yes"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Seven Dials Market, Earlham Street, London, WC2H 9LX, United Kingdom",
-        "lat": 51.5141152,
-        "lng": -0.1258096,
+        "address": "Horizon 22, 22-24 Bishopsgate, City of London, EC2N 3AR, United Kingdom",
+        "lat": 51.514367,
+        "lng": -0.083149,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:57+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:57+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://horizon22.co.uk/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-n11052596810",
+      "name": "Equus Bar",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Equus Bar, 2a Whitehall Court, London, SW1A 2EJ, United Kingdom",
+        "lat": 51.5056254,
+        "lng": -0.124317,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:01+01:00",
           "quote": null
         }
       },
@@ -541,34 +1093,31 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.sevendialsmarket.com/",
+      "booking_url": "https://www.guoman.com/the-royal-horseguards/restaurants-and-bars/equus-bar",
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w4373996",
-      "name": "Jubilee Gardens",
+      "id": "osm-n4377148022",
+      "name": "Saunabar Portsea",
       "description": "",
-      "category": "nature",
+      "category": "relax",
       "tags": [
-        "access",
-        "access.yes",
         "leisure",
-        "leisure.park",
-        "wheelchair",
-        "wheelchair.yes"
+        "leisure.spa",
+        "leisure.spa.sauna"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Jubilee Gardens, London, SE1 7PG, United Kingdom",
-        "lat": 51.5039398,
-        "lng": -0.1181769,
+        "address": "Saunabar Portsea, 2 Portsea Place, London, W2 2BL, United Kingdom",
+        "lat": 51.5154349,
+        "lng": -0.1645407,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:23+01:00",
           "quote": null
         }
       },
@@ -582,12 +1131,12 @@
         "source": null
       },
       "opening_hours": {
-        "text": "24/7",
+        "text": "Mo-Su 11:30-22:30",
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:23+01:00",
           "quote": null
         }
       },
@@ -596,23 +1145,81 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "yes",
+        "wheelchair": "unknown",
         "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
-          "quote": null
-        }
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://jubileegardens.org.uk/",
+      "booking_url": "http://www.gaysaunabar.com",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet"
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n10552592178",
+      "name": "EustonWall Climbing Centre",
+      "description": "",
+      "category": "adventure",
+      "tags": [
+        "entertainment",
+        "entertainment.activity_park",
+        "entertainment.activity_park.climbing",
+        "fee",
+        "sport",
+        "sport.sports_centre"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "EustonWall Climbing Centre, 350 Euston Road, London, NW1 3AX, United Kingdom",
+        "lat": 51.5246047,
+        "lng": -0.1418928,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:37:50+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 06:00-23:00; Sa-Su,PH 09:00-21:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:37:50+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://londonclimbingcentres.co.uk/centre/eustonwall/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-w164405550",
@@ -631,7 +1238,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "retrieved_at": "2026-11-18T18:38:28+01:00",
           "quote": null
         }
       },
@@ -650,7 +1257,7 @@
         "source": {
           "provider": "geoapify",
           "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "retrieved_at": "2026-11-18T18:38:28+01:00",
           "quote": null
         }
       },
@@ -673,25 +1280,211 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w368199014",
-      "name": "Soho Square Gardens",
-      "description": "",
-      "category": "nature",
+      "id": "osm-w197206542",
+      "name": "Churchill War Rooms",
+      "description": "Visit Churchill War Rooms, part of Imperial War Museums, to discover the original Cabinet War Rooms, the wartime bunker which sheltered Churchill and his staff during the Blitz.",
+      "category": "culture",
       "tags": [
-        "leisure",
-        "leisure.park",
-        "no_dogs"
+        "building",
+        "building.tourism",
+        "entertainment",
+        "entertainment.museum",
+        "fee",
+        "wheelchair",
+        "wheelchair.yes"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Soho Square Gardens, Soho, London, United Kingdom",
-        "lat": 51.5152892,
-        "lng": -0.1322103,
+        "address": "Churchill War Rooms, King Charles Street, London, SW1A 2AQ, United Kingdom",
+        "lat": 51.5022101,
+        "lng": -0.129252,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.iwm.org.uk/visits/churchill-war-rooms",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-w547522397",
+      "name": "Grand Caffe Concerto",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Grand Caffe Concerto, 43 Whitehall, London, SW1A 2BX, United Kingdom",
+        "lat": 51.5063986,
+        "lng": -0.1268068,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "07:30-23:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:47+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.caffeconcerto.co.uk/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w4254099",
+      "name": "Victoria Embankment Gardens",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "access",
+        "access.yes",
+        "leisure",
+        "leisure.park",
+        "wheelchair",
+        "wheelchair.limited"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Victoria Embankment Gardens, Covent Garden, London, United Kingdom",
+        "lat": 51.5086429,
+        "lng": -0.1214183,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:59+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Jan 01-Feb 15 08:30-16:30,Feb 16-Feb 29 08:30-17:30,Mar 01-Mar Su[4] 08:30-18:00,Mar Mo[4]-Mar 31 08:30-19:30,Apr 01-Apr 15 08:30-20:00,Apr 16-Apr 30 08:30-20:30,May 01-May 15 08:30-21:00,Mar 16-Jul 31 08:30-21:30,Aug 01-Aug 15 08:30-21:00,Aug 16-Aug 31 0",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:59+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "limited",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=leisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:59+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.westminster.gov.uk/parks-and-open-spaces/victoria-embankment-gardens",
+      "photo_url": null,
+      "certainty": "low",
+      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []"
+    },
+    {
+      "id": "osm-n12507179080",
+      "name": "Simmons Bars",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Simmons Bars, 28a Leicester Square, London, WC2H 7LE, United Kingdom",
+        "lat": 51.5102834,
+        "lng": -0.1291634,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:36:01+01:00",
           "quote": null
         }
       },
@@ -718,199 +1511,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.westminster.gov.uk/parks-and-open-spaces/soho-square-gardens",
+      "booking_url": "https://www.simmonsbar.co.uk/venues/leicester-square/",
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n12718772295",
-      "name": "Lower Marsh Market",
-      "description": "",
-      "category": "shopping",
-      "tags": [
-        "commercial.marketplace",
-        "wheelchair",
-        "wheelchair.yes"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "Lower Marsh Market, Lower Marsh, London, SE1 7EB, United Kingdom",
-        "lat": 51.5009141,
-        "lng": -0.1125576,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Fr 10:00-15:00; Sa-Su off",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "yes",
-        "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
-          "quote": null
-        }
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.lowermarshmarket.com/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
-    },
-    {
-      "id": "osm-w46251142",
-      "name": "St. John's Church Gardens",
-      "description": "",
-      "category": "nature",
-      "tags": [
-        "leisure",
-        "leisure.park"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "St. John's Church Gardens, London, SE1 8TY, United Kingdom",
-        "lat": 51.5045992,
-        "lng": -0.111949,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "07:30 - sunset",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:41+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://beta.lambeth.gov.uk/parks/st-johns-church-gardens",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-w856800875",
-      "name": "Goodge Place Market",
-      "description": "A small weekday streetfood market.",
-      "category": "shopping",
-      "tags": [
-        "commercial.marketplace",
-        "wheelchair",
-        "wheelchair.yes"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "Goodge Place Market, Goodge Place, London, W1T 4LX, United Kingdom",
-        "lat": 51.5192861,
-        "lng": -0.1363006,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Fr 10:00-15:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "yes",
-        "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T16:01:42+01:00",
-          "quote": null
-        }
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.camden.gov.uk/markets",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
     }
   ]
 }

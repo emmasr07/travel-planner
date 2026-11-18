@@ -1,0 +1,242 @@
+# The code checks of docs/backend-logic.md section 5, one function each, and the final status per experience.
+# Every check returns {"name", "result": "ok" | "warn" | "fail" | "skip", "detail"}. Money comparisons are asked
+# of budget.py; times are local to the destination ("HH:MM" on trip day N), compared in minutes after midnight.
+import re
+from datetime import date, timedelta
+
+from backend import budget
+from backend.schema import validate_delivery
+from backend.sources.osm_hours import has_holiday_rules, open_ranges
+
+PACE_LIMIT = {"chill": 2, "balanced": 3, "packed": 4}
+AGE_FLOOR = {"18-24": 18, "25-34": 25, "35-49": 35, "50+": 50}
+WHEELCHAIR = re.compile(r"wheel\s*-?\s*chair", re.I)
+MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
+STATIC = ("schema", "source")     # decided once, at the checking step; the rest are re-run after every change
+ORDER = ("schema", "source", "season", "age", "price", "hours", "overlap", "pace", "accessibility")
+
+
+def result(name, res, detail):
+    return {"name": name, "result": res, "detail": detail}
+
+
+# --- trip calendar ----------------------------------------------------------------------------------------------
+
+def trip_days(profile):
+    return (date.fromisoformat(profile["end_date"]) - date.fromisoformat(profile["start_date"])).days + 1
+
+
+def date_of(profile, day):
+    return date.fromisoformat(profile["start_date"]) + timedelta(days=day - 1)
+
+
+def minutes(hhmm):
+    h, m = map(int, hhmm.split(":"))
+    return h * 60 + m
+
+
+def clock(mins):
+    mins %= 1440
+    return f"{mins // 60:02d}:{mins % 60:02d}"
+
+
+def visit(e):
+    """(start, end) in minutes on the scheduled day; end past 1440 when the visit ends after midnight."""
+    s = e["schedule"]
+    start, end = minutes(s["start"]), minutes(s["end"])
+    return start, end + 1440 if end <= start else end
+
+
+def _ranges_text(ranges):
+    return ", ".join(f"{clock(a)}-{clock(b)}" for a, b in ranges)
+
+
+# --- the delivery -----------------------------------------------------------------------------------------------
+
+def delivery_errors(delivery, profile, *, min_items=True):
+    """Schema errors first (they stop here); then duplicate ids and schedules that don't fit the trip.
+    In agents mode these go back to the researcher to fix (session 2)."""
+    errors = validate_delivery(delivery, min_items)
+    if errors:
+        return errors
+    exps = delivery["experiences"]
+    ids = [e["id"] for e in exps]
+    errors += [f"id {i} appears twice" for i in sorted({i for i in ids if ids.count(i) > 1})]
+    days = trip_days(profile)
+    for e in exps:
+        s = e["schedule"]
+        if not 1 <= s["day"] <= days:
+            errors.append(f"{e['id']}: schedule day {s['day']} is outside a {days}-day trip")
+        if e["duration_min"] is not None:
+            expected = clock(minutes(s["start"]) + e["duration_min"])
+            if s["end"] != expected:
+                errors.append(f"{e['id']}: schedule end {s['end']} should be {expected} "
+                              f"(start {s['start']} + {e['duration_min']} min)")
+    return errors
+
+
+# --- one check each ---------------------------------------------------------------------------------------------
+
+def schema_ok():
+    return result("schema", "ok", "matches schemas/experiences.schema.json")
+
+
+def _web_blocks(e):
+    blocks = [e["location"].get("source"), (e["price"] or {}).get("source"), (e["opening_hours"] or {}).get("source"),
+              (e["rating"] or {}).get("source"), e["accessibility"].get("source")]
+    return [b for b in blocks if b and b.get("provider") == "web" and b.get("quote")]
+
+
+def normalise(text):
+    return " ".join(re.sub(r"[^\w\s]", " ", (text or "").lower()).split())
+
+
+def source(e, pages):
+    """pages: url -> page text ("" when it did not load), or None when no page was read (demo mode)."""
+    if pages is None:
+        return result("source", "skip", "source pages not read in demo mode")
+    blocks = _web_blocks(e)
+    if not blocks:
+        return result("source", "skip", "no web quote to check: API data, recorded in data/sources-log.jsonl")
+    for b in blocks:
+        page = pages.get(b["url"], "")
+        if not page:
+            return result("source", "warn", f"the source page did not load: {b['url']}")
+        if normalise(b["quote"]) not in normalise(page):
+            return result("source", "warn", f"the quote is not on the source page: {b['url']}")
+    return result("source", "ok", "every quote is on its source page")
+
+
+def season(e, profile):
+    months = e["months"]
+    if not months:
+        return result("season", "ok", "all year")
+    runs = ", ".join(MONTHS[m - 1] for m in months)
+    when = date_of(profile, e["schedule"]["day"])
+    if when.month in months:
+        return result("season", "ok", f"runs in {runs}")
+    return result("season", "warn", f"runs in {runs}; day {e['schedule']['day']} is in {MONTHS[when.month - 1]}")
+
+
+def age(e, profile):
+    min_age = e["min_age"]
+    if min_age is None:
+        return result("age", "ok", "no minimum age stated")
+    youngest = profile.get("youngest_age")
+    if youngest is None and profile["group_type"] == "family":
+        return result("age", "warn", f"minimum age {min_age}; the youngest traveller's age is not known")
+    if youngest is None:
+        youngest = AGE_FLOOR[profile["age_range"]]
+    if youngest < min_age:
+        return result("age", "fail", f"minimum age {min_age}, the youngest traveller is {youngest}")
+    return result("age", "ok", f"minimum age {min_age}")
+
+
+def price(e, profile):
+    p = e["price"]
+    unit = "per person" if profile["budget"]["per"] == "person" else "for the group"
+    if p["per"] == "free":
+        return result("price", "ok", "free")
+    if p["amount"] is None:
+        return result("price", "warn", "no source states a price: not counted in the budget")
+    if p["amount_eur"] is None:
+        return result("price", "warn", f"price in {p['currency']} could not be converted to EUR: not counted")
+    cost = budget.item_cost(p, profile)
+    if budget.alone_over_budget(p, profile):
+        limit = budget.fmt(budget.limit(profile))
+        return result("price", "fail", f"€{cost} {unit} alone is more than the whole budget (€{limit} {unit})")
+    return result("price", "ok", f"€{cost} {unit}")
+
+
+def hours(e, profile):
+    oh, s = e["opening_hours"], e["schedule"]
+    if not oh:
+        return result("hours", "warn", "no opening hours known")
+    if oh["slots"]:
+        if s["start"] in oh["slots"]:
+            return result("hours", "ok", f"starts at {s['start']}, one of the listed start times")
+        return result("hours", "warn", f"starts at {s['start']}; listed start times: {', '.join(oh['slots'])}")
+    when = date_of(profile, s["day"])
+    ranges = open_ranges(oh["text"], when)
+    if ranges is None:
+        text = oh["text"] if len(oh["text"]) <= 60 else oh["text"][:59] + "…"
+        return result("hours", "warn", f"opening hours too complex to check: {text}")
+    note = " (public-holiday hours not checked)" if has_holiday_rules(oh["text"]) else ""
+    day = f"{when:%a} {when.day} {when:%b}"
+    if not ranges:
+        return result("hours", "warn", f"closed on {day}{note}")
+    start, end = visit(e)
+    if any(a <= start and end <= b for a, b in ranges):
+        return result("hours", "ok", f"open {_ranges_text(ranges)} on {day}{note}")
+    return result("hours", "warn",
+                  f"{s['start']}-{s['end']} is outside the opening hours on {day} ({_ranges_text(ranges)}){note}")
+
+
+def overlap(e, active):
+    if e not in active:
+        return result("overlap", "skip", _why_left_out(e))
+    start, end = visit(e)
+    day = e["schedule"]["day"]
+    clashes = [o for o in active if o is not e and o["schedule"]["day"] == day
+               and visit(o)[0] < end and start < visit(o)[1]]
+    if not clashes:
+        return result("overlap", "ok", f"no overlap on day {day}")
+    names = "; ".join(f"{o['name']} ({o['schedule']['start']}-{o['schedule']['end']})" for o in clashes)
+    return result("overlap", "warn", f"overlaps {names} on day {day}")
+
+
+def pace(e, active, profile):
+    if e not in active:
+        return result("pace", "skip", _why_left_out(e))
+    day, limit = e["schedule"]["day"], PACE_LIMIT[profile["pace"]]
+    n = sum(1 for o in active if o["schedule"]["day"] == day)
+    if n > limit:
+        return result("pace", "warn", f"{n} experiences on day {day}; a {profile['pace']} pace allows {limit}")
+    return result("pace", "ok", f"{n} of {limit} on day {day}")
+
+
+def accessibility(e, profile):
+    if not WHEELCHAIR.search(profile.get("notes") or ""):
+        return result("accessibility", "skip", "no wheelchair need in your notes")
+    wheelchair = e["accessibility"]["wheelchair"]
+    if wheelchair in ("no", "unknown"):
+        return result("accessibility", "warn", f"you mentioned a wheelchair; wheelchair access: {wheelchair}")
+    return result("accessibility", "ok", f"wheelchair access: {wheelchair}")
+
+
+def _why_left_out(e):
+    return "removed by you" if e["user"]["status"] != "kept" else "rejected by the checks"
+
+
+# --- all of them ------------------------------------------------------------------------------------------------
+
+def final_status(checks, verdict):
+    results = {c["result"] for c in checks}
+    v = (verdict or {}).get("verdict")
+    if "fail" in results or v == "contradicted":
+        return "rejected"
+    if "warn" in results or v != "confirmed":
+        return "to_check"
+    return "verified"
+
+
+def check_all(profile, experiences, pages=None):
+    """The checking step: schema (the delivery already passed it) and source, then everything else."""
+    for e in experiences:
+        e["checks"] = [schema_ok(), source(e, pages)]
+    recheck(profile, experiences)
+
+
+def recheck(profile, experiences):
+    """Re-runs every check except schema and source (after a keep/remove or a time change) and sets each status.
+    Overlap and pace only look at kept items that nothing has rejected."""
+    for e in experiences:
+        kept = [c for c in e.get("checks", []) if c["name"] in STATIC]
+        e["checks"] = kept + [season(e, profile), age(e, profile), price(e, profile), hours(e, profile),
+                              accessibility(e, profile)]
+    active = [e for e in experiences
+              if e["user"]["status"] == "kept" and final_status(e["checks"], e.get("verdict")) != "rejected"]
+    for e in experiences:
+        e["checks"] += [overlap(e, active), pace(e, active, profile)]
+        e["checks"].sort(key=lambda c: ORDER.index(c["name"]))
+        e["status"] = final_status(e["checks"], e.get("verdict"))
