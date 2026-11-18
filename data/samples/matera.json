@@ -1,0 +1,853 @@
+{
+  "experiences": [
+    {
+      "id": "osm-n6602521780",
+      "name": "Ipogeo MateraSum",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Ipogeo MateraSum, Recinto Venti Settembre, 75100 Matera MT, Italy",
+        "lat": 40.6677505,
+        "lng": 16.6068417,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.wikimatera.it/cosa-vedere-a-matera/matera-sotterranea-gioielli-nelle-viscere-della-terra/materasum-citta-sotterranea/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w246802125",
+      "name": "Parco Scultura La Palomba",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "access",
+        "access.yes",
+        "leisure",
+        "leisure.park",
+        "no_fee",
+        "no_fee.no"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Parco Scultura La Palomba, 75100 Matera MT, Italy",
+        "lat": 40.6804399,
+        "lng": 16.6055539,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:45+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://www.parcosculturalapalomba.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w244637689",
+      "name": "Museo Laboratorio della Civiltà Contadina",
+      "description": "Il Museo Laboratorio della Civiltà Contadina è un museo etno-antropologico di Matera, ed è situato nell'antico rione dei Sassi. Il Museo è stato realizzato da Donato Cascione ed è gestito dall'omonima associazione culturale (ONLUS).",
+      "category": "culture",
+      "tags": [
+        "building",
+        "building.tourism",
+        "entertainment",
+        "entertainment.museum"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Museo Laboratorio della Civiltà Contadina, Via San Giovanni Vecchio, 60, 75100 Matera MT, Italy",
+        "lat": 40.6675558,
+        "lng": 16.6098574,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "09:00-13:00,16:00-19:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://museolaboratorio.it",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w216895891",
+      "name": "Castello Tramontano",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "building",
+        "building.historic",
+        "no_access",
+        "tourism",
+        "tourism.sights",
+        "tourism.sights.castle"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Castello Tramontano, Via Castello, 75100 Matera MT, Italy",
+        "lat": 40.6639162,
+        "lng": 16.6059525,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.isassidimatera.com/cosa-vedere/nelle-vicinanze/castello-tramontano/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-n13128033511",
+      "name": "TAM - Tower Art Museum",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "TAM - Tower Art Museum, Vico Purgatorio, 75100 Matera MT, Italy",
+        "lat": 40.6643271,
+        "lng": 16.6092378,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.museotam.com",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n3103274392",
+      "name": "La Casa di Ortega",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "La Casa di Ortega, Via San Nicola del Sole, 75100 Matera MT, Italy",
+        "lat": 40.6683446,
+        "lng": 16.6109532,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://www.zetema.org/attivita/89-attivita/142-la-casa-di-ortega-la-bottega-delle-arti-applicate",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w243609821",
+      "name": "Museo Archeologico Nazionale Domenico Ridola",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Museo Archeologico Nazionale Domenico Ridola, Via Domenico Ridola, 24, 75100 Matera MT, Italy",
+        "lat": 40.6638909,
+        "lng": 16.609206,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo 14:00-20:00; Tu-Su 09:00-20:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://musei.beniculturali.it/musei?mid=69&nome=museo-archeologico-nazionale-domenico-ridola",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n3103273454",
+      "name": "Casa Noha",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "fee",
+        "wheelchair",
+        "wheelchair.limited"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Casa Noha, Recinto Canove, 9, 75100 Matera MT, Italy",
+        "lat": 40.6663417,
+        "lng": 16.6121361,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Feb-Mar: Th-Tu 10:00-17:00; Apr-Oct: Th-Tu 10:00-19:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "limited",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://fondoambiente.it/luoghi/casa-noha",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n2229592221",
+      "name": "Musma",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "fee"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Musma, Via San Giacomo, 75100 Matera MT, Italy",
+        "lat": 40.6661178,
+        "lng": 16.6122514,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Su 10:00-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.musma.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n13290217301",
+      "name": "Museo del pane Matera",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Museo del pane Matera, Via Purgatorio Vecchio, 27, 75100 Matera MT, Italy",
+        "lat": 40.6637737,
+        "lng": 16.6107416,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.museodelpanematera.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n8850626805",
+      "name": "Raccolta delle acque",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "access_limited",
+        "access_limited.customers",
+        "tourism",
+        "tourism.sights",
+        "tourism.sights.archaeological_site"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Raccolta delle acque, Via Purgatorio Vecchio, 12, 75100 Matera MT, Italy",
+        "lat": 40.6633837,
+        "lng": 16.611352,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://www.laraccoltadelleacquematera.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w244741856",
+      "name": "Casa Grotta nei Sassi",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "building",
+        "building.tourism",
+        "entertainment",
+        "entertainment.museum"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Casa Grotta nei Sassi, Vico Solitario, 11, 75100 Matera MT, Italy",
+        "lat": 40.6638574,
+        "lng": 16.6123099,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 09:30-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.casagrotta.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n4435891347",
+      "name": "Chiesa Rupestre Madonna degli Angeli",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "building",
+        "building.historic",
+        "tourism",
+        "tourism.sights",
+        "tourism.sights.archaeological_site"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Chiesa Rupestre Madonna degli Angeli, Via Madonna delle Virtù, 75100 Matera MT, Italy",
+        "lat": 40.6698683,
+        "lng": 16.6132183,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.isassidimatera.com/cosa-vedere/chiese-rupestri/madonna-degli-angeli/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n2510639051",
+      "name": "Chiesa Rupestre Madonna di Monteverde",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "building",
+        "building.historic",
+        "tourism",
+        "tourism.sights",
+        "tourism.sights.archaeological_site"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Chiesa Rupestre Madonna di Monteverde, Madonna delle Vergini, 75100 Matera MT, Italy",
+        "lat": 40.6700792,
+        "lng": 16.6153605,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.basilicataturistica.it/scopri-la-basilicata/matera-patrimonio-mondiale-dellumanita/le-chiese-di-matera/le-chiese-rupestri-di-matera/?privacy=updated",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n2648242439",
+      "name": "Chisa ruprestre santuario Madonna delle Tre Porte",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "no_access",
+        "tourism",
+        "tourism.sights",
+        "tourism.sights.archaeological_site"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Chisa ruprestre santuario Madonna delle Tre Porte, Parco Murgia Timone 001, 75100 Matera MT, Italy",
+        "lat": 40.663199,
+        "lng": 16.6170312,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T16:01:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.parcomurgia.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    }
+  ]
+}

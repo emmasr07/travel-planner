@@ -1,0 +1,916 @@
+{
+  "experiences": [
+    {
+      "id": "osm-n5323721988",
+      "name": "British Optical Association Museum",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "no_fee",
+        "no_fee.no"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "British Optical Association Museum, Hungerford Lane, London, WC2N 5NG, United Kingdom",
+        "lat": 51.5078919,
+        "lng": -0.1253919,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.college-optometrists.org/the-british-optical-association-museum",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w4254099",
+      "name": "Victoria Embankment Gardens",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "access",
+        "access.yes",
+        "leisure",
+        "leisure.park",
+        "wheelchair",
+        "wheelchair.limited"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Victoria Embankment Gardens, Covent Garden, London, United Kingdom",
+        "lat": 51.5086429,
+        "lng": -0.1214183,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Jan 01-Feb 15 08:30-16:30,Feb 16-Feb 29 08:30-17:30,Mar 01-Mar Su[4] 08:30-18:00,Mar Mo[4]-Mar 31 08:30-19:30,Apr 01-Apr 15 08:30-20:00,Apr 16-Apr 30 08:30-20:30,May 01-May 15 08:30-21:00,Mar 16-Jul 31 08:30-21:30,Aug 01-Aug 15 08:30-21:00,Aug 16-Aug 31 0",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "limited",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.westminster.gov.uk/parks-and-open-spaces/victoria-embankment-gardens",
+      "photo_url": null,
+      "certainty": "low",
+      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []"
+    },
+    {
+      "id": "osm-n5551916749",
+      "name": "Soho Vegan Market",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace",
+        "vegan",
+        "vegan.only"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Soho Vegan Market, Rupert Street, London, W1F 0RE, United Kingdom",
+        "lat": 51.5120132,
+        "lng": -0.1334829,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Sa 11:00-16:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.streetfoodunion.com",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w104081033",
+      "name": "Benjamin Franklin House",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "building",
+        "building.historic",
+        "building.tourism",
+        "entertainment",
+        "entertainment.museum",
+        "fee",
+        "heritage"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Benjamin Franklin House, 36 Craven Street, London, WC2N 5NF, United Kingdom",
+        "lat": 51.5076693,
+        "lng": -0.1248667,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Fr-Su 12:00-17:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://benjaminfranklinhouse.org/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-w40879988",
+      "name": "St Anne's Churchyard",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "dogs",
+        "dogs.leashed",
+        "leisure",
+        "leisure.park"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "St Anne's Churchyard, Soho, London, United Kingdom",
+        "lat": 51.5122576,
+        "lng": -0.13246,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "week 1-13 Mo-Su 10:00-16:00; week 14-43 10:00-18:00; week 44-52 10:00-16:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.westminster.gov.uk/westminster-parks-and-open-spaces/st-annes-churchyard",
+      "photo_url": null,
+      "certainty": "low",
+      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []"
+    },
+    {
+      "id": "osm-w857170614",
+      "name": "Earlham Street Market",
+      "description": "A small street market selling coffee, street food, and souvenirs.",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Earlham Street Market, Tower Street, London, WC2H 9LL, United Kingdom",
+        "lat": 51.5136325,
+        "lng": -0.1278117,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Sa 10:00-17:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.camden.gov.uk/markets",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n5071252726",
+      "name": "Household Cavalry Museum",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "fee",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Household Cavalry Museum, Whitehall, London, SW1A 2AX, United Kingdom",
+        "lat": 51.5050096,
+        "lng": -0.1272472,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:40+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://householdcavalry.co.uk/museum/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-w1414670408",
+      "name": "Southwood Garden",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "leisure",
+        "leisure.park"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Southwood Garden, Mayfair, London, United Kingdom",
+        "lat": 51.5084566,
+        "lng": -0.1371562,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "08:00-18:30; PH 10:00-17:30",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.sjp.org.uk/southwood-garden/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n7277566692",
+      "name": "Seven Dials Market",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Seven Dials Market, Earlham Street, London, WC2H 9LX, United Kingdom",
+        "lat": 51.5141152,
+        "lng": -0.1258096,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.sevendialsmarket.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w4373996",
+      "name": "Jubilee Gardens",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "access",
+        "access.yes",
+        "leisure",
+        "leisure.park",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Jubilee Gardens, London, SE1 7PG, United Kingdom",
+        "lat": 51.5039398,
+        "lng": -0.1181769,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "24/7",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://jubileegardens.org.uk/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-w164405550",
+      "name": "Southbank Centre Food Market",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Southbank Centre Food Market, Belvedere Road, London, SE1 8XU, United Kingdom",
+        "lat": 51.5054489,
+        "lng": -0.1160819,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Fr 12:00-20:00; Sa 11:00-20:00; Su 12:00-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.southbankcentre.co.uk/visit/cafes-restaurants-bars/scfood-market",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w368199014",
+      "name": "Soho Square Gardens",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "leisure",
+        "leisure.park",
+        "no_dogs"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Soho Square Gardens, Soho, London, United Kingdom",
+        "lat": 51.5152892,
+        "lng": -0.1322103,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.westminster.gov.uk/parks-and-open-spaces/soho-square-gardens",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n12718772295",
+      "name": "Lower Marsh Market",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Lower Marsh Market, Lower Marsh, London, SE1 7EB, United Kingdom",
+        "lat": 51.5009141,
+        "lng": -0.1125576,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 10:00-15:00; Sa-Su off",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.lowermarshmarket.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-w46251142",
+      "name": "St. John's Church Gardens",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "leisure",
+        "leisure.park"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "St. John's Church Gardens, London, SE1 8TY, United Kingdom",
+        "lat": 51.5045992,
+        "lng": -0.111949,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "07:30 - sunset",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:41+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://beta.lambeth.gov.uk/parks/st-johns-church-gardens",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w856800875",
+      "name": "Goodge Place Market",
+      "description": "A small weekday streetfood market.",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Greater London",
+        "address": "Goodge Place Market, Goodge Place, London, W1T 4LX, United Kingdom",
+        "lat": 51.5192861,
+        "lng": -0.1363006,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "GBP",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 10:00-15:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T16:01:42+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.camden.gov.uk/markets",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    }
+  ]
+}

@@ -1,0 +1,878 @@
+{
+  "experiences": [
+    {
+      "id": "osm-n2503411074",
+      "name": "Lisboa Story Center",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "fee",
+        "wheelchair",
+        "wheelchair.limited"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Lisboa Story Center, Praça do Comércio 78 - 81, 1100-148 Lisbon, Portugal",
+        "lat": 38.7077328,
+        "lng": -9.1352861,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "limited",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://lisboastorycentre.pt/en/content/reduced-mobility",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-n1801653047",
+      "name": "Miradouro do Castelo de São Jorge",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "tourism",
+        "tourism.attraction",
+        "tourism.attraction.viewpoint"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Miradouro do Castelo de São Jorge, Praça de Armas, 1149-079 Lisbon, Portugal",
+        "lat": 38.7121155,
+        "lng": -9.133735,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.playocean.net/portugal/lisboa/miradouros/miradouro-do-castelo-de-sao-jorge",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n3827472183",
+      "name": "Feira da Ladra",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Flea Market, Campo de Santa Clara, 1100-472 Lisbon, Portugal",
+        "lat": 38.7153925,
+        "lng": -9.1259289,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Tu 09:00-18:00, Sa 09:00-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "http://www.cm-lisboa.pt/equipamentos/equipamento/info/feira-da-ladra",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n5090471903",
+      "name": "Museu de Lisboa - Torreão Poente",
+      "description": "Encerrado temporrariamente",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "fee"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Museu de Lisboa - Torreão Poente, Praça do Comércio 1, 1100-148 Lisbon, Portugal",
+        "lat": 38.7067592,
+        "lng": -9.1373654,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://museudelisboa.pt/pt/about/venues/torreao-poente/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w565894105",
+      "name": "Portas do Sol",
+      "description": "",
+      "category": "nature",
+      "tags": [
+        "highway",
+        "highway.footway",
+        "tourism",
+        "tourism.attraction",
+        "tourism.attraction.viewpoint",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Portas do Sol, 1100-487 Lisbon, Portugal",
+        "lat": 38.7119437,
+        "lng": -9.1300108,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.visitlisboa.com/pt-pt/locais/miradouro-de-santa-luzia",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-w1009693064",
+      "name": "Mercado do Forno do Tijolo",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "commercial.marketplace"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Mercado do Forno do Tijolo, Rua Maria da Fonte, 1170-221 Lisbon, Portugal",
+        "lat": 38.7223563,
+        "lng": -9.1321403,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://jfarroios.pt/equipamentos/mercados/mercado-do-forno-do-tijolo/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n8809917449",
+      "name": "Centro Interpretativo da História do Bacalhau",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "fee"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Centro Interpretativo da História do Bacalhau, Avenida Infante Dom Henrique, 1149-009 Lisbon, Portugal",
+        "lat": 38.7073187,
+        "lng": -9.1351701,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://historiabacalhau.pt/en/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-r19112367",
+      "name": "Miradouro Sophia de Mello Breyner Andresen",
+      "description": "Toponímia: Poeta 1919 - 2004. Início: Largo da Graça.",
+      "category": "nature",
+      "tags": [
+        "highway",
+        "highway.pedestrian",
+        "tourism",
+        "tourism.attraction",
+        "tourism.attraction.viewpoint",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Sophia de Mello Breyner Andersen Belvedere, 1100-266 Lisbon, Portugal",
+        "lat": 38.7163749,
+        "lng": -9.1315673,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://revelar.lisboa.pt/explorar/toponimia/detalhe?tx_toponimia_pi1%5Baction%5D=show&tx_toponimia_pi1%5Bcontroller%5D=Toponimia&tx_toponimia_pi1%5Btopid%5D=4186",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+    },
+    {
+      "id": "osm-w96715414",
+      "name": "Dona Ajuda",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "building",
+        "building.commercial",
+        "commercial.marketplace"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Dona Ajuda, Rua Alexandre Herculano 64, 1250-012 Lisbon, Portugal",
+        "lat": 38.7213879,
+        "lng": -9.1535692,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Su 11:00-19:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://donaajuda.pt",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-r1396217",
+      "name": "MUDE - Museu do Design",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "building",
+        "building.tourism",
+        "entertainment",
+        "entertainment.museum"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "MUDE - Museu do Design, Rua Augusta 24, 1100-053 Lisbon, Portugal",
+        "lat": 38.7091415,
+        "lng": -9.1364967,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Tu-Su 10:00-18:00; Dec 24, Dec 31 10:00-14:00; Jan 01,May 01,Dec 25 off",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.mude.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w40705510",
+      "name": "Jardim Botânico de Lisboa",
+      "description": "Foi plantado no séc. XIX, na antiga cerca do Colégio Real dos Nobres, para apoiar o ensino da Botânica e Princípios de Agricultura.",
+      "category": "nature",
+      "tags": [
+        "fee",
+        "heritage",
+        "leisure",
+        "leisure.park"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Jardim Botânico de Lisboa, 58, Santo António, Lisbon, Portugal",
+        "lat": 38.7185344,
+        "lng": -9.1488564,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "09:00-20:00; Oct 01-Mar 31: 09:00-17:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://museus.ulisboa.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w97277780",
+      "name": "Mercado 31 de Janeiro",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "building",
+        "building.commercial",
+        "building.office",
+        "commercial.marketplace",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Mercado 31 de Janeiro, Rua Engenheiro Vieira da Silva, 1050-105 Lisbon, Portugal",
+        "lat": 38.7312253,
+        "lng": -9.1444598,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Sa 07:00-14:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.jfarroios.pt/mercados/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n4804718021",
+      "name": "Museu do Dinheiro",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "no_fee",
+        "no_fee.no",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Museu do Dinheiro, Largo de São Julião 26, 1100-150 Lisbon, Portugal",
+        "lat": 38.7086234,
+        "lng": -9.1387855,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "We-Sa 10:00-18:00; Jan 01,May 01,Dec 24-25 off",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum%2Centertainment.culture%2Ctourism.sights%2Cheritage%2Ctourism.attraction&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:35+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.museudodinheiro.pt",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-w307659634",
+      "name": "Jardim das Francesinhas",
+      "description": "No local onde em tempos se ergueu o Convento das Francesinhas, perto da Assembleia da República, situa-se agora o Jardim Lisboa Antiga, mais conhecido por Jardim das Francesinhas",
+      "category": "nature",
+      "tags": [
+        "leisure",
+        "leisure.park"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Jardim das Francesinhas, Prazeres, Lisbon, Portugal",
+        "lat": 38.7115508,
+        "lng": -9.1546285,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint%2Cleisure.park&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:37+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-lisboa-antiga-jardim-das-francesinhas",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-w317549565",
+      "name": "Mercado de Campo de Ourique",
+      "description": "",
+      "category": "shopping",
+      "tags": [
+        "building",
+        "building.catering",
+        "building.commercial",
+        "commercial.marketplace",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Mercado de Campo de Ourique, Rua Coelho da Rocha 104, 1350-075 Lisbon, Portugal",
+        "lat": 38.7162138,
+        "lng": -9.1667796,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Su,We 10:00-00:00;Mo,Tu 10:00-23:00;Th-Sa 10:00-01:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T16:01:38+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://mercadodecampodeourique.pt/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    }
+  ]
+}
