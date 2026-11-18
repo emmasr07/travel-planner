@@ -1,0 +1,430 @@
+{
+  "_demo": "Invented data for MODE=demo. Place names are real Seychelles places; descriptions, prices, months, quotes and verdicts are invented to show the three states. No model is called.",
+  "steps": {
+    "researcher": [
+      "web_search \"family experiences Seychelles April\"",
+      "web_fetch https://example.org/demo/vallee-de-mai",
+      "web_search \"Sainte Anne marine park snorkelling price\"",
+      "web_fetch https://example.org/demo/sainte-anne-snorkel",
+      "deliver_experiences: 12 experiences"
+    ],
+    "verifier": [
+      "web_fetch https://example.org/demo/vallee-de-mai",
+      "web_fetch https://example.org/demo/creole-cooking (did not load)",
+      "web_fetch https://example.org/demo/victoria-market",
+      "deliver_verdicts: 12 verdicts"
+    ]
+  },
+  "experiences": [
+    {
+      "id": "vallee-de-mai",
+      "name": "Vallée de Mai",
+      "place": "Praslin",
+      "category": "nature",
+      "description": "Palm forest with marked trails.",
+      "why_you": "Easy walk for all ages; fits the interest in nature.",
+      "months": [],
+      "duration_hours": 2.5,
+      "price": {
+        "amount": 35,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/vallee-de-mai",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "anse-source-dargent",
+      "name": "Anse Source d'Argent",
+      "place": "La Digue",
+      "category": "sea",
+      "description": "Beach with granite boulders, reached by bike.",
+      "why_you": "Half day by bike, shallow water for swimming.",
+      "months": [],
+      "duration_hours": 3,
+      "price": {
+        "amount": 10,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/anse-source-dargent",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "sainte-anne-snorkel",
+      "name": "Sainte Anne Marine Park snorkel trip",
+      "place": "Mahé",
+      "category": "sea",
+      "description": "Boat trip with snorkelling stops.",
+      "why_you": "Snorkelling is on your interests; the teenager is above the minimum age.",
+      "months": [
+        4,
+        5,
+        10,
+        11
+      ],
+      "duration_hours": 4,
+      "price": {
+        "amount": 90,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": 6,
+      "sources": [
+        {
+          "url": "https://example.org/demo/sainte-anne-snorkel",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "curieuse-tortoises",
+      "name": "Curieuse Island tortoises and mangroves",
+      "place": "Praslin",
+      "category": "nature",
+      "description": "Day trip by boat, walk through the mangroves.",
+      "why_you": "Wildlife and a walk, one full day.",
+      "months": [],
+      "duration_hours": 6,
+      "price": {
+        "amount": 120,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/curieuse-tortoises",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "copolia-trail",
+      "name": "Copolia trail",
+      "place": "Mahé",
+      "category": "adventure",
+      "description": "Short climb to a granite viewpoint.",
+      "why_you": "Two hours, free, good for a teenager.",
+      "months": [],
+      "duration_hours": 2.5,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "free"
+      },
+      "min_age": 8,
+      "sources": [
+        {
+          "url": "https://example.org/demo/copolia-trail",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "whale-shark-snorkel",
+      "name": "Whale shark snorkelling",
+      "place": "Mahé",
+      "category": "sea",
+      "description": "Boat trip to look for whale sharks.",
+      "why_you": "A rare sighting; check the season.",
+      "months": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "duration_hours": 4,
+      "price": {
+        "amount": 140,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": 10,
+      "sources": [
+        {
+          "url": "https://example.org/demo/whale-shark-snorkel",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "medium",
+      "doubts": "Season varies year to year."
+    },
+    {
+      "id": "discover-scuba",
+      "name": "Discover scuba dive",
+      "place": "Mahé",
+      "category": "sport",
+      "description": "First dive with an instructor.",
+      "why_you": "For the adults who want to try diving.",
+      "months": [],
+      "duration_hours": 3,
+      "price": {
+        "amount": 150,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": 16,
+      "sources": [
+        {
+          "url": "https://example.org/demo/discover-scuba",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "creole-cooking",
+      "name": "Creole cooking class",
+      "place": "Mahé",
+      "category": "food",
+      "description": "Cook and eat a Creole lunch.",
+      "why_you": "Food is on your interests; a rainy-day option.",
+      "months": [],
+      "duration_hours": 3,
+      "price": {
+        "amount": 75,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/creole-cooking",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "low",
+      "doubts": "The class page did not show a price for 2027."
+    },
+    {
+      "id": "sunset-catamaran",
+      "name": "Sunset catamaran cruise",
+      "place": "Praslin",
+      "category": "relax",
+      "description": "Two hours under sail at sunset.",
+      "why_you": "An evening for the whole group.",
+      "months": [],
+      "duration_hours": 2,
+      "price": {
+        "amount": 110,
+        "currency": "USD",
+        "per": "person"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/sunset-catamaran",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "botanical-garden",
+      "name": "National Botanical Garden",
+      "place": "Victoria",
+      "category": "nature",
+      "description": "Garden with giant tortoises and endemic palms.",
+      "why_you": "One hour, near the capital.",
+      "months": [],
+      "duration_hours": 1,
+      "price": {
+        "amount": 8,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/botanical-garden",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "bird-island",
+      "name": "Bird Island day trip by plane",
+      "place": "Bird Island",
+      "category": "nature",
+      "description": "Flight to a coral island with seabird colonies.",
+      "why_you": "Birds and beaches; expensive.",
+      "months": [],
+      "duration_hours": 9,
+      "price": {
+        "amount": 650,
+        "currency": "EUR",
+        "per": "person"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/bird-island",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "victoria-market",
+      "name": "Victoria market tour",
+      "place": "Victoria",
+      "category": "food",
+      "description": "Market stalls of fish, spices and fruit.",
+      "why_you": "Short visit, free entry.",
+      "months": [],
+      "duration_hours": 1.5,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "free"
+      },
+      "min_age": null,
+      "sources": [
+        {
+          "url": "https://example.org/demo/victoria-market",
+          "title": "Demo source (invented)",
+          "quote": "Demo quote, invented for demo mode: no page says this."
+        }
+      ],
+      "certainty": "high",
+      "doubts": null
+    }
+  ],
+  "verdicts": [
+    {
+      "id": "vallee-de-mai",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/vallee-de-mai",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "anse-source-dargent",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/anse-source-dargent",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "sainte-anne-snorkel",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/sainte-anne-snorkel",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "curieuse-tortoises",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/curieuse-tortoises",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "copolia-trail",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/copolia-trail",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "whale-shark-snorkel",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/whale-shark-snorkel",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "discover-scuba",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/discover-scuba",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "creole-cooking",
+      "verdict": "not_sure",
+      "url_read": "https://example.org/demo/creole-cooking",
+      "passage": "",
+      "contested_fields": [],
+      "note": "Demo verdict: the page did not load."
+    },
+    {
+      "id": "sunset-catamaran",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/sunset-catamaran",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "botanical-garden",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/botanical-garden",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "bird-island",
+      "verdict": "confirmed",
+      "url_read": "https://example.org/demo/bird-island",
+      "passage": "Demo passage, invented.",
+      "contested_fields": [],
+      "note": "Demo verdict: the page supports the record."
+    },
+    {
+      "id": "victoria-market",
+      "verdict": "contradicted",
+      "url_read": "https://example.org/demo/victoria-market",
+      "passage": "Demo passage, invented: guided tour 25 EUR per person.",
+      "contested_fields": [
+        "price"
+      ],
+      "note": "Demo verdict: the page sells a paid guided tour, the record says free."
+    }
+  ]
+}

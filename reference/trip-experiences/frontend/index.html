@@ -1,0 +1,75 @@
+<!-- The one page: the trip form, the visible agent loop, the experiences with their checks, the five picks, the PDF. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trip experiences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <span class="name">Trip experiences</span>
+  <span id="mode" class="pill" hidden></span>
+</header>
+
+<main>
+  <section id="trip">
+    <h2>Your trip</h2>
+    <form id="profile" class="block">
+      <label class="row"><span>Where</span><input name="destination" required value="Seychelles"></label>
+      <div class="row pair">
+        <label><span>From</span><input type="date" name="start" required value="2027-04-10"></label>
+        <label><span>To</span><input type="date" name="end" required value="2027-04-20"></label>
+      </div>
+      <div class="row pair">
+        <label><span>Budget for experiences</span><input type="number" name="budget" min="1" step="1" required value="1500"></label>
+        <label><span>Currency</span><select name="currency"><option>EUR</option><option>USD</option><option>GBP</option><option>CHF</option></select></label>
+      </div>
+      <div class="row">
+        <span>Who travels</span>
+        <div id="people"></div>
+        <button type="button" id="add" class="link">+ Add a traveller</button>
+      </div>
+      <div class="row">
+        <span>What you like</span>
+        <div id="interests" class="chips"></div>
+      </div>
+      <label class="row"><span>Anything else</span><textarea name="notes" rows="2" placeholder="No long drives, one rest day…"></textarea></label>
+      <div class="row"><button class="button" id="search">Find 10–15 experiences</button></div>
+    </form>
+  </section>
+
+  <section id="loop" hidden>
+    <h2>The search</h2>
+    <ol class="phases" id="phases">
+      <li data-phase="researching">Research</li>
+      <li data-phase="checking">Code checks</li>
+      <li data-phase="verifying">Verifier</li>
+    </ol>
+    <div class="block steps" id="steps"></div>
+  </section>
+
+  <section id="list" hidden>
+    <h2>Pick five</h2>
+    <p class="under" id="summary"></p>
+    <div id="groups"></div>
+  </section>
+
+  <section id="plan" hidden>
+    <h2>Your plan</h2>
+    <div class="block" id="delivery"></div>
+  </section>
+</main>
+
+<footer class="bar" id="bar" hidden>
+  <div class="count"><strong id="picked">0 of 5</strong><span id="cost"></span></div>
+  <button class="button" id="make" disabled>Make the PDF</button>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

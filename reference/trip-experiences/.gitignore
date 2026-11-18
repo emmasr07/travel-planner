@@ -1,0 +1,10 @@
+# Never in the repository: keys, the virtual env, caches, the trips people make
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+data/trips/*
+!data/trips/.gitkeep
+.DS_Store
