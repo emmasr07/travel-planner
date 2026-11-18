@@ -77,17 +77,23 @@ def _errors(schema, data):
             for e in sorted(validator.iter_errors(data), key=lambda e: list(map(str, e.absolute_path)))]
 
 
-def delivery_schema(min_items=True):
-    """What the researcher delivers. min_items=False for demo deliveries built from a sample, which is never padded."""
+QUICK_MAX_ITEMS = 3
+
+
+def delivery_schema(min_items=True, quick=False):
+    """What the researcher delivers. min_items=False for demo deliveries built from a sample, which is never padded.
+    quick=True for a quick search or a swap (prompts/quick-search.md): 0 to 3 experiences."""
     schema = experiences_schema()
-    if not min_items:
+    if not min_items or quick:
         schema["properties"]["experiences"].pop("minItems", None)
+    if quick:
+        schema["properties"]["experiences"]["maxItems"] = QUICK_MAX_ITEMS
     return schema
 
 
-def validate_delivery(data, min_items=True):
+def validate_delivery(data, min_items=True, quick=False):
     """Error messages (path: message) for a researcher delivery; [] when valid."""
-    return _errors(delivery_schema(min_items), data)
+    return _errors(delivery_schema(min_items, quick), data)
 
 
 def validate_verdicts(data):

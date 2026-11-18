@@ -27,6 +27,11 @@ def fmt(amount):
     return str(money(amount))
 
 
+def usd(cents):
+    """A Managed Agents cost or cap in whole US cents ("125", as the API states it) as dollars: "1.25"."""
+    return fmt(Decimal(int(cents)) / 100)
+
+
 def limit(profile):
     """The budget in its own unit: per person or total for the group, as the user chose."""
     return money(profile["budget"]["amount"])

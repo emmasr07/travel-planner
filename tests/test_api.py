@@ -192,11 +192,11 @@ def test_wrong_state_is_409():
         assert r.json()["detail"] == "the list is not ready yet: verifying"
 
 
-def test_agents_mode_is_not_built_yet(monkeypatch):
+def test_agents_mode_without_setup_is_503(monkeypatch):
     monkeypatch.setenv("MODE", "agents")
     assert client.get("/api/config").json()["mode"] == "agents"
     r = client.post("/api/trips", json=body())
-    assert r.status_code == 501 and "not built yet" in r.json()["detail"]
+    assert r.status_code == 503 and "agents mode is not set up" in r.json()["detail"]
 
 
 def test_a_failing_step_sets_failed_and_keeps_what_was_done(monkeypatch):

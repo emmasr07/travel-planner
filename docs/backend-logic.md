@@ -69,11 +69,13 @@ All answers are JSON, except the PDF. Every endpoint that changes a trip returns
 | `POST /api/trips/{id}/brochure` | builds the sublist and the PDF; sets `done` | `ready`, kept total within budget, at least 1 kept |
 | `GET /api/trips/{id}/brochure.pdf` | downloads the PDF | `done` |
 | `GET /api/trips/{id}/json` | downloads the trip file | always |
-| `POST /api/trips/{id}/swap/{exp_id}` | 2–3 alternatives (session 2: agent quick search; demo: same-category items from the sample) | `ready` |
-| `POST /api/trips/{id}/quick` | body `{"request", "day"}`: last-minute search (session 2) | `ready` or `done` |
+| `POST /api/trips/{id}/swap/{exp_id}` | **202**: 2–3 alternatives searched in the background into `search.options`, checked and verified (agents: quick-search researcher + verifier; demo: same-category items from the sample) | `ready`, no search running |
+| `POST /api/trips/{id}/quick` | body `{"request", "day"}`: **202**, last-minute search in the background, 0–3 options in `search.options` (demo: the request's words matched in the sample) | `ready` or `done`, no search running |
+| `POST /api/trips/{id}/options/{option_id}` | the user's pick: adds the option as kept; for a swap the replaced item becomes removed | `ready` or `done`, search ready, option not rejected, nothing picked yet |
 
 A request in the wrong state gets **409** with a plain message ("the list is not ready yet: verifying").
-Invalid input gets **400** with the field that is wrong. An unknown trip gets **404**.
+Invalid input gets **400** with the field that is wrong. An unknown trip gets **404**. In agents mode, missing
+settings or a missing `agents/agents.lock.json` get **503** saying what to set or run.
 
 ## 5. The rules the code checks
 

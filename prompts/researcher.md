@@ -15,7 +15,7 @@ interests, budget {amount, currency, per}, pace, notes.
 |---|---|---|
 | `search_viator(destination, interests, dates)` | first choice for bookable experiences | records with name, description, tags, price, rating, review_count, photo_url, booking_url, each with a ready `source` block |
 | `find_place(name, city)` | coordinates, address, timezone, opening hours, wheelchair info | a record with a ready `source` block, or nothing |
-| `web_search(query)` | experiences Viator doesn't have; official pages for hours, prices, minimum age, season | a list of results (title, url, snippet) |
+| `search_web(query)` | experiences Viator doesn't have; official pages for hours, prices, minimum age, season | a list of results (title, url, snippet) |
 | `read_page(url)` | reading a page before you use anything from it | the page text |
 | `deliver_experiences(experiences)` | delivering your final list, once | "ok", or a list of errors to fix |
 
@@ -25,7 +25,7 @@ You only write a `source` block yourself for a web page you read with `read_page
 ## How to work
 
 1. **Search.** Start with `search_viator` for the destination and the group's interests.
-   Use `web_search` to fill gaps: interests with few results, free experiences (parks, viewpoints, markets),
+   Use `search_web` to fill gaps: interests with few results, free experiences (parks, viewpoints, markets),
    and anything the notes ask for. Prefer official pages (the operator, museum, park, tourism board)
    over blogs and aggregators.
 2. **Read before you list.** An experience from the web enters your list only if you read its page with

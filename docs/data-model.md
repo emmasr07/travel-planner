@@ -36,6 +36,8 @@ trip
 ├── experiences []              see section 3
 ├── totals                      spent vs budget, computed by code
 ├── brochure                    file name and creation time, once built
+├── sessions []                 agents mode: one entry per agent session (role, id, model, cap, list_cost, stop)
+├── search                      the latest swap or quick search: status, request, day, its checked options, the pick
 └── error                       what went wrong, if status = failed
 ```
 

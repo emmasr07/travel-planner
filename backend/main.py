@@ -1,6 +1,6 @@
 # FastAPI app: the API under /api (docs/backend-logic.md section 4), /health, and the frontend at / on one port.
 # Each route only translates HTTP to backend/trips.py and its errors back: 400 bad input (with the field),
-# 404 unknown trip, 409 wrong state, 501 not built yet.
+# 404 unknown trip, 409 wrong state, 501 not built yet, 503 agents mode not set up.
 import os
 from pathlib import Path
 
@@ -56,6 +56,11 @@ async def _not_built(request, exc):
     return _error(501, str(exc))
 
 
+@app.exception_handler(trips.NotReady)
+async def _not_ready(request, exc):
+    return _error(503, str(exc))
+
+
 @app.get("/health")
 def health():
     return {"ok": True}
@@ -96,6 +101,25 @@ def build_brochure(trip_id: str):
 @app.get("/api/trips/{trip_id}/brochure.pdf")
 def brochure_pdf(trip_id: str):
     return trips.brochure_pdf(trip_id)
+
+
+@app.post("/api/trips/{trip_id}/swap/{exp_id}", status_code=202)
+def swap(trip_id: str, exp_id: str, background: BackgroundTasks):
+    trip = trips.start_swap(trip_id, exp_id)
+    background.add_task(trips.run_search, trip_id)
+    return trip
+
+
+@app.post("/api/trips/{trip_id}/quick", status_code=202)
+def quick(trip_id: str, ask: trips.Ask, background: BackgroundTasks):
+    trip = trips.start_quick(trip_id, ask)
+    background.add_task(trips.run_search, trip_id)
+    return trip
+
+
+@app.post("/api/trips/{trip_id}/options/{option_id}")
+def pick_option(trip_id: str, option_id: str):
+    return trips.pick_option(trip_id, option_id)
 
 
 @app.get("/api/trips/{trip_id}/json")

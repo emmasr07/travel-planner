@@ -5,7 +5,7 @@ import re
 from datetime import date, timedelta
 
 from backend import budget
-from backend.schema import validate_delivery
+from backend.schema import validate_delivery, validate_verdicts
 from backend.sources.osm_hours import has_holiday_rules, open_ranges
 
 PACE_LIMIT = {"chill": 2, "balanced": 3, "packed": 4}
@@ -14,6 +14,8 @@ WHEELCHAIR = re.compile(r"wheel\s*-?\s*chair", re.I)
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
 STATIC = ("schema", "source")     # decided once, at the checking step; the rest are re-run after every change
 ORDER = ("schema", "source", "season", "age", "price", "hours", "overlap", "pace", "accessibility")
+# Free slots for a quick search or a swap: gaps of at least MIN_SLOT_MIN between DAY_START and DAY_END, local time.
+DAY_START, DAY_END, MIN_SLOT_MIN = "08:00", "23:00", 30
 
 
 def result(name, res, detail):
@@ -53,10 +55,10 @@ def _ranges_text(ranges):
 
 # --- the delivery -----------------------------------------------------------------------------------------------
 
-def delivery_errors(delivery, profile, *, min_items=True):
+def delivery_errors(delivery, profile, *, min_items=True, quick=False):
     """Schema errors first (they stop here); then duplicate ids and schedules that don't fit the trip.
-    In agents mode these go back to the researcher to fix (session 2)."""
-    errors = validate_delivery(delivery, min_items)
+    In agents mode these go back to the researcher to fix (up to 3 deliveries)."""
+    errors = validate_delivery(delivery, min_items, quick)
     if errors:
         return errors
     exps = delivery["experiences"]
@@ -75,13 +77,57 @@ def delivery_errors(delivery, profile, *, min_items=True):
     return errors
 
 
+def quick_errors(delivery, ask):
+    """A quick search or swap delivery (prompts/quick-search.md): new ids only, on the asked day, inside a free slot."""
+    slots = ask["free_slots"]
+    free = ", ".join(f"{f['start']}-{f['end']}" for f in slots) or f"none: day {ask['day']} is full, deliver an empty list"
+    errors = []
+    for e in delivery["experiences"]:
+        s = e["schedule"]
+        if e["id"] in ask["taken"]:
+            errors.append(f"{e['id']}: this id is already in the trip: use another id")
+        if s["day"] != ask["day"]:
+            errors.append(f"{e['id']}: schedule day {s['day']} should be day {ask['day']}")
+        start, end = visit(e)
+        if not any(minutes(f["start"]) <= start and end <= minutes(f["end"]) for f in slots):
+            errors.append(f"{e['id']}: {s['start']}-{s['end']} is not inside a free slot (free slots: {free})")
+    return errors
+
+
+def verdict_errors(verdicts, ids):
+    """Schema errors first; then exactly one verdict for each experience the verifier received."""
+    errors = validate_verdicts(verdicts)
+    if errors:
+        return errors
+    got = [v["id"] for v in verdicts["verdicts"]]
+    errors += [f"{i}: no verdict" for i in ids if i not in got]
+    errors += [f"{i}: not an experience you received" for i in dict.fromkeys(got) if i not in ids]
+    errors += [f"{i}: more than one verdict" for i in sorted({i for i in got if got.count(i) > 1})]
+    return errors
+
+
+def free_slots(profile, experiences, day):
+    """[{start, end}] gaps on `day` between the kept items nothing rejected, within DAY_START-DAY_END."""
+    busy = sorted(visit(e) for e in experiences if e["schedule"]["day"] == day and e["user"]["status"] == "kept"
+                  and e.get("status") != "rejected")
+    slots, t, day_end = [], minutes(DAY_START), minutes(DAY_END)
+    for start, end in busy:
+        if min(start, day_end) - t >= MIN_SLOT_MIN:
+            slots.append((t, min(start, day_end)))
+        t = max(t, end)
+    if day_end - t >= MIN_SLOT_MIN:
+        slots.append((t, day_end))
+    return [{"start": clock(a), "end": clock(b)} for a, b in slots]
+
+
 # --- one check each ---------------------------------------------------------------------------------------------
 
 def schema_ok():
     return result("schema", "ok", "matches schemas/experiences.schema.json")
 
 
-def _web_blocks(e):
+def web_blocks(e):
+    """The fact source blocks that are web pages with a quote: the pages the source check reads."""
     blocks = [e["location"].get("source"), (e["price"] or {}).get("source"), (e["opening_hours"] or {}).get("source"),
               (e["rating"] or {}).get("source"), e["accessibility"].get("source")]
     return [b for b in blocks if b and b.get("provider") == "web" and b.get("quote")]
@@ -95,7 +141,7 @@ def source(e, pages):
     """pages: url -> page text ("" when it did not load), or None when no page was read (demo mode)."""
     if pages is None:
         return result("source", "skip", "source pages not read in demo mode")
-    blocks = _web_blocks(e)
+    blocks = web_blocks(e)
     if not blocks:
         return result("source", "skip", "no web quote to check: API data, recorded in data/sources-log.jsonl")
     for b in blocks:

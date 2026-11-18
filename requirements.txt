@@ -4,3 +4,4 @@ python-dotenv
 pytest
 httpx
 jsonschema
+anthropic>=2.10
