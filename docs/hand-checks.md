@@ -9,3 +9,4 @@
 | 18 Nov | Lisbon | Museu do Fado | price | €5 pp | €5 regular ticket; reduced options exist | opened source link | ✅ (ticket type not shown) |
 | 18 Nov | Lisbon | MAAT | price | €16 pp | €16 regular, non-resident; cheaper for Portugal residents | opened source link | ✅ (correct for a tourist, but not stated) |
 | 18 Nov | Lisbon | Alfama Food Tour | price | €93 pp | €93 on the operator's site | opened source link | ✅ |
+| 19 Nov | Lisbon | Museu de Lisboa – Torreão Poente | open/closed | suggested as a normal experience (demo, OSM via Geoapify) | the source says "Encerrado temporariamente" (temporarily closed) | read the card | ❌ closed place suggested: no check for "closed" |
