@@ -1,56 +1,115 @@
 {
   "experiences": [
     {
-      "id": "osm-n5323721988",
-      "name": "British Optical Association Museum",
-      "description": "",
+      "id": "viator-108886p3",
+      "name": "Women in Art Walking Tour",
+      "description": "For centuries History of Art has been studied through the work, achievements & eyes of men. This walking tour aims to change that narrative.",
       "category": "culture",
       "tags": [
-        "entertainment",
-        "entertainment.museum",
-        "no_fee",
-        "no_fee.no"
+        "Attractions & Museums",
+        "Weather Dependent - Weather-Proof",
+        "Agent Low Quality Product",
+        "Historical Tours",
+        "Excellent Quality",
+        "Short term availability",
+        "Art Galleries",
+        "Museum Tickets & Passes"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "British Optical Association Museum, Hungerford Lane, London, WC2N 5NG, United Kingdom",
-        "lat": 51.5078919,
-        "lng": -0.1253919,
+        "city": "London",
+        "address": "2 St Martin's Place, London, WC2H 0HE, United Kingdom",
+        "lat": 51.5092413,
+        "lng": -0.1279969,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.508892&lon=-0.128293&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:36+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 120,
       "price": {
-        "amount": null,
+        "amount": 40.0,
         "currency": "GBP",
         "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
+        "label": "Adult (18–64)",
+        "amount_eur": 47.98,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Women-in-Art-Walking-Tour/d737-108886P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
       },
-      "opening_hours": null,
-      "months": [],
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 14:00, 18:00",
+        "slots": [
+          "14:00",
+          "18:00"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Women-in-Art-Walking-Tour/d737-108886P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        12
+      ],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 5.0,
+        "scale": 5,
+        "review_count": 21,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Women-in-Art-Walking-Tour/d737-108886P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Women-in-Art-Walking-Tour/d737-108886P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.college-optometrists.org/the-british-optical-association-museum",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/London/Women-in-Art-Walking-Tour/d737-108886P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/21/67/d5.jpg",
+      "certainty": "high",
+      "doubts": null
     },
     {
       "id": "osm-w550944274",
@@ -188,62 +247,106 @@
       "doubts": "no price source yet"
     },
     {
-      "id": "osm-w565171598",
-      "name": "The Lamb and Flag",
-      "description": "",
+      "id": "viator-5589211p2",
+      "name": "Mamma Mia! The Party - The O2, London",
+      "description": "Welcome to Nikos Taverna on the beautiful island of Skopelos—the iconic home of Mamma Mia!. Nestled in the heart of this bustling, family-run taverna, a secret romance is blossoming, and you have a front-row seat to all the drama.",
       "category": "nightlife",
       "tags": [
-        "building",
-        "building.catering",
-        "building.historic",
-        "catering",
-        "catering.pub",
-        "catering.taproom",
-        "heritage"
+        "Nightlife",
+        "Night Tours",
+        "Musicals",
+        "Shows",
+        "Top Product",
+        "Agent Low Quality Product",
+        "Dinner",
+        "Spring Break",
+        "Food & Drink",
+        "Theater Shows",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Dinner and Show Tickets",
+        "Family-friendly Shows ",
+        "Weddings & Celebrations",
+        "Weather Dependent - Weather-Proof"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "The Lamb and Flag, 33 Rose Street, London, WC2E 9EB, United Kingdom",
-        "lat": 51.5117166,
-        "lng": -0.1256609,
+        "city": "London",
+        "address": "The Stargazer, Up at The O2, London, SE10 0DX, United Kingdom",
+        "lat": 51.5039067,
+        "lng": 0.0021468,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:43+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.50408&lon=0.002245&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:30+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 240,
       "price": {
-        "amount": null,
+        "amount": 122.08,
         "currency": "GBP",
         "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Sa 11:00-23:00; Su 12:00-22:30",
-        "slots": [],
+        "label": "Adult (18–99)",
+        "amount_eur": 146.45,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:43+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/MAMMA-MIA-The-Party-London-Tickets/d737-5589211P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
-      "months": [],
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 12:00",
+        "slots": [
+          "12:00"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/MAMMA-MIA-The-Party-London-Tickets/d737-5589211P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        12
+      ],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 4.818182,
+        "scale": 5,
+        "review_count": 11,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/MAMMA-MIA-The-Party-London-Tickets/d737-5589211P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "no",
-        "notes": null,
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:43+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/MAMMA-MIA-The-Party-London-Tickets/d737-5589211P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
@@ -251,10 +354,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.lambandflagcoventgarden.co.uk/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
+      "booking_url": "https://www.viator.com/tours/London/MAMMA-MIA-The-Party-London-Tickets/d737-5589211P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/33/85/1a/64/caption.jpg",
+      "certainty": "high",
+      "doubts": null
     },
     {
       "id": "osm-n12920922065",
@@ -382,47 +485,66 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n5551916749",
-      "name": "Soho Vegan Market",
-      "description": "",
+      "id": "viator-148959p15",
+      "name": "VIP private luxury tour guide shopping trip to Bicester Village",
+      "description": "We will pick you up from your preferred London address and take the luxury Land Rover Range Rover or Mercedes-Benz S-Class.",
       "category": "shopping",
       "tags": [
-        "commercial.marketplace",
-        "vegan",
-        "vegan.only"
+        "Private Sightseeing Tours",
+        "Shopping Tours",
+        "Weather Dependent - Moderate",
+        "Private and Luxury",
+        "DSA non-compliant",
+        "Bus Tours",
+        "Luxury Car Tours",
+        "Full-day Tours",
+        "Fashion Shows",
+        "Fashion Tours",
+        "Agent Low Quality Product",
+        "Zombie",
+        "Day Trips",
+        "Short term availability"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "Soho Vegan Market, Rupert Street, London, W1F 0RE, United Kingdom",
-        "lat": 51.5120132,
-        "lng": -0.1334829,
+        "city": "London",
+        "address": "Max Mara, Bicester, OX26 6EU, United Kingdom",
+        "lat": 51.8922401,
+        "lng": -1.156971,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:38:28+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.89224&lon=-1.15702&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:34+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 540,
       "price": {
-        "amount": null,
+        "amount": 899.56,
         "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Sa 11:00-16:00",
-        "slots": [],
+        "per": "group",
+        "label": null,
+        "amount_eur": 1079.11,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:38:28+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/VIP-private-luxury-tour-guide-shopping-trip-to-Bicester-Village/d737-148959P15?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
+      "opening_hours": null,
       "months": [],
       "min_age": null,
       "rating": null,
@@ -436,30 +558,27 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.streetfoodunion.com",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/London/VIP-private-luxury-tour-guide-shopping-trip-to-Bicester-Village/d737-148959P15?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/c0/a9/41.jpg",
+      "certainty": "low",
+      "doubts": "Viator prices this per group (group), not per person: up to 4 travellers per booking; No start times or opening hours in Viator's schedule for 2026-12-04 to 2026-12-06; Wheelchair access not stated by Viator; No reviews on Viator yet"
     },
     {
-      "id": "osm-w104081033",
-      "name": "Benjamin Franklin House",
+      "id": "osm-n5323721988",
+      "name": "British Optical Association Museum",
       "description": "",
       "category": "culture",
       "tags": [
-        "building",
-        "building.historic",
-        "building.tourism",
         "entertainment",
         "entertainment.museum",
-        "fee",
-        "heritage"
+        "no_fee",
+        "no_fee.no"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Benjamin Franklin House, 36 Craven Street, London, WC2N 5NF, United Kingdom",
-        "lat": 51.5076693,
-        "lng": -0.1248667,
+        "address": "British Optical Association Museum, Hungerford Lane, London, WC2N 5NG, United Kingdom",
+        "lat": 51.5078919,
+        "lng": -0.1253919,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
@@ -477,38 +596,24 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": {
-        "text": "Fr-Su 12:00-17:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:37+01:00",
-          "quote": null
-        }
-      },
+      "opening_hours": null,
       "months": [],
       "min_age": null,
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "no",
+        "wheelchair": "unknown",
         "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:37+01:00",
-          "quote": null
-        }
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://benjaminfranklinhouse.org/",
+      "booking_url": "https://www.college-optometrists.org/the-british-optical-association-museum",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n559522541",
@@ -620,26 +725,29 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w71408528",
-      "name": "Gordon's Wine Bar",
+      "id": "osm-w565171598",
+      "name": "The Lamb and Flag",
       "description": "",
       "category": "nightlife",
       "tags": [
         "building",
         "building.catering",
+        "building.historic",
         "catering",
-        "catering.bar"
+        "catering.pub",
+        "catering.taproom",
+        "heritage"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Gordon's Wine Bar, 47 Villiers Street, London, WC2N 6NE, United Kingdom",
-        "lat": 51.5079244,
-        "lng": -0.1233137,
+        "address": "The Lamb and Flag, 33 Rose Street, London, WC2E 9EB, United Kingdom",
+        "lat": 51.5117166,
+        "lng": -0.1256609,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:01+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:43+01:00",
           "quote": null
         }
       },
@@ -653,12 +761,12 @@
         "source": null
       },
       "opening_hours": {
-        "text": "Mo-Sa 11:00-23:00; Su 12:00-22:00",
+        "text": "Mo-Sa 11:00-23:00; Su 12:00-22:30",
         "slots": [],
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:01+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:43+01:00",
           "quote": null
         }
       },
@@ -671,8 +779,8 @@
         "notes": null,
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:01+01:00",
+          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:43+01:00",
           "quote": null
         }
       },
@@ -680,149 +788,26 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.gordonswinebar.com/",
+      "booking_url": "https://www.lambandflagcoventgarden.co.uk/",
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet"
     },
     {
-      "id": "osm-n2707263303",
-      "name": "The Locker Room",
+      "id": "osm-n5551916749",
+      "name": "Soho Vegan Market",
       "description": "",
-      "category": "relax",
-      "tags": [
-        "leisure",
-        "leisure.spa",
-        "leisure.spa.sauna"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "The Locker Room, 6-8 Cleaver Street, London, SE11 4DP, United Kingdom",
-        "lat": 51.4883427,
-        "lng": -0.1105585,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:23+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Th 11:00-00:00; Fr 10:00-00:00; Sa-Su 00:00-00:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:23+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.lockerroomsauna.com/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n11042290163",
-      "name": "The Font Borough",
-      "description": "",
-      "category": "adventure",
-      "tags": [
-        "entertainment",
-        "entertainment.activity_park",
-        "entertainment.activity_park.climbing",
-        "fee",
-        "sport",
-        "sport.sports_centre"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "The Font Borough, 185 Park Street, London, SE1 9BL, United Kingdom",
-        "lat": 51.5071808,
-        "lng": -0.0971764,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:37:50+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Fr 06:30-22:30; Sa-Su 10:00-18:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:37:50+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.the-font.co.uk/borough",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-w857170614",
-      "name": "Earlham Street Market",
-      "description": "A small street market selling coffee, street food, and souvenirs.",
       "category": "shopping",
       "tags": [
         "commercial.marketplace",
-        "wheelchair",
-        "wheelchair.yes"
+        "vegan",
+        "vegan.only"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Earlham Street Market, Tower Street, London, WC2H 9LL, United Kingdom",
-        "lat": 51.5136325,
-        "lng": -0.1278117,
+        "address": "Soho Vegan Market, Rupert Street, London, W1F 0RE, United Kingdom",
+        "lat": 51.5120132,
+        "lng": -0.1334829,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
@@ -841,7 +826,7 @@
         "source": null
       },
       "opening_hours": {
-        "text": "Mo-Sa 10:00-17:00",
+        "text": "Sa 11:00-16:00",
         "slots": [],
         "source": {
           "provider": "geoapify",
@@ -855,70 +840,117 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "yes",
+        "wheelchair": "unknown",
         "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:38:28+01:00",
-          "quote": null
-        }
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.camden.gov.uk/markets",
+      "booking_url": "https://www.streetfoodunion.com",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet"
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n5071252726",
-      "name": "Household Cavalry Museum",
-      "description": "",
+      "id": "viator-242747p139",
+      "name": "Madame Tussauds London Admission Ticket with Options",
+      "description": "Immerse in the glitz, glamour, and spectacle of the world's most famous waxwork museum in London, the original Madame Tussauds to open over 180 years ago.",
       "category": "culture",
       "tags": [
-        "entertainment",
-        "entertainment.museum",
-        "fee",
-        "wheelchair",
-        "wheelchair.yes"
+        "Theme Parks",
+        "Short term availability",
+        "Museum Tickets & Passes",
+        "Art Galleries",
+        "Attractions & Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Low Supplier Cancellation Rate",
+        "Agent Low Quality Product",
+        "Weather Dependent - Low"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "Household Cavalry Museum, Whitehall, London, SW1A 2AX, United Kingdom",
-        "lat": 51.5050096,
-        "lng": -0.1272472,
+        "city": "London",
+        "address": "8-10 Marylebone Road, London, NW1 5LR, United Kingdom",
+        "lat": 51.522883,
+        "lng": -0.155143,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.522907&lon=-0.155038&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:37+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 120,
       "price": {
-        "amount": null,
+        "amount": 30.91,
         "currency": "GBP",
         "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
+        "label": null,
+        "amount_eur": 37.08,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Madame-Tussauds-London-Admission-Ticket/d737-242747P139?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:00, 10:30, 11:00, 11:30, 12:00, 12:30, 13:00, 13:30, 14:00, 14:30, 15:00",
+        "slots": [
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Madame-Tussauds-London-Admission-Ticket/d737-242747P139?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 5.0,
+        "scale": 5,
+        "review_count": 8,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Madame-Tussauds-London-Admission-Ticket/d737-242747P139?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
         "wheelchair": "yes",
-        "notes": null,
+        "notes": "Wheelchair accessible",
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Madame-Tussauds-London-Admission-Ticket/d737-242747P139?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
@@ -926,223 +958,87 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://householdcavalry.co.uk/museum/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/London/Madame-Tussauds-London-Admission-Ticket/d737-242747P139?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/16/e0/72/25.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 120–180 min; duration_min is the shortest"
     },
     {
-      "id": "osm-n6106646885",
-      "name": "50 Kalo di Ciro Salvo Pizzeria",
-      "description": "",
-      "category": "food",
-      "tags": [
-        "catering",
-        "catering.restaurant",
-        "wheelchair",
-        "wheelchair.yes"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "50 Kalo di Ciro Salvo Pizzeria, 7 Northumberland Avenue, London, WC2N 5BY, United Kingdom",
-        "lat": 51.5070186,
-        "lng": -0.126327,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:47+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "yes",
-        "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:47+01:00",
-          "quote": null
-        }
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://50kalo.it/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
-    },
-    {
-      "id": "osm-n11262672466",
-      "name": "Horizon 22",
-      "description": "Horizon 22 in 22 Bishopsgate - free, pre-booking required",
-      "category": "nature",
-      "tags": [
-        "no_fee",
-        "no_fee.no",
-        "tourism",
-        "tourism.attraction",
-        "tourism.attraction.viewpoint",
-        "wheelchair",
-        "wheelchair.yes"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "Horizon 22, 22-24 Bishopsgate, City of London, EC2N 3AR, United Kingdom",
-        "lat": 51.514367,
-        "lng": -0.083149,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:57+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "yes",
-        "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=tourism.attraction.viewpoint&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:57+01:00",
-          "quote": null
-        }
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://horizon22.co.uk/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
-    },
-    {
-      "id": "osm-n11052596810",
-      "name": "Equus Bar",
-      "description": "",
+      "id": "viator-360194p1",
+      "name": "Comedy Night on The River Thames",
+      "description": "We are London's finest floating comedy club on the River Thames, with great views of The London Eye, Big Ben and the Houses Of Parliament. Our venue The Tattershall Castle has a floating beer garden on the top deck, restaurant and an intimate air conditioned room perfect for comedy.",
       "category": "nightlife",
       "tags": [
-        "catering",
-        "catering.bar"
+        "Shows",
+        "Comedy Shows",
+        "Family-friendly Shows ",
+        "Adults-only Shows",
+        "Short term availability",
+        "Nightlife",
+        "Weather Dependent - Weather-Proof"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "Equus Bar, 2a Whitehall Court, London, SW1A 2EJ, United Kingdom",
-        "lat": 51.5056254,
-        "lng": -0.124317,
+        "city": "London",
+        "address": "The Tattershall Castle, Victoria Embankment, London, SW1A 2HR, United Kingdom",
+        "lat": 51.5044705,
+        "lng": -0.1225652,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:01+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.504517&lon=-0.122653&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:32+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 180,
       "price": {
-        "amount": null,
+        "amount": 10.0,
         "currency": "GBP",
         "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.guoman.com/the-royal-horseguards/restaurants-and-bars/equus-bar",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n4377148022",
-      "name": "Saunabar Portsea",
-      "description": "",
-      "category": "relax",
-      "tags": [
-        "leisure",
-        "leisure.spa",
-        "leisure.spa.sauna"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "Saunabar Portsea, 2 Portsea Place, London, W2 2BL, United Kingdom",
-        "lat": 51.5154349,
-        "lng": -0.1645407,
-        "timezone": "Europe/London",
+        "label": "Adult (18–120)",
+        "amount_eur": 12.0,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:23+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Comedy-Night-on-The-River-Thames/d737-360194P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
       },
       "opening_hours": {
-        "text": "Mo-Su 11:30-22:30",
+        "text": "Open 2026-12-04 19:00:00–22:30:00; 2026-12-05 19:00:00–22:30:00",
         "slots": [],
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=leisure.spa&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:23+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Comedy-Night-on-The-River-Thames/d737-360194P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
       "months": [],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 4.662857,
+        "scale": 5,
+        "review_count": 175,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Comedy-Night-on-The-River-Thames/d737-360194P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
         "wheelchair": "unknown",
@@ -1153,151 +1049,30 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "http://www.gaysaunabar.com",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/London/Comedy-Night-on-The-River-Thames/d737-360194P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0f/50/dc/b1.jpg",
+      "certainty": "high",
+      "doubts": "Wheelchair access not stated by Viator"
     },
     {
-      "id": "osm-n10552592178",
-      "name": "EustonWall Climbing Centre",
+      "id": "osm-w104081033",
+      "name": "Benjamin Franklin House",
       "description": "",
-      "category": "adventure",
-      "tags": [
-        "entertainment",
-        "entertainment.activity_park",
-        "entertainment.activity_park.climbing",
-        "fee",
-        "sport",
-        "sport.sports_centre"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "EustonWall Climbing Centre, 350 Euston Road, London, NW1 3AX, United Kingdom",
-        "lat": 51.5246047,
-        "lng": -0.1418928,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:37:50+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Fr 06:00-23:00; Sa-Su,PH 09:00-21:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.activity_park.climbing&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:37:50+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://londonclimbingcentres.co.uk/centre/eustonwall/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-w164405550",
-      "name": "Southbank Centre Food Market",
-      "description": "",
-      "category": "shopping",
-      "tags": [
-        "commercial.marketplace"
-      ],
-      "location": {
-        "city": "Greater London",
-        "address": "Southbank Centre Food Market, Belvedere Road, London, SE1 8XU, United Kingdom",
-        "lat": 51.5054489,
-        "lng": -0.1160819,
-        "timezone": "Europe/London",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:38:28+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "GBP",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Fr 12:00-20:00; Sa 11:00-20:00; Su 12:00-18:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:38:28+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.southbankcentre.co.uk/visit/cafes-restaurants-bars/scfood-market",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-w197206542",
-      "name": "Churchill War Rooms",
-      "description": "Visit Churchill War Rooms, part of Imperial War Museums, to discover the original Cabinet War Rooms, the wartime bunker which sheltered Churchill and his staff during the Blitz.",
       "category": "culture",
       "tags": [
         "building",
+        "building.historic",
         "building.tourism",
         "entertainment",
         "entertainment.museum",
         "fee",
-        "wheelchair",
-        "wheelchair.yes"
+        "heritage"
       ],
       "location": {
         "city": "Greater London",
-        "address": "Churchill War Rooms, King Charles Street, London, SW1A 2AQ, United Kingdom",
-        "lat": 51.5022101,
-        "lng": -0.129252,
+        "address": "Benjamin Franklin House, 36 Craven Street, London, WC2N 5NF, United Kingdom",
+        "lat": 51.5076693,
+        "lng": -0.1248667,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
@@ -1315,18 +1090,317 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "Fr-Su 12:00-17:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "no",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
+          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://benjaminfranklinhouse.org/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "viator-328617p1",
+      "name": "The Chocolate Cocktail Club London",
+      "description": "The Chocolate Cocktail Club has opened its permanent London home, serving mouth-watering chocolatey creations, What's not to love...Chocolate and Cocktails!",
+      "category": "nightlife",
+      "tags": [
+        "Short term availability",
+        "Nightlife",
+        "New Product",
+        "Low Supplier Cancellation Rate",
+        "Agent Low Quality Product",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Weather Dependent - Weather-Proof",
+        "Excellent Quality",
+        "Food & Drink"
+      ],
+      "location": {
+        "city": "London",
+        "address": "Beavis Morgan and BM2020, 82 St. John Street, London, EC1M 4JN, United Kingdom",
+        "lat": 51.5219362,
+        "lng": -0.1014495,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.521873&lon=-0.101592&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:33+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 60,
+      "price": {
+        "amount": 11.5,
+        "currency": "GBP",
+        "per": "person",
+        "label": "Adult (18–70)",
+        "amount_eur": 13.8,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/The-Chocolate-Cocktail-Club-London/d737-328617P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Open 2026-12-04 13:30:00–22:00:00; 2026-12-06 13:30:00–19:00:00",
+        "slots": [],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/The-Chocolate-Cocktail-Club-London/d737-328617P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 4.2272725,
+        "scale": 5,
+        "review_count": 44,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/The-Chocolate-Cocktail-Club-London/d737-328617P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/London/The-Chocolate-Cocktail-Club-London/d737-328617P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0c/0a/ec/75.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 60–120 min; duration_min is the shortest; Wheelchair access not stated by Viator"
+    },
+    {
+      "id": "viator-3858p286",
+      "name": "London: HMS Belfast",
+      "description": "Battle stations! Report for duty aboard the iconic HMS Belfast, one of only three vessels not to be scrapped from the entire D-Day fleet that participated in Operation Overlord.",
+      "category": "culture",
+      "tags": [
+        "Low Supplier Cancellation Rate",
+        "Attractions & Museums",
+        "Historical Tours",
+        "Best Conversion",
+        "Weather Dependent - Weather-Proof",
+        "Short term availability",
+        "Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Museum Tickets & Passes"
+      ],
+      "location": {
+        "city": "London",
+        "address": "HMS Belfast, The Queen's Walk, London, SE1 2JH, United Kingdom",
+        "lat": 51.5065428,
+        "lng": -0.0811518,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.506577&lon=-0.081377&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:38+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 120,
+      "price": {
+        "amount": 26.8,
+        "currency": "GBP",
+        "per": "person",
+        "label": "Adult (16–64)",
+        "amount_eur": 32.15,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/HMS-Belfast/d737-3858P286?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:30, 11:00, 11:30, 12:00, 12:30, 13:00, 13:30, 14:00, 14:30, 15:00, 15:30",
+        "slots": [
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/HMS-Belfast/d737-3858P286?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [
+        1,
+        2,
+        3,
+        12
+      ],
+      "min_age": null,
+      "rating": {
+        "value": 5.0,
+        "scale": 5,
+        "review_count": 2,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/HMS-Belfast/d737-3858P286?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/London/HMS-Belfast/d737-3858P286?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/33/b9/77/44/caption.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 120–180 min; duration_min is the shortest; Wheelchair access not stated by Viator"
+    },
+    {
+      "id": "viator-123356p11",
+      "name": "Bar & Club Night entry Party Pass to multiple venues in London",
+      "description": "Experience the electrifying nightlife of London with our exclusive Party Passes. Our Party Passes offer a flexible way to experience popular weekend nightlife venues.",
+      "category": "nightlife",
+      "tags": [
+        "Private Sightseeing Tours",
+        "Weddings & Celebrations",
+        "Private and Luxury",
+        "Walking Tours",
+        "Short term availability",
+        "Nightlife",
+        "Weather Dependent - Weather-Proof",
+        "Spring Break"
+      ],
+      "location": {
+        "city": "London",
+        "address": "8 Lambert Jones Mews, City of London, EC2Y 8DP, United Kingdom",
+        "lat": 51.5195275,
+        "lng": -0.0962902,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.51924&lon=-0.096654&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 240,
+      "price": {
+        "amount": 10.0,
+        "currency": "GBP",
+        "per": "person",
+        "label": "Adult (18–80)",
+        "amount_eur": 12.0,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Bar-and-Club-queue-jump-entry-Party-Pass/d737-123356P11?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Open 2026-12-04 19:00:00–23:30:00; 2026-12-05 19:00:00–23:30:00",
+        "slots": [],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Bar-and-Club-queue-jump-entry-Party-Pass/d737-123356P11?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
         "wheelchair": "yes",
-        "notes": null,
+        "notes": "Wheelchair accessible",
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:37+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Bar-and-Club-queue-jump-entry-Party-Pass/d737-123356P11?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
@@ -1334,55 +1408,191 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.iwm.org.uk/visits/churchill-war-rooms",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/London/Bar-and-Club-queue-jump-entry-Party-Pass/d737-123356P11?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0f/65/e7/61.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 240–480 min; duration_min is the shortest; No reviews on Viator yet"
     },
     {
-      "id": "osm-w547522397",
-      "name": "Grand Caffe Concerto",
-      "description": "",
-      "category": "food",
+      "id": "viator-5643262p26",
+      "name": "Arsenal FC Emirates Stadium Ticket",
+      "description": "Take a tour of Emirates Stadium, the iconic home of Arsenal Football Club, and dive into the rich history of one of the world’s most prestigious football teams. Visit the Arsenal Museum and admire the club's glittering trophies as you explore the stadium at your own pace.",
+      "category": "culture",
       "tags": [
-        "catering",
-        "catering.restaurant"
+        "Theme Parks",
+        "Short term availability",
+        "Agent Low Quality Product",
+        "Museum Tickets & Passes",
+        "Museums",
+        "Attractions & Museums",
+        "Weather Dependent - Weather-Proof"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "Grand Caffe Concerto, 43 Whitehall, London, SW1A 2BX, United Kingdom",
-        "lat": 51.5063986,
-        "lng": -0.1268068,
+        "city": "London",
+        "address": "Arsène Wenger Statue, Ken Friar Bridge, London, N5 1BE, United Kingdom",
+        "lat": 51.5564601,
+        "lng": -0.1084151,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:47+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.556404&lon=-0.108932&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:38+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 120,
       "price": {
-        "amount": null,
+        "amount": 53.32,
         "currency": "GBP",
         "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
+        "label": null,
+        "amount_eur": 63.96,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Arsenal-FC-Emirates-Stadium-Ticket/d737-5643262P26?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
       },
       "opening_hours": {
-        "text": "07:30-23:00",
+        "text": "Open 2026-12-04 09:30:00–17:00:00; 2026-12-05 09:30:00–17:00:00; 2026-12-06 10:00:00–15:00:00",
         "slots": [],
         "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Arsenal-FC-Emirates-Stadium-Ticket/d737-5643262P26?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "min_age": null,
+      "rating": {
+        "value": 5.0,
+        "scale": 5,
+        "review_count": 1,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Arsenal-FC-Emirates-Stadium-Ticket/d737-5643262P26?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Arsenal-FC-Emirates-Stadium-Ticket/d737-5643262P26?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/London/Arsenal-FC-Emirates-Stadium-Ticket/d737-5643262P26?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/33/44/01/65/caption.jpg",
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "viator-5593384p2",
+      "name": "The Guards Museum Highlights Tour Ticket",
+      "description": "Uncover nearly 400 years of British and military history with a visit to The Guards Museum. This 45-minute guided tour offers an insightful look into royal coronations and the life of a Guardsman, blending tales of combat, peacekeeping, and ceremonial duty.",
+      "category": "culture",
+      "tags": [
+        "Attractions & Museums",
+        "Weather Dependent - Weather-Proof",
+        "Museums",
+        "Historical Tours",
+        "Museum Tickets & Passes"
+      ],
+      "location": {
+        "city": "London",
+        "address": "The Guards Museum, Petty France, London, SW1H 9HF, United Kingdom",
+        "lat": 51.5000475,
+        "lng": -0.1361252,
+        "timezone": "Europe/London",
+        "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:47+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.500248&lon=-0.136069&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:39+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 45,
+      "price": {
+        "amount": 15.0,
+        "currency": "GBP",
+        "per": "person",
+        "label": "Adult (16–99)",
+        "amount_eur": 17.99,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/The-Guards-Museum-Highlights-Tour-Ticket/d737-5593384P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 11:30",
+        "slots": [
+          "11:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/The-Guards-Museum-Highlights-Tour-Ticket/d737-5593384P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
       "months": [],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 5.0,
+        "scale": 5,
+        "review_count": 1,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/The-Guards-Museum-Highlights-Tour-Ticket/d737-5593384P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
         "wheelchair": "unknown",
@@ -1393,67 +1603,98 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.caffeconcerto.co.uk/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/London/The-Guards-Museum-Highlights-Tour-Ticket/d737-5593384P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/34/11/f2/7a/caption.jpg",
+      "certainty": "high",
+      "doubts": "Wheelchair access not stated by Viator"
     },
     {
-      "id": "osm-w4254099",
-      "name": "Victoria Embankment Gardens",
-      "description": "",
-      "category": "nature",
+      "id": "viator-59942p1",
+      "name": "Museum of Brands Entrance Ticket",
+      "description": "Just around the corner from the world-famous Portobello Road, this treasure trove of consumer culture showcases the evolution of household packaging, advertising and design from the Victorian era to present day, featuring over 12,000 items.",
+      "category": "culture",
       "tags": [
-        "access",
-        "access.yes",
-        "leisure",
-        "leisure.park",
-        "wheelchair",
-        "wheelchair.limited"
+        "Short term availability",
+        "Museums",
+        "Low Supplier Cancellation Rate",
+        "Agent Low Quality Product",
+        "Museum Tickets & Passes",
+        "Small Group",
+        "Attractions & Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Weather Dependent - Weather-Proof",
+        "Excellent Quality"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "Victoria Embankment Gardens, Covent Garden, London, United Kingdom",
-        "lat": 51.5086429,
-        "lng": -0.1214183,
+        "city": "London",
+        "address": "Museum of Brands, 111-117 Lancaster Road, London, W11 1QT, United Kingdom",
+        "lat": 51.5162467,
+        "lng": -0.2111733,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=leisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:59+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.516403&lon=-0.211025&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:41+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 60,
       "price": {
-        "amount": null,
+        "amount": 14.0,
         "currency": "GBP",
         "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
+        "label": "Adult (17–60)",
+        "amount_eur": 16.79,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Museum-of-Brands-Packaging-and-Advertising-Entrance-Ticket/d737-59942P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
       },
       "opening_hours": {
-        "text": "Jan 01-Feb 15 08:30-16:30,Feb 16-Feb 29 08:30-17:30,Mar 01-Mar Su[4] 08:30-18:00,Mar Mo[4]-Mar 31 08:30-19:30,Apr 01-Apr 15 08:30-20:00,Apr 16-Apr 30 08:30-20:30,May 01-May 15 08:30-21:00,Mar 16-Jul 31 08:30-21:30,Aug 01-Aug 15 08:30-21:00,Aug 16-Aug 31 0",
+        "text": "Open 2026-12-04 10:00:00–17:00:00; 2026-12-05 11:00:00–17:00:00; 2026-12-06 11:00:00–17:00:00",
         "slots": [],
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=leisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:59+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Museum-of-Brands-Packaging-and-Advertising-Entrance-Ticket/d737-59942P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
       "months": [],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 4.7490907,
+        "scale": 5,
+        "review_count": 275,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Museum-of-Brands-Packaging-and-Advertising-Entrance-Ticket/d737-59942P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "limited",
-        "notes": null,
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=leisure.park&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:35:59+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Museum-of-Brands-Packaging-and-Advertising-Entrance-Ticket/d737-59942P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
           "quote": null
         }
       },
@@ -1461,60 +1702,479 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.westminster.gov.uk/parks-and-open-spaces/victoria-embankment-gardens",
-      "photo_url": null,
-      "certainty": "low",
-      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []"
+      "booking_url": "https://www.viator.com/tours/London/Museum-of-Brands-Packaging-and-Advertising-Entrance-Ticket/d737-59942P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/b1/37/94.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 60–120 min; duration_min is the shortest"
     },
     {
-      "id": "osm-n12507179080",
-      "name": "Simmons Bars",
-      "description": "",
-      "category": "nightlife",
+      "id": "viator-390319p2",
+      "name": "Frameless Lates: Immersive Art Experience in London",
+      "description": "Get ready for a different after-hours culture fix at Frameless lates, where art and creativity come alive. Every Friday and Saturday night, over-18s can explore four stunning galleries filled with immersive digital art from renowned artists like Van Gogh and Hokusai.",
+      "category": "culture",
       "tags": [
-        "catering",
-        "catering.bar"
+        "Short term availability",
+        "Art Galleries",
+        "Agent Low Quality Product",
+        "Virtual Experiences",
+        "Museum Tickets & Passes",
+        "Low Supplier Cancellation Rate",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Attractions & Museums",
+        "Weather Dependent - Weather-Proof",
+        "New Product",
+        "Excellent Quality"
       ],
       "location": {
-        "city": "Greater London",
-        "address": "Simmons Bars, 28a Leicester Square, London, WC2H 7LE, United Kingdom",
-        "lat": 51.5102834,
-        "lng": -0.1291634,
+        "city": "London",
+        "address": "Marble Arch Station / Edgware Road, 6 Marble Arch, London, W2 2EN, United Kingdom",
+        "lat": 51.513572,
+        "lng": -0.160436,
         "timezone": "Europe/London",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-0.1277653%2C51.5074456%2C5000&bias=proximity%3A-0.1277653%2C51.5074456&limit=100",
-          "retrieved_at": "2026-11-18T18:36:01+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.513638&lon=-0.160473&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:41+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 90,
       "price": {
-        "amount": null,
+        "amount": 25.0,
         "currency": "GBP",
         "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
+        "label": "Adult (18–100)",
+        "amount_eur": 29.99,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/FRAMELESS-Lates-Immersive-Art-Experience-in-London/d737-390319P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 18:00, 18:30, 19:00, 19:30, 20:00, 20:30",
+        "slots": [
+          "18:00",
+          "18:30",
+          "19:00",
+          "19:30",
+          "20:00",
+          "20:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/FRAMELESS-Lates-Immersive-Art-Experience-in-London/d737-390319P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 4.747253,
+        "scale": 5,
+        "review_count": 91,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/FRAMELESS-Lates-Immersive-Art-Experience-in-London/d737-390319P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/FRAMELESS-Lates-Immersive-Art-Experience-in-London/d737-390319P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.simmonsbar.co.uk/venues/leicester-square/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/London/FRAMELESS-Lates-Immersive-Art-Experience-in-London/d737-390319P2?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/7b/ac/6b.jpg",
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "viator-33770p1",
+      "name": "The Royal Albert Hall Tour",
+      "description": "Did you know that the Royal Albert Hall once hosted a séance; flooded the auditorium with 56,000 litres of water for an opera concert; and that criminals, as well as musicians and politicians, have graced the Hall’s stage?",
+      "category": "culture",
+      "tags": [
+        "Attractions & Museums",
+        "Small Group",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Weather Dependent - Weather-Proof",
+        "DSA non-compliant",
+        "Agent Low Quality Product",
+        "Museums",
+        "Historical Tours",
+        "Best Conversion",
+        "Short term availability",
+        "Low Supplier Cancellation Rate",
+        "Museum Tickets & Passes"
+      ],
+      "location": {
+        "city": "London",
+        "address": "Royal Albert Hall, 4 Kensington Gore, London, SW7 2AP, United Kingdom",
+        "lat": 51.501007,
+        "lng": -0.1774058,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.501152&lon=-0.177299&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 60,
+      "price": {
+        "amount": 20.0,
+        "currency": "GBP",
+        "per": "person",
+        "label": "Adult (17–59)",
+        "amount_eur": 23.99,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Grand-Tour-of-Royal-Albert-Hall/d737-33770P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:30, 11:00, 11:30",
+        "slots": [
+          "10:30",
+          "11:00",
+          "11:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Grand-Tour-of-Royal-Albert-Hall/d737-33770P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [
+        1,
+        2,
+        3,
+        12
+      ],
+      "min_age": null,
+      "rating": {
+        "value": 4.7395496,
+        "scale": 5,
+        "review_count": 311,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Grand-Tour-of-Royal-Albert-Hall/d737-33770P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Grand-Tour-of-Royal-Albert-Hall/d737-33770P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/London/Grand-Tour-of-Royal-Albert-Hall/d737-33770P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/a3/57/3c.jpg",
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "viator-390319p1",
+      "name": "Frameless - Immersive Art Experience in London",
+      "description": "Step into FRAMELESS, London’s most talked-about immersive art experience, just moments from Marble Arch. Explore 42 masterpieces by iconic artists such as Monet, Rembrandt, Van Gogh and Dalí, reimagined through 360° visuals and dynamic soundscapes across four immersive galleries.",
+      "category": "culture",
+      "tags": [
+        "Attractions & Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Weather Dependent - Weather-Proof",
+        "Museums",
+        "Light & Sound Shows ",
+        "Cultural Tours",
+        "Seasonal",
+        "Excellent Quality",
+        "Top Product",
+        "Short term availability",
+        "Family-friendly Shows ",
+        "Curated Catalog",
+        "Art Galleries",
+        "Low Supplier Cancellation Rate",
+        "Shows",
+        "Museum Tickets & Passes"
+      ],
+      "location": {
+        "city": "London",
+        "address": "Marble Arch Station / Edgware Road, 6 Marble Arch, London, W2 2EN, United Kingdom",
+        "lat": 51.513572,
+        "lng": -0.160436,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.513638&lon=-0.160473&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:44+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 60,
+      "price": {
+        "amount": 29.5,
+        "currency": "GBP",
+        "per": "person",
+        "label": "Adult (18–100)",
+        "amount_eur": 35.39,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Frameless-Immersive-Art-Experience/d737-390319P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:00, 10:30, 11:00, 11:30, 12:00, 12:30, 13:00, 13:30, 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30",
+        "slots": [
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Frameless-Immersive-Art-Experience/d737-390319P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [
+        1,
+        12
+      ],
+      "min_age": null,
+      "rating": {
+        "value": 4.731026,
+        "scale": 5,
+        "review_count": 4190,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Frameless-Immersive-Art-Experience/d737-390319P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Frameless-Immersive-Art-Experience/d737-390319P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/London/Frameless-Immersive-Art-Experience/d737-390319P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/76/69/2c.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 60–120 min; duration_min is the shortest"
+    },
+    {
+      "id": "viator-5662949p1",
+      "name": "Museum of Illusions London - Reimagine Reality",
+      "description": "Mind bending illusions that trick your brain and challenge your senses. Great for anyone who's curious but loves to find out more.",
+      "category": "culture",
+      "tags": [
+        "Museum Tickets & Passes",
+        "Excellent Quality",
+        "Weather Dependent - Weather-Proof",
+        "Short term availability",
+        "Attractions & Museums",
+        "Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Agent Low Quality Product",
+        "Low Supplier Cancellation Rate"
+      ],
+      "location": {
+        "city": "London",
+        "address": "EE, 4/5 Tottenham Court Road, London, W1T 1BA, United Kingdom",
+        "lat": 51.5169672,
+        "lng": -0.1308944,
+        "timezone": "Europe/London",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=51.517048&lon=-0.130748&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:49:45+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 90,
+      "price": {
+        "amount": 29.0,
+        "currency": "GBP",
+        "per": "person",
+        "label": "Adult (15–64)",
+        "amount_eur": 34.79,
+        "fx": {
+          "rate": 1.1996,
+          "from": "GBP",
+          "to": "EUR",
+          "date": "2026-11-19",
+          "source": {
+            "provider": "frankfurter",
+            "url": "https://api.frankfurter.dev/v2/rates?base=GBP&quotes=EUR",
+            "retrieved_at": "2026-11-19T14:49:31+01:00",
+            "quote": null
+          }
+        },
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Explore-and-trick-your-brain-at-Museum-of-Illusions-London/d737-5662949P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:00, 10:20, 10:40, 11:00, 11:20, 11:40, 12:00, 12:20, 12:40, 13:00, 13:20, 13:40, 14:00, 14:20, 14:40, 15:00, 15:20, 15:40, 16:00, 16:20, 16:40, 17:00, 17:20, 17:40, 18:00, 18:20, 18:40, 19:00",
+        "slots": [
+          "10:00",
+          "10:20",
+          "10:40",
+          "11:00",
+          "11:20",
+          "11:40",
+          "12:00",
+          "12:20",
+          "12:40",
+          "13:00",
+          "13:20",
+          "13:40",
+          "14:00",
+          "14:20",
+          "14:40",
+          "15:00",
+          "15:20",
+          "15:40",
+          "16:00",
+          "16:20",
+          "16:40",
+          "17:00",
+          "17:20",
+          "17:40",
+          "18:00",
+          "18:20",
+          "18:40",
+          "19:00"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Explore-and-trick-your-brain-at-Museum-of-Illusions-London/d737-5662949P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 4.6707315,
+        "scale": 5,
+        "review_count": 82,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Explore-and-trick-your-brain-at-Museum-of-Illusions-London/d737-5662949P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/London/Explore-and-trick-your-brain-at-Museum-of-Illusions-London/d737-5662949P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:49:29+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/London/Explore-and-trick-your-brain-at-Museum-of-Illusions-London/d737-5662949P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/33/ec/51/2c/caption.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 90–120 min; duration_min is the shortest"
     }
   ]
 }

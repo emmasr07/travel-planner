@@ -340,12 +340,13 @@ def test_map_png_is_404_when_the_brochure_uses_the_pin_plot():
     assert r.status_code == 404 and "pins" in r.json()["detail"]
 
 
-def test_demo_lisbon_brochure_and_pdf_show_no_price_yet():
+def test_demo_lisbon_brochure_and_pdf_show_viator_prices_and_no_price_yet():
     trip_id = new_trip(destination="Lisbon", end_date="2026-12-04")
     r = client.post(f"/api/trips/{trip_id}/brochure")
     assert r.status_code == 200, r.text
     trip = r.json()
-    assert trip["brochure"]["prices_note"].startswith("No prices from a source yet")
+    assert trip["brochure"]["prices_note"].startswith("Prices checked on")      # a Viator ticket
     assert client.get(f"/api/trips/{trip_id}/brochure.pdf").status_code == 200
     text = drawn(trip)
-    assert "No price yet" in text and "Demo data, not verified" in text
+    assert "Viator · checked" in text and "No price yet" in text                 # and a Geoapify place
+    assert "Demo data, not verified" in text

@@ -4,9 +4,10 @@ import json
 
 import pytest
 
-from backend.schema import validate_sample
+from backend.schema import SUGGESTION_FIELDS, validate_sample
 from scripts import build_sample
 from tests import fake_apis as fa
+from tests.factories import experience
 from tests.fake_apis import FakeAPIs
 
 
@@ -150,6 +151,63 @@ def test_main_refuses_links_that_are_not_viator_com(tmp_path, capsys):
     assert code == 1
     assert not out.exists()
     assert "www.viator.com" in capsys.readouterr().out
+
+
+# --- Viator alongside the Geoapify places already in the sample -------------------------------------------------
+
+def place(id, category):
+    """A Geoapify place as scripts/build_sample_places.py writes it: no price, its website as booking_url."""
+    e = experience(id, category=category, name=id.title(), booking_url=f"https://{id}.example/",
+                   price={"amount": None, "label": None, "source": None})
+    for field in SUGGESTION_FIELDS:
+        e.pop(field)
+    return e
+
+
+def test_merge_puts_viator_first_and_alternates_with_the_places_within_each_interest():
+    viator_items = [{"id": "viator-v1", "category": "food"}, {"id": "viator-v2", "category": "food"}]
+    places = [{"id": "osm-c1", "category": "culture"}, {"id": "osm-f1", "category": "food"},
+              {"id": "osm-f2", "category": "food"}, {"id": "osm-f3", "category": "food"}]
+    merged = build_sample.merge(viator_items, places)
+    assert [e["id"] for e in merged] == ["osm-c1", "viator-v1", "osm-f1", "viator-v2", "osm-f2", "osm-f3"]
+
+
+def test_merge_drops_old_viator_items_and_the_last_places_to_stay_within_25():
+    places = [{"id": f"osm-{i}", "category": "culture"} for i in range(24)] + [{"id": "viator-old", "category": "food"}]
+    viator_items = [{"id": "viator-v1", "category": "food"}, {"id": "viator-v2", "category": "food"}]
+    ids = [e["id"] for e in build_sample.merge(viator_items, places)]
+    assert len(ids) == 25 and "viator-old" not in ids
+    assert {"viator-v1", "viator-v2"} <= set(ids)
+    assert [i for i in ids if i.startswith("osm-")] == [f"osm-{i}" for i in range(23)]   # file order, last ones out
+
+
+def test_merge_never_keeps_more_than_15_viator_items():
+    viator_items = [{"id": f"viator-{i}", "category": "culture"} for i in range(20)]
+    merged = build_sample.merge(viator_items, [{"id": "osm-1", "category": "food"}])
+    assert sum(e["id"].startswith("viator-") for e in merged) == 15 and len(merged) == 16
+
+
+def test_viator_is_asked_for_30_per_tag():
+    apis = lisbon_apis([product("P1")])
+    with apis.client() as c:
+        build_sample.build("Lisbon", *fa.DATES, client=c)
+    assert {FakeAPIs.body(r)["pagination"]["count"] for r in apis.sent("/products/search")} == {30}
+
+
+def test_main_keeps_the_geoapify_places_of_the_current_sample(tmp_path, capsys):
+    old = [place("osm-n1", "culture"), place("osm-n2", "food"), place("osm-n3", "nature")]
+    (tmp_path / "lisbon.json").write_text(json.dumps({"experiences": old}))
+    apis = lisbon_apis([product("P1")])
+    with apis.client() as c:
+        code = build_sample.main(["Lisbon"], client=c, load_env=False, out_dir=tmp_path)
+    assert code == 0                                   # the places' own websites are not refused as non-Viator links
+    data = json.loads((tmp_path / "lisbon.json").read_text())
+    assert validate_sample(data) == []
+    assert [e["id"] for e in data["experiences"]] == ["osm-n1", "viator-p1", "osm-n3", "osm-n2"]   # round-robin
+    assert data["experiences"][0] == old[0]            # copied unchanged, checked-at time included
+    out = capsys.readouterr().out
+    assert "1 Viator experience and 3 Geoapify places" in out
+    assert f"Tour P1 | food | 35.0 EUR per person | label none | 4.8/5, 120 reviews | {fa.product_url('P1')}" in out
 
 
 def test_main_stops_on_401_and_writes_nothing(tmp_path, capsys):

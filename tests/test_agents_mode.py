@@ -67,6 +67,28 @@ def test_a_trip_runs_both_agents_and_reaches_ready(http, monkeypatch):
     assert all(e["verdict"]["verdict"] == "confirmed" for e in trip["experiences"])
 
 
+def test_a_trip_uses_search_viator_when_the_key_works(http, monkeypatch):
+    from tests import fake_apis
+    code, url = "111P1", fake_apis.product_url("111P1")
+    fake_apis.viator_routes(http, [(fake_apis.summary(code, "Alfama food walk"), fake_apis.details(code),
+                                    fake_apis.schedule(code))])
+    exps = delivery()["experiences"]
+    exps[0].update(name="Alfama food walk", booking_url=url)
+    exps[0]["price"]["source"] = {**exps[0]["price"]["source"], "url": url}
+    ask = {"destination": "Lisbon", "interests": ["food"], "start_date": "2026-12-04", "end_date": "2026-12-06"}
+    install(monkeypatch, [[tool_use("search_viator", ask)], [tool_use("deliver_experiences", {"experiences": exps})],
+                          []], verify_script([e["id"] for e in exps]))
+    trip = new_trip()
+
+    assert trip["status"] == "ready", trip["error"]
+    texts = [s["text"] for s in trip["steps"]]
+    assert "search_viator Lisbon: food, 2026-12-04 to 2026-12-06" in texts
+    assert not any("Viator unavailable" in t for t in texts)
+    assert len(http.sent("/products/search")) == 1 and len(http.sent(f"/products/{code}")) == 1
+    walk = next(e for e in trip["experiences"] if e["id"] == "item-0")
+    assert walk["booking_url"] == url and walk["price"]["source"]["provider"] == "viator"
+
+
 def test_any_destination_works_without_a_sample(monkeypatch):
     exps = delivery()["experiences"]
     install(monkeypatch, research_script(exps), verify_script([e["id"] for e in exps]))

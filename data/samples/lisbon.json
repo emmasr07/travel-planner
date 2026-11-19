@@ -1,62 +1,95 @@
 {
   "experiences": [
     {
-      "id": "osm-n2503411074",
-      "name": "Lisboa Story Center",
-      "description": "",
+      "id": "viator-242299p16",
+      "name": "Belem Tower Exterior Tour with Tower Entry Tickets",
+      "description": "Experience one of Lisbon's most iconic landmarks with a guided introduction that brings Belém Tower's history to life before you explore its interior at your own pace.",
       "category": "culture",
       "tags": [
-        "entertainment",
-        "entertainment.museum",
-        "fee",
-        "wheelchair",
-        "wheelchair.limited"
+        "Low Supplier Cancellation Rate",
+        "Attractions & Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Historical Tours",
+        "Museum Tickets & Passes",
+        "Short term availability",
+        "Weather Dependent - Weather-Proof",
+        "Art Galleries",
+        "Agent Low Quality Product"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Lisboa Story Center, Praça do Comércio 78 - 81, 1100-148 Lisbon, Portugal",
-        "lat": 38.7077328,
-        "lng": -9.1352861,
+        "address": "Our Lady of Safe Homecoming, Avenida de Brasília, 1400-038 Lisbon, Portugal",
+        "lat": 38.6915268,
+        "lng": -9.2159408,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.69149&lon=-9.216066&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:40+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 120,
       "price": {
-        "amount": null,
+        "amount": 30.0,
         "currency": "EUR",
         "per": "person",
-        "amount_eur": null,
+        "label": "Adult (25–64)",
+        "amount_eur": 30.0,
         "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "limited",
-        "notes": null,
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Belem-Tower-Exterior-Tour-with-Tower-Entry-Tickets/d538-242299P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
           "quote": null
         }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 09:30, 10:30, 11:30, 12:30, 13:30, 14:30, 15:30, 16:30",
+        "slots": [
+          "09:30",
+          "10:30",
+          "11:30",
+          "12:30",
+          "13:30",
+          "14:30",
+          "15:30",
+          "16:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Belem-Tower-Exterior-Tour-with-Tower-Entry-Tickets/d538-242299P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 4.7894735,
+        "scale": 5,
+        "review_count": 19,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Belem-Tower-Exterior-Tour-with-Tower-Entry-Tickets/d538-242299P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://lisboastorycentre.pt/en/content/reduced-mobility",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/Lisbon/Belem-Tower-Exterior-Tour-with-Tower-Entry-Tickets/d538-242299P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/33/e5/43/df/caption.jpg",
+      "certainty": "high",
+      "doubts": "Wheelchair access not stated by Viator"
     },
     {
       "id": "osm-n2003731541",
@@ -173,68 +206,93 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n6366304914",
-      "name": "Brew",
-      "description": "The Spot - Sports & Trendy Bar",
+      "id": "viator-32794p39",
+      "name": "Lisbon Night Pubcrawl & An Exclusive Merch(T-Shirt)",
+      "description": "For travelers visiting a city for the first time, it's often hard to discover the best places to drink and dance. Save time researching and get the inside scoop on Lisbon’s nightlife during a pub crawl that provides a fun way for solo travelers to meet others.",
       "category": "nightlife",
       "tags": [
-        "catering",
-        "catering.bar"
+        "Weather Dependent - Weather-Proof",
+        "Nightlife",
+        "Food & Drink",
+        "New Product",
+        "Skip the line Tickets",
+        "Short term availability"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Brew, Rua Nova do Almada 14, 1200-288 Lisbon, Portugal",
-        "lat": 38.7092717,
-        "lng": -9.1388505,
+        "address": "Praça Luís de Camões 22;24, 1500-500 Lisbon, Portugal",
+        "lat": 38.710564,
+        "lng": -9.143798,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.71052&lon=-9.143758&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:39+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 300,
       "price": {
-        "amount": null,
+        "amount": 20.0,
         "currency": "EUR",
         "per": "person",
-        "amount_eur": null,
+        "label": "Adult (18–90)",
+        "amount_eur": 20.0,
         "fx": null,
-        "source": null
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Pubcrawl-and-An-Exclusive-Merch/d538-32794P39?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
       },
       "opening_hours": {
-        "text": "Su-We 13:00-12:00, Th-Sa 13:00-01:00",
-        "slots": [],
+        "text": "Start times on 2026-12-04 to 2026-12-06: 22:00",
+        "slots": [
+          "22:00"
+        ],
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Pubcrawl-and-An-Exclusive-Merch/d538-32794P39?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
           "quote": null
         }
       },
-      "months": [],
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        12
+      ],
       "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "no",
-        "notes": null,
+      "rating": {
+        "value": 5.0,
+        "scale": 5,
+        "review_count": 1,
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Pubcrawl-and-An-Exclusive-Merch/d538-32794P39?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
           "quote": null
         }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.brewportugal.pt/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
+      "booking_url": "https://www.viator.com/tours/Lisbon/Pubcrawl-and-An-Exclusive-Merch/d538-32794P39?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/11/eb/66/45.jpg",
+      "certainty": "high",
+      "doubts": "Wheelchair access not stated by Viator"
     },
     {
       "id": "osm-n13230741433",
@@ -349,20 +407,22 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n5090471903",
-      "name": "Museu de Lisboa - Torreão Poente",
-      "description": "Encerrado temporrariamente",
+      "id": "osm-n2503411074",
+      "name": "Lisboa Story Center",
+      "description": "",
       "category": "culture",
       "tags": [
         "entertainment",
         "entertainment.museum",
-        "fee"
+        "fee",
+        "wheelchair",
+        "wheelchair.limited"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Museu de Lisboa - Torreão Poente, Praça do Comércio 1, 1100-148 Lisbon, Portugal",
-        "lat": 38.7067592,
-        "lng": -9.1373654,
+        "address": "Lisboa Story Center, Praça do Comércio 78 - 81, 1100-148 Lisbon, Portugal",
+        "lat": 38.7077328,
+        "lng": -9.1352861,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
@@ -386,18 +446,23 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "unknown",
+        "wheelchair": "limited",
         "notes": null,
-        "source": null
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "quote": null
+        }
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://museudelisboa.pt/pt/about/venues/torreao-poente/",
+      "booking_url": "https://lisboastorycentre.pt/en/content/reduced-mobility",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap"
     },
     {
       "id": "osm-n2003731545",
@@ -511,20 +576,19 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n4292877138",
-      "name": "The George",
-      "description": "",
+      "id": "osm-n6366304914",
+      "name": "Brew",
+      "description": "The Spot - Sports & Trendy Bar",
       "category": "nightlife",
       "tags": [
         "catering",
-        "catering.bar",
-        "internet_access"
+        "catering.bar"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "The George, Rua do Crucifixo 58-62, 1100-184 Lisbon, Portugal",
-        "lat": 38.7102452,
-        "lng": -9.1387924,
+        "address": "Brew, Rua Nova do Almada 14, 1200-288 Lisbon, Portugal",
+        "lat": 38.7092717,
+        "lng": -9.1388505,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
@@ -543,7 +607,7 @@
         "source": null
       },
       "opening_hours": {
-        "text": "Mo-Fr 17:00-02:00; Sa 11:00-02:00; Su 11:00-01:00",
+        "text": "Su-We 13:00-12:00, Th-Sa 13:00-01:00",
         "slots": [],
         "source": {
           "provider": "geoapify",
@@ -557,18 +621,23 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "unknown",
+        "wheelchair": "no",
         "notes": null,
-        "source": null
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.thegeorgelisbon.com/",
+      "booking_url": "https://www.brewportugal.pt/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet"
     },
     {
       "id": "osm-n3109770683",
@@ -685,6 +754,315 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
+      "id": "viator-242299p13",
+      "name": "Skip the Line Ticket Castelo de S. Jorge",
+      "description": "Castelo de São Jorge, often known as St. George's Castle, is difficult to miss.",
+      "category": "culture",
+      "tags": [
+        "Skip the line Tickets",
+        "Monuments and Memorials",
+        "Curated Catalog",
+        "Museums",
+        "Low Supplier Cancellation Rate",
+        "Agent Low Quality Product",
+        "Attractions & Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Historical Tours",
+        "Top Product",
+        "Short term availability",
+        "New Product",
+        "Museum Tickets & Passes",
+        "Castle Tours",
+        "Weather Dependent - Weather-Proof",
+        "Best Conversion",
+        "Excellent Quality"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Castle of São Jorge, 1100-245 Lisbon, Portugal",
+        "lat": 38.71389,
+        "lng": -9.13361,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.71391&lon=-9.133476&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:41+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 120,
+      "price": {
+        "amount": 31.0,
+        "currency": "EUR",
+        "per": "person",
+        "label": "Adult (26–64)",
+        "amount_eur": 31.0,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Skip-the-line-ticket-Castelo-de-S-Jorge/d538-242299P13?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 09:00, 09:30, 10:00, 10:30, 11:00, 11:30, 12:00, 12:30, 13:00, 13:30, 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00",
+        "slots": [
+          "09:00",
+          "09:30",
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Skip-the-line-ticket-Castelo-de-S-Jorge/d538-242299P13?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 4.714055,
+        "scale": 5,
+        "review_count": 619,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Skip-the-line-ticket-Castelo-de-S-Jorge/d538-242299P13?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/Skip-the-line-ticket-Castelo-de-S-Jorge/d538-242299P13?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/12/73/d5/ce.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 120–180 min; duration_min is the shortest; Wheelchair access not stated by Viator"
+    },
+    {
+      "id": "osm-n4292877138",
+      "name": "The George",
+      "description": "",
+      "category": "nightlife",
+      "tags": [
+        "catering",
+        "catering.bar",
+        "internet_access"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "The George, Rua do Crucifixo 58-62, 1100-184 Lisbon, Portugal",
+        "lat": 38.7102452,
+        "lng": -9.1387924,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo-Fr 17:00-02:00; Sa 11:00-02:00; Su 11:00-01:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:26+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.thegeorgelisbon.com/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "osm-n5090471903",
+      "name": "Museu de Lisboa - Torreão Poente",
+      "description": "Encerrado temporrariamente",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "fee"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Museu de Lisboa - Torreão Poente, Praça do Comércio 1, 1100-148 Lisbon, Portugal",
+        "lat": 38.7067592,
+        "lng": -9.1373654,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
+          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://museudelisboa.pt/pt/about/venues/torreao-poente/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
+      "id": "viator-420484p3",
+      "name": "Lisbon Banksy Museum Admission Ticket",
+      "description": "Immerse yourself in an exhibition celebrating the iconic world of Banksy. Admire projections of Banksy masterpieces.",
+      "category": "culture",
+      "tags": [
+        "Attractions & Museums",
+        "Museums",
+        "Low Supplier Cancellation Rate",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Museum Tickets & Passes",
+        "New Product",
+        "Weather Dependent - Weather-Proof",
+        "Short term availability",
+        "Skip the line Tickets",
+        "Excellent Quality",
+        "Agent Low Quality Product",
+        "Best Conversion"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Rua Viriato 25, 1050-234 Lisbon, Portugal",
+        "lat": 38.7317238,
+        "lng": -9.1475719,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.73169&lon=-9.147627&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:42+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 45,
+      "price": {
+        "amount": 13.0,
+        "currency": "EUR",
+        "per": "person",
+        "label": "Adult (18–64)",
+        "amount_eur": 13.0,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Lisbon-Banksy-Museum-Admission-Ticket/d538-420484P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Open 2026-12-04 11:00:00–20:00:00; 2026-12-05 10:00:00–20:00:00; 2026-12-06 10:00:00–20:00:00",
+        "slots": [],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Lisbon-Banksy-Museum-Admission-Ticket/d538-420484P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 4.6734695,
+        "scale": 5,
+        "review_count": 49,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Lisbon-Banksy-Museum-Admission-Ticket/d538-420484P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Lisbon-Banksy-Museum-Admission-Ticket/d538-420484P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/Lisbon-Banksy-Museum-Admission-Ticket/d538-420484P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/85/ed/a8.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 45–90 min; duration_min is the shortest"
+    },
+    {
       "id": "osm-n8809917449",
       "name": "Centro Interpretativo da História do Bacalhau",
       "description": "",
@@ -736,650 +1114,114 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n2503325885",
-      "name": "Museu da Cerveja",
-      "description": "",
-      "category": "food",
-      "tags": [
-        "catering",
-        "catering.restaurant",
-        "fee",
-        "wheelchair",
-        "wheelchair.limited"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Museu da Cerveja, Rua da Alfândega 62–65, 1100-148 Lisbon, Portugal",
-        "lat": 38.7083819,
-        "lng": -9.1356141,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:17+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Su 10:00-00:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:17+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "limited",
-        "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:17+01:00",
-          "quote": null
-        }
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.museudacerveja.pt/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
-    },
-    {
-      "id": "osm-r9681789",
-      "name": "Quinta do Almaraz",
-      "description": "Escavação no estado de sondagem. Acesso ao público mediante inscrição nas visitas guiadas realizadas esporadicamente.",
-      "category": "nature",
-      "tags": [
-        "heritage",
-        "natural",
-        "natural.protected_area",
-        "tourism",
-        "tourism.sights",
-        "tourism.sights.archaeological_site"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Quinta do Almaraz, Rua Liberato Teles, 2800-279 Almada, Portugal",
-        "lat": 38.6859291,
-        "lng": -9.1524143,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:14+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "off",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:14+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "http://www.m-almada.pt/portal/page/portal/MUSEUS/ARQ_HIST/?mus=1&actualmenu=4197711&mus_nuc_arq_hist=7115639",
-      "photo_url": null,
-      "certainty": "low",
-      "doubts": "no price source yet; Opening hours too complex to read the months reliably; months left as []; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n4986521256",
-      "name": "Bartô",
-      "description": "",
-      "category": "nightlife",
-      "tags": [
-        "catering",
-        "catering.bar"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Bartô, Costa do Castelo, 1149-079 Lisbon, Portugal",
-        "lat": 38.7114227,
-        "lng": -9.1338261,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:26+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "22:00-02:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:26+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "no",
-        "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:26+01:00",
-          "quote": null
-        }
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "http://www.barto.tk",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
-    },
-    {
-      "id": "osm-n9150346438",
-      "name": "Bicicletas Gira Estação 220",
-      "description": "Gira. Bicicletas de Lisboa",
-      "category": "adventure",
-      "tags": [
-        "internet_access",
-        "internet_access.free",
-        "rental",
-        "rental.bicycle"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Bicicletas Gira Estação 220, Rua do Comércio, 1100-150 Lisbon, Portugal",
-        "lat": 38.70877,
-        "lng": -9.1371535,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=rental.bicycle&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:28+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "24/7",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=rental.bicycle&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:28+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.gira-bicicletasdelisboa.pt",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-w96715414",
-      "name": "Dona Ajuda",
-      "description": "",
-      "category": "shopping",
-      "tags": [
-        "building",
-        "building.commercial",
-        "commercial.marketplace"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Dona Ajuda, Rua Alexandre Herculano 64, 1250-012 Lisbon, Portugal",
-        "lat": 38.7213879,
-        "lng": -9.1535692,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:31+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Su 11:00-19:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:31+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://donaajuda.pt",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-r1396217",
-      "name": "MUDE - Museu do Design",
-      "description": "",
+      "id": "viator-5572802p1",
+      "name": "Museum of Illusions Lisbon",
+      "description": "The Museum of Illusions in Lisbon is a unique and exciting space dedicated to providing visitors with a fun, interactive, and educational experience that challenges perception and stimulates creativity.",
       "category": "culture",
       "tags": [
-        "building",
-        "building.tourism",
-        "entertainment",
-        "entertainment.museum"
+        "Short term availability",
+        "Agent Low Quality Product",
+        "Museum Tickets & Passes",
+        "Museums",
+        "Low Supplier Cancellation Rate",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Attractions & Museums",
+        "Weather Dependent - Weather-Proof",
+        "New Product"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "MUDE - Museu do Design, Rua Augusta 24, 1100-053 Lisbon, Portugal",
-        "lat": 38.7091415,
-        "lng": -9.1364967,
+        "address": "Rua Ivens 64, 1200-445 Lisbon, Portugal",
+        "lat": 38.7105735,
+        "lng": -9.1404522,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.710575&lon=-9.140452&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:43+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 45,
       "price": {
-        "amount": null,
+        "amount": 12.0,
         "currency": "EUR",
         "per": "person",
-        "amount_eur": null,
+        "label": "Adult (13–64)",
+        "amount_eur": 12.0,
         "fx": null,
-        "source": null
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Museu-das-Ilusoes-Lisboa/d538-5572802P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
       },
       "opening_hours": {
-        "text": "Tu-Su 10:00-18:00; Dec 24, Dec 31 10:00-14:00; Jan 01,May 01,Dec 25 off",
-        "slots": [],
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:00, 10:20, 10:40, 11:00, 11:20, 11:40, 12:00, 12:20, 12:40, 13:00, 13:20, 13:40, 14:00, 14:20, 14:40, 15:00, 15:20, 15:40, 16:00, 16:20, 16:40, 17:00, 17:20, 17:40, 18:00, 18:20, 18:40, 19:00, 19:10",
+        "slots": [
+          "10:00",
+          "10:20",
+          "10:40",
+          "11:00",
+          "11:20",
+          "11:40",
+          "12:00",
+          "12:20",
+          "12:40",
+          "13:00",
+          "13:20",
+          "13:40",
+          "14:00",
+          "14:20",
+          "14:40",
+          "15:00",
+          "15:20",
+          "15:40",
+          "16:00",
+          "16:20",
+          "16:40",
+          "17:00",
+          "17:20",
+          "17:40",
+          "18:00",
+          "18:20",
+          "18:40",
+          "19:00",
+          "19:10"
+        ],
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Museu-das-Ilusoes-Lisboa/d538-5572802P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
           "quote": null
         }
       },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.mude.pt/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n4964044922",
-      "name": "RIB - Beef & Wine Lisboa",
-      "description": "",
-      "category": "food",
-      "tags": [
-        "catering",
-        "catering.restaurant"
+      "months": [
+        1,
+        11,
+        12
       ],
-      "location": {
-        "city": "Lisbon",
-        "address": "RIB - Beef & Wine Lisboa, Rua do Arsenal, 1149-019 Lisbon, Portugal",
-        "lat": 38.7082256,
-        "lng": -9.137773,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:17+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
       "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.pousadas.pt/pt/hotel/pousada-lisboa/restaurantes",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-r3327251",
-      "name": "Estufa Fria",
-      "description": "É constituída por três ambientes diferentes, a Estufa Fria, a Estufa Quente e a Estufa Doce, sendo que os dois últimos são envidraçados e permitem a existência de plantas que necessitam de mais calor e humidade.",
-      "category": "nature",
-      "tags": [
-        "fee",
-        "heritage",
-        "leisure",
-        "leisure.park",
-        "leisure.park.garden",
-        "sport"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Estufa Fria, Campo Pequeno, Lisbon, Portugal",
-        "lat": 38.7293283,
-        "lng": -9.1554966,
-        "timezone": "Europe/Lisbon",
+      "rating": {
+        "value": 4.285714,
+        "scale": 5,
+        "review_count": 49,
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:14+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Museu-das-Ilusoes-Lisboa/d538-5572802P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Su 10:00-19:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=heritage&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:14+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/estufa-fria-de-lisboa",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n3232293867",
-      "name": "The Couch Sports Bar",
-      "description": "",
-      "category": "nightlife",
-      "tags": [
-        "catering",
-        "catering.bar"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "The Couch Sports Bar, Rua do Alecrim 21A, 1200-014 Lisbon, Portugal",
-        "lat": 38.7073915,
-        "lng": -9.1435269,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.bar&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:26+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.thecouch.pt/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n2536815943",
-      "name": "Free Bike Tours Lisbon",
-      "description": "",
-      "category": "adventure",
-      "tags": [
-        "rental",
-        "rental.bicycle"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Free Bike Tours Lisbon, Rua dos Caminhos de Ferro 88, 1100-094 Lisbon, Portugal",
-        "lat": 38.7145392,
-        "lng": -9.1227753,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=rental.bicycle&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:28+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "http://scooterscool.com/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-w97277780",
-      "name": "Mercado 31 de Janeiro",
-      "description": "",
-      "category": "shopping",
-      "tags": [
-        "building",
-        "building.commercial",
-        "building.office",
-        "commercial.marketplace",
-        "wheelchair",
-        "wheelchair.yes"
-      ],
-      "location": {
-        "city": "Lisbon",
-        "address": "Mercado 31 de Janeiro, Rua Engenheiro Vieira da Silva, 1050-105 Lisbon, Portugal",
-        "lat": 38.7312253,
-        "lng": -9.1444598,
-        "timezone": "Europe/Lisbon",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:31+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Sa 07:00-14:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:31+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
         "wheelchair": "yes",
-        "notes": null,
+        "notes": "Wheelchair accessible",
         "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=commercial.marketplace&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:35:31+01:00",
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Museu-das-Ilusoes-Lisboa/d538-5572802P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
           "quote": null
         }
       },
@@ -1387,53 +1229,635 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.jfarroios.pt/mercados/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
+      "booking_url": "https://www.viator.com/tours/Lisbon/Museu-das-Ilusoes-Lisboa/d538-5572802P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/73/08/dd.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 45–60 min; duration_min is the shortest"
     },
     {
-      "id": "osm-n4804718021",
-      "name": "Museu do Dinheiro",
-      "description": "",
+      "id": "viator-242299p48",
+      "name": "Jeronimos Monastery Entrance Tickets with Host",
+      "description": "Discover one of Lisbon’s most iconic UNESCO World Heritage Sites with ease. Your host will meet you near the entrance of the Jerónimos Monastery, provide your entrance ticket, share essential historical highlights, and assist you in entering the monument smoothly.",
       "category": "culture",
       "tags": [
-        "entertainment",
-        "entertainment.museum",
-        "no_fee",
-        "no_fee.no",
-        "wheelchair",
-        "wheelchair.yes"
+        "Religious Sites",
+        "Curated Catalog",
+        "Top Product",
+        "Low Supplier Cancellation Rate",
+        "Attractions & Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Museums",
+        "Museum Tickets & Passes",
+        "Historical Tours",
+        "Best Conversion",
+        "Weather Dependent - Weather-Proof",
+        "Short term availability",
+        "Agent Low Quality Product"
       ],
       "location": {
         "city": "Lisbon",
-        "address": "Museu do Dinheiro, Largo de São Julião 26, 1100-150 Lisbon, Portugal",
-        "lat": 38.7086234,
-        "lng": -9.1387855,
+        "address": "Jerónimos Monastery, Empire Square, 1300-086 Lisbon, Portugal",
+        "lat": 38.6977531,
+        "lng": -9.2055912,
         "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.69808&lon=-9.206715&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:44+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 120,
       "price": {
-        "amount": null,
+        "amount": 30.99,
         "currency": "EUR",
         "per": "person",
-        "amount_eur": null,
+        "label": "Adult (25–64)",
+        "amount_eur": 30.99,
         "fx": null,
-        "source": null
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entrance-Tickets-with-Host/d538-242299P48?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
       },
       "opening_hours": {
-        "text": "We-Sa 10:00-18:00; Jan 01,May 01,Dec 24-25 off",
-        "slots": [],
+        "text": "Start times on 2026-12-04 to 2026-12-06: 09:30, 10:00, 10:30, 11:00, 11:30, 12:00, 12:30, 13:00, 13:30, 14:00, 14:30, 15:00, 15:30, 16:00, 16:30",
+        "slots": [
+          "09:30",
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entrance-Tickets-with-Host/d538-242299P48?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 4.2114286,
+        "scale": 5,
+        "review_count": 175,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entrance-Tickets-with-Host/d538-242299P48?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entrance-Tickets-with-Host/d538-242299P48?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0b/f2/27.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 120–180 min; duration_min is the shortest; Wheelchair access not stated by Viator"
+    },
+    {
+      "id": "viator-57246p204",
+      "name": "National Palace and Gardens of Queluz: E-ticket with Audio Guide",
+      "description": "Experience the National Palace and Gardens of Queluz at your own pace with an e-ticket and a captivating self-guided audio tour on your smartphone.",
+      "category": "culture",
+      "tags": [
+        "Historical Tours",
+        "Museums",
+        "Agent Low Quality Product",
+        "Monuments and Memorials",
+        "Museum Tickets & Passes",
+        "Castle Tours",
+        "National Parks",
+        "Short term availability",
+        "Attractions & Museums",
+        "Weather Dependent - Weather-Proof"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Lago dos Macacos, 2745-372 Queluz, Portugal",
+        "lat": 38.7501076,
+        "lng": -9.2587831,
+        "timezone": "Europe/Lisbon",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:07+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.750114&lon=-9.258718&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:46+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 150,
+      "price": {
+        "amount": 18.5,
+        "currency": "EUR",
+        "per": "person",
+        "label": "Adult (9–99)",
+        "amount_eur": 18.5,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/National-Palace-and-Gardens-of-Queluz-E-ticket-with-Audio-Tour/d538-57246P204?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:00",
+        "slots": [
+          "10:00"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/National-Palace-and-Gardens-of-Queluz-E-ticket-with-Audio-Tour/d538-57246P204?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 3.7272727,
+        "scale": 5,
+        "review_count": 11,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/National-Palace-and-Gardens-of-Queluz-E-ticket-with-Audio-Tour/d538-57246P204?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/National-Palace-and-Gardens-of-Queluz-E-ticket-with-Audio-Tour/d538-57246P204?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/National-Palace-and-Gardens-of-Queluz-E-ticket-with-Audio-Tour/d538-57246P204?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/f9/6a/cb.jpg",
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "viator-461245p242",
+      "name": "Jeronimos Monastery Entry Tickets",
+      "description": "Step inside the majestic Jeronimos Monastery with this skip-the-line ticket. Feel the elegance of Portugal’s rich history as you explore this iconic UNESCO World Heritage site.",
+      "category": "culture",
+      "tags": [
+        "Attractions & Museums",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Weather Dependent - Weather-Proof",
+        "Agent Low Quality Product",
+        "Museums",
+        "Natural Attractions",
+        "Cultural Tours",
+        "Sightseeing Passes ",
+        "Ancient Ruins",
+        "Best Conversion",
+        "Short term availability",
+        "Religious Sites",
+        "Art Galleries",
+        "Low Supplier Cancellation Rate",
+        "Museum Tickets & Passes"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Jerónimos Monastery, Empire Square, 1300-086 Lisbon, Portugal",
+        "lat": 38.6977531,
+        "lng": -9.2055912,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.69808&lon=-9.206715&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:46+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 60,
+      "price": {
+        "amount": 45.09,
+        "currency": "EUR",
+        "per": "person",
+        "label": null,
+        "amount_eur": 45.09,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entry-Tickets/d538-461245P242?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 09:30, 10:30, 11:30, 12:30, 13:30, 14:30, 15:30",
+        "slots": [
+          "09:30",
+          "10:30",
+          "11:30",
+          "12:30",
+          "13:30",
+          "14:30",
+          "15:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entry-Tickets/d538-461245P242?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 3.4444444,
+        "scale": 5,
+        "review_count": 9,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entry-Tickets/d538-461245P242?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "outdoor",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-Entry-Tickets/d538-461245P242?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0c/f4/69.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 60–180 min; duration_min is the shortest; Wheelchair access not stated by Viator"
+    },
+    {
+      "id": "viator-5657089p16",
+      "name": "Explore Castle Monument and Museum with Lisboa Card",
+      "description": "Lisboa Card – 72 Hours/ 3 Days: Discover Lisbon with easy and save money with the official Lisboa Card. Choose 72-hours/ 3 days card and enjoy unlimited access to public transportation, free entry to top attractions, and discounts at many cultural and leisure venues across the city.",
+      "category": "culture",
+      "tags": [
+        "Short term availability",
+        "Agent Low Quality Product",
+        "Museum Tickets & Passes",
+        "Monuments and Memorials",
+        "Historical Tours",
+        "Museums",
+        "Religious Sites",
+        "Attractions & Museums",
+        "Weather Dependent - Weather-Proof",
+        "Castle Tours"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Castle of São Jorge, 1100-245 Lisbon, Portugal",
+        "lat": 38.71389,
+        "lng": -9.13361,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.71391&lon=-9.133476&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:48+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 4320,
+      "price": {
+        "amount": 110.0,
+        "currency": "EUR",
+        "per": "person",
+        "label": "Adult (18–59)",
+        "amount_eur": 110.0,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Explore-With-The-Lisboa-Card-Free-Attractions-And-Transports/d538-5657089P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Open 2026-12-04 09:00:00–17:00:00; 2026-12-05 09:00:00–17:00:00; 2026-12-06 09:00:00–17:00:00",
+        "slots": [],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Explore-With-The-Lisboa-Card-Free-Attractions-And-Transports/d538-5657089P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 2.0,
+        "scale": 5,
+        "review_count": 1,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Explore-With-The-Lisboa-Card-Free-Attractions-And-Transports/d538-5657089P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Explore-With-The-Lisboa-Card-Free-Attractions-And-Transports/d538-5657089P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/Explore-With-The-Lisboa-Card-Free-Attractions-And-Transports/d538-5657089P16?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/33/b4/ec/26/caption.jpg",
+      "certainty": "high",
+      "doubts": null
+    },
+    {
+      "id": "viator-242299p58",
+      "name": "Jeronimos Monastery and São Jorge Castle Ticket with Host",
+      "description": "Start your experience at Jerónimos Monastery, where you’ll meet your host at the designated meeting point. After a brief welcome and introduction to the site, your host will escort you to the entrance for smooth and hassle-free entry, allowing you to begin your visit without stress or confusion.",
+      "category": "culture",
+      "tags": [
+        "Historical Tours",
+        "Monuments and Memorials",
+        "Museum Tickets & Passes",
+        "Museums",
+        "Short term availability",
+        "Castle Tours",
+        "Weather Dependent - Weather-Proof",
+        "Attractions & Museums",
+        "Agent Low Quality Product"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Jerónimos Monastery, Empire Square, 1300-086 Lisbon, Portugal",
+        "lat": 38.6977531,
+        "lng": -9.2055912,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.69808&lon=-9.206715&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:49+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 240,
+      "price": {
+        "amount": 65.0,
+        "currency": "EUR",
+        "per": "person",
+        "label": "Adult (25–64)",
+        "amount_eur": 65.0,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-and-Sao-Jorge-Castle-Ticket-with-Host/d538-242299P58?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 09:30, 10:00, 10:30, 11:00, 11:30, 12:00, 12:30, 13:00, 13:30, 14:00, 14:30, 15:00, 15:30, 16:00, 16:30",
+        "slots": [
+          "09:30",
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-and-Sao-Jorge-Castle-Ticket-with-Host/d538-242299P58?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 2.0,
+        "scale": 5,
+        "review_count": 1,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-and-Sao-Jorge-Castle-Ticket-with-Host/d538-242299P58?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-and-Sao-Jorge-Castle-Ticket-with-Host/d538-242299P58?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/33/8a/4c/43/caption.jpg",
+      "certainty": "high",
+      "doubts": "Wheelchair access not stated by Viator"
+    },
+    {
+      "id": "viator-5682161p5",
+      "name": "Lisbon Jeronimos Monastery Entry Ticket",
+      "description": "Explore the stunning Jeronimos Monastery with this entry ticket that includes a self-guided audio tour. Delve into the rich history and architectural beauty of this UNESCO World Heritage site at your own pace.",
+      "category": "culture",
+      "tags": [
+        "Castle Tours",
+        "Historical Tours",
+        "Attractions & Museums",
+        "Museums",
+        "Ancient Ruins",
+        "Monuments and Memorials",
+        "Short term availability",
+        "Weather Dependent - Weather-Proof",
+        "Museum Tickets & Passes"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Jerónimos Monastery, Empire Square, 1300-086 Lisbon, Portugal",
+        "lat": 38.6977531,
+        "lng": -9.2055912,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.69808&lon=-9.206715&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:50+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 60,
+      "price": {
+        "amount": 29.0,
+        "currency": "EUR",
+        "per": "person",
+        "label": "Adult (25–64)",
+        "amount_eur": 29.0,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-skip-the-ticket-Line-Entry-with-Audio-Tour/d538-5682161P5?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 09:30, 10:30, 11:30, 12:30, 13:30, 14:30, 15:30",
+        "slots": [
+          "09:30",
+          "10:30",
+          "11:30",
+          "12:30",
+          "13:30",
+          "14:30",
+          "15:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-skip-the-ticket-Line-Entry-with-Audio-Tour/d538-5682161P5?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": {
+        "value": 1.0,
+        "scale": 5,
+        "review_count": 1,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-skip-the-ticket-Line-Entry-with-Audio-Tour/d538-5682161P5?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": "Wheelchair accessible",
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-skip-the-ticket-Line-Entry-with-Audio-Tour/d538-5682161P5?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://www.viator.com/tours/Lisbon/Jeronimos-Monastery-skip-the-ticket-Line-Entry-with-Audio-Tour/d538-5682161P5?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/r/34/2e/5d/06/caption.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 60–180 min; duration_min is the shortest"
+    },
+    {
+      "id": "viator-242299p19",
+      "name": "Lisbon Sintra Day Pass 1 Day Ticket",
+      "description": "Castle of St. Jorge Highlights to Explore • Castle Walls & Towers: Climb the castle walls for 360-degree views over Lisbon and the Tagus River.",
+      "category": "culture",
+      "tags": [
+        "Attractions & Museums",
+        "Museums",
+        "Castle Tours",
+        "Museum Tickets & Passes",
+        "Ancient Ruins",
+        "New Product",
+        "Weather Dependent - Low",
+        "Short term availability",
+        "Monuments and Memorials",
+        "Agent Low Quality Product",
+        "Historical Tours"
+      ],
+      "location": {
+        "city": "Lisbon",
+        "address": "Castle of São Jorge, 1100-245 Lisbon, Portugal",
+        "lat": 38.71389,
+        "lng": -9.13361,
+        "timezone": "Europe/Lisbon",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=38.71391&lon=-9.133476&format=json&limit=1",
+          "retrieved_at": "2026-11-19T13:25:51+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": 300,
+      "price": {
+        "amount": 51.0,
+        "currency": "EUR",
+        "per": "person",
+        "label": "Adult (6–99)",
+        "amount_eur": 51.0,
+        "fx": null,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/LISBON-SINTRA-DAY-PASS-1-Day-Pass/d538-242299P19?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
+          "quote": null
+        }
+      },
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 09:30",
+        "slots": [
+          "09:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Lisbon/LISBON-SINTRA-DAY-PASS-1-Day-Pass/d538-242299P19?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T13:25:36+01:00",
           "quote": null
         }
       },
@@ -1442,23 +1866,18 @@
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "yes",
+        "wheelchair": "unknown",
         "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A-9.1365919%2C38.7077507%2C5000&bias=proximity%3A-9.1365919%2C38.7077507&limit=100",
-          "retrieved_at": "2026-11-18T18:34:07+01:00",
-          "quote": null
-        }
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.museudodinheiro.pt",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet"
+      "booking_url": "https://www.viator.com/tours/Lisbon/LISBON-SINTRA-DAY-PASS-1-Day-Pass/d538-242299P19?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/25/f3/64.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 300–360 min; duration_min is the shortest; Wheelchair access not stated by Viator; No reviews on Viator yet"
     }
   ]
 }

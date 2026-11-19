@@ -1,8 +1,10 @@
 # The API in demo mode (docs/backend-logic.md sections 3, 4, 6, 7): questionnaire -> sample + fixed suggestions ->
 # code checks -> demo verdicts -> ready; keep/remove/time changes; fit-budget; brochure. No AI, no network.
-# The real samples have no prices, so the budget paths use "Testville", a tmp sample with fixed example prices.
+# The real samples' prices change with every rebuild, so the budget paths use "Testville", a tmp sample with fixed
+# example prices.
 import copy
 import json
+from decimal import Decimal
 
 import pytest
 from fastapi.testclient import TestClient
@@ -123,9 +125,15 @@ def test_lisbon_demo_flow():
         assert check(e, "schema")["result"] == "ok" and check(e, "source")["result"] == "skip"
         assert e["best_time"]["kind"] == "suggestion" and "Demo suggestion" in e["best_time"]["reason"]
         assert e["why_fits"]["text"] == f"You picked {e['category']}"
-        assert e["cost_eur"] is None                             # the samples have no prices yet
-    assert trip["totals"]["used"] == "0.00" and trip["totals"]["over"] is False
-    assert trip["totals"]["not_counted"] == [e["id"] for e in exps if e["id"] != closed]
+        if e["id"].startswith("viator-"):                        # priced by Viator, converted by the code
+            assert e["cost_eur"] is not None and e["price"]["source"]["provider"] == "viator"
+        else:                                                    # Geoapify places: no price source
+            assert e["cost_eur"] is None
+    assert any(e["id"].startswith("viator-") for e in exps), "the Lisbon demo trip shows no Viator experience"
+    active = [e for e in exps if e["id"] != closed]
+    used = sum((Decimal(e["cost_eur"]) for e in active if e["cost_eur"] is not None), Decimal("0.00"))
+    assert trip["totals"]["used"] == str(used) and trip["totals"]["over"] is False
+    assert trip["totals"]["not_counted"] == [e["id"] for e in active if e["cost_eur"] is None]
     assert {s["who"] for s in trip["steps"]} >= {"researcher", "code", "verifier"}
     assert all(set(s) == {"at", "who", "text"} for s in trip["steps"])
 

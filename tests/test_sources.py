@@ -190,10 +190,77 @@ def test_months_from_schedule_seasons():
 def test_unit_pricing_and_variable_duration_are_noted():
     [rec] = search_one(FakeAPIs(), details={"pricing_type": "UNIT"},
                        summary={"duration": {"variableDurationFromMinutes": 120, "variableDurationToMinutes": 240}})
-    assert rec["price"]["per"] == "person"
+    assert rec["price"]["per"] == "group"
     assert rec["duration_min"] == 120
     assert any("per group" in n for n in rec["notes"])
     assert any("120–240" in n for n in rec["notes"])
+
+
+# Viator's age bands and schedule prices, as production returned them on 19 Nov 2026 (amounts are test examples).
+def band(name, start, end, **more):
+    return {"ageBand": name, "startAge": start, "endAge": end, **more}
+
+
+def tier(name, amount, low=0, high=9, package="PER_PERSON"):
+    return {"pricingPackageType": package, "minTravelers": low, "maxTravelers": high, "ageBand": name,
+            "price": {"original": {"recommendedRetailPrice": amount, "partnerNetPrice": amount * 0.8}}}
+
+
+def priced(*, from_price=35.0, bands=None, tiers=(), pricing_type="PER_PERSON", unit_type=None, currency="EUR"):
+    """One Lisbon product whose schedule lists these prices; the search's from-price is `from_price`."""
+    code = "111P1"
+    d = fa.details(code, pricing_type=pricing_type)
+    d["pricingInfo"]["ageBands"] = bands or [band("ADULT", 18, 99)]
+    if unit_type:
+        d["pricingInfo"]["unitType"] = unit_type
+    sch = fa.schedule(code)
+    sch["currency"] = currency
+    sch["bookableItems"][0]["seasons"][0]["pricingRecords"][0]["pricingDetails"] = list(tiers)
+    apis = fa.viator_routes(FakeAPIs(), [(fa.summary(code, "Castle ticket", price=from_price), d, sch)])
+    with apis.client() as c:
+        [rec] = viator.search_viator("Lisbon", ["food"], fa.DATES, client=c)
+    return rec
+
+
+def test_label_names_the_age_band_the_from_price_is_for():
+    rec = priced(bands=[band("CHILD", 3, 10), band("ADULT", 18, 65), band("SENIOR", 66, 100)],
+                 tiers=[tier("ADULT", 35.0), tier("CHILD", 17.5), tier("SENIOR", 35.0)])
+    assert rec["price"]["label"] == "Adult (18–65)"
+    assert rec["price"]["per"] == "person" and rec["price"]["amount"] == 35.0
+
+
+def test_label_says_when_the_from_price_is_for_a_group_booking_together():
+    rec = priced(tiers=[tier("ADULT", 70.0, 1, 1), tier("ADULT", 35.0, 2, 2), tier("ADULT", 30.0, 3, 8)])
+    assert rec["price"]["label"] == "Adult (18–99), when 2 book together"
+    rec = priced(tiers=[tier("ADULT", 35.0, 2, 4)])
+    assert rec["price"]["label"] == "Adult (18–99), when 2–4 book together"
+
+
+def test_label_of_a_one_price_for_everyone_product_says_only_the_group():
+    rec = priced(bands=[band("TRAVELER", 0, 120)], tiers=[tier("TRAVELER", 35.0)])
+    assert rec["price"]["label"] is None
+    rec = priced(bands=[band("TRAVELER", 0, 120)], tiers=[tier("TRAVELER", 35.0, 2, 2)])
+    assert rec["price"]["label"] == "When 2 book together"
+
+
+@pytest.mark.parametrize("kw", [
+    {"tiers": [tier("ADULT", 40.0)]},                                         # no schedule price is the from-price
+    {"tiers": [tier("ADULT", 35.0)], "currency": "GBP"},                       # schedule in another currency
+    {"tiers": []},                                                           # no prices in the schedule
+    {"bands": [band("YOUTH", 11, 17), band("SENIOR", 66, 99)],
+     "tiers": [tier("YOUTH", 35.0), tier("SENIOR", 35.0)]},                   # two bands, neither adult: can't say
+])
+def test_label_is_null_when_viator_does_not_say_which_price_it_is(kw):
+    assert priced(**kw)["price"]["label"] is None
+
+
+def test_a_unit_price_is_for_the_whole_group():
+    rec = priced(from_price=360.0, pricing_type="UNIT", unit_type="VEHICLE",
+                 bands=[band("TRAVELER", 0, 120, maxTravelersPerBooking=4)],
+                 tiers=[tier("TRAVELER", 360.0, package="UNIT")])
+    assert rec["price"]["per"] == "group" and rec["price"]["amount"] == 360.0
+    assert rec["price"]["label"] is None
+    assert "Viator prices this per group (vehicle), not per person: up to 4 travellers per booking" in rec["notes"]
 
 
 def test_meeting_point_missing_when_pickup_only_or_google_ref():

@@ -28,6 +28,9 @@ INTEREST_TAG_NAMES = {
 OUTDOOR_TAG_NAMES = {"outdoor activities"}                          # 21909 in Viator's docs
 SUITABLE_TAG_NAMES = {"kid-friendly": "family", "romantic": "couple"}  # Kid-Friendly is 11919 in Viator's docs
 WEEKDAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+# Viator's age bands, as viator.com names them. TRAVELER (one price for every age) has no name to show.
+AGE_BANDS = {"ADULT": "Adult", "SENIOR": "Senior", "YOUTH": "Youth", "CHILD": "Child", "INFANT": "Infant",
+             "STUDENT": "Student"}
 MAX_LOCATION_REFS = 500
 
 # /destinations and /products/tags are big and change weekly: fetched once per run.
@@ -209,10 +212,16 @@ def _record(s, interest, details, schedule, location, tags, dates):
     pricing = s.get("pricing") or {}
     amount = (pricing.get("summary") or {}).get("fromPrice")
     pricing_info = details.get("pricingInfo") or {}
+    per, label = "person", None
     if pricing_info.get("type") == "UNIT":
+        # A UNIT product's from-price is the price of one unit (vehicle, boat, group), as its schedule shows.
+        per = "group"
         unit = (pricing_info.get("unitType") or "unit").lower()
-        notes.append(f"The supplier prices this per group ({unit}); Viator's from-price is per person "
-                     "for the smallest bookable group")
+        most = max((b.get("maxTravelersPerBooking") or 0 for b in pricing_info.get("ageBands") or []), default=0)
+        notes.append(f"Viator prices this per group ({unit}), not per person"
+                     + (f": up to {most} travellers per booking" if most else ""))
+    elif amount is not None:
+        label = price_label(amount, pricing.get("currency"), pricing_info, schedule)
     duration, duration_note = _duration(s.get("duration") or {})
     if duration_note:
         notes.append(duration_note)
@@ -224,8 +233,8 @@ def _record(s, interest, details, schedule, location, tags, dates):
         "category": interest,
         "tags": [tags[t]["name"] for t in s.get("tags") or [] if t in tags and tags[t]["name"]],
         "duration_min": duration,
-        # Viator defines fromPrice as the lowest per-person price; the API gives it no name, so no label.
-        "price": {"amount": amount, "currency": pricing.get("currency"), "per": "person", "label": None,
+        # fromPrice is Viator's "from" price; label says which of its prices that is, when the schedule shows it.
+        "price": {"amount": amount, "currency": pricing.get("currency"), "per": per, "label": label,
                   "amount_eur": None, "fx": None, "source": source_block(PROVIDER, url) if amount is not None else None},
         "opening_hours": hours_from_schedule(schedule, dates, source_block(PROVIDER, url)),
         "months": months_from_schedule(schedule, dates[0]),
@@ -239,6 +248,39 @@ def _record(s, interest, details, schedule, location, tags, dates):
         "meeting_point": _meeting_point(location),
         "notes": notes,
     }
+
+
+def price_label(amount, currency, pricing_info, schedule):
+    """Which of the product's prices the from-price is, from the schedule's per-person prices in the same currency:
+    its age band ("Adult (18–65)") and, when that price needs a group, how many book together
+    ("Adult (18–99), when 2 book together"). None when Viator doesn't say (no matching price, or two bands)."""
+    if schedule.get("currency") != currency:
+        return None
+    tiers = [p for item in schedule.get("bookableItems") or [] for season in item.get("seasons") or []
+             for record in season.get("pricingRecords") or [] for p in record.get("pricingDetails") or []
+             if p.get("pricingPackageType") == "PER_PERSON" and _same_price(_retail(p), amount)]
+    bands = {t.get("ageBand") for t in tiers}
+    band = "ADULT" if "ADULT" in bands else next(iter(bands)) if len(bands) == 1 else None
+    if band is None:
+        return None
+    fewest = min((t for t in tiers if t.get("ageBand") == band), key=lambda t: t.get("minTravelers") or 0)
+    low, high = fewest.get("minTravelers") or 0, fewest.get("maxTravelers")
+    name = AGE_BANDS.get(band)
+    ages = next((b for b in pricing_info.get("ageBands") or [] if b.get("ageBand") == band), {})
+    if name and ages.get("startAge") is not None and ages.get("endAge") is not None:
+        name = f"{name} ({ages['startAge']}–{ages['endAge']})"
+    if low <= 1:
+        return name
+    group = f"{low}" if high in (None, low) else f"{low}–{high}"
+    return f"{name}, when {group} book together" if name else f"When {group} book together"
+
+
+def _retail(pricing_detail):
+    return ((pricing_detail.get("price") or {}).get("original") or {}).get("recommendedRetailPrice")
+
+
+def _same_price(a, b):
+    return a is not None and b is not None and round(float(a), 2) == round(float(b), 2)
 
 
 def short_description(text, limit=300):

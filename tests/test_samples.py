@@ -30,6 +30,28 @@ def test_every_test_destination_has_a_sample():
     assert missing == [], f"run: PY -m scripts.build_sample <City> for {missing}"
 
 
+@pytest.mark.parametrize("city", TEST_DESTINATIONS)
+def test_sample_has_viator_experiences_alongside_the_geoapify_places(city):
+    exps = json.loads((SAMPLES / f"{city}.json").read_text())["experiences"]
+    tours = [e for e in exps if e["id"].startswith("viator-")]
+    assert tours, f"run: PY -m scripts.build_sample <City> for {city}"
+    assert any(e["id"].startswith("osm-") for e in exps)
+    for e in tours:
+        price = e["price"]
+        assert price["amount"] is not None and price["source"]["provider"] == "viator"
+        assert "label" in price
+        if e["rating"] is not None:                                    # null when Viator has no reviews yet
+            assert e["rating"]["review_count"] > 0 and e["rating"]["source"]["provider"] == "viator"
+        assert e["location"]["source"]["provider"] == "geoapify"
+    assert any(e["rating"] for e in tours)
+
+
+def test_lisbon_keeps_the_closed_museum_for_the_closure_check():
+    exps = json.loads((SAMPLES / "lisbon.json").read_text())["experiences"]
+    museum = next(e for e in exps if e["id"] == "osm-n5090471903")
+    assert museum["description"] == "Encerrado temporrariamente"
+
+
 @pytest.mark.parametrize("path", FILES, ids=[p.stem for p in FILES])
 def test_sample_is_valid(path):
     data = json.loads(path.read_text())

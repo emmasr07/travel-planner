@@ -95,6 +95,28 @@ def test_viator_401_answers_viator_unavailable_and_the_agent_goes_on(ready, monk
     assert fake_apis.VIATOR_KEY not in text
 
 
+def test_a_working_viator_key_answers_search_viator_with_records(ready, monkeypatch):
+    code, url = "111P1", fake_apis.product_url("111P1")
+    fake_apis.viator_routes(ready, [(fake_apis.summary(code, "Alfama food walk"), fake_apis.details(code),
+                                     fake_apis.schedule(code))])
+    ask = {"destination": "Lisbon", "interests": ["food"], "start_date": "2026-12-04", "end_date": "2026-12-06"}
+    fake = install(monkeypatch, [[tool_use("search_viator", ask)], [tool_use("deliver_experiences", delivery())], []])
+    _, steps, _, _ = research()
+
+    text, is_error = results(fake)[0]
+    assert not is_error and "Viator unavailable" not in text
+    [rec] = json.loads(text)
+    assert rec["name"] == "Alfama food walk" and rec["booking_url"] == url
+    assert (rec["price"]["amount"], rec["price"]["currency"], rec["price"]["per"]) == (35.0, "EUR", "person")
+    assert rec["price"]["source"]["provider"] == "viator" and rec["price"]["source"]["url"] == url
+    assert (rec["rating"]["value"], rec["rating"]["review_count"]) == (4.8, 120)
+    assert ("researcher", "search_viator Lisbon: food, 2026-12-04 to 2026-12-06") in steps
+    [search] = ready.sent("/products/search")
+    assert search.url.host == fake_apis.VIATOR_PROD                 # VIATOR_ENV=production
+    assert search.headers["exp-api-key"] == fake_apis.VIATOR_KEY
+    assert fake_apis.VIATOR_KEY not in text
+
+
 def test_find_place_stays_within_30_km_of_the_city(ready, monkeypatch):
     fake = install(monkeypatch, [[tool_use("find_place", {"name": "Praça do Comércio", "city": "Lisbon"})],
                                  [tool_use("deliver_experiences", delivery())], []])

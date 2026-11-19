@@ -1,5 +1,7 @@
 # price.label: which of a place's prices the record holds (regular, reduced, resident / non-resident, by age), copied
 # word for word from the source; null when the source gives one price without a name. Prices are fixed test examples.
+import json
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -38,7 +40,7 @@ def test_viator_names_no_price_so_its_label_is_null():
     assert rec["price"]["label"] is None
 
 
-def test_demo_items_have_a_null_label(tmp_path, monkeypatch):
+def test_demo_items_keep_the_sample_label(tmp_path, monkeypatch):
     monkeypatch.setenv("MODE", "demo")
     monkeypatch.setattr(store, "TRIPS_DIR", tmp_path / "trips")
     monkeypatch.setattr(agents, "DEMO_PAUSE_S", 0)
@@ -48,7 +50,11 @@ def test_demo_items_have_a_null_label(tmp_path, monkeypatch):
     trip_id = client.post("/api/trips", json=body).json()["id"]
     trip = client.get(f"/api/trips/{trip_id}").json()
     assert trip["status"] == "ready", trip["error"]
-    assert trip["experiences"] and all(e["price"]["label"] is None for e in trip["experiences"])
+    sample = {e["id"]: e for e in json.loads((agents.SAMPLES_DIR / "lisbon.json").read_text())["experiences"]}
+    assert trip["experiences"]
+    for e in trip["experiences"]:                     # Viator's age band, null for Geoapify places
+        assert e["price"]["label"] == sample[e["id"]]["price"].get("label")
+    assert any(e["price"]["label"] for e in trip["experiences"] if e["id"].startswith("viator-"))
 
 
 @pytest.mark.parametrize("label", ["Adult (non-resident)", None])

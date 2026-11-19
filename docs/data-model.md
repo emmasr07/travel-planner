@@ -70,7 +70,7 @@ trip
 | `tags` | string[] | `["wine tasting", "walking tour"]` | more specific: trekking, spa, wine… |
 | `location` | object | `{ "city", "address", "lat", "lng", "timezone", "source" }` | `lat`/`lng` **required** for the map |
 | `duration_min` | integer or null | `180` | |
-| `price` | object | `{ "amount", "currency", "per", "label", "amount_eur", "fx", "source" }` | `per`: person / group / free. `amount` null if no source states it. `label`: which of the place's prices, copied word for word ("Adult (non-resident)"); null if the source names none. `amount_eur` and `fx` filled by code |
+| `price` | object | `{ "amount", "currency", "per", "label", "amount_eur", "fx", "source" }` | `per`: person / group / free. `amount` null if no source states it. `label`: which of the place's prices, copied word for word ("Adult (non-resident)"); null if the source names none. Viator: the age band its schedule gives for the from-price ("Adult (18–65)", "Adult (18–99), when 2 book together"), null when the schedule doesn't show it; a Viator UNIT price (per vehicle or group) has `per` group. `amount_eur` and `fx` filled by code |
 | `opening_hours` | object or null | `{ "text": "Daily 10:00 and 14:00", "slots": ["10:00","14:00"], "source" }` | |
 | `months` | integer[] | `[]` | months it runs or is best, as the source states; `[]` = all year |
 | `min_age` | integer or null | `12` | only if a source states it |
@@ -267,4 +267,4 @@ TAVILY_API_KEY=
 ## 8. Still to do in step 3
 
 - **Item 4:** the agent instructions (researcher and verifier) as prompt files, following these rules, plus a single-search mode for last-minute requests.
-- **Item 5:** `data/samples/<city>.json` for the test destinations (Lisbon, London, Matera): up to 25 real places each, mixed so every interest can have a few, never padded, fetched from the sources above in this format (facts only; `best_time`, `why_fits` and `schedule` come later from the agent). Built by `scripts/build_sample.py <city>`.
+- **Item 5:** `data/samples/<city>.json` for the test destinations (Lisbon, London, Matera): up to 25 real places each, mixed so every interest can have a few, never padded, fetched from the sources above in this format (facts only; `best_time`, `why_fits` and `schedule` come later from the agent). `scripts/build_sample_places.py <city>` writes the Geoapify places; `scripts/build_sample.py <city>` then puts up to 15 Viator experiences (production) first and keeps those places, unchanged, up to 25. Viator items are placed only from Viator's own meeting-point coordinates: most products give only a Google place id or a hotel pickup, so Matera has 1.

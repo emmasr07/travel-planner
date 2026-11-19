@@ -1,40 +1,85 @@
 {
   "experiences": [
     {
-      "id": "osm-n6602521780",
-      "name": "Ipogeo MateraSum",
-      "description": "",
+      "id": "viator-170751p1",
+      "name": "Underground mattress",
+      "description": "1200 m2 underground, to discover the history of the city of the Sassi and beyond, up to a depth of 12 meters. Time and space are lost in a journey from its origins to today.",
       "category": "culture",
       "tags": [
-        "entertainment",
-        "entertainment.museum"
+        "Museum Tickets & Passes",
+        "Culture",
+        "Excellent Quality",
+        "Museums",
+        "Attractions & Museums",
+        "Agent Low Quality Product",
+        "Low Supplier Cancellation Rate",
+        "Low Last Minute Supplier Cancellation Rate",
+        "Weather Dependent - Weather-Proof",
+        "Short term availability"
       ],
       "location": {
         "city": "Matera",
-        "address": "Ipogeo MateraSum, Recinto Venti Settembre, 75100 Matera MT, Italy",
-        "lat": 40.6677505,
-        "lng": 16.6068417,
+        "address": "Recinto Di Via Venti Settembre, 6, 75100 Matera MT, Italy",
+        "lat": 40.667736,
+        "lng": 16.606938,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
+          "url": "https://api.geoapify.com/v1/geocode/reverse?lat=40.66776&lon=16.60692&format=json&limit=1",
+          "retrieved_at": "2026-11-19T14:51:28+01:00",
           "quote": null
         }
       },
-      "duration_min": null,
+      "duration_min": 15,
       "price": {
-        "amount": null,
+        "amount": 8.0,
         "currency": "EUR",
         "per": "person",
-        "amount_eur": null,
+        "label": "Adult (1–99)",
+        "amount_eur": 8.0,
         "fx": null,
-        "source": null
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Matera/Visit-Hypogeum-Materasum/d22632-170751P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:51:26+01:00",
+          "quote": null
+        }
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "Start times on 2026-12-04 to 2026-12-06: 10:30, 11:00, 11:30, 12:00, 12:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30",
+        "slots": [
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30"
+        ],
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Matera/Visit-Hypogeum-Materasum/d22632-170751P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:51:26+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
-      "rating": null,
+      "rating": {
+        "value": 4.5326085,
+        "scale": 5,
+        "review_count": 92,
+        "source": {
+          "provider": "viator",
+          "url": "https://www.viator.com/tours/Matera/Visit-Hypogeum-Materasum/d22632-170751P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+          "retrieved_at": "2026-11-19T14:51:26+01:00",
+          "quote": null
+        }
+      },
       "indoor_outdoor": "unknown",
       "accessibility": {
         "wheelchair": "unknown",
@@ -45,10 +90,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.wikimatera.it/cosa-vedere-a-matera/matera-sotterranea-gioielli-nelle-viscere-della-terra/materasum-citta-sotterranea/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+      "booking_url": "https://www.viator.com/tours/Matera/Visit-Hypogeum-Materasum/d22632-170751P1?mcid=42383&pid=P00332382&medium=api&api_version=2.0",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/95/c1/56.jpg",
+      "certainty": "high",
+      "doubts": "Duration varies: 15–30 min; duration_min is the shortest; Wheelchair access not stated by Viator"
     },
     {
       "id": "osm-n13109576401",
@@ -276,21 +321,19 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w244637689",
-      "name": "Museo Laboratorio della Civiltà Contadina",
-      "description": "Il Museo Laboratorio della Civiltà Contadina è un museo etno-antropologico di Matera, ed è situato nell'antico rione dei Sassi. Il Museo è stato realizzato da Donato Cascione ed è gestito dall'omonima associazione culturale (ONLUS).",
+      "id": "osm-n6602521780",
+      "name": "Ipogeo MateraSum",
+      "description": "",
       "category": "culture",
       "tags": [
-        "building",
-        "building.tourism",
         "entertainment",
         "entertainment.museum"
       ],
       "location": {
         "city": "Matera",
-        "address": "Museo Laboratorio della Civiltà Contadina, Via San Giovanni Vecchio, 60, 75100 Matera MT, Italy",
-        "lat": 40.6675558,
-        "lng": 16.6098574,
+        "address": "Ipogeo MateraSum, Recinto Venti Settembre, 75100 Matera MT, Italy",
+        "lat": 40.6677505,
+        "lng": 16.6068417,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
@@ -308,16 +351,7 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": {
-        "text": "09:00-13:00,16:00-19:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
-          "quote": null
-        }
-      },
+      "opening_hours": null,
       "months": [],
       "min_age": null,
       "rating": null,
@@ -331,10 +365,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://museolaboratorio.it",
+      "booking_url": "https://www.wikimatera.it/cosa-vedere-a-matera/matera-sotterranea-gioielli-nelle-viscere-della-terra/materasum-citta-sotterranea/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n2614103176",
@@ -515,19 +549,21 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n13128033511",
-      "name": "TAM - Tower Art Museum",
-      "description": "",
+      "id": "osm-w244637689",
+      "name": "Museo Laboratorio della Civiltà Contadina",
+      "description": "Il Museo Laboratorio della Civiltà Contadina è un museo etno-antropologico di Matera, ed è situato nell'antico rione dei Sassi. Il Museo è stato realizzato da Donato Cascione ed è gestito dall'omonima associazione culturale (ONLUS).",
       "category": "culture",
       "tags": [
+        "building",
+        "building.tourism",
         "entertainment",
         "entertainment.museum"
       ],
       "location": {
         "city": "Matera",
-        "address": "TAM - Tower Art Museum, Vico Purgatorio, 75100 Matera MT, Italy",
-        "lat": 40.6643271,
-        "lng": 16.6092378,
+        "address": "Museo Laboratorio della Civiltà Contadina, Via San Giovanni Vecchio, 60, 75100 Matera MT, Italy",
+        "lat": 40.6675558,
+        "lng": 16.6098574,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
@@ -545,7 +581,16 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "09:00-13:00,16:00-19:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
       "rating": null,
@@ -559,10 +604,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.museotam.com",
+      "booking_url": "https://museolaboratorio.it",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n8949033480",
@@ -667,8 +712,8 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n3103274392",
-      "name": "La Casa di Ortega",
+      "id": "osm-n13128033511",
+      "name": "TAM - Tower Art Museum",
       "description": "",
       "category": "culture",
       "tags": [
@@ -677,9 +722,9 @@
       ],
       "location": {
         "city": "Matera",
-        "address": "La Casa di Ortega, Via San Nicola del Sole, 75100 Matera MT, Italy",
-        "lat": 40.6683446,
-        "lng": 16.6109532,
+        "address": "TAM - Tower Art Museum, Vico Purgatorio, 75100 Matera MT, Italy",
+        "lat": 40.6643271,
+        "lng": 16.6092378,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
@@ -711,7 +756,7 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "http://www.zetema.org/attivita/89-attivita/142-la-casa-di-ortega-la-bottega-delle-arti-applicate",
+      "booking_url": "https://www.museotam.com",
       "photo_url": null,
       "certainty": "medium",
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
@@ -831,21 +876,19 @@
       "doubts": "no price source yet"
     },
     {
-      "id": "osm-w243609821",
-      "name": "Museo Archeologico Nazionale Domenico Ridola",
+      "id": "osm-n3103274392",
+      "name": "La Casa di Ortega",
       "description": "",
       "category": "culture",
       "tags": [
         "entertainment",
-        "entertainment.museum",
-        "wheelchair",
-        "wheelchair.yes"
+        "entertainment.museum"
       ],
       "location": {
         "city": "Matera",
-        "address": "Museo Archeologico Nazionale Domenico Ridola, Via Domenico Ridola, 24, 75100 Matera MT, Italy",
-        "lat": 40.6638909,
-        "lng": 16.609206,
+        "address": "La Casa di Ortega, Via San Nicola del Sole, 75100 Matera MT, Italy",
+        "lat": 40.6683446,
+        "lng": 16.6109532,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
@@ -863,38 +906,24 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": {
-        "text": "Mo 14:00-20:00; Tu-Su 09:00-20:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
-          "quote": null
-        }
-      },
+      "opening_hours": null,
       "months": [],
       "min_age": null,
       "rating": null,
       "indoor_outdoor": "unknown",
       "accessibility": {
-        "wheelchair": "yes",
+        "wheelchair": "unknown",
         "notes": null,
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
-          "quote": null
-        }
+        "source": null
       },
       "suitable_for": {
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://musei.beniculturali.it/musei?mid=69&nome=museo-archeologico-nazionale-domenico-ridola",
+      "booking_url": "http://www.zetema.org/attivita/89-attivita/142-la-casa-di-ortega-la-bottega-delle-arti-applicate",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n3526773861",
@@ -1008,6 +1037,125 @@
       "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     },
     {
+      "id": "osm-w243609821",
+      "name": "Museo Archeologico Nazionale Domenico Ridola",
+      "description": "",
+      "category": "culture",
+      "tags": [
+        "entertainment",
+        "entertainment.museum",
+        "wheelchair",
+        "wheelchair.yes"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Museo Archeologico Nazionale Domenico Ridola, Via Domenico Ridola, 24, 75100 Matera MT, Italy",
+        "lat": 40.6638909,
+        "lng": 16.609206,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": {
+        "text": "Mo 14:00-20:00; Tu-Su 09:00-20:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
+          "quote": null
+        }
+      },
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "yes",
+        "notes": null,
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
+          "quote": null
+        }
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://musei.beniculturali.it/musei?mid=69&nome=museo-archeologico-nazionale-domenico-ridola",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet"
+    },
+    {
+      "id": "osm-n5249129425",
+      "name": "Cola Cola",
+      "description": "",
+      "category": "food",
+      "tags": [
+        "catering",
+        "catering.restaurant",
+        "catering.restaurant.italian",
+        "catering.restaurant.pizza",
+        "catering.restaurant.regional"
+      ],
+      "location": {
+        "city": "Matera",
+        "address": "Cola Cola, Via Spartivento, 20, 75100 Matera MT, Italy",
+        "lat": 40.6661925,
+        "lng": 16.6091594,
+        "timezone": "Europe/Rome",
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:34+01:00",
+          "quote": null
+        }
+      },
+      "duration_min": null,
+      "price": {
+        "amount": null,
+        "currency": "EUR",
+        "per": "person",
+        "amount_eur": null,
+        "fx": null,
+        "source": null
+      },
+      "opening_hours": null,
+      "months": [],
+      "min_age": null,
+      "rating": null,
+      "indoor_outdoor": "unknown",
+      "accessibility": {
+        "wheelchair": "unknown",
+        "notes": null,
+        "source": null
+      },
+      "suitable_for": {
+        "values": [],
+        "kind": "fact"
+      },
+      "booking_url": "https://lacolacola.it/",
+      "photo_url": null,
+      "certainty": "medium",
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+    },
+    {
       "id": "osm-n3103273454",
       "name": "Casa Noha",
       "description": "",
@@ -1085,119 +1233,6 @@
       "doubts": "no price source yet"
     },
     {
-      "id": "osm-n5249129425",
-      "name": "Cola Cola",
-      "description": "",
-      "category": "food",
-      "tags": [
-        "catering",
-        "catering.restaurant",
-        "catering.restaurant.italian",
-        "catering.restaurant.pizza",
-        "catering.restaurant.regional"
-      ],
-      "location": {
-        "city": "Matera",
-        "address": "Cola Cola, Via Spartivento, 20, 75100 Matera MT, Italy",
-        "lat": 40.6661925,
-        "lng": 16.6091594,
-        "timezone": "Europe/Rome",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:34+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://lacolacola.it/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
-      "id": "osm-n2229592221",
-      "name": "Musma",
-      "description": "",
-      "category": "culture",
-      "tags": [
-        "entertainment",
-        "entertainment.museum",
-        "fee"
-      ],
-      "location": {
-        "city": "Matera",
-        "address": "Musma, Via San Giacomo, 75100 Matera MT, Italy",
-        "lat": 40.6661178,
-        "lng": 16.6122514,
-        "timezone": "Europe/Rome",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": {
-        "text": "Mo-Su 10:00-18:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
-          "quote": null
-        }
-      },
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.musma.it/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
       "id": "osm-n5272670342",
       "name": "Fior di Cucuzza",
       "description": "",
@@ -1260,19 +1295,20 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n13290217301",
-      "name": "Museo del pane Matera",
+      "id": "osm-n2229592221",
+      "name": "Musma",
       "description": "",
       "category": "culture",
       "tags": [
         "entertainment",
-        "entertainment.museum"
+        "entertainment.museum",
+        "fee"
       ],
       "location": {
         "city": "Matera",
-        "address": "Museo del pane Matera, Via Purgatorio Vecchio, 27, 75100 Matera MT, Italy",
-        "lat": 40.6637737,
-        "lng": 16.6107416,
+        "address": "Musma, Via San Giacomo, 75100 Matera MT, Italy",
+        "lat": 40.6661178,
+        "lng": 16.6122514,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
@@ -1290,7 +1326,16 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": null,
+      "opening_hours": {
+        "text": "Mo-Su 10:00-18:00",
+        "slots": [],
+        "source": {
+          "provider": "geoapify",
+          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
+          "retrieved_at": "2026-11-18T18:38:29+01:00",
+          "quote": null
+        }
+      },
       "months": [],
       "min_age": null,
       "rating": null,
@@ -1304,10 +1349,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.museodelpanematera.com/",
+      "booking_url": "https://www.musma.it/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
       "id": "osm-n9273092488",
@@ -1369,21 +1414,19 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-w244741856",
-      "name": "Casa Grotta nei Sassi",
+      "id": "osm-n13290217301",
+      "name": "Museo del pane Matera",
       "description": "",
       "category": "culture",
       "tags": [
-        "building",
-        "building.tourism",
         "entertainment",
         "entertainment.museum"
       ],
       "location": {
         "city": "Matera",
-        "address": "Casa Grotta nei Sassi, Vico Solitario, 11, 75100 Matera MT, Italy",
-        "lat": 40.6638574,
-        "lng": 16.6123099,
+        "address": "Museo del pane Matera, Via Purgatorio Vecchio, 27, 75100 Matera MT, Italy",
+        "lat": 40.6637737,
+        "lng": 16.6107416,
         "timezone": "Europe/Rome",
         "source": {
           "provider": "geoapify",
@@ -1401,16 +1444,7 @@
         "fx": null,
         "source": null
       },
-      "opening_hours": {
-        "text": "Mo-Fr 09:30-18:00",
-        "slots": [],
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
-          "quote": null
-        }
-      },
+      "opening_hours": null,
       "months": [],
       "min_age": null,
       "rating": null,
@@ -1424,10 +1458,10 @@
         "values": [],
         "kind": "fact"
       },
-      "booking_url": "https://www.casagrotta.it/",
+      "booking_url": "https://www.museodelpanematera.com/",
       "photo_url": null,
       "certainty": "medium",
-      "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
+      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
     }
   ]
 }
