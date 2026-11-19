@@ -1,5 +1,6 @@
 # The only file that reads and writes trip files: one JSON file per trip in data/trips/<trip-id>.json,
-# rewritten after each step (atomically, so a half-written file is never read).
+# rewritten after each step (atomically, so a half-written file is never read), and the brochure's map image
+# beside it (<trip-id>.map.png), replaced at each build.
 import json
 import re
 import threading
@@ -35,3 +36,22 @@ def load(trip_id):
     if not target.exists():
         raise TripNotFound("no such trip")
     return json.loads(target.read_text(encoding="utf-8"))
+
+
+def map_path(trip_id):
+    return path(trip_id).with_suffix(".map.png")
+
+
+def save_map(trip_id, png):
+    target = map_path(trip_id)
+    with _LOCK:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        tmp = target.with_name(target.name + ".tmp")
+        tmp.write_bytes(png)
+        tmp.replace(target)
+
+
+def load_map(trip_id):
+    """The brochure's map image, or None if there is none."""
+    target = map_path(trip_id)
+    return target.read_bytes() if target.exists() else None

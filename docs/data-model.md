@@ -35,7 +35,8 @@ trip
 ├── steps []                    log of what each agent and the code did, with times (shown to the user)
 ├── experiences []              see section 3
 ├── totals                      spent vs budget, computed by code
-├── brochure                    file name and creation time, once built
+├── brochure                    once built: the sublist (stops with facts, status, Book link), totals, not counted,
+│                               the "Prices checked on" note and the map block; the PDF is drawn from it on download
 ├── sessions []                 agents mode: one entry per agent session (role, id, model, cap, list_cost, stop)
 ├── search                      the latest swap or quick search: status, request, day, its checked options, the pick
 └── error                       what went wrong, if status = failed

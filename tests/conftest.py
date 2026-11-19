@@ -35,3 +35,12 @@ def _no_real_agents(tmp_path, monkeypatch):
     for name in AGENT_SETTINGS:
         monkeypatch.delenv(name, raising=False)
     yield
+
+
+@pytest.fixture(autouse=True)
+def _no_real_maps(monkeypatch):
+    """The brochure's Geoapify static map goes to a fake server with no routes unless a test adds one."""
+    from backend import brochure
+
+    monkeypatch.setattr(brochure, "HTTP", fake_apis.FakeAPIs().client())
+    yield

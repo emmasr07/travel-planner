@@ -5,3 +5,4 @@ pytest
 httpx
 jsonschema
 anthropic>=2.10
+fpdf2

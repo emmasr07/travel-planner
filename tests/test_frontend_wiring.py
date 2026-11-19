@@ -34,3 +34,24 @@ def test_the_home_example_shows_no_prices():
 @pytest.mark.parametrize("script", ["plan.js", "experiences.js", "brochure.js"])
 def test_pages_call_the_api(script):
     assert "TP.api" in (FRONTEND / "js" / script).read_text()
+
+
+# --- session 3: Swap, Quick search and the brochure from the saved sublist --------------------------------------
+
+def test_the_list_page_calls_swap_quick_search_and_pick():
+    js = (FRONTEND / "js" / "experiences.js").read_text()
+    for path in ('"/swap/', '"/quick"', '"/options/'):
+        assert path in js, path
+    assert not re.search(r'title="Coming soon" aria-label="Swap', js)
+    html = (FRONTEND / "experiences.html").read_text()
+    assert 'id="quick-search"' in html and 'id="search-panel"' in html
+
+
+def test_the_brochure_page_shows_the_saved_sublist_and_downloads_the_pdf():
+    js = (FRONTEND / "js" / "brochure.js").read_text()
+    for piece in ("brochure.stops", "prices_note", "/brochure.pdf", "/brochure/map.png", "not_counted"):
+        assert piece in js, piece
+    assert "retrieved_at).sort" not in js and ".sort((a, b) => new Date(a)" not in js   # no checking-time sums here
+    html = (FRONTEND / "brochure.html").read_text()
+    assert re.search(r'<a [^>]*id="download-pdf"', html)
+    assert not re.search(r'aria-disabled="true"[^>]*>Download PDF', html)

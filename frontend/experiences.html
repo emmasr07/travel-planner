@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Experience list: the trip from GET /api/trips/{id}: progress while it is being researched, then the experiences with price, source and checked-at time; Keep/Remove/time changes go to the API, which re-runs the checks and the budget. -->
+<!-- Experience list: the trip from GET /api/trips/{id}: progress while it is being researched, then the experiences with price, source and checked-at time; Keep/Remove/time changes go to the API, which re-runs the checks and the budget. Swap and Quick search ask the API for 2-3 checked options; the user picks one. -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -32,8 +32,29 @@
     <div class="with-aside">
       <div class="main">
         <section class="card" id="status" aria-live="polite" hidden></section>
+        <section class="card search-panel" id="search-panel" aria-live="polite" aria-labelledby="search-title" tabindex="-1" hidden></section>
         <div class="card-grid" id="kept-grid"></div>
         <div class="removed-list" id="removed-list" hidden></div>
+        <section class="card quick-search" id="quick-search" aria-labelledby="quick-title" hidden>
+          <h2 class="h3" id="quick-title">Something last-minute?</h2>
+          <p class="caption">Ask for one thing on one day. We search the sources and check what we find; nothing is invented.</p>
+          <form class="quick-form" id="quick-form" novalidate>
+            <div class="field-row">
+              <label class="field quick-request">
+                <span class="field-label">What are you looking for?</span>
+                <input class="input" id="quick-request" name="request" type="text" minlength="3" maxlength="300" placeholder="e.g. a wine tasting" autocomplete="off" required>
+              </label>
+              <label class="field quick-day">
+                <span class="field-label">Day</span>
+                <select class="input" id="quick-day" name="day"></select>
+              </label>
+            </div>
+            <p class="field-error" id="quick-error" role="alert" hidden></p>
+            <div>
+              <button type="submit" class="btn btn-primary btn-sm" id="quick-go">Search</button>
+            </div>
+          </form>
+        </section>
         <button type="button" class="btn btn-secondary btn-accent btn-block more-ideas" aria-disabled="true" title="Coming soon">
           <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>
           More ideas

@@ -465,18 +465,39 @@ def build_brochure(trip_id):
             raise WrongState("keep at least one experience first")
         if totals["over"]:
             raise WrongState(f"over budget by €{totals['over_by']}: remove something or use Fit it to my budget")
-        stops = brochure.sublist(trip)
-        trip["brochure"] = {"created_at": now_iso(), "stops": stops, "pdf": None}
+        snapshot = brochure.build(trip)
+        snapshot["map"], png = brochure.map_image(snapshot["stops"])
+        if png:
+            store.save_map(trip_id, png)
+        trip["brochure"] = snapshot
         trip["status"] = "done"
+        stops = snapshot["stops"]
         days = len({s["day"] for s in stops})
-        trip["steps"].append({"at": now_iso(), "who": "code",
-                              "text": f"brochure built: {len(stops)} stops over {days} {'day' if days == 1 else 'days'}"})
+        where = "map from Geoapify" if png else f"map: {snapshot['map']['reason']}; pins placed by their coordinates"
+        trip["steps"].append({"at": now_iso(), "who": "code", "text": f"brochure built: {len(stops)} stops over "
+                                                                      f"{days} {'day' if days == 1 else 'days'}, {where}"})
         store.save(trip)
         return trip
 
 
-def brochure_pdf(trip_id):
-    trip = get_trip(trip_id)
-    if trip["status"] != "done":
+def _built(trip):
+    if trip["status"] != "done" or not trip.get("brochure"):
         raise WrongState("the brochure is not built yet: use Build my trip first")
-    raise NotBuilt("the PDF is not built yet (session 3)")
+    if "prices_note" not in trip["brochure"]:
+        raise WrongState("this brochure was built by an older version: change the list, then Build my trip again")
+    return trip["brochure"]
+
+
+def brochure_pdf(trip_id):
+    """The PDF, drawn on download from the sublist saved in the trip file (no PDF file is stored)."""
+    trip = get_trip(trip_id)
+    static = _built(trip)["map"]["kind"] == "static"
+    return brochure.pdf(trip, store.load_map(trip_id) if static else None)
+
+
+def brochure_map(trip_id):
+    trip = get_trip(trip_id)
+    png = store.load_map(trip_id) if _built(trip)["map"]["kind"] == "static" else None
+    if png is None:
+        raise NotFound("this brochure has no map image: its pins are placed by their coordinates")
+    return png

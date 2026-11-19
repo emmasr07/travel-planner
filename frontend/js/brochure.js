@@ -1,5 +1,8 @@
-// Brochure: shows the sublist the backend built (POST /api/trips/{id}/brochure): the kept experiences by day and
-// time, numbered stops on the map, real "Book" links, and the total from backend/budget.py.
+// Brochure: shows the sublist the backend built and saved (POST /api/trips/{id}/brochure, backend/brochure.py):
+// the stops by day and time with their price, source, checked-at time, status and Book link; the total, the items
+// not counted and the "Prices checked on" note, all as the backend wrote them. The map is the Geoapify image saved
+// at build time, or the pin plot (pins placed by their coordinates) when there is none. Download PDF gets the PDF
+// drawn from the same sublist. Nothing is added up here.
 
 (function () {
   const GROUP_LABELS = { solo: "Solo", couple: "Couple", friends: "Friends", family: "Family", business: "Business" };
@@ -7,6 +10,7 @@
   const DAY_COLOURS = 3;    // styles.css has --day-1 to --day-3; later days reuse them
 
   const tripId = TP.tripId();
+  const pdfLink = document.getElementById("download-pdf");
   let trip = null;
 
   // ---- helpers ----
@@ -21,17 +25,11 @@
     }).format(Number(amount));
   }
 
-  function clockTime(iso) {
-    return new Intl.DateTimeFormat("en-GB", {
-      hour: "2-digit", minute: "2-digit", timeZone: trip.profile.timezone || undefined
-    }).format(new Date(iso));
-  }
-
+  // "17 Nov, 13:42" in the destination's time, as the PDF writes it.
   function checkedOn(iso) {
-    const date = new Intl.DateTimeFormat("en-GB", {
-      day: "numeric", month: "short", timeZone: trip.profile.timezone || undefined
+    return new Intl.DateTimeFormat("en-GB", {
+      day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: trip.profile.timezone || undefined
     }).format(new Date(iso));
-    return `${date}, ${clockTime(iso)}`;
   }
 
   // Calendar dates are handled in UTC so no time zone can shift the day.
@@ -49,11 +47,10 @@
     return `${fmt(a, { day: "numeric", month: "short" })} – ${fmt(b, { day: "numeric", month: "short" })}`;
   }
 
-  // "Thu 14 May" for trip day n (day 1 = start date).
-  function dayDate(n) {
-    const d = parseDate(trip.profile.start_date);
-    d.setUTCDate(d.getUTCDate() + n - 1);
-    return new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(d);
+  // "Fri 4 Dec" for a stop's date.
+  function dayDate(iso) {
+    return new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" })
+      .format(parseDate(iso));
   }
 
   function colour(day) {
@@ -64,15 +61,28 @@
     return p.group_type === "solo" ? "Solo" : `${GROUP_LABELS[p.group_type]} (${p.group_size})`;
   }
 
-  function priceLine(e) {
-    const p = e.price;
-    if (p.per === "free") return `<strong>Free</strong>`;
+  // The price as the source states it, with its label, source and checked-at time; never a price without them.
+  function priceLine(s) {
+    const p = s.price;
+    const source = p.source
+      ? `${esc(PROVIDERS[p.source.provider] || p.source.provider)} · checked ${esc(checkedOn(p.source.retrieved_at))}`
+      : "no source";
+    if (p.per === "free") return `<strong>Free</strong> <span class="caption">· ${source}</span>`;
     if (p.amount === null || p.amount === undefined || !p.source) {
-      return '<strong>No price yet</strong> <span class="caption">· no source states a price, not counted</span>';
+      return '<strong>No price yet</strong> <span class="caption">· no source states a price · not counted</span>';
     }
+    const label = p.label ? ` · ${esc(p.label)}` : "";
     const per = p.per === "group" ? "per group" : "per person";
-    const source = `${esc(PROVIDERS[p.source.provider] || p.source.provider)} · checked ${esc(clockTime(p.source.retrieved_at))}`;
-    return `<strong>${esc(money(p.amount, p.currency))}</strong> <span class="caption">· ${per} · ${source}</span>`;
+    const inEuro = p.currency !== "EUR" && p.amount_eur !== null && p.fx
+      ? ` · ${esc(money(p.amount_eur))} at the ${esc(p.fx.date)} rate (Frankfurter)` : "";
+    const notConverted = p.currency !== "EUR" && p.amount_eur === null ? " · not converted, not counted" : "";
+    return `<strong>${esc(money(p.amount, p.currency))}</strong>${label}
+      <span class="caption">· ${per} · ${source}${inEuro}${notConverted}</span>`;
+  }
+
+  function statusLine(s) {
+    if (s.status === "verified") return '<span class="badge">Verified</span>';
+    return `<span class="caption">To check${s.note ? `: ${esc(s.note)}` : ""}</span>`;
   }
 
   function showEmpty(title, html) {
@@ -82,12 +92,57 @@
     document.getElementById("empty").hidden = false;
   }
 
-  // Pins placed inside the stops' bounding box (the real map comes later).
-  function pinPosition(e, box) {
+  function pdfReady(ready) {
+    if (ready) {
+      pdfLink.href = TP.tripPath(tripId, "/brochure.pdf");
+      pdfLink.removeAttribute("aria-disabled");
+      pdfLink.removeAttribute("title");
+    } else {
+      pdfLink.removeAttribute("href");
+      pdfLink.setAttribute("aria-disabled", "true");
+      pdfLink.title = "Build your trip first";
+    }
+  }
+
+  // ---- the map: the saved Geoapify image, or pins placed inside the stops' bounding box ----
+  function pinPosition(s, box) {
     const spanLng = box.maxLng - box.minLng, spanLat = box.maxLat - box.minLat;
-    const x = spanLng ? 10 + 80 * (e.location.lng - box.minLng) / spanLng : 50;
-    const y = spanLat ? 10 + 80 * (box.maxLat - e.location.lat) / spanLat : 50;
+    const x = spanLng ? 10 + 80 * (s.location.lng - box.minLng) / spanLng : 50;
+    const y = spanLat ? 10 + 80 * (box.maxLat - s.location.lat) / spanLat : 50;
     return { x: x.toFixed(1), y: y.toFixed(1) };
+  }
+
+  function drawPlot(stops, reason) {
+    const lats = stops.map((s) => s.location.lat), lngs = stops.map((s) => s.location.lng);
+    const box = { minLat: Math.min(...lats), maxLat: Math.max(...lats), minLng: Math.min(...lngs), maxLng: Math.max(...lngs) };
+    const map = document.getElementById("map");
+    map.classList.remove("has-image");
+    map.setAttribute("aria-label", `Pins of the ${stops.length} stops placed by their coordinates, numbered in visiting order`);
+    map.innerHTML = stops.map((s) => {
+      const pos = pinPosition(s, box);
+      return `<span class="pin day-${colour(s.day)}" style="left: ${pos.x}%; top: ${pos.y}%">${s.stop}</span>`;
+    }).join("");
+    document.getElementById("map-note").textContent = `Pins placed by their coordinates (no map image: ${reason}).`;
+  }
+
+  function drawMap(stops, m) {
+    if (!m || m.kind !== "static") {
+      drawPlot(stops, (m && m.reason) || "none was made");
+      return;
+    }
+    const map = document.getElementById("map");
+    map.classList.add("has-image");
+    map.removeAttribute("role");
+    map.removeAttribute("aria-label");
+    map.innerHTML = `<img class="map-image" src="${esc(TP.tripPath(tripId, "/brochure/map.png"))}"
+      alt="Map of the ${stops.length} stops, numbered in visiting order, one colour per day">`;
+    map.querySelector("img").addEventListener("error", () => {
+      map.setAttribute("role", "img");
+      drawPlot(stops, "the map image did not load");
+    });
+    document.getElementById("map-note").innerHTML =
+      'Powered by <a href="https://www.geoapify.com/" target="_blank" rel="noopener noreferrer">Geoapify</a> · ' +
+      '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors';
   }
 
   // ---- page ----
@@ -99,85 +154,80 @@
 
     if (trip.status !== "done" || !trip.brochure) {
       document.getElementById("subtitle").textContent = shortDateRange(p.start_date, p.end_date);
+      pdfReady(false);
       showEmpty("Your brochure isn't built yet",
         `Keep the experiences you want, then use "Build my trip". <a href="${esc(listLink)}">Go back to your experiences</a>.`);
       return;
     }
+    if (trip.brochure.prices_note === undefined) {
+      pdfReady(false);
+      showEmpty("This brochure was built by an older version",
+        `Change something in your list (keep or remove an experience), then use "Build my trip" again. ` +
+        `<a href="${esc(listLink)}">Go back to your experiences</a>.`);
+      return;
+    }
 
-    const byId = Object.fromEntries(trip.experiences.map((e) => [e.id, e]));
-    const stops = trip.brochure.stops.map((s) => ({ ...byId[s.id], stop: s.stop, day: s.day, start: s.start, end: s.end }));
-    const days = [...new Set(stops.map((e) => e.day))];
+    const b = trip.brochure;
+    const stops = trip.brochure.stops;
+    const days = [...new Set(stops.map((s) => s.day))];
+    pdfReady(true);
 
     document.getElementById("subtitle").textContent =
       `${shortDateRange(p.start_date, p.end_date)} · ${groupLabel(p)} · ` +
-      `${stops.length} ${stops.length === 1 ? "experience" : "experiences"}`;
+      `${stops.length} ${stops.length === 1 ? "experience" : "experiences"}` +
+      (trip.mode === "demo" ? " · Demo data, not verified" : "");
 
     // ---- day by day ----
-    document.getElementById("days").innerHTML = days.map((day) => `
+    document.getElementById("days").innerHTML = days.map((day) => {
+      const mine = stops.filter((s) => s.day === day);
+      return `
       <section class="day" aria-labelledby="day-${day}">
-        <h2 class="day-title" id="day-${day}"><span class="day-dot day-${colour(day)}" aria-hidden="true"></span>Day ${day} · ${esc(dayDate(day))}</h2>
+        <h2 class="day-title" id="day-${day}"><span class="day-dot day-${colour(day)}" aria-hidden="true"></span>Day ${day} · ${esc(dayDate(mine[0].date))}</h2>
         <ol class="plain stops">
-          ${stops.filter((e) => e.day === day).map((e) => {
-            const reason = e.best_time && e.best_time.start === e.start ? e.best_time.reason : "You picked this time";
-            return `
+          ${mine.map((s) => `
             <li class="card stop">
-              <span class="pin day-${colour(e.day)}"><span class="visually-hidden">Stop </span>${e.stop}</span>
+              <span class="pin day-${colour(s.day)}"><span class="visually-hidden">Stop </span>${s.stop}</span>
               <div class="stop-body">
-                <p class="stop-time">${esc(e.start)} – ${esc(e.end)}</p>
-                <h3>${esc(e.name)}</h3>
-                <p class="stop-reason">${esc(reason)}</p>
-                <p class="stop-price">${priceLine(e)}</p>
+                <p class="stop-time">${esc(s.start)} – ${esc(s.end)}</p>
+                <h3>${esc(s.name)}</h3>
+                <p class="stop-reason">${esc(s.time_why.text)}</p>
+                <p class="stop-price">${priceLine(s)}</p>
+                <p class="stop-status">${statusLine(s)}</p>
               </div>
-              <a class="btn btn-primary" href="${esc(e.booking_url)}" target="_blank" rel="noopener noreferrer" aria-label="Book ${esc(e.name)} (opens a new tab)">Book</a>
-            </li>`;
-          }).join("")}
+              <a class="btn btn-primary" href="${esc(s.booking_url)}" target="_blank" rel="noopener noreferrer" aria-label="Book ${esc(s.name)} (opens a new tab)">Book</a>
+            </li>`).join("")}
         </ol>
-      </section>`).join("");
+      </section>`;
+    }).join("");
 
     // ---- map and legend ----
-    const box = {
-      minLat: Math.min(...stops.map((e) => e.location.lat)), maxLat: Math.max(...stops.map((e) => e.location.lat)),
-      minLng: Math.min(...stops.map((e) => e.location.lng)), maxLng: Math.max(...stops.map((e) => e.location.lng))
-    };
-    const map = document.getElementById("map");
-    map.setAttribute("aria-label", `Map placeholder with ${stops.length} numbered stops`);
-    map.insertAdjacentHTML("beforeend", stops.map((e) => {
-      const pos = pinPosition(e, box);
-      return `<span class="pin day-${colour(e.day)}" style="left: ${pos.x}%; top: ${pos.y}%">${e.stop}</span>`;
-    }).join(""));
+    drawMap(stops, b.map);
     document.getElementById("legend").innerHTML = days.map((day) =>
       `<li><span class="day-dot day-${colour(day)}" aria-hidden="true"></span>Day ${day}</li>`
     ).join("");
 
-    // ---- total (from backend/budget.py) ----
-    const t = trip.totals;
+    // ---- total, not counted and the price-check note (all from backend/brochure.py and budget.py) ----
+    const t = b.totals;
     document.getElementById("total").textContent = money(t.used);
     document.getElementById("total-of").textContent =
       `of ${money(t.budget)} ${t.per === "total" ? `total for ${t.group_size}` : "per person"}`;
-    if (t.over) {
-      const over = document.getElementById("over-note");
-      over.textContent = `Over budget by ${money(t.over_by)}`;
-      over.hidden = false;
-    }
-
-    // Oldest price check among the stops that have a sourced price.
-    const checked = stops.filter((e) => e.price.amount !== null && e.price.source).map((e) => e.price.source.retrieved_at)
-      .sort((a, b) => new Date(a) - new Date(b));
-    const notCounted = t.not_counted.length;
-    const uncounted = notCounted ? ` ${notCounted} without a price ${notCounted === 1 ? "is" : "are"} not counted.` : "";
-    document.getElementById("checked-note").textContent = checked.length
-      ? `Prices checked on ${checkedOn(checked[0])}. They may change before you book.${uncounted}`
-      : `No prices from a source yet: experiences without a price are not counted.`;
+    const notCounted = document.getElementById("not-counted");
+    notCounted.textContent = b.not_counted.length
+      ? `Not counted: ${b.not_counted.map((n) => n.name).join(", ")} (no price from a source).` : "";
+    notCounted.hidden = b.not_counted.length === 0;
+    document.getElementById("checked-note").textContent = b.prices_note;
   }
 
   async function load() {
     if (!tripId) {
+      pdfReady(false);
       showEmpty("No trip yet", 'Plan one first: <a href="plan.html">answer seven quick questions</a>.');
       return;
     }
     try {
       trip = await TP.api.get(TP.tripPath(tripId));
     } catch (error) {
+      pdfReady(false);
       showEmpty("We couldn't load your trip", `${esc(error.message)} <a href="plan.html">Plan a new trip</a>.`);
       return;
     }

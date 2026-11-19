@@ -622,3 +622,7 @@
 {"at": "2026-11-18T19:58:50+01:00", "provider": "tavily", "request": "POST /extract url=https://gulbenkian.pt/en/useful-information/opening-hours", "status": 200, "items": ["https://gulbenkian.pt/en/useful-information/opening-hours"]}
 {"at": "2026-11-18T19:59:04+01:00", "provider": "tavily", "request": "POST /extract url=https://treasuresoflisboa.com/alfama-tour", "status": 200, "items": ["https://treasuresoflisboa.com/alfama-tour"]}
 {"at": "2026-11-18T19:59:06+01:00", "provider": "tavily", "request": "POST /extract url=https://api.geoapify.com/v2/place-details?id=517c3bd395196822c059b2101d0247594340f00103f9016112c71700000000c0020192031250617374c3a969732064652042656cc3a96d", "status": 200, "items": []}
+{"at": "2026-11-19T10:58:30+01:00", "provider": "geoapify", "request": "GET /v1/staticmap 4 markers", "status": "error: ReadTimeout", "items": []}
+{"at": "2026-11-19T10:58:50+01:00", "provider": "geoapify", "request": "GET /v1/staticmap 4 markers", "status": 200, "items": []}
+{"at": "2026-11-19T11:00:16+01:00", "provider": "geoapify", "request": "GET /v1/staticmap 3 markers", "status": 200, "items": []}
+{"at": "2026-11-19T11:13:28+01:00", "provider": "geoapify", "request": "GET /v1/staticmap 7 markers", "status": 200, "items": []}

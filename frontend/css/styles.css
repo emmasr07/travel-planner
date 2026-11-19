@@ -340,6 +340,33 @@ textarea.input { height: auto; min-height: 96px; padding: var(--space-3) var(--s
 .total-amount { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
 .over-note { font-size: 15px; font-weight: 600; color: var(--danger); }
 
+
+/* Swap and quick search (experiences.html): one panel for the latest search, its option cards, the request form */
+.search-panel { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-6); }
+.search-panel:focus { outline: none; }
+.search-panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.search-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+.option-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-4); }
+.option { box-shadow: var(--shadow-sm); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+.option .text { display: flex; flex-direction: column; gap: var(--space-1); }
+.option .desc { font-size: 14px; line-height: 1.4; color: var(--ink-muted); }
+.option .price { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.option .why { font-size: 13px; font-weight: 500; color: var(--blue); }
+.option-when { font-size: 14px; font-weight: 600; color: var(--blue); }
+.option .btn { margin-top: auto; align-self: flex-start; }
+.quick-search { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+.quick-form { display: flex; flex-direction: column; gap: var(--space-3); }
+.quick-form .quick-request { flex: 3 1 260px; }
+.quick-form .quick-day { flex: 1 1 160px; }
+.btn-secondary[aria-disabled="true"], .btn-secondary[aria-disabled="true"]:hover { color: var(--ink-muted); border-color: var(--line); }
+
+/* Brochure map: the Geoapify image saved at build time, or the pin plot (no fake water band on either) */
+.map-card .map::after { content: none; }
+.map.has-image { background: var(--surface-alt); }
+.map-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+.map-note { padding: 0 var(--space-1); }
+.stop-status { margin-top: var(--space-1); }
+
 @media (max-width: 640px) {
   .page { padding-top: var(--space-8); padding-bottom: var(--space-12); }
   .preview { grid-template-columns: 1fr; }

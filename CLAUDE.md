@@ -22,6 +22,7 @@ All commands from the project root (travel-planner/). Use the project's own Pyth
 - backend/checks.py: every code check (schema, source quote, season, age, price, hours, overlap, pace, accessibility).
 - backend/budget.py: all money arithmetic, with Decimal, rounded to 2 places.
 - backend/agents.py: the only file that calls the AI, or returns demo data when MODE=demo. (backend/llm.py is an old stub: do not use.)
+- backend/brochure.py: the brochure sublist, the static map call and the PDF (fpdf2), no AI. backend/fonts/: Inter TTF for the PDF (OFL licence in LICENSE.txt).
 - backend/sources/: data tools: viator.py, geoapify.py, fx.py (Frankfurter), tavily.py, osm_hours.py. Every record carries a source block; every call adds a line to data/sources-log.jsonl.
 - prompts/: agent instructions (researcher, verifier, quick-search). schemas/: the JSON the agents must return.
 - data/samples/: real sample places for Lisbon, London, Matera (demo mode and tests). scripts/: builds the samples.

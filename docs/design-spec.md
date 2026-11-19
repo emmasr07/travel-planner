@@ -28,5 +28,9 @@ Clean and modern: light grey page, white cards, near-black text, one blue accent
 - Experience list: Remove greys a card out (Restore brings it back); the budget total, bar and "€X left" update instantly; over budget the bar turns red, "Build my trip" is disabled and "Fit it to my budget" appears.
 - Brochure is built from the kept experiences, grouped by day and ordered by time.
 
+## Built in session 3
+The brochure from the saved sublist, Download PDF (Inter, the same tokens), the Geoapify static map (pins placed by
+coordinates when there is no map image), Swap and Quick search on the experience list.
+
 ## Later (not now)
-Real prices from the activities API, the AI suggestions, the real map, Swap alternatives, PDF export and share links.
+Share links and More ideas.

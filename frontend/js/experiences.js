@@ -1,6 +1,8 @@
 // Experience list: shows the trip from GET /api/trips/{id}. While the backend researches, checks and verifies, it
 // polls every 2 seconds and shows the steps; then it renders the experiences. Keep/Remove/Restore and time changes go
 // to the API, which re-runs the checks and returns the trip with its totals (all money is counted in backend/budget.py).
+// Swap (one kept card) and Quick search (a request for one day) start a search in the background; the page polls
+// until its 2-3 options are checked and verified, shows them in one panel, and the user's pick goes to the API.
 
 (function () {
   const BUSY = ["researching", "checking", "verifying"];
@@ -25,10 +27,19 @@
   const buildBtn = document.getElementById("build");
   const fitBtn = document.getElementById("fit");
   const actionError = document.getElementById("action-error");
+  const panel = document.getElementById("search-panel");
+  const quickCard = document.getElementById("quick-search");
+  const quickForm = document.getElementById("quick-form");
+  const quickRequest = document.getElementById("quick-request");
+  const quickDay = document.getElementById("quick-day");
+  const quickError = document.getElementById("quick-error");
+  const quickGo = document.getElementById("quick-go");
 
   let trip = null;
   let editing = null;    // id of the card whose time is being changed
   let busy = false;      // a change is on its way to the API
+  let dismissed = null;  // `started` of the search whose panel the user closed
+  let polling = null;    // timer while a swap or quick search runs
 
   // ---- helpers ----
   function esc(text) {
@@ -101,6 +112,31 @@
     }
     render();
     if (BUSY.includes(trip.status)) setTimeout(load, POLL_MS);
+    else if (searching()) pollSearch();
+  }
+
+  // While a search runs only its panel is redrawn, so a time being edited is not lost; once it ends, everything is.
+  function pollSearch() {
+    if (polling) return;
+    polling = setTimeout(async () => {
+      polling = null;
+      try {
+        trip = await TP.api.get(TP.tripPath(tripId));
+      } catch (error) {
+        showError(error.message);
+        return;
+      }
+      if (searching()) {
+        renderSearch();
+        pollSearch();
+      } else {
+        render();
+      }
+    }, POLL_MS);
+  }
+
+  function searching() {
+    return Boolean(trip && trip.search && trip.search.status === "searching");
   }
 
   function showStatus(title, html, steps) {
@@ -113,6 +149,8 @@
     grid.innerHTML = "";
     removedList.hidden = true;
     budgetCard.hidden = true;
+    panel.hidden = true;
+    quickCard.hidden = true;
   }
 
   // ---- rendering ----
@@ -184,8 +222,17 @@
     return items.length ? `<p class="caption">To check: ${esc(items.join(" · "))}</p>` : "";
   }
 
+  // Why Swap can't run now, or null when it can (the API allows a swap on a ready list, one search at a time).
+  function swapBlock() {
+    if (searching()) return "A search is running: wait for its options";
+    if (trip.status === "done") return "Your brochure is built: keep or remove something first, then swap";
+    if (trip.status !== "ready") return "Your list is not ready yet";
+    return null;
+  }
+
   function keptCard(e) {
     const name = esc(e.name);
+    const block = swapBlock();
     const photo = e.photo_url
       ? `<img class="photo" src="${esc(e.photo_url)}" alt="">`
       : `<div class="photo photo-placeholder" role="img" aria-label="No photo of ${name}">Photo</div>`;
@@ -204,7 +251,7 @@
           <div class="actions">
             <button type="button" class="btn btn-secondary btn-sm is-on" aria-pressed="true" aria-label="Keep ${name}">Keep</button>
             <button type="button" class="btn btn-secondary btn-sm" data-action="remove" aria-label="Remove ${name}">Remove</button>
-            <button type="button" class="btn btn-secondary btn-sm" aria-disabled="true" title="Coming soon" aria-label="Swap ${name}">Swap</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-action="swap" aria-label="Swap ${name}"${block ? ` aria-disabled="true" title="${esc(block)}"` : ""}>Swap</button>
           </div>
         </div>
       </article>`;
@@ -279,6 +326,8 @@
       showStatus("No experiences found",
         `We found nothing in ${esc(p.destination)} for ${esc(p.interests.join(", "))}, and we never invent one. ` +
         'Try widening your interests or your budget: <a href="plan.html">edit my answers</a>.');
+      renderSearch();
+      renderQuick();
       return;
     }
 
@@ -296,6 +345,127 @@
     removedList.innerHTML = gone.map(removedCard).join("");
     removedList.hidden = gone.length === 0;
     renderBudget(kept);
+    renderSearch();
+    renderQuick();
+  }
+
+  // ---- swap and quick search ----
+  function optionCard(o, s) {
+    const sch = o.schedule;
+    const unit = trip.totals.per === "total" ? "for the group" : "per person";
+    const cost = o.cost_eur === null ? "Not counted in your budget" : `${esc(money(o.cost_eur))} in your budget (${unit})`;
+    return `
+      <article class="card option">
+        <div class="text">
+          <h3 class="name">${esc(o.name)}</h3>
+          <p class="desc">${esc(o.description || o.location.address || o.location.city)}</p>
+        </div>
+        <p class="option-when">Day ${sch.day} · ${esc(sch.start)}–${esc(sch.end)}</p>
+        <div class="price-row">${priceRow(o)}</div>
+        <p class="caption">${cost}</p>
+        <p class="why">${esc(o.why_fits.text)}</p>
+        ${note(o)}
+        <button type="button" class="btn btn-primary btn-sm" data-pick="${esc(o.id)}"
+          aria-label="${s.kind === "swap" ? `Swap for ${esc(o.name)}` : `Add ${esc(o.name)} to day ${s.day}`}">${s.kind === "swap" ? "Swap for this" : `Add to day ${s.day}`}</button>
+      </article>`;
+  }
+
+  // One panel for the latest search (trip.search): running, failed, its options, or what was picked.
+  function renderSearch() {
+    const s = trip.search;
+    if (!s || dismissed === s.started || !["ready", "done"].includes(trip.status)) {
+      panel.hidden = true;
+      panel.innerHTML = "";
+      return;
+    }
+    const forItem = s.for ? trip.experiences.find((e) => e.id === s.for) : null;
+    const title = s.kind === "swap"
+      ? `Alternatives to ${forItem ? forItem.name : "an experience"}` : `Ideas for day ${s.day}: “${s.request}”`;
+    let body;
+    if (s.status === "searching") {
+      const since = new Date(s.started);
+      const steps = trip.steps.filter((st) => new Date(st.at) >= since);
+      body = '<p class="muted">Looking for 2–3 options and checking their sources…</p>' +
+        (steps.length ? `<ul class="plain">${steps.map((st) =>
+          `<li class="caption">${esc(clockTime(st.at))} · ${esc(st.who)} · ${esc(st.text)}</li>`).join("")}</ul>` : "");
+    } else if (s.status === "failed") {
+      body = `<p class="field-error">The search failed: ${esc(s.error)}</p>`;
+    } else if (s.picked) {
+      const picked = s.options.find((o) => o.id === s.picked);
+      body = `<p>${esc(picked ? picked.name : "Your pick")} is now in your plan` +
+        (forItem ? ` instead of ${esc(forItem.name)}, which you can restore below` : "") + ".</p>";
+    } else {
+      const shown = s.options.filter((o) => o.status !== "rejected");
+      const hidden = s.options.length - shown.length;
+      const hiddenNote = hidden
+        ? `<p class="caption">${hidden} more hidden because ${hidden === 1 ? "it" : "they"} failed a check.</p>` : "";
+      body = shown.length
+        ? `<p class="caption">Each option went through the same checks as your list. Pick one to ` +
+          `${s.kind === "swap" ? "swap it in" : `add it to day ${s.day}`}.</p>` +
+          `<div class="option-grid">${shown.map((o) => optionCard(o, s)).join("")}</div>${hiddenNote}`
+        : '<p class="muted">Nothing found that passes the checks, and we never invent one.' +
+          `${s.kind === "quick" ? " Try other words or another day." : ""}</p>${hiddenNote}`;
+    }
+    panel.innerHTML = `
+      <div class="search-head">
+        <h2 class="h3" id="search-title">${esc(title)}</h2>
+        <button type="button" class="btn btn-text btn-sm" data-search="close">Close</button>
+      </div>
+      ${body}`;
+    panel.hidden = false;
+  }
+
+  function renderQuick() {
+    const open = ["ready", "done"].includes(trip.status);
+    quickCard.hidden = !open;
+    if (!open) return;
+    const days = tripDayCount();
+    if (quickDay.options.length !== days) {
+      quickDay.innerHTML = Array.from({ length: days }, (_, i) => i + 1).map((n) =>
+        `<option value="${n}">Day ${n} · ${esc(dayDate(n))}</option>`).join("");
+    }
+    quickGo.disabled = searching();
+    quickGo.title = searching() ? "A search is running: wait for its options" : "";
+  }
+
+  function quickFieldError(message) {
+    quickError.textContent = message ? message.charAt(0).toUpperCase() + message.slice(1) : "";
+    quickError.hidden = !message;
+    quickRequest.setAttribute("aria-invalid", message ? "true" : "false");
+  }
+
+  async function startSearch(path, body, onError) {
+    if (busy) return;
+    busy = true;
+    showError("");
+    quickFieldError("");
+    try {
+      trip = await TP.api.post(TP.tripPath(tripId, path), body);
+      dismissed = null;
+      render();
+      panel.scrollIntoView({ block: "nearest" });
+      panel.focus({ preventScroll: true });
+      if (searching()) pollSearch();
+    } catch (error) {
+      onError(error.message);
+    } finally {
+      busy = false;
+    }
+  }
+
+  async function pick(optionId) {
+    if (busy) return;
+    busy = true;
+    showError("");
+    try {
+      trip = await TP.api.post(TP.tripPath(tripId, "/options/" + encodeURIComponent(optionId)));
+      render();
+      panel.focus({ preventScroll: true });
+    } catch (error) {
+      showError(error.message);
+    } finally {
+      busy = false;
+    }
   }
 
   // ---- actions ----
@@ -325,6 +495,11 @@
     const action = button.dataset.action;
     if (action === "remove") change(id, { status: "removed" }, "restore");
     if (action === "restore") change(id, { status: "kept" }, "remove");
+    if (action === "swap") {
+      const block = swapBlock();
+      if (block) showError(block);
+      else startSearch("/swap/" + encodeURIComponent(id), undefined, showError);
+    }
     if (action === "edit-time") {
       editing = id;
       render();
@@ -344,6 +519,29 @@
       }
       change(id, { day, start }, "edit-time");
     }
+  });
+
+  panel.addEventListener("click", (event) => {
+    if (!trip) return;
+    if (event.target.closest('[data-search="close"]')) {
+      dismissed = trip.search.started;
+      renderSearch();
+      return;
+    }
+    const option = event.target.closest("[data-pick]");
+    if (option) pick(option.dataset.pick);
+  });
+
+  quickForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!trip) return;
+    const request = quickRequest.value.trim();
+    if (request.length < 3) {
+      quickFieldError("tell us what you are looking for (at least 3 characters).");
+      quickRequest.focus();
+      return;
+    }
+    startSearch("/quick", { request, day: Number(quickDay.value) }, quickFieldError);
   });
 
   fitBtn.addEventListener("click", async () => {
@@ -377,13 +575,18 @@
     }
     busy = true;
     showError("");
+    const label = buildBtn.textContent;
+    buildBtn.textContent = "Building your brochure and map…";   // the map can take some seconds
+    buildBtn.setAttribute("aria-busy", "true");
     try {
       await TP.api.post(TP.tripPath(tripId, "/brochure"));
       window.location.href = `brochure.html?trip=${encodeURIComponent(tripId)}`;
     } catch (error) {
       showError(error.message);
+      buildBtn.textContent = label;
     } finally {
       busy = false;
+      buildBtn.removeAttribute("aria-busy");
     }
   });
 

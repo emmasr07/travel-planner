@@ -7,7 +7,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 load_dotenv()
@@ -100,7 +100,15 @@ def build_brochure(trip_id: str):
 
 @app.get("/api/trips/{trip_id}/brochure.pdf")
 def brochure_pdf(trip_id: str):
-    return trips.brochure_pdf(trip_id)
+    pdf = trips.brochure_pdf(trip_id)             # the id is already checked: lowercase letters, digits, dashes
+    return Response(pdf, media_type="application/pdf",
+                    headers={"Content-Disposition": f'attachment; filename="{trip_id}.pdf"'})
+
+
+@app.get("/api/trips/{trip_id}/brochure/map.png")
+def brochure_map(trip_id: str):
+    """The Geoapify map image saved at build time: the page gets it from here, so the key stays on the server."""
+    return Response(trips.brochure_map(trip_id), media_type="image/png")
 
 
 @app.post("/api/trips/{trip_id}/swap/{exp_id}", status_code=202)

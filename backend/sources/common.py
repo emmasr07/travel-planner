@@ -53,8 +53,10 @@ def public_url(url, params=None):
     return str(httpx.URL(url, params=params or None))
 
 
-def fetch(provider, method, url, *, summary, client=None, params=None, headers=None, json_body=None, items=None):
-    """One logged HTTP call; returns the parsed JSON. `summary` is the key-free text written to the log."""
+def fetch(provider, method, url, *, summary, client=None, params=None, headers=None, json_body=None, items=None,
+          binary=False):
+    """One logged HTTP call; returns the parsed JSON (binary=True: the bytes of an image).
+    `summary` is the key-free text written to the log."""
     own = client is None
     client = client or httpx.Client(timeout=TIMEOUT)
     try:
@@ -76,6 +78,11 @@ def fetch(provider, method, url, *, summary, client=None, params=None, headers=N
         if not 200 <= status < 300:
             log_call(provider, summary, status, [])
             raise SourceError(f"{provider} returned {status} for {summary}")
+        if binary:
+            log_call(provider, summary, status, [])
+            if not resp.headers.get("content-type", "").startswith("image/"):
+                raise SourceError(f"{provider}: {summary} did not return an image")
+            return resp.content
         try:
             data = resp.json()
         except ValueError:

@@ -298,13 +298,14 @@ def test_brochure_needs_one_kept_item(testville):
     assert r.status_code == 409 and "at least one" in r.json()["detail"]
 
 
-def test_brochure_pdf_comes_in_session_3(testville):
+def test_brochure_pdf_downloads_once_built(testville):
     assert client.get(f"/api/trips/{testville}/brochure.pdf").status_code == 409  # not built yet
     for exp_id in ("second", "gbp"):
         change(testville, exp_id, status="removed")
     client.post(f"/api/trips/{testville}/brochure")
     r = client.get(f"/api/trips/{testville}/brochure.pdf")
-    assert r.status_code == 501 and "session 3" in r.json()["detail"]
+    assert r.status_code == 200 and r.headers["content-type"] == "application/pdf"
+    assert r.content.startswith(b"%PDF-")
 
 
 def test_trip_json_download():

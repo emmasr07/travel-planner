@@ -66,8 +66,9 @@ All answers are JSON, except the PDF. Every endpoint that changes a trip returns
 | `GET /api/trips/{id}` | the trip (the page polls this every 2 seconds while it is not `ready`) | always |
 | `POST /api/trips/{id}/experiences/{exp_id}` | body `{"status": "kept" or "removed"}` and/or `{"day", "start"}`; re-runs the time and budget checks | `ready` or `done` |
 | `POST /api/trips/{id}/fit-budget` | returns a proposal (which items to remove, cheapest last-added first) without applying it; the user confirms with the endpoint above | `ready` |
-| `POST /api/trips/{id}/brochure` | builds the sublist and the PDF; sets `done` | `ready`, kept total within budget, at least 1 kept |
-| `GET /api/trips/{id}/brochure.pdf` | downloads the PDF | `done` |
+| `POST /api/trips/{id}/brochure` | builds the sublist (saved in the trip file: stops with facts, time reason, status, Book link; totals; not counted; "Prices checked on" note) and fetches one Geoapify static map (`data/trips/<id>.map.png`); without a key or when the call fails, the map block says why and the page and PDF place the pins by their coordinates; sets `done` | `ready`, kept total within budget, at least 1 kept |
+| `GET /api/trips/{id}/brochure.pdf` | downloads the PDF, drawn on download from the saved sublist (no PDF file is stored) | `done` |
+| `GET /api/trips/{id}/brochure/map.png` | the saved map image (the key stays on the server); 404 when the brochure uses the pin plot | `done` |
 | `GET /api/trips/{id}/json` | downloads the trip file | always |
 | `POST /api/trips/{id}/swap/{exp_id}` | **202**: 2–3 alternatives searched in the background into `search.options`, checked and verified (agents: quick-search researcher + verifier; demo: same-category items from the sample) | `ready`, no search running |
 | `POST /api/trips/{id}/quick` | body `{"request", "day"}`: **202**, last-minute search in the background, 0–3 options in `search.options` (demo: the request's words matched in the sample) | `ready` or `done`, no search running |

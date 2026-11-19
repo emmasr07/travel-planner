@@ -1,8 +1,14 @@
 # Geoapify (OpenStreetMap data): coordinates, address and timezone for a named place, plus OSM opening hours and
-# wheelchair access where OSM has them. Docs: https://apidocs.geoapify.com/  Attribution: Geoapify, © OpenStreetMap.
-from backend.sources.common import env, fetch, public_url, source_block
+# wheelchair access where OSM has them, and the brochure's static map image.
+# Docs: https://apidocs.geoapify.com/  Attribution: Geoapify, © OpenStreetMap.
+import httpx
+
+from backend.sources.common import SourceError, env, fetch, public_url, source_block
 
 PROVIDER = "geoapify"
+STATIC_URL = "https://maps.geoapify.com/v1/staticmap"
+STATIC_MAX_URL = 2048        # Geoapify's limit for a GET request
+STATIC_TIMEOUT_S = 20        # the user waits for it when building the brochure; a new map took over 10 s once
 GEOCODE_URL = "https://api.geoapify.com/v1/geocode/search"
 REVERSE_URL = "https://api.geoapify.com/v1/geocode/reverse"
 DETAILS_URL = "https://api.geoapify.com/v2/place-details"
@@ -157,3 +163,25 @@ def _wheelchair(props, raw):
     if flag is False:
         return "no"
     return "unknown"
+
+
+def static_map(points, *, width=600, height=600, client=None):
+    """One PNG map of numbered markers, in the given order and colours; with no center or zoom the view fits them.
+    points: [{lat, lng, text, color: "#rrggbb"}]. Returns {png, source}; the source URL carries no key.
+    Credits: 1 + map tiles / 4 + 1 per marker. Too many markers for one GET URL raise SourceError, with no call."""
+    markers = "|".join(f"lonlat:{p['lng']},{p['lat']};type:material;color:{p['color']};text:{p['text']};"
+                       "contentcolor:#ffffff;whitecircle:no" for p in points)
+    params = {"style": "osm-bright-grey", "width": width, "height": height, "scaleFactor": 2, "format": "png",
+              "marker": markers}
+    key = env("GEOAPIFY_API_KEY")
+    if len(public_url(STATIC_URL, {**params, "apiKey": key})) > STATIC_MAX_URL:
+        raise SourceError(f"{PROVIDER}: too many stops for one static map ({len(points)})")
+    own = client is None
+    client = client or httpx.Client(timeout=STATIC_TIMEOUT_S)
+    try:
+        png = fetch(PROVIDER, "GET", STATIC_URL, summary=f"GET /v1/staticmap {len(points)} markers", client=client,
+                    params={**params, "apiKey": key}, binary=True)
+    finally:
+        if own:
+            client.close()
+    return {"png": png, "source": source_block(PROVIDER, public_url(STATIC_URL, params))}
