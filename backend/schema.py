@@ -46,7 +46,8 @@ def experiences_schema():
 
 def sample_schema():
     """The experiences schema for code-built samples: no suggestion fields (they are rejected if present),
-    no minimum count (never padded), at most SAMPLE_MAX_ITEMS, and amount_eur/fx as filled by the code."""
+    no minimum count (never padded), at most SAMPLE_MAX_ITEMS, amount_eur/fx as filled by the code, and
+    price.label optional (the samples have no prices yet)."""
     schema = copy.deepcopy(experiences_schema())
     schema["properties"]["experiences"].pop("minItems", None)
     schema["properties"]["experiences"]["maxItems"] = SAMPLE_MAX_ITEMS
@@ -54,6 +55,7 @@ def sample_schema():
     for field in SUGGESTION_FIELDS:
         experience["required"].remove(field)
         experience["properties"].pop(field)
+    experience["properties"]["price"]["required"].remove("label")   # built from sources: may have no price yet
     price = experience["properties"]["price"]["properties"]
     price["amount_eur"] = {"type": ["number", "null"], "minimum": 0}
     price["fx"] = {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/fx"}]}

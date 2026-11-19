@@ -69,7 +69,7 @@ trip
 | `tags` | string[] | `["wine tasting", "walking tour"]` | more specific: trekking, spa, wine… |
 | `location` | object | `{ "city", "address", "lat", "lng", "timezone", "source" }` | `lat`/`lng` **required** for the map |
 | `duration_min` | integer or null | `180` | |
-| `price` | object | `{ "amount", "currency", "per", "amount_eur", "fx", "source" }` | `per`: person / group / free. `amount` null if no source states it. `amount_eur` and `fx` filled by code |
+| `price` | object | `{ "amount", "currency", "per", "label", "amount_eur", "fx", "source" }` | `per`: person / group / free. `amount` null if no source states it. `label`: which of the place's prices, copied word for word ("Adult (non-resident)"); null if the source names none. `amount_eur` and `fx` filled by code |
 | `opening_hours` | object or null | `{ "text": "Daily 10:00 and 14:00", "slots": ["10:00","14:00"], "source" }` | |
 | `months` | integer[] | `[]` | months it runs or is best, as the source states; `[]` = all year |
 | `min_age` | integer or null | `12` | only if a source states it |
@@ -158,6 +158,7 @@ Returns 10 to 15 experiences, best fit first, with layers 3a, 3b and 3c. Example
         "amount": 35.0,
         "currency": "EUR",
         "per": "person",
+        "label": null,
         "amount_eur": null,
         "fx": null,
         "source": { "provider": "viator", "url": "https://www.viator.com/…", "retrieved_at": "2026-11-17T14:42:00+01:00", "quote": null }

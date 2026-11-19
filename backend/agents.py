@@ -648,6 +648,7 @@ def _demo_at(sample_item, day, start, why):
     e = json.loads(json.dumps(sample_item))
     e["price"]["amount_eur"] = None              # as the agent delivers it: the code converts
     e["price"]["fx"] = None
+    e["price"].setdefault("label", None)         # the samples name no price
     length = e["duration_min"] or DEFAULT_VISIT_MIN
     e["best_time"] = {"slot": _slot(start), "start": start, "reason": DEMO_REASON, "kind": "suggestion"}
     e["why_fits"] = {"text": why, "kind": "suggestion"}

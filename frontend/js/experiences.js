@@ -170,7 +170,9 @@
     const inEuro = p.currency !== "EUR" && p.amount_eur !== null && p.fx
       ? ` · ${esc(money(p.amount_eur))} at the ${esc(p.fx.date)} rate (Frankfurter)` : "";
     const notConverted = p.currency !== "EUR" && p.amount_eur === null ? " · not converted, not counted" : "";
-    return `<span class="price">${esc(money(p.amount, p.currency))}</span>
+    // Which of the place's prices this is, as the source names it ("€16 · Adult (non-resident)").
+    const label = p.label ? ` · ${esc(p.label)}` : "";
+    return `<span class="price">${esc(money(p.amount, p.currency))}${label}</span>
       <span class="caption">${per} · ${sourceCaption(p.source)}${inEuro}${notConverted}</span>`;
   }
 

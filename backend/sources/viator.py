@@ -224,8 +224,8 @@ def _record(s, interest, details, schedule, location, tags, dates):
         "category": interest,
         "tags": [tags[t]["name"] for t in s.get("tags") or [] if t in tags and tags[t]["name"]],
         "duration_min": duration,
-        # Viator defines fromPrice as the lowest per-person price.
-        "price": {"amount": amount, "currency": pricing.get("currency"), "per": "person",
+        # Viator defines fromPrice as the lowest per-person price; the API gives it no name, so no label.
+        "price": {"amount": amount, "currency": pricing.get("currency"), "per": "person", "label": None,
                   "amount_eur": None, "fx": None, "source": source_block(PROVIDER, url) if amount is not None else None},
         "opening_hours": hours_from_schedule(schedule, dates, source_block(PROVIDER, url)),
         "months": months_from_schedule(schedule, dates[0]),

@@ -47,6 +47,11 @@ You only write a `source` block yourself for a web page you read with `read_page
 - **Prices:** the number and currency as the source states them, per person or per group. Do not convert
   currencies, round, or add anything up: the code does all arithmetic. If no source states a price,
   `amount` is `null`. A free experience has `"per": "free"` and `"amount": 0`.
+- **Which price:** many places list several (regular, reduced, resident and non-resident, by age). Choose the one
+  that matches the profile: an adult who is not a resident, unless the notes say otherwise. Copy its name into
+  `label` word for word as the source writes it ("Adult (non-resident)"); `label` is `null` when the source gives
+  one price without a name. Keep Viator's `label` as it comes. If reduced prices exist for children, students or
+  seniors, say so in `doubts` ("Reduced price for students and over-65s: €8").
 - **Unknown is allowed, a guess is not.** If you cannot find a fact, write `null` (or `"unknown"` where the
   schema says so) and explain in `doubts`.
 - **Accessibility** comes only from a source. Never infer it from photos or descriptions.
@@ -76,8 +81,11 @@ No text outside the tool call. Ids are lowercase-with-dashes and unique ("alfama
 
 ## Good and bad
 
-- Good: `"price": {"amount": 35, "currency": "EUR", "per": "person", ...}` copied from the Viator record.
+- Good: `"price": {"amount": 35, "currency": "EUR", "per": "person", "label": null, ...}` copied from the Viator record.
 - Bad: `"price": {"amount": 30, ...}` because "food tours usually cost around 30 euros".
+- Good: `"price": {"amount": 16, "currency": "EUR", "per": "person", "label": "Adult (non-resident)", ...}` from a
+  museum page listing several prices, with `"doubts": "Reduced price for students: €8"`.
+- Bad: the resident price, or the lowest price on the page, for travellers whose notes don't say they live there.
 - Good: `"accessibility": {"wheelchair": "unknown", "notes": null, "source": null}` when nothing is stated.
 - Bad: `"wheelchair": "yes"` because the photo shows a flat street.
 - Good: `"doubts": "Opening hours found only on a 2025 blog; not confirmed on the official site"`, `"certainty": "low"`.

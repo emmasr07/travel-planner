@@ -75,11 +75,12 @@
         "price": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["amount", "currency", "per", "amount_eur", "fx", "source"],
+          "required": ["amount", "currency", "per", "label", "amount_eur", "fx", "source"],
           "properties": {
             "amount": { "type": ["number", "null"], "minimum": 0 },
             "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
             "per": { "type": "string", "enum": ["person", "group", "free"] },
+            "label": { "type": ["string", "null"], "minLength": 1, "description": "Which of the place's prices this is (regular, reduced, resident or non-resident, by age), copied word for word from the source, e.g. \"Adult (non-resident)\". null when the source gives one price without a name." },
             "amount_eur": { "type": "null", "description": "Always null from the agent: filled by the code." },
             "fx": { "type": "null", "description": "Always null from the agent: filled by the code." },
             "source": { "anyOf": [{ "$ref": "#/$defs/source" }, { "type": "null" }] }
