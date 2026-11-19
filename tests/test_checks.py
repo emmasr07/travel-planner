@@ -23,8 +23,8 @@ def res(e, name):
 
 def test_every_check_is_there_in_order():
     [e] = run([checked()])
-    assert [c["name"] for c in e["checks"]] == ["schema", "source", "season", "age", "price", "hours", "overlap",
-                                                "pace", "accessibility"]
+    assert [c["name"] for c in e["checks"]] == ["schema", "source", "season", "age", "price", "hours", "closure",
+                                                "overlap", "pace", "accessibility"]
     assert all(set(c) == {"name", "result", "detail"} for c in e["checks"])
 
 
@@ -154,6 +154,55 @@ def test_hours_mention_ignored_holiday_rules():
     hours = {"opening_hours": {"text": "08:00-18:30; PH 10:00-17:30", "slots": [], "source": {}}}
     e = run([checked(**hours)])[0]
     assert res(e, "hours") == "ok" and "public-holiday" in result(e, "hours")["detail"]
+
+
+# --- closure: the source says the place is closed --------------------------------------------------------
+
+@pytest.mark.parametrize("text", [
+    "Encerrado temporrariamente",                       # as OpenStreetMap spells it (Lisbon sample)
+    "Encerrado temporariamente.", "A quinta está encerrada.", "Temporarily closed for renovation.",
+    "Permanently CLOSED", "Chiuso per restauro", "Museo chiuso temporaneamente", "Vorübergehend geschlossen",
+    "Fermé pour travaux", "Définitivement fermée", "Cerrado por obras", "Closed until March 2027.",
+    "A museum of the city. Closed until further notice; see the website.",
+])
+def test_closure_fails_when_the_source_says_it_is_closed(text):
+    [e] = run([checked(description=text)])
+    assert res(e, "closure") == "fail" and e["status"] == "rejected"
+    assert result(e, "closure")["detail"].startswith("the source says it is closed: ")
+
+
+@pytest.mark.parametrize("text", [
+    "Closed on Mondays and public holidays.", "Chiuso il lunedì", "Montags geschlossen", "Fermé le lundi et les jours fériés",
+    "Cerrado los lunes", "Encerrado às segundas-feiras", "Encerrado aos domingos e feriados", "Closed at weekends.",
+])
+def test_closure_leaves_closed_days_to_the_hours_check(text):
+    [e] = run([checked(description=text)])
+    assert res(e, "closure") == "ok" and "hours" in result(e, "closure")["detail"]
+    assert e["status"] != "rejected"
+
+
+def test_closure_temporarily_wins_over_a_weekday():
+    [e] = run([checked(description="Temporarily closed, reopening on Monday 5 January.")])
+    assert res(e, "closure") == "fail"
+
+
+@pytest.mark.parametrize("text", ["An enclosed garden with a fountain.", "La Ferme du Bonheur, a city farm.",
+                                  "Visit the quinta and its vineyards.", "Open daily from 10:00."])
+def test_closure_ignores_lookalike_words(text):
+    [e] = run([checked(description=text)])
+    assert res(e, "closure") == "ok"
+
+
+def test_closure_without_a_description_is_skipped():
+    [e] = run([checked(description=None)])
+    assert res(e, "closure") == "skip"
+
+
+def test_a_closed_place_takes_no_place_in_its_day():
+    closed = checked("closed-one", description="Chiuso per restauro")
+    other = checked("other", schedule={"day": 1, "start": "11:00", "end": "13:00"})   # overlaps the closed one
+    run([closed, other])
+    assert closed["status"] == "rejected" and res(other, "overlap") == "ok"
 
 
 # --- overlap and pace ---------------------------------------------------------------------------------------

@@ -90,6 +90,7 @@ Each check returns `{"name", "result": "ok" | "warn" | "fail" | "skip", "detail"
 | `age` | the youngest traveller is under `min_age` | — |
 | `price` | the item alone costs more than the whole budget | no price, or a currency that could not be converted |
 | `hours` | — | `schedule.start` is outside `opening_hours`, or no hours are known |
+| `closure` | the source's description says the place is closed (closed, encerrado, chiuso, geschlossen, fermé, cerrado), e.g. "Encerrado temporariamente"; a sentence that only names closed days or holidays ("Closed on Mondays") is left to `hours`, unless it says temporarily or permanently | — |
 | `overlap` | — | two kept items overlap on the same day |
 | `pace` | — | more items in a day than the pace allows (chill 2, balanced 3, packed 4) |
 | `accessibility` | — | the notes mention a wheelchair and `wheelchair` is `no` or `unknown` |

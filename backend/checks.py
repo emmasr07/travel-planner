@@ -13,7 +13,22 @@ AGE_FLOOR = {"18-24": 18, "25-34": 25, "35-49": 35, "50+": 50}
 WHEELCHAIR = re.compile(r"wheel\s*-?\s*chair", re.I)
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
 STATIC = ("schema", "source")     # decided once, at the checking step; the rest are re-run after every change
-ORDER = ("schema", "source", "season", "age", "price", "hours", "overlap", "pace", "accessibility")
+ORDER = ("schema", "source", "season", "age", "price", "hours", "closure", "overlap", "pace", "accessibility")
+# Closure: words for "closed" in English, Portuguese, Italian, German, French and Spanish, as whole words.
+# "ferme" without the accent is a farm, so French needs the é.
+CLOSED = re.compile(r"\b(closed|encerrad[oa]s?|chius[oaie]|geschlossene?[nrs]?|fermée?s?|cerrad[oa]s?)\b", re.I)
+# Temporarily or permanently closed always counts ("temporrariamente": as OpenStreetMap spells it in Lisbon).
+FOR_NOW_OR_GOOD = re.compile(r"\b(tempor\w*|vorübergehend\w*|permanent\w*|definitiv\w*|définitiv\w*|dauerhaft\w*)",
+                             re.I)
+# A sentence that names weekdays or holidays is about the opening days ("Closed on Mondays"): the hours check's job.
+# Portuguese segunda..sexta need a plural or "-feira" ("a quinta" is a farm).
+CLOSED_DAYS = re.compile(
+    r"\b(mondays?|tuesdays?|wednesdays?|thursdays?|fridays?|saturdays?|sundays?|weekends?|(bank |public )?holidays?"
+    r"|(segunda|terça|terca|quarta|quinta|sexta)(s|-feiras?)|sábados?|domingos?|feriados?"
+    r"|luned[iì]|marted[iì]|mercoled[iì]|gioved[iì]|venerd[iì]|sabat[oi]|domenic(a|he)|festiv[oiaà]\w*"
+    r"|montags?|dienstags?|mittwochs?|donnerstags?|freitags?|samstags?|sonntags?|sonnabends?|feiertag\w*|wochenende\w*"
+    r"|lundis?|mardis?|mercredis?|jeudis?|vendredis?|samedis?|dimanches?|fériés?"
+    r"|lunes|martes|miércoles|miercoles|jueves|viernes|festivos?)\b", re.I)
 # Free slots for a quick search or a swap: gaps of at least MIN_SLOT_MIN between DAY_START and DAY_END, local time.
 DAY_START, DAY_END, MIN_SLOT_MIN = "08:00", "23:00", 30
 
@@ -241,6 +256,27 @@ def pace(e, active, profile):
     return result("pace", "ok", f"{n} of {limit} on day {day}")
 
 
+def closure(e):
+    """Fail when the source's description says the place is closed ("Encerrado temporariamente", "Chiuso per
+    restauro"). A sentence that only names closed days ("Closed on Mondays") is left to the hours check."""
+    text = e.get("description")
+    if not text:
+        return result("closure", "skip", "no description from the source")
+    days_only = False
+    for sentence in re.split(r"[.;!?\n]+", text):
+        if not CLOSED.search(sentence):
+            continue
+        if CLOSED_DAYS.search(sentence) and not FOR_NOW_OR_GOOD.search(sentence):
+            days_only = True
+            continue
+        quote = sentence.strip()
+        quote = quote if len(quote) <= 100 else quote[:99] + "…"
+        return result("closure", "fail", f'the source says it is closed: "{quote}"')
+    if days_only:
+        return result("closure", "ok", "closed on some days only: the hours check covers those")
+    return result("closure", "ok", "the source does not say it is closed")
+
+
 def accessibility(e, profile):
     if not WHEELCHAIR.search(profile.get("notes") or ""):
         return result("accessibility", "skip", "no wheelchair need in your notes")
@@ -280,7 +316,7 @@ def recheck(profile, experiences):
     Overlap and pace only look at kept items that nothing has rejected."""
     for e in experiences:
         kept = [c for c in e.get("checks", []) if c["name"] in STATIC]
-        e["checks"] = kept + [season(e, profile), age(e, profile), price(e, profile), hours(e, profile),
+        e["checks"] = kept + [season(e, profile), age(e, profile), price(e, profile), hours(e, profile), closure(e),
                               accessibility(e, profile)]
     active = [e for e in experiences
               if e["user"]["status"] == "kept" and final_status(e["checks"], e.get("verdict")) != "rejected"]

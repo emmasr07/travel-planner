@@ -115,8 +115,9 @@ def test_lisbon_demo_flow():
     assert [e["id"] for e in exps] == matching[:9]               # best fit first, at most 3 days x 3, never padded
     assert {e["category"] for e in exps} <= {"culture", "nature"}
     assert sorted(e["schedule"]["day"] for e in exps) == sorted(i % 3 + 1 for i in range(len(exps)))
+    closed = "osm-n5090471903"                                   # Museu de Lisboa - Torreão Poente: "Encerrado ..."
     for e in exps:
-        assert e["status"] == "to_check"                         # demo data is never verified
+        assert e["status"] == ("rejected" if e["id"] == closed else "to_check")   # demo data is never verified
         assert e["verdict"]["verdict"] == "not_sure" and "Demo mode" in e["verdict"]["note"]
         assert e["user"] == {"status": "kept", "position": None}
         assert check(e, "schema")["result"] == "ok" and check(e, "source")["result"] == "skip"
@@ -124,9 +125,18 @@ def test_lisbon_demo_flow():
         assert e["why_fits"]["text"] == f"You picked {e['category']}"
         assert e["cost_eur"] is None                             # the samples have no prices yet
     assert trip["totals"]["used"] == "0.00" and trip["totals"]["over"] is False
-    assert trip["totals"]["not_counted"] == [e["id"] for e in exps]
+    assert trip["totals"]["not_counted"] == [e["id"] for e in exps if e["id"] != closed]
     assert {s["who"] for s in trip["steps"]} >= {"researcher", "code", "verifier"}
     assert all(set(s) == {"at", "who", "text"} for s in trip["steps"])
+
+
+def test_a_place_the_source_says_is_closed_is_rejected():
+    trip = get(new_trip())
+    museum = by_id(trip)["osm-n5090471903"]
+    assert museum["description"] == "Encerrado temporrariamente"
+    assert museum["status"] == "rejected" and check(museum, "closure")["result"] == "fail"
+    r = change(trip["id"], museum["id"], status="kept")
+    assert r.status_code == 409 and "closed" in r.json()["detail"]
 
 
 def test_the_profile_holds_only_the_answers():

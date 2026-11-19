@@ -110,6 +110,7 @@ A list, one entry per check: `{ "name", "result": "ok" | "warn" | "fail" | "skip
 | `age` | fail if the youngest traveller is under `min_age` |
 | `price` | warn if no price; fail if it alone exceeds the whole budget |
 | `time` | warn if `best_time` is outside `opening_hours` or overlaps another stop |
+| `closure` | fail if the source's description says the place is closed or temporarily closed, in any of six languages (closed days such as "Closed on Mondays" are left to the hours check) |
 | `accessibility` | warn if the notes mention a wheelchair and `wheelchair` is no / unknown |
 
 ### 3e. Verdict (from the verifier agent)
