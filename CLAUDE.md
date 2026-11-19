@@ -58,3 +58,4 @@ Every trip must pass these checks, in Python with a test each, before it reaches
 - OpenStreetMap can be wrong (Casa Noha, Matera: "Recinto Canove" instead of "Recinto Cavone"). Copy the source faithfully; the verifier and hand checks catch it.
 - Geoapify sometimes answers a slow query with "200, no places"; the builder retries. Geoapify name search can match the wrong place: use coordinates or a 30 km limit.
 - Viator keys returned 401 "Invalid API Key" (support asked on 18 Nov); samples use Geoapify until it works.
+- After any change to prompts/, schemas/ or AGENT_MODEL, the agents keep their old instructions until we run `PY -m scripts.create_agents`; always tell us to run it.
