@@ -7,6 +7,7 @@ from datetime import date, timedelta
 from backend import budget
 from backend.schema import validate_delivery, validate_verdicts
 from backend.sources.osm_hours import has_holiday_rules, open_ranges
+from backend.sources.viator import open_ranges as viator_open_ranges
 
 PACE_LIMIT = {"chill": 2, "balanced": 3, "packed": 4}
 AGE_FLOOR = {"18-24": 18, "25-34": 25, "35-49": 35, "50+": 50}
@@ -218,12 +219,17 @@ def hours(e, profile):
             return result("hours", "ok", f"starts at {s['start']}, one of the listed start times")
         return result("hours", "warn", f"starts at {s['start']}; listed start times: {', '.join(oh['slots'])}")
     when = date_of(profile, s["day"])
-    ranges = open_ranges(oh["text"], when)
+    day = f"{when:%a} {when.day} {when:%b}"
+    if (oh.get("source") or {}).get("provider") == "viator":     # dated hours from Viator's schedule
+        ranges = viator_open_ranges(oh["text"], when)
+        if ranges is None:
+            return result("hours", "warn", f"no opening hours from Viator for {day}")
+    else:                                                         # OpenStreetMap syntax
+        ranges = open_ranges(oh["text"], when)
     if ranges is None:
         text = oh["text"] if len(oh["text"]) <= 60 else oh["text"][:59] + "…"
         return result("hours", "warn", f"opening hours too complex to check: {text}")
     note = " (public-holiday hours not checked)" if has_holiday_rules(oh["text"]) else ""
-    day = f"{when:%a} {when.day} {when:%b}"
     if not ranges:
         return result("hours", "warn", f"closed on {day}{note}")
     start, end = visit(e)

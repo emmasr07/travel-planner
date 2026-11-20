@@ -89,7 +89,7 @@ Each check returns `{"name", "result": "ok" | "warn" | "fail" | "skip", "detail"
 | `season` | — | `months` does not include the trip dates |
 | `age` | the youngest traveller is under `min_age` | — |
 | `price` | the item alone costs more than the whole budget | no price, or a currency that could not be converted |
-| `hours` | — | `schedule.start` is outside `opening_hours`, or no hours are known |
+| `hours` | — | `schedule.start` is outside `opening_hours`, or no hours are known. OpenStreetMap syntax ("Mo-Sa 07:00-14:00") or Viator's dated hours ("Open 2026-12-04 11:00:00–20:00:00"); a trip day Viator doesn't list is unknown, not closed |
 | `closure` | the source's description says the place is closed (closed, encerrado, chiuso, geschlossen, fermé, cerrado), e.g. "Encerrado temporariamente"; a sentence that only names closed days or holidays ("Closed on Mondays") is left to `hours`, unless it says temporarily or permanently | — |
 | `overlap` | — | two kept items overlap on the same day |
 | `pace` | — | more items in a day than the pace allows (chill 2, balanced 3, packed 4) |

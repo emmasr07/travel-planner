@@ -384,6 +384,30 @@ def hours_from_schedule(schedule, dates, source):
     return {"text": ". ".join(parts), "slots": sorted(slots), "source": source}
 
 
+_OPEN_DATE = re.compile(r"(\d{4}-\d{2}-\d{2}) ([^;.]+)")
+_OPEN_RANGE = re.compile(r"(\d{1,2}):(\d{2})(?::\d{2})?–(\d{1,2}):(\d{2})(?::\d{2})?")
+
+
+def open_ranges(text, day):
+    """[(start_min, end_min)] for one date, read back from the "Open <date> <from>–<to>, ...; <date> ..." part that
+    hours_from_schedule writes (times as Viator gives them: "11:00" or "11:00:00"). None when the date isn't listed."""
+    if "Open " not in text:
+        return None
+    for m in _OPEN_DATE.finditer(text.split("Open ", 1)[1]):
+        if m.group(1) != day.isoformat():
+            continue
+        ranges = []
+        for piece in m.group(2).split(","):
+            found = _OPEN_RANGE.fullmatch(piece.strip())
+            if not found:
+                return None
+            h1, m1, h2, m2 = map(int, found.groups())
+            start, end = h1 * 60 + m1, h2 * 60 + m2
+            ranges.append((start, end + 1440 if end <= start else end))   # "22:00–02:00" closes after midnight
+        return sorted(ranges)
+    return None
+
+
 def months_from_schedule(schedule, start):
     """Months with a season in the year from `start`; [] when every month has one (all year)."""
     start = _as_date(start)

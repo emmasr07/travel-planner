@@ -181,6 +181,19 @@ def test_schedule_unavailable_dates_and_operating_hours():
     assert viator.hours_from_schedule(sch, dates, {}) is None
 
 
+def test_viator_opening_hours_are_read_back_for_one_date():
+    from datetime import date
+    sch = fa.schedule("X", start_times=(), operating=[
+        {"dayOfWeek": "FRIDAY", "operatingHours": [{"opensAt": "11:00:00", "closesAt": "20:00:00"}]},
+        {"dayOfWeek": "SATURDAY", "operatingHours": [{"opensAt": "22:00:00", "closesAt": "02:00:00"}]}])
+    text = viator.hours_from_schedule(sch, fa.DATES, {})["text"]
+    assert text == "Open 2026-12-04 11:00:00–20:00:00; 2026-12-05 22:00:00–02:00:00"   # copied as Viator gives it
+    assert viator.open_ranges(text, date(2026, 12, 4)) == [(660, 1200)]
+    assert viator.open_ranges(text, date(2026, 12, 5)) == [(1320, 1560)]              # closes after midnight
+    assert viator.open_ranges(text, date(2026, 12, 6)) is None                        # not listed: unknown
+    assert viator.open_ranges("Start times on 2026-12-04: 10:00", date(2026, 12, 4)) is None
+
+
 def test_months_from_schedule_seasons():
     summer = fa.schedule("X", season=("2027-06-01", "2027-09-30"))
     assert viator.months_from_schedule(summer, "2026-12-04") == [6, 7, 8, 9]

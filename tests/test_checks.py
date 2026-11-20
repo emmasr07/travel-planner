@@ -156,6 +156,39 @@ def test_hours_mention_ignored_holiday_rules():
     assert res(e, "hours") == "ok" and "public-holiday" in result(e, "hours")["detail"]
 
 
+# Viator's schedule text, as backend/sources/viator.py writes it: dated, times as Viator gives them (with seconds in
+# production, 19 Nov 2026: Lisbon Banksy Museum).
+VIATOR_SRC = {"provider": "viator", "url": "https://www.viator.com/tours/Lisbon/x",
+              "retrieved_at": "2026-11-19T12:25:00+00:00", "quote": None}
+BANKSY = ("Open 2026-12-04 11:00:00–20:00:00; 2026-12-05 10:00:00–20:00:00, 21:00:00–23:00:00; "
+          "2026-12-06 10:00:00–19:00:00")
+
+
+def viator_hours(text=BANKSY):
+    return {"opening_hours": {"text": text, "slots": [], "source": VIATOR_SRC}}
+
+
+def test_hours_read_viators_dated_hours_with_seconds():
+    e = run([at(1, "11:00", "13:00", **viator_hours())])[0]                         # Fri 4 Dec
+    assert result(e, "hours") == {"name": "hours", "result": "ok", "detail": "open 11:00-20:00 on Fri 4 Dec"}
+    e = run([at(1, "10:00", "12:00", **viator_hours())])[0]
+    assert res(e, "hours") == "warn" and "outside the opening hours on Fri 4 Dec (11:00-20:00)" in \
+        result(e, "hours")["detail"]
+    e = run([at(2, "21:30", "22:30", **viator_hours())])[0]                         # Sat: two ranges
+    assert result(e, "hours")["detail"] == "open 10:00-20:00, 21:00-23:00 on Sat 5 Dec"
+
+
+def test_hours_read_viators_dated_hours_without_seconds_too():
+    e = run([at(3, "10:00", "12:00", **viator_hours("Open 2026-12-06 09:00–18:00"))])[0]
+    assert result(e, "hours")["detail"] == "open 09:00-18:00 on Sun 6 Dec"
+
+
+def test_hours_on_a_day_viator_does_not_list_are_unknown_not_closed():
+    e = run([at(3, "10:00", "12:00", **viator_hours("Open 2026-12-04 11:00:00–20:00:00"))])[0]
+    assert result(e, "hours") == {"name": "hours", "result": "warn",
+                                  "detail": "no opening hours from Viator for Sun 6 Dec"}
+
+
 # --- closure: the source says the place is closed --------------------------------------------------------
 
 @pytest.mark.parametrize("text", [
