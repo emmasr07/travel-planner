@@ -11,6 +11,8 @@ from backend.sources.common import SourceError
 API_PROVIDERS = ("viator", "geoapify")
 SOURCED_FIELDS = ("price", "rating", "opening_hours", "location", "accessibility")   # fact fields with a source
 NAMES = {"viator": "Viator", "geoapify": "Geoapify"}
+RATING_TOLERANCE = 0.1      # stars, either way: Viator's average moves with each review
+REVIEWS_GROWTH_PCT = 5      # new reviews between the research and the check; fewer reviews is a difference
 
 
 def _source(e, field):
@@ -55,9 +57,14 @@ def verdict(profile, e, *, client=None):
             result = _compare(provider, field, e[field], answer)
             if isinstance(result, str):
                 lines.append(f"{field} not compared: {result}")
-            elif result:
-                contested += [path for path, _, _ in result]
-                lines += [f"{path}: record {_show(mine)}, {name} {_show(theirs)}" for path, mine, theirs in result]
+                continue
+            close = [(path, mine, theirs) for path, mine, theirs, *within in result if within]
+            differ = [(path, mine, theirs) for path, mine, theirs, *within in result if not within]
+            lines += [f"{path}: record {_show(mine)}, {name} {_show(theirs)}, within tolerance"
+                      for path, mine, theirs in close]
+            if differ:
+                contested += [path for path, _, _ in differ]
+                lines += [f"{path}: record {_show(mine)}, {name} {_show(theirs)}" for path, mine, theirs in differ]
             else:
                 matched.append(field)
     providers = " and ".join(NAMES[p] for p in dict.fromkeys(p for p, _ in by_url))
@@ -102,7 +109,8 @@ def _ask(provider, url, dates, client):
 
 
 def _compare(provider, field, mine, answer):
-    """[(path, record value, source value)] that differ; [] when all match; a string when it cannot be compared."""
+    """[(path, record value, source value)] that differ, plus (path, record, source, "within") for a rating close
+    enough; [] when all match; a string when it cannot be compared."""
     if provider == "viator":
         if field == "price":
             theirs = answer["price"]
@@ -112,8 +120,7 @@ def _compare(provider, field, mine, answer):
                 return f"Viator's schedule prices it in {theirs['currency']}, the record in {mine.get('currency')}"
             return _diff("price", mine, theirs, ("amount", "currency", "per", "label"))
         if field == "rating":
-            return _diff("rating", mine, answer["rating"] or {"value": None, "review_count": None},
-                         ("value", "review_count"))
+            return _rating(mine, answer["rating"] or {"value": None, "review_count": None})
         if field == "opening_hours":
             theirs = answer["opening_hours"] or {"text": None, "slots": None}
             same = mine.get("text") == theirs["text"] and list(mine.get("slots") or []) == list(theirs["slots"] or [])
@@ -145,6 +152,20 @@ def _diff(prefix, mine, theirs, keys):
         numbers = isinstance(a, (int, float)) and isinstance(b, (int, float)) and not isinstance(a, bool)
         if not (_same(a, b, 2) if numbers else a == b):
             out.append((f"{prefix}.{key}", a, b))
+    return out
+
+
+def _rating(mine, theirs):
+    """Rating within RATING_TOLERANCE stars and up to REVIEWS_GROWTH_PCT more reviews count as the same."""
+    out = []
+    a, b = mine.get("value"), theirs.get("value")
+    if a != b:
+        close = a is not None and b is not None and round(abs(float(a) - float(b)), 6) <= RATING_TOLERANCE
+        out.append(("rating.value", a, b, "within") if close else ("rating.value", a, b))
+    a, b = mine.get("review_count"), theirs.get("review_count")
+    if a != b:
+        close = a is not None and b is not None and a <= b and b * 100 <= a * (100 + REVIEWS_GROWTH_PCT)
+        out.append(("rating.review_count", a, b, "within") if close else ("rating.review_count", a, b))
     return out
 
 

@@ -93,6 +93,16 @@ def delivery_errors(delivery, profile, *, min_items=True, quick=False):
     return errors
 
 
+def min_age_errors(delivery):
+    """A minimum age only a source can state. Viator gives age bands for its prices, not a minimum age, and Geoapify
+    none: an experience whose facts all come from them has no source for one ("Adult (18–99)" is not "18+").
+    For an agent's delivery that already matches the schema; the samples are built by code and always say null."""
+    return [f"{e['id']}: min_age {e['min_age']} has no source. Only a web page you read can state a minimum age "
+            "(Viator and Geoapify give none, and a price label's age band is not one): set it to null, or cite the "
+            "page that states it."
+            for e in delivery["experiences"] if e["min_age"] is not None and not web_blocks(e)]
+
+
 def quick_errors(delivery, ask):
     """A quick search or swap delivery (prompts/quick-search.md): new ids only, on the asked day, inside a free slot."""
     slots = ask["free_slots"]
@@ -197,8 +207,11 @@ def age(e, profile):
 def price(e, profile):
     p = e["price"]
     unit = "per person" if profile["budget"]["per"] == "person" else "for the group"
-    if p["per"] == "free":
-        return result("price", "ok", "free")
+    if p["per"] == "free" or p["amount"] == 0:
+        if not p.get("source"):                     # "free" is a fact like any price: without a source, unverified
+            return result("price", "warn", "free, but no source says so: not verified")
+        if p["per"] == "free":
+            return result("price", "ok", "free")
     if p["amount"] is None:
         return result("price", "warn", "no source states a price: not counted in the budget")
     if p["amount_eur"] is None:

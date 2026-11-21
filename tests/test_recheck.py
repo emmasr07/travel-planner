@@ -104,6 +104,37 @@ def test_a_difference_from_the_api_is_contradicted_with_its_field(over, field, d
     assert detail in v["note"]
 
 
+def reviews(value, count):
+    d = fa.details("111P1")
+    d["reviews"] = {"totalReviews": count, "combinedAverageRating": value}
+    return apis(details=d)
+
+
+@pytest.mark.parametrize("value, count", [
+    (4.9, 120),          # +0.1 star
+    (4.7, 120),          # -0.1 star
+    (4.8, 126),          # +5% reviews (120 -> 126)
+    (4.85, 123),         # both a little
+])
+def test_a_rating_within_a_tenth_and_up_to_5_percent_more_reviews_is_confirmed(value, count):
+    v, _ = verdict(tour(), reviews(value, count))                   # the record: 4.8 from 120 reviews
+    assert v["verdict"] == "confirmed" and v["contested_fields"] == [], v["note"]
+    assert "rating match" in v["note"] or "price, rating" in v["note"]
+    if (value, count) != (4.8, 120):
+        assert "within tolerance" in v["note"]
+
+
+@pytest.mark.parametrize("value, count, field", [
+    (4.95, 120, "rating.value"),        # +0.15 star
+    (4.65, 120, "rating.value"),        # -0.15 star
+    (4.8, 127, "rating.review_count"),  # +5.8% reviews
+    (4.8, 119, "rating.review_count"),  # fewer reviews than the record
+])
+def test_a_rating_further_off_is_contradicted(value, count, field):
+    v, _ = verdict(tour(), reviews(value, count))
+    assert v["verdict"] == "contradicted" and v["contested_fields"] == [field]
+
+
 def test_a_price_in_another_currency_than_viators_schedule_is_not_compared():
     sch = fa.schedule("111P1")
     v, _ = verdict(tour(price={"amount": 35.0, "currency": "GBP", "per": "person", "label": None, "source": VIATOR}),

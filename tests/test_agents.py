@@ -77,6 +77,31 @@ def test_a_wrong_delivery_goes_back_with_its_errors(ready, monkeypatch):
     assert recorded[0]["deliveries"] == 2
 
 
+@pytest.mark.parametrize("quick", [False, True])
+def test_a_min_age_inferred_from_a_price_label_goes_back_to_the_researcher(ready, monkeypatch, quick):
+    guessed = delivery(n=1 if quick else 10)
+    guessed["experiences"][0].update(min_age=18)                    # Viator price "regular adult", no page read
+    fixed = delivery(n=1 if quick else 10)
+    fake = install(monkeypatch, [[tool_use("deliver_experiences", guessed)],
+                                 [tool_use("deliver_experiences", fixed)], []])
+    if quick:
+        ask = {"kind": "quick", "request": "a food walk", "day": 1, "free_slots": [{"start": "08:00", "end": "22:00"}],
+               "budget_left": {"amount": "200.00", "currency": "EUR", "per": "person"}, "taken": [], "for": None}
+        out = agents.quick(profile(), ask, Steps())                 # item-0: day 1, 09:00-11:00, inside the slot
+    else:
+        out, _, _, _ = research()
+    assert out == fixed
+    (first, first_error), (_, second_error) = results(fake)
+    assert first_error and "item-0: min_age 18 has no source" in first
+    assert not second_error
+
+
+def test_the_researcher_prompt_says_where_min_age_and_free_come_from():
+    text = agents.prompt("researcher")
+    assert "never from a price label" in text and "`min_age` is `null`" in text
+    assert "A free experience needs a source that says it is free" in text
+
+
 def test_three_wrong_deliveries_stop_the_session(ready, monkeypatch):
     bad = delivery(n=9)                                             # fewer than 10
     fake = install(monkeypatch, [[tool_use("deliver_experiences", bad)]] * 3 + [[]])

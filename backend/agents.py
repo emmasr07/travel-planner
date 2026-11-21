@@ -149,7 +149,7 @@ def quick(profile, ask, step, record=None, pages=None):
         errors = checks.delivery_errors(delivery, profile, quick=True)
         if validate_delivery(delivery, quick=True):
             return errors                                   # not the right shape: nothing else can be checked
-        return errors + checks.quick_errors(delivery, ask)
+        return errors + checks.min_age_errors(delivery) + checks.quick_errors(delivery, ask)
 
     tools = _source_tools(city, {} if pages is None else pages)
     return _run("researcher", "quick", _json({"profile": profile, **message}), tools,
@@ -377,8 +377,16 @@ def _research_with_agent(profile, step, record, pages):
     settings()
     city = _city(profile, step)
     return _run("researcher", "research", _json(profile), _source_tools(city, pages), "deliver_experiences",
-                lambda d: checks.delivery_errors(d, profile), step, record,
+                lambda d: _research_errors(d, profile), step, record,
                 title=f"researcher: {profile['destination']}")
+
+
+def _research_errors(delivery, profile):
+    """The code's checks of a researcher delivery, sent back for the agent to fix."""
+    errors = checks.delivery_errors(delivery, profile)
+    if validate_delivery(delivery, min_items=False):
+        return errors                                       # not the right shape: nothing else can be checked
+    return errors + checks.min_age_errors(delivery)
 
 
 def _verify_with_agent(profile, experiences, step, record):

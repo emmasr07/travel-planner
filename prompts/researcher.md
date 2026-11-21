@@ -47,6 +47,8 @@ You only write a `source` block yourself for a web page you read with `read_page
 - **Prices:** the number and currency as the source states them, per person or per group. Do not convert
   currencies, round, or add anything up: the code does all arithmetic. If no source states a price,
   `amount` is `null`. A free experience has `"per": "free"` and `"amount": 0`.
+  A free experience needs a source that says it is free (the page, with that sentence as the quote): without one,
+  the code shows it as to check.
 - **Which price:** many places list several (regular, reduced, resident and non-resident, by age). Choose the one
   that matches the profile: an adult who is not a resident, unless the notes say otherwise. Copy its name into
   `label` word for word as the source writes it ("Adult (non-resident)"); `label` is `null` when the source gives
@@ -55,6 +57,10 @@ You only write a `source` block yourself for a web page you read with `read_page
 - **Unknown is allowed, a guess is not.** If you cannot find a fact, write `null` (or `"unknown"` where the
   schema says so) and explain in `doubts`.
 - **Accessibility** comes only from a source. Never infer it from photos or descriptions.
+- **Minimum age** (`min_age`) only from a page you read that states it ("Participants must be 18 or older"):
+  never from a price label or age band ("Adult (18–99)" names who pays the adult price, not who may join), and
+  never from the kind of activity. Viator and Geoapify give no minimum age.
+  If no source states one, `min_age` is `null`.
 - `months` lists the months a source says it runs or is at its best; `[]` means all year.
 - Set `certainty` to `low` when a price, season, opening time or minimum age is uncertain, and say why in `doubts`.
 

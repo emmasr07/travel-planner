@@ -105,6 +105,23 @@ def test_price():
     assert res(run([checked(price={"amount": None, "per": "free"})])[0], "price") == "ok"
 
 
+@pytest.mark.parametrize("price", [
+    {"amount": 0, "per": "free", "source": None},
+    {"amount": None, "per": "free", "source": None},
+    {"amount": 0, "per": "person", "source": None},
+])
+def test_a_free_price_without_a_source_cannot_be_verified(price):
+    [e] = run([checked(price=price)])
+    assert result(e, "price") == {"name": "price", "result": "warn",
+                                  "detail": "free, but no source says so: not verified"}
+    assert checks.final_status(e["checks"], {"verdict": "confirmed"}) == "to_check"
+
+
+def test_a_free_price_with_a_source_is_ok():
+    [e] = run([checked(price={"amount": 0, "per": "free"})])                      # the factory's Viator source
+    assert result(e, "price") == {"name": "price", "result": "ok", "detail": "free"}
+
+
 def test_price_in_a_currency_that_was_not_converted():
     e = checked(price={"amount": 20.0, "currency": "GBP"})
     e["price"]["amount_eur"] = None
@@ -339,6 +356,27 @@ def test_delivery_schema_errors_are_listed():
 def test_delivery_needs_ten_unless_never_padded():
     assert any("too short" in e for e in checks.delivery_errors(delivery(experience()), P))
     assert checks.delivery_errors(delivery(experience()), P, min_items=False) == []
+
+
+WEB_PAGE = {"provider": "web", "url": "https://www.example.it/cooking-class", "retrieved_at": "2026-11-21T10:00:00+01:00",
+            "quote": "Participants must be at least 18 years old."}
+
+
+def test_a_min_age_no_source_can_state_goes_back_to_the_researcher():
+    # Viator gives age bands for prices, not a minimum age, and Geoapify none: "Adult (18–99)" is not "18+".
+    e = experience("pasta-class", min_age=18, price={"label": "Adult (18–99)"})        # Viator price, Geoapify place
+    assert checks.min_age_errors(delivery(e)) == [
+        "pasta-class: min_age 18 has no source. Only a web page you read can state a minimum age (Viator and "
+        "Geoapify give none, and a price label's age band is not one): set it to null, or cite the page that "
+        "states it."]
+
+
+@pytest.mark.parametrize("over", [
+    {"min_age": None},                                                            # not stated: null
+    {"min_age": 18, "opening_hours": {"text": "Daily 10:00", "slots": ["10:00"], "source": WEB_PAGE}},
+])
+def test_a_null_min_age_or_one_from_a_web_page_is_fine(over):
+    assert checks.min_age_errors(delivery(experience("pasta-class", **over))) == []
 
 
 def test_delivery_duplicate_ids_and_schedule_outside_the_trip():
