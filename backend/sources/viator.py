@@ -3,6 +3,7 @@
 import os
 import re
 from datetime import date, timedelta
+from urllib.parse import urlparse
 
 from backend.sources.common import SourceError, env, fetch, source_block
 
@@ -212,16 +213,12 @@ def _record(s, interest, details, schedule, location, tags, dates):
     pricing = s.get("pricing") or {}
     amount = (pricing.get("summary") or {}).get("fromPrice")
     pricing_info = details.get("pricingInfo") or {}
-    per, label = "person", None
-    if pricing_info.get("type") == "UNIT":
-        # A UNIT product's from-price is the price of one unit (vehicle, boat, group), as its schedule shows.
-        per = "group"
+    per, label = price_basis(amount, pricing.get("currency"), pricing_info, schedule)
+    if per == "group":
         unit = (pricing_info.get("unitType") or "unit").lower()
         most = max((b.get("maxTravelersPerBooking") or 0 for b in pricing_info.get("ageBands") or []), default=0)
         notes.append(f"Viator prices this per group ({unit}), not per person"
                      + (f": up to {most} travellers per booking" if most else ""))
-    elif amount is not None:
-        label = price_label(amount, pricing.get("currency"), pricing_info, schedule)
     duration, duration_note = _duration(s.get("duration") or {})
     if duration_note:
         notes.append(duration_note)
@@ -248,6 +245,14 @@ def _record(s, interest, details, schedule, location, tags, dates):
         "meeting_point": _meeting_point(location),
         "notes": notes,
     }
+
+
+def price_basis(amount, currency, pricing_info, schedule):
+    """(per, label) of a from-price. A UNIT product's from-price is the price of one unit (vehicle, boat, group), as
+    its schedule shows: per group, no label. Otherwise per person, labelled with its age band when Viator says."""
+    if pricing_info.get("type") == "UNIT":
+        return "group", None
+    return "person", price_label(amount, currency, pricing_info, schedule) if amount is not None else None
 
 
 def price_label(amount, currency, pricing_info, schedule):
@@ -330,6 +335,39 @@ def photo(images):
     cover = next((i for i in images if i.get("isCover")), images[0] if images else None)
     variants = (cover or {}).get("variants") or []
     return max(variants, key=lambda v: v.get("width") or 0)["url"] if variants else None
+
+
+# ---------- one product again (the code's re-check, backend/recheck.py) ----------
+
+_PRODUCT_PATH = re.compile(r"/d\d+-([A-Za-z0-9]+)/?$")
+
+
+def product_code(url):
+    """The product code in a Viator product link ('…/tours/Rome/…/d511-5487240P3?…' -> '5487240P3'), or None."""
+    link = urlparse(url or "")
+    if not (link.hostname or "").endswith("viator.com"):
+        return None
+    found = _PRODUCT_PATH.search(link.path)
+    return found.group(1) if found else None
+
+
+def product_facts(code, dates, *, client=None):
+    """The facts search_viator gives for one product, fetched again from /products/{code} (status, reviews, pricing
+    type) and /availability/schedules/{code} (from-price, its currency, start times and opening hours on `dates`):
+    {status, price: {amount, currency, per, label}, rating: {value, review_count} | None, opening_hours: {text, slots}
+    | None}. The price is in the schedule's currency."""
+    details = _call("GET", f"/products/{code}", summary=f"GET /products/{code}", client=client,
+                    items=lambda d: [record_id(code)])
+    schedule = _call("GET", f"/availability/schedules/{code}", summary=f"GET /availability/schedules/{code}",
+                     client=client, items=lambda d: [record_id(code)])
+    amount, currency = (schedule.get("summary") or {}).get("fromPrice"), schedule.get("currency")
+    per, label = price_basis(amount, currency, details.get("pricingInfo") or {}, schedule)
+    rating = _rating(details.get("reviews"), None)
+    hours = hours_from_schedule(schedule, dates, None)
+    return {"status": details.get("status"),
+            "price": {"amount": amount, "currency": currency, "per": per, "label": label},
+            "rating": {"value": rating["value"], "review_count": rating["review_count"]} if rating else None,
+            "opening_hours": {"text": hours["text"], "slots": hours["slots"]} if hours else None}
 
 
 # ---------- schedules ----------

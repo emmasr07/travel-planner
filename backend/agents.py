@@ -15,7 +15,7 @@ import threading
 import time
 from pathlib import Path
 
-from backend import budget, checks
+from backend import budget, checks, recheck
 from backend.checks import PACE_LIMIT, clock, minutes, trip_days
 from backend.schema import QUICK_MAX_ITEMS, VERDICTS_SCHEMA, delivery_schema, experiences_schema, validate_delivery
 from backend.sources import fx, geoapify, tavily, viator
@@ -368,7 +368,8 @@ def _facts(e):
     """What the verifier sees of an experience: the fact fields with their source blocks, nothing the code or the
     researcher added (prices as the source stated them, not converted)."""
     out = {k: copy.deepcopy(e[k]) for k in FACT_FIELDS if k in e}
-    out["price"] = {k: v for k, v in out["price"].items() if k not in ("amount_eur", "fx")}
+    if "price" in out:
+        out["price"] = {k: v for k, v in out["price"].items() if k not in ("amount_eur", "fx")}
     return out
 
 
@@ -381,13 +382,29 @@ def _research_with_agent(profile, step, record, pages):
 
 
 def _verify_with_agent(profile, experiences, step, record):
+    """Facts from Viator and Geoapify: fetched again and compared by the code (backend/recheck.py). Facts from web
+    pages: the verifier agent, which gets only those. One verdict per experience from both (recheck.combine)."""
     settings()
     if not experiences:
         return {"verdicts": []}
-    ids = [e["id"] for e in experiences]
-    message = {"profile": profile, "experiences": [_facts(e) for e in experiences]}
-    return _run("verifier", "verify", _json(message), {"read_page": _read_page({})}, "deliver_verdicts",
-                lambda d: checks.verdict_errors(d, ids), step, record, title=f"verifier: {profile['destination']}")
+    by_code = {e["id"]: recheck.verdict(profile, e, client=HTTP) for e in experiences}
+    done = [v["verdict"] for v in by_code.values() if v]
+    if done:
+        step("code", f"re-fetched the Viator and Geoapify facts of {len(done)} experiences: "
+                     f"{done.count('confirmed')} match, {done.count('contradicted')} differ, "
+                     f"{done.count('not_sure')} could not be compared in full")
+    web = [e for e in experiences if recheck.has_web_facts(e)]
+    by_page = {}
+    if web:
+        ids = [e["id"] for e in web]
+        message = {"profile": profile, "experiences": [_facts(recheck.web_only(e)) for e in web]}
+        delivered = _run("verifier", "verify", _json(message), {"read_page": _read_page({})}, "deliver_verdicts",
+                         lambda d: checks.verdict_errors(d, ids), step, record,
+                         title=f"verifier: {profile['destination']}")
+        by_page = {v["id"]: v for v in delivered["verdicts"]}
+    else:
+        step("verifier", "no facts from web pages to check: the verifier did not run")
+    return {"verdicts": [recheck.combine(e["id"], [by_code[e["id"]], by_page.get(e["id"])]) for e in experiences]}
 
 
 # --- agents mode: one session -----------------------------------------------------------------------------------

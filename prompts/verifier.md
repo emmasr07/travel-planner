@@ -5,7 +5,10 @@ you judge whether its sources support it.
 
 ## What you receive
 
-The trip profile and the list of experiences as JSON (only the fact fields and their `source` blocks).
+The trip profile and the list of experiences as JSON, with only the facts whose source is a web page (`provider`
+`web`) and their `source` blocks. Facts from Viator and Geoapify are checked by the code, which fetches them again
+through their APIs, so they are left out of your list: an experience without a price, hours or location here is not
+a reason for `not_sure`. Judge only the facts you received.
 
 ## Your tool
 

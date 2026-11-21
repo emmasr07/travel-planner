@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 
 from backend import agents, main, store
 from backend.schema import SUGGESTION_FIELDS
-from tests.agent_helpers import delivery, fake_http, install, set_up, verdicts
+from tests.agent_helpers import delivery, fake_http, from_the_web, install, set_up, verdicts
 from tests.factories import experience
 from tests.fake_anthropic import tool_use
 
@@ -155,8 +155,8 @@ def test_quick_search_checks_the_day_and_works_after_the_brochure():
 def test_agents_swap_runs_the_quick_researcher_then_the_verifier(monkeypatch):
     set_up(monkeypatch)
     fake_http(monkeypatch)
-    exps = delivery()["experiences"]
-    other = experience("other-walk", name="Other walk", schedule={"day": 1, "start": "09:00", "end": "11:00"})
+    exps = [from_the_web(e) for e in delivery()["experiences"]]
+    other = from_the_web(experience("other-walk", name="Other walk", schedule={"day": 1, "start": "09:00", "end": "11:00"}))
     fake = install(monkeypatch,
                    [[tool_use("deliver_experiences", {"experiences": exps})], []],
                    [[tool_use("deliver_verdicts", verdicts(ids(exps)))], []],

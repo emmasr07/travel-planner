@@ -146,6 +146,35 @@ def search_places(center, categories, *, radius_m=5000, limit=100, client=None):
     return out
 
 
+# The URLs our tools store in source blocks that the code can ask again (backend/recheck.py).
+REFETCHABLE = {"/v1/geocode/search", "/v1/geocode/reverse", "/v2/place-details"}
+
+
+def refetch(url, *, client=None):
+    """The answer to a stored, key-free Geoapify URL (a source block's url), asked again with our key. Only the
+    geocode search, reverse geocode and place-details URLs; anything else raises SourceError without a call."""
+    link = httpx.URL(url)
+    if link.host != "api.geoapify.com" or link.path not in REFETCHABLE:
+        raise SourceError(f"{PROVIDER}: the code cannot ask {link.host}{link.path} again")
+    return fetch(PROVIDER, "GET", str(link.copy_with(query=None)), summary=f"GET {link.path} again {link.query.decode()}",
+                 client=client, params={**dict(link.params), "apiKey": env("GEOAPIFY_API_KEY")})
+
+
+def answer_facts(url, data):
+    """What an answer to a stored URL says: {lat, lng} of the first result of a geocode search or reverse;
+    {lat, lng, opening_hours, wheelchair} for place details. None when the answer has no result."""
+    if httpx.URL(url).path == "/v2/place-details":
+        props = _details_properties(data)
+        if not props:
+            return None
+        raw = (props.get("datasource") or {}).get("raw") or {}
+        return {"lat": props.get("lat"), "lng": props.get("lon"),
+                "opening_hours": props.get("opening_hours") or raw.get("opening_hours"),
+                "wheelchair": _wheelchair(props, raw)}
+    results = data.get("results") or []
+    return {"lat": results[0].get("lat"), "lng": results[0].get("lon")} if results else None
+
+
 def _details_properties(details):
     features = details.get("features") or []
     feature = next((f for f in features if (f.get("properties") or {}).get("feature_type") == "details"),

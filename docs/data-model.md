@@ -113,13 +113,15 @@ A list, one entry per check: `{ "name", "result": "ok" | "warn" | "fail" | "skip
 | `closure` | fail if the source's description says the place is closed or temporarily closed, in any of six languages (closed days such as "Closed on Mondays" are left to the hours check) |
 | `accessibility` | warn if the notes mention a wheelchair and `wheelchair` is no / unknown |
 
-### 3e. Verdict (from the verifier agent)
+### 3e. Verdict (from the code and the verifier agent)
 
 ```json
 { "verdict": "confirmed", "url_read": "https://…", "passage": "What the page says, copied word for word.", "contested_fields": [], "note": "The page supports name, price and hours." }
 ```
 
 `verdict`: confirmed (the page supports the record) / contradicted (it says something else, listed in `contested_fields`) / not_sure (page didn't load, behind a login, or doesn't say).
+
+Who checks what (`backend/recheck.py`): facts whose source is Viator or Geoapify are fetched again by the code through the same API (Viator: the product and its schedule, by the product code in the link; Geoapify: the stored URL with our key) and compared: price amount, currency, per and label, rating and review count, hours, coordinates and wheelchair access. A difference is contradicted with its fields (`price.amount`, `rating.review_count`, `opening_hours`, `location`, `accessibility.wheelchair`…); no answer, an inactive product, a link without a product code or a price in another currency than the schedule is not_sure. The verifier agent gets only the facts from web pages. One verdict per experience: contradicted if either contradicts, confirmed only if both confirm, otherwise not_sure; its `note` starts "Checked by the code" for the code's part, and `url_read` / `passage` come from the page the agent read.
 
 ### 3f. User and final status
 

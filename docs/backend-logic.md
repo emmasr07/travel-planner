@@ -47,7 +47,7 @@ through these steps. After each step the file is saved, and one line is added to
 |---|---|---|
 | `researching` | the researcher proposes 10–15 experiences with the source tools | agent (or demo data) |
 | `checking` | schema check, currency conversion, all checks in section 5; going down the researcher's list (best fit first), an experience is kept while its day has room for the pace (chill 2, balanced 3, packed 4), the rest start removed as alternatives the user can restore (picked again after the verifier) | code |
-| `verifying` | the verifier reopens every source | agent (or demo verdicts) |
+| `verifying` | Viator and Geoapify facts: the code fetches the same record again and compares (`recheck.py`); facts from web pages: the verifier reopens the page | code + agent (or demo verdicts) |
 | `ready` | final status per experience; rejected ones are hidden; the user keeps, removes, swaps, changes times | code + user |
 | `done` | the brochure (sublist + PDF) is built from the kept experiences | code |
 | `failed` | something went wrong; `error` says what, and everything done before is kept | — |

@@ -63,6 +63,15 @@ def item(i, **over):
     return experience(f"item-{i}", name=f"Item {i}", schedule={"day": i % 3 + 1, "start": start, "end": end}, **over)
 
 
+def from_the_web(e):
+    """The item's price, location and hours from the page the fake researcher reads: facts the verifier agent checks.
+    (Facts from Viator and Geoapify are checked by the code, backend/recheck.py, and never reach the agent.)"""
+    for field in ("price", "location", "opening_hours"):
+        if isinstance(e.get(field), dict):
+            e[field]["source"] = dict(WEB)
+    return e
+
+
 def delivery(n=10, **over):
     return {"experiences": [item(i, **over) for i in range(n)]}
 

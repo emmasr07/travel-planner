@@ -163,7 +163,7 @@ def run_pipeline(trip_id):
         trip["experiences"] = exps
         _refresh(trip)
         trip["status"] = "verifying"
-        step("code", "checks done: the verifier reopens every source")
+        step("code", "checks done: now verifying the sources")
 
         verdicts = agents.verify(profile, exps, step, record=record)
         errors = validate_verdicts(verdicts)

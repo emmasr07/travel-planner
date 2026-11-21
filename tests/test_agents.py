@@ -6,8 +6,10 @@ import json
 import pytest
 
 from backend import agents
+from backend.schema import validate_verdicts
 from tests import fake_apis
-from tests.agent_helpers import PAGE_QUOTE, PAGE_URL, WEB, Steps, delivery, fake_http, install, set_up, verdicts
+from tests.agent_helpers import (PAGE_QUOTE, PAGE_URL, WEB, Steps, delivery, fake_http, from_the_web, install, set_up,
+                                 verdicts)
 from tests.factories import checked, experience, profile
 from tests.fake_anthropic import DROP, HANG, idle, session_error, tool_use, usage
 
@@ -188,7 +190,7 @@ def test_a_dropped_stream_reconnects_and_answers_the_missed_call_once(ready, mon
 # --- the verifier -----------------------------------------------------------------------------------------------
 
 def to_verify():
-    exps = [checked(f"item-{i}", opening_hours={"text": "Daily 10:00", "slots": ["10:00"], "source": WEB})
+    exps = [from_the_web(checked(f"item-{i}", opening_hours={"text": "Daily 10:00", "slots": ["10:00"], "source": WEB}))
             for i in range(2)]
     for e in exps:
         e.update(status="to_check", cost_eur="35.00")
@@ -227,6 +229,58 @@ def test_every_experience_needs_exactly_one_verdict(ready, monkeypatch):
     agents.verify(profile(), to_verify(), Steps())
     text, is_error = results(fake)[0]
     assert is_error and "item-1: no verdict" in text and "other: not an experience you received" in text
+
+
+def with_viator(apis):
+    """The Viator product of tests/test_recheck.py, for the code's re-check."""
+    d = fake_apis.details("111P1")
+    d["reviews"] = {"totalReviews": 120, "combinedAverageRating": 4.8}
+    fake_apis.viator_routes(apis, [(fake_apis.summary("111P1", "Alfama walk"), d, fake_apis.schedule("111P1"))])
+
+
+def test_the_code_checks_api_facts_and_the_verifier_only_web_facts(ready, monkeypatch):
+    from tests.test_recheck import museum, tour
+    with_viator(ready)
+    fake = install(monkeypatch, [[tool_use("deliver_verdicts", verdicts(["tile-museum"]))], []])
+    steps = Steps()
+    out = agents.verify(profile(), [tour(), museum()], steps)
+
+    assert validate_verdicts(out) == []
+    sent = json.loads(next(e for e in fake.sent if e["type"] == "user.message")["content"][0]["text"])
+    [only] = sent["experiences"]                                       # the Viator tour has no web facts
+    assert only["id"] == "tile-museum" and only["price"]["source"]["provider"] == "web"
+    assert not {"location", "opening_hours", "accessibility"} & set(only)   # Geoapify facts: checked by the code
+    by_id = {v["id"]: v for v in out["verdicts"]}
+    assert list(by_id) == ["alfama-walk", "tile-museum"]
+    assert by_id["alfama-walk"]["verdict"] == "confirmed" and "Checked by the code" in by_id["alfama-walk"]["note"]
+    assert by_id["tile-museum"]["verdict"] == "confirmed"              # the page and the APIs both agree
+    assert by_id["tile-museum"]["url_read"] == PAGE_URL
+    assert any(who == "code" and text.startswith("re-fetched the Viator and Geoapify facts of 2 experiences")
+               for who, text in steps)
+
+
+def test_without_web_facts_no_verifier_session_runs(ready, monkeypatch):
+    from tests.test_recheck import tour
+    with_viator(ready)
+    fake = install(monkeypatch)
+    steps = Steps()
+    out = agents.verify(profile(), [tour()], steps)
+    assert fake.created == []
+    assert [v["verdict"] for v in out["verdicts"]] == ["confirmed"]
+    assert ("verifier", "no facts from web pages to check: the verifier did not run") in steps
+
+
+def test_a_contradiction_from_the_api_wins_over_a_confirmed_page(ready, monkeypatch):
+    from tests.test_recheck import museum
+    ready.add("GET", fake_apis.GEO + "/v2/place-details", fake_apis.place_details(wheelchair="no"))
+    install(monkeypatch, [[tool_use("deliver_verdicts", verdicts(["tile-museum"]))], []])
+    [v] = agents.verify(profile(), [museum()], Steps())["verdicts"]
+    assert v["verdict"] == "contradicted" and v["contested_fields"] == ["accessibility.wheelchair"]
+
+
+def test_the_verifier_prompt_says_it_gets_only_web_facts():
+    text = agents.prompt("verifier")
+    assert "only the facts whose source is a web page" in text and "checked by the code" in text
 
 
 # --- quick search -----------------------------------------------------------------------------------------------

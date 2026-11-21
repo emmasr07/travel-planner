@@ -7,7 +7,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend import main, store
-from tests.agent_helpers import PAGE_URL, WEB, delivery, fake_http, install, set_up, verdicts
+from tests.agent_helpers import PAGE_URL, WEB, delivery, fake_http, from_the_web, install, set_up, verdicts
 from tests.factories import experience
 from tests.fake_anthropic import idle, tool_use, usage
 
@@ -26,7 +26,7 @@ def http(tmp_path, monkeypatch):
 
 
 def researched():
-    exps = delivery()["experiences"]
+    exps = [from_the_web(e) for e in delivery()["experiences"]]
     exps[0]["opening_hours"] = {"text": "Daily 09:00", "slots": ["09:00"], "source": WEB}
     exps[1]["price"].update(amount=20.0, currency="GBP")
     return exps
@@ -74,7 +74,7 @@ def test_a_trip_uses_search_viator_when_the_key_works(http, monkeypatch):
                                     fake_apis.schedule(code))])
     exps = delivery()["experiences"]
     exps[0].update(name="Alfama food walk", booking_url=url)
-    exps[0]["price"]["source"] = {**exps[0]["price"]["source"], "url": url}
+    exps[0]["price"].update(label=None, source={**exps[0]["price"]["source"], "provider": "viator", "url": url})
     ask = {"destination": "Lisbon", "interests": ["food"], "start_date": "2026-12-04", "end_date": "2026-12-06"}
     install(monkeypatch, [[tool_use("search_viator", ask)], [tool_use("deliver_experiences", {"experiences": exps})],
                           []], verify_script([e["id"] for e in exps]))
@@ -84,9 +84,11 @@ def test_a_trip_uses_search_viator_when_the_key_works(http, monkeypatch):
     texts = [s["text"] for s in trip["steps"]]
     assert "search_viator Lisbon: food, 2026-12-04 to 2026-12-06" in texts
     assert not any("Viator unavailable" in t for t in texts)
-    assert len(http.sent("/products/search")) == 1 and len(http.sent(f"/products/{code}")) == 1
+    assert len(http.sent("/products/search")) == 1
+    assert len(http.sent(f"/products/{code}")) == 2              # the researcher's search_viator, then the code's re-check
     walk = next(e for e in trip["experiences"] if e["id"] == "item-0")
     assert walk["booking_url"] == url and walk["price"]["source"]["provider"] == "viator"
+    assert "Checked by the code" in walk["verdict"]["note"]
 
 
 def test_any_destination_works_without_a_sample(monkeypatch):
@@ -128,8 +130,9 @@ def five_a_day(**over_by_id):
     for i, day in enumerate(DAYS):
         start, end = TIMES[seen[day]]
         seen[day] += 1
-        exps.append(experience(f"cand-{i}", name=f"Candidate {i}", schedule={"day": day, "start": start, "end": end},
-                               **over_by_id.get(f"cand-{i}", {})))
+        exps.append(from_the_web(experience(f"cand-{i}", name=f"Candidate {i}",
+                                            schedule={"day": day, "start": start, "end": end},
+                                            **over_by_id.get(f"cand-{i}", {}))))
     return exps
 
 

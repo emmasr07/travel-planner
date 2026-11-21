@@ -194,6 +194,57 @@ def test_viator_opening_hours_are_read_back_for_one_date():
     assert viator.open_ranges("Start times on 2026-12-04: 10:00", date(2026, 12, 4)) is None
 
 
+ROME_URL = ("https://www.viator.com/tours/Rome/Rome-Pasta-and-Tiramisu-Making-Experience-with-Premium-Wine/"
+            "d511-5487240P3?mcid=42383&pid=P00332382&medium=api&api_version=2.0")
+
+
+@pytest.mark.parametrize("url, code", [
+    (fa.product_url("111P1"), "111P1"),
+    (ROME_URL, "5487240P3"),
+    ("https://www.viator.com/tours/Lisbon/x", None),
+    ("https://example.com/tours/Rome/x/d511-5487240P3", None),                # not Viator
+])
+def test_viator_product_code_from_its_link(url, code):
+    assert viator.product_code(url) == code
+
+
+def test_product_facts_fetches_the_product_and_its_schedule_again():
+    d = fa.details("111P1", pricing_type="UNIT")
+    d["reviews"] = {"totalReviews": 120, "combinedAverageRating": 4.8}
+    apis = fa.viator_routes(FakeAPIs(), [(fa.summary("111P1", "Alfama walk"), d, fa.schedule("111P1"))])
+    with apis.client() as c:
+        facts = viator.product_facts("111P1", fa.DATES, client=c)
+    assert facts == {"status": "ACTIVE",
+                     "price": {"amount": 35.0, "currency": "EUR", "per": "group", "label": None},
+                     "rating": {"value": 4.8, "review_count": 120},
+                     "opening_hours": {"text": "Start times on 2026-12-04 to 2026-12-06: 10:00, 14:00",
+                                       "slots": ["10:00", "14:00"]}}
+    assert [line["request"] for line in log_lines()][-2:] == ["GET /products/111P1",
+                                                               "GET /availability/schedules/111P1"]
+
+
+def test_product_facts_without_reviews_or_times():
+    apis = fa.viator_routes(FakeAPIs(), [(fa.summary("111P1", "Alfama walk"), fa.details("111P1"),
+                                          fa.schedule("111P1", days=["MONDAY"]))])
+    with apis.client() as c:
+        facts = viator.product_facts("111P1", fa.DATES, client=c)
+    assert facts["rating"] is None and facts["opening_hours"] is None
+
+
+def test_geoapify_refetch_asks_the_stored_url_again_with_our_key():
+    apis = fa.geo_routes(FakeAPIs())
+    url = geoapify.public_url(geoapify.GEOCODE_URL, {"text": "Praça do Comércio, Lisbon", "format": "json", "limit": 1})
+    with apis.client() as c:
+        data = geoapify.refetch(url, client=c)
+    assert data["results"][0]["lat"] == 38.70775
+    [sent] = apis.sent("/v1/geocode/search")
+    assert dict(sent.url.params) == {"text": "Praça do Comércio, Lisbon", "format": "json", "limit": "1",
+                                     "apiKey": fa.GEO_KEY}
+    assert fa.GEO_KEY not in json.dumps(log_lines())
+    with pytest.raises(common.SourceError):
+        geoapify.refetch("https://example.com/v1/geocode/search?text=x")
+
+
 def test_months_from_schedule_seasons():
     summer = fa.schedule("X", season=("2027-06-01", "2027-09-30"))
     assert viator.months_from_schedule(summer, "2026-12-04") == [6, 7, 8, 9]
