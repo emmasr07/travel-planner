@@ -18,3 +18,8 @@
 | 19 Nov | London | VIP Bicester Village trip (Viator) | price per group | £899.56 (€1,079.11) per group | same on the Viator page, price for the whole group | opened Viator link | ✅ per-group fix works |
 | 19 Nov | Matera | Underground mattress / Hypogeum Materasum (Viator) | price, label, rating | €8 pp · Adult (1–99) · 4.53/5, 92 reviews | same on the Viator page | opened Viator link | ✅ |
 | 19 Nov | Matera | Hypogeum Materasum | duplicate | appears twice: Viator item + Geoapify "Ipogeo MateraSum" | same place | compared names and links | ❌ duplicate in the list |
+| 22 Nov | Rome | Colosseum guided tour (Viator) | price, label | €130 pp · Adult (13–99) · verified | same on the Viator page | opened Viator link | ✅ (verified) |
+| 22 Nov | Rome | Pasta & tiramisu cooking class (Viator) | price, label | €99 pp · Adult (18–99) · verified | same on the Viator page | opened Viator link | ✅ (verified) |
+| 22 Nov | Rome | Pizza, gelato & supplì class (Viator) | price, label | €99 pp · Adult (18–100) · verified | same on the Viator page | opened Viator link | ✅ (verified) |
+| 22 Nov | Rome | Private Colosseum photoshoot (Viator) | price, label | €45 pp · Adult (13–99), when 2 book together · verified | same on the Viator page | opened Viator link | ✅ (verified) |
+| 22 Nov | Rome | Capitoline Museums | fact in suggestion | "free on Sunday 6 Dec" written in the suggestion text, not checked by code or verifier | not checked yet | read the card | ⚠️ finding: facts can slip into suggestion text |
