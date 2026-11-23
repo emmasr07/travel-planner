@@ -129,6 +129,11 @@
             <span class="field-label">Notes</span>
             <textarea class="input" data-field="notes" placeholder='e.g. "no museums", "wheelchair access"'></textarea>
           </label>
+          <label class="field" id="access-field" hidden>
+            <span class="field-label">Access code</span>
+            <input class="input" type="password" id="access-code" autocomplete="off" spellcheck="false" aria-describedby="access-help">
+            <span class="caption" id="access-help">The AI agents search live sources and cost money, so they need a code. No code? Plan a demo trip with sample data instead.</span>
+          </label>
         </div>
       </section>
 
@@ -138,6 +143,10 @@
       </div>
 
       <p class="field-error" id="submit-error" role="alert" hidden></p>
+      <p id="demo-offer" hidden>
+        <button type="button" class="btn btn-secondary" id="try-demo">Plan a demo trip instead</button>
+        <span class="caption" id="demo-cities"></span>
+      </p>
 
       <div class="step-nav">
         <button type="button" class="btn btn-secondary" id="back">Back</button>

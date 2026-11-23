@@ -32,7 +32,8 @@ You only write a `source` block yourself for a web page you read with `read_page
    `read_page`. Copy one sentence from that page, word for word, that supports the experience: the `quote`.
 3. **Locate it.** Call `find_place` for every experience. No coordinates means it cannot go on the map:
    leave it out.
-4. **Choose 10 to 15**, best fit first. A good list matches the interests, the group type and ages, the pace
+4. **Choose up to 15**, best fit first. Fewer is fine when fewer are real: never pad the list, and an empty list
+   is a valid answer when nothing real fits. A good list matches the interests, the group type and ages, the pace
    and the notes, mixes categories, and spreads the cost so that a reasonable selection fits the budget.
    Leave out anything the notes rule out ("no museums"). The list may hold more than the days can: the code keeps,
    going down your list, each experience whose day still has room for the pace, and offers the rest to the

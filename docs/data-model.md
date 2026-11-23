@@ -31,29 +31,47 @@ Every trip is saved as `data/trips/<trip-id>.json` and rewritten after each step
 ```
 trip
 ├── id, created, status         researching → checking → verifying → ready → done (or failed)
+├── mode                        demo / agents: the mode the trip was planned in, kept for its swaps and quick searches
 ├── profile                     the questionnaire answers
-├── steps []                    log of what each agent and the code did, with times (shown to the user)
+├── steps []                    log of what each agent, the code and the user did, with times (shown to the user)
 ├── experiences []              see section 3
-├── totals                      spent vs budget, computed by code
-├── brochure                    once built: the sublist (stops with facts, status, Book link), totals, not counted,
+├── totals                      spent vs budget, computed by code (null until the checking step)
+├── brochure                    null until built: the sublist (stops with facts, status, Book link), totals, not counted,
 │                               the "Prices checked on" note and the map block; the PDF is drawn from it on download
-├── sessions []                 agents mode: one entry per agent session (role, id, model, cap, list_cost, stop)
-├── search                      the latest swap or quick search: status, request, day, its checked options, the pick
-└── error                       what went wrong, if status = failed
+├── sessions []                 agents mode only: one entry per agent session, with its cap and cost
+├── search                      only after the first swap or quick search: the latest one, its checked options, the pick
+└── error                       what went wrong, if status = failed; otherwise null
 ```
+
+`id` is the destination, the date and time, and 4 random hex characters (`lisbon-20261123-131133-e1da`); only lowercase
+letters, digits and dashes. `error` is the exception's type and message (`"AgentFailed: researcher stopped at its cost
+cap ($1.00) before delivering"`). A trip or search cut off by a server restart becomes `failed` at the next start, with
+the reason ("the server restarted while the trip was verifying, so it stopped there"; for a search, "…ask again").
+
+### The code's blocks
+
+| Block | Shape |
+|---|---|
+| `steps[]` | `{ "at", "who", "text" }`; `who` is code / researcher / verifier / user |
+| `totals` | `{ "per", "group_size", "budget", "used", "left", "over_by", "over", "kept", "counted", "not_counted" }`: money in EUR as 2-place strings (`"86.00"`), in the budget's unit (per person or total, as the user chose); `kept` is how many count (kept and not rejected); `counted` / `not_counted` are lists of experience ids |
+| `sessions[]` | `{ "role", "purpose", "session_id", "model", "cap", "list_cost", "active_seconds", "stop", "deliveries", "tool_calls", "ended" }`: role researcher / verifier, purpose research / verify / quick; `cap` and `list_cost` are `{ "amount", "currency": "USD" }` in whole US cents as strings, as the API states them (`"100"` = $1.00); `list_cost` null if the platform did not answer; `stop` is the platform's stop reason (`end_turn`, `budget_reached`…) |
+| `search` | `{ "kind", "for", "request", "day", "status", "options", "error", "picked", "started" }`: kind swap / quick, `for` the swapped experience's id (null for quick), status searching / ready / failed, `options` 0–3 experiences checked and verified like the list (each with `checks`, `verdict`, `status`, `user`, `cost_eur`), `picked` the chosen option's id or null |
+| `brochure` | `{ "created_at", "stops", "totals", "not_counted", "prices_checked_at", "prices_note", "map", "pdf" }`: `not_counted` as `{ "id", "name" }`; `prices_checked_at` the oldest price check among the stops (null when none has a price); `pdf` always null (the PDF is never stored) |
+| a brochure stop | `{ "id", "stop", "day", "date", "start", "end", "name", "time_why", "price", "cost_eur", "status", "note", "booking_url", "location" }`: numbered by day, then start time; `time_why` is `{ "text", "kind" }`, kind suggestion (the AI's reason) or user ("You picked this time"); `price` is the experience's price block; `note` says what to check before booking (to_check only); `location` is `{ "lat", "lng", "address" }` |
+| brochure `map` | `{ "kind": "static", "source", "attribution" }` when the Geoapify image was saved beside the trip (`<trip-id>.map.png`), or `{ "kind": "plot", "reason" }` when the page and PDF place the pins by their coordinates |
 
 ### `profile` (from the questionnaire)
 
 | Field | Type | Example |
 |---|---|---|
-| `destination` | string | `"Lisbon"` |
+| `destination` | string | `"Lisbon"` (demo: the sample's city name; agents: as typed) |
 | `start_date`, `end_date` | date | `"2026-12-04"`, `"2026-12-06"` |
-| `timezone` | string | `"Europe/Lisbon"` (found by code from the destination) |
+| `timezone` | string | `"Europe/Lisbon"` (found by code: from the sample in demo mode, from Geoapify at the research step in agents mode) |
 | `group_type` | enum | solo / couple / friends / family / business |
 | `group_size` | integer | `4` |
 | `age_range` | enum | 18-24 / 25-34 / 35-49 / 50+ (plus `youngest_age` for families with children) |
 | `interests` | string[] | `["food", "culture", "adventure"]`, from culture, food, nature, nightlife, relax, adventure, shopping |
-| `budget` | object | `{ "amount": 250, "currency": "EUR", "per": "person" }` |
+| `budget` | object | `{ "amount": "250", "currency": "EUR", "per": "person" }`; per is person / total; the amount is saved as a string, the exact decimal the user typed |
 | `pace` | enum | chill / balanced / packed |
 | `notes` | string | `"no museums, one of us uses a wheelchair"` |
 
@@ -94,32 +112,37 @@ trip
 
 | Field | Type | Example | Checked by code |
 |---|---|---|---|
-| `best_time` | object | `{ "slot": "sunset", "start": "18:30", "reason": "Best light over the river", "kind": "suggestion" }` | `start` inside `opening_hours` |
-| `why_fits` | object | `{ "text": "You picked food", "kind": "suggestion" }` | names one of the profile's answers |
-| `schedule` | object | `{ "day": 1, "start": "18:30", "end": "20:30" }` | within the trip, `end = start + duration`, no overlap that day |
+| `best_time` | object | `{ "slot": "sunset", "start": "18:30", "reason": "Best light over the river", "kind": "suggestion" }` | only its shape: the hours check uses `schedule.start`; the reason is shown while the user keeps that time |
+| `why_fits` | object | `{ "text": "You picked food", "kind": "suggestion" }` | only its shape: shown as the AI wrote it, marked as a suggestion |
+| `schedule` | object | `{ "day": 1, "start": "18:30", "end": "20:30" }` | day within the trip and `end = start + duration_min` (sent back to the agent if not); then the `hours`, `overlap` and `pace` checks |
 
 ### 3d. Checks (from the code)
 
-A list, one entry per check: `{ "name", "result": "ok" | "warn" | "fail" | "skip", "detail" }`.
+A list, one entry per check, always in this order: `{ "name", "result": "ok" | "warn" | "fail" | "skip", "detail" }`.
+`schema` and `source` are decided once, at the checking step; the others run again after every keep, remove or time
+change. `skip` means the check could not apply (in demo mode no source page is read, so `source` is skipped).
 
 | Check | fail / warn when |
 |---|---|
-| `schema` | a required field is missing or has the wrong type (the delivery is sent back to the agent to fix, up to 3 times) |
+| `schema` | always ok here: a delivery that does not match the schema never gets this far (it goes back to the agent to fix, up to 3 deliveries) |
 | `source` | warn if the quote is not on the source page, or the page doesn't load |
 | `season` | warn if `months` doesn't include the trip dates |
 | `age` | fail if the youngest traveller is under `min_age` |
-| `price` | warn if no price; fail if it alone exceeds the whole budget |
-| `time` | warn if `best_time` is outside `opening_hours` or overlaps another stop |
+| `price` | warn if no price, a currency that could not be converted, or free / 0 with no source that says so; fail if it alone exceeds the whole budget |
+| `hours` | warn if `schedule.start` is outside `opening_hours`, the place is closed that day, or no hours are known (OpenStreetMap syntax or Viator's dated hours) |
 | `closure` | fail if the source's description says the place is closed or temporarily closed, in any of six languages (closed days such as "Closed on Mondays" are left to the hours check) |
+| `overlap` | warn if it overlaps another kept item that day |
+| `pace` | warn if its day holds more kept items than the pace allows (chill 2, balanced 3, packed 4) |
 | `accessibility` | warn if the notes mention a wheelchair and `wheelchair` is no / unknown |
 
 ### 3e. Verdict (from the code and the verifier agent)
 
 ```json
-{ "verdict": "confirmed", "url_read": "https://…", "passage": "What the page says, copied word for word.", "contested_fields": [], "note": "The page supports name, price and hours." }
+{ "id": "alfama-food-walk", "verdict": "confirmed", "url_read": "https://…", "passage": "What the page says, copied word for word.", "contested_fields": [], "note": "The page supports name, price and hours." }
 ```
 
-`verdict`: confirmed (the page supports the record) / contradicted (it says something else, listed in `contested_fields`) / not_sure (page didn't load, behind a login, or doesn't say).
+`id` is the experience's id. In demo mode every verdict is not_sure, with empty `url_read` and `passage` and a note
+saying the verifier did not run. `verdict`: confirmed (the page supports the record) / contradicted (it says something else, listed in `contested_fields`) / not_sure (page didn't load, behind a login, or doesn't say).
 
 Who checks what (`backend/recheck.py`): facts whose source is Viator or Geoapify are fetched again by the code through the same API (Viator: the product and its schedule, by the product code in the link; Geoapify: the stored URL with our key) and compared: price amount, currency, per and label, rating and review count, hours, coordinates and wheelchair access. A rating within ±0.1 stars and up to 5% more reviews still match (fewer reviews is a difference), and the note says "within tolerance". A difference is contradicted with its fields (`price.amount`, `rating.review_count`, `opening_hours`, `location`, `accessibility.wheelchair`…); no answer, an inactive product, a link without a product code or a price in another currency than the schedule is not_sure. The verifier agent gets only the facts from web pages. One verdict per experience: contradicted if either contradicts, confirmed only if both confirm, otherwise not_sure; its `note` starts "Checked by the code" for the code's part, and `url_read` / `passage` come from the page the agent read.
 
@@ -129,7 +152,8 @@ Who checks what (`backend/recheck.py`): facts whose source is Viator or Geoapify
 |---|---|---|
 | `user.status` | user | kept / removed (suggestions start as kept up to the pace limit per day, best fit first; the rest start removed) |
 | `user.alternative` | code | `true` on a candidate the code left out to keep the pace; gone once the user keeps or removes it |
-| `user.position` | user | order within the day after reordering |
+| `user.position` | user | order within the day after reordering; not used yet (no reordering), always null |
+| `cost_eur` | code | the item's cost in EUR in the budget's unit (per person or total, as the user chose), a 2-place string (`"30.00"`); null when it can't be counted (no price, or a currency with no rate) |
 | `status` | code | **verified** (all checks ok + confirmed) / **to_check** (any warn or not_sure: shown with a note, the user decides) / **rejected** (any fail or contradicted: not shown) |
 
 ## 4. JSON the agents must return
@@ -138,7 +162,7 @@ Each agent returns its data by calling one tool with exactly this shape. The cod
 
 ### Researcher: `deliver_experiences`
 
-Returns 10 to 15 experiences, best fit first, with layers 3a, 3b and 3c. Example values are illustrative, not real data.
+Returns up to 15 experiences, best fit first, with layers 3a, 3b and 3c: fewer when fewer are real, never padded (an empty list is allowed). Example values are illustrative, not real data.
 
 ```json
 {
@@ -215,7 +239,7 @@ Rules for both:
 ## 5. The pipeline (who fills what, in order)
 
 1. **Questionnaire** → `profile`.
-2. **Researcher agent** (APIs + web search) → `experiences` with facts, honesty, suggestions.
+2. **Researcher agent** (APIs + web search) → `experiences` (up to 15) with facts, honesty, suggestions.
 3. **Code** → schema check (sent back to the agent if wrong), currency conversion, the checks in 3d.
 4. **Verifier agent** → one verdict per experience.
 5. **Code** → final `status`; rejected ones are hidden.

@@ -19,7 +19,7 @@ from backend import budget, checks, recheck
 from backend.checks import PACE_LIMIT, clock, minutes, trip_days
 from backend.schema import QUICK_MAX_ITEMS, VERDICTS_SCHEMA, delivery_schema, experiences_schema, validate_delivery
 from backend.sources import fx, geoapify, tavily, viator
-from backend.sources.common import SourceAuthError, SourceError, now_iso
+from backend.sources.common import SourceError, now_iso
 
 ROOT = Path(__file__).resolve().parent.parent
 SAMPLES_DIR = ROOT / "data" / "samples"
@@ -61,6 +61,12 @@ def mode():
     return "agents" if os.getenv("MODE", "demo").strip().lower() == "agents" else "demo"
 
 
+def _demo(trip_mode):
+    """True when the work runs on the samples: the trip's own mode (a trip keeps the mode it was planned in), or the
+    server's MODE when none is given."""
+    return (trip_mode or mode()) == "demo"
+
+
 # --- the samples --------------------------------------------------------------------------------------------
 
 def _samples():
@@ -100,10 +106,10 @@ def sample_rates(destination):
 
 # --- research, verification and quick search ----------------------------------------------------------------
 
-def research(profile, step, record=None, pages=None):
+def research(profile, step, record=None, pages=None, trip_mode=None):
     """{"experiences": [...]} in the researcher's delivery shape. In agents mode `pages` (url -> text) collects the
     pages the researcher read, for the code's source check, and `record` gets the session's cost."""
-    if mode() != "demo":
+    if not _demo(trip_mode):
         return _research_with_agent(profile, step, record, {} if pages is None else pages)
     slug, city, sample = find_sample(profile["destination"])
     step("researcher", f"demo mode, no AI: reading data/samples/{slug}.json ({len(sample)} places in {city})")
@@ -126,9 +132,9 @@ def research(profile, step, record=None, pages=None):
     return {"experiences": delivered}
 
 
-def verify(profile, experiences, step, record=None):
+def verify(profile, experiences, step, record=None, trip_mode=None):
     """{"verdicts": [...]} in the verifier's delivery shape."""
-    if mode() != "demo":
+    if not _demo(trip_mode):
         return _verify_with_agent(profile, experiences, step, record)
     step("verifier", "demo mode: the verifier did not run, so every experience is marked not sure")
     _pause()
@@ -136,10 +142,10 @@ def verify(profile, experiences, step, record=None):
                           "contested_fields": [], "note": DEMO_NOTE} for e in experiences]}
 
 
-def quick(profile, ask, step, record=None, pages=None):
+def quick(profile, ask, step, record=None, pages=None, trip_mode=None):
     """0-3 options for a swap or a last-minute request (prompts/quick-search.md), in the researcher's delivery shape.
     ask: {kind: swap|quick, request, day, free_slots, budget_left, taken (ids in the trip), for (swapped item)}."""
-    if mode() == "demo":
+    if _demo(trip_mode):
         return _demo_quick(profile, ask, step)
     settings()
     city = _city(profile, step)
@@ -157,10 +163,10 @@ def quick(profile, ask, step, record=None, pages=None):
                 overrides={"system": quick_prompt(), "tools": agent_tools("researcher", quick=True)})
 
 
-def rates(profile, experiences):
+def rates(profile, experiences, trip_mode=None):
     """currency -> fx block for the prices to convert: the sample's rates in demo mode, Frankfurter in agents mode.
     A currency with no rate stays unconverted (not counted, and the price check says so)."""
-    if mode() == "demo":
+    if _demo(trip_mode):
         return sample_rates(profile["destination"])
     out = {}
     for currency in sorted({e["price"]["currency"] for e in experiences
@@ -172,10 +178,10 @@ def rates(profile, experiences):
     return out
 
 
-def source_pages(experiences, pages=None):
+def source_pages(experiences, pages=None, trip_mode=None):
     """url -> page text for every web quote, for the code's source check: the pages the researcher read, and any
     other quoted page read now ("" when it does not load). None in demo mode: no page is read."""
-    if mode() == "demo":
+    if _demo(trip_mode):
         return None
     out = dict(pages or {})
     for e in experiences:
@@ -273,7 +279,8 @@ def agent_tools(role, quick=False):
             checks that every experience has exactly one verdict and answers "Received" or the errors to fix; you have
             3 deliveries in all.""", _input_schema(verdicts))]
     categories = experiences_schema()["$defs"]["experience"]["properties"]["category"]["enum"]
-    count = "0 to 3 (a quick search: never invent one to fill the list)" if quick else "10 to 15"
+    count = ("0 to 3 (a quick search: never invent one to fill the list)" if quick else
+             "up to 15, fewer when fewer are real (never invent one to fill the list; an empty list is allowed)")
     return [
         _tool("search_viator", """Searches the Viator Partner API for bookable experiences in the destination on the
             trip dates, for each interest, best rated first, priced in the destination's currency. Returns a JSON list
@@ -318,7 +325,7 @@ def _source_tools(city, pages):
         try:
             found = viator.search_viator(i["destination"], i["interests"], (i["start_date"], i["end_date"]),
                                          client=HTTP)
-        except SourceAuthError as e:
+        except SourceError as e:                        # a refused key, a timeout or a 5xx: the web still works
             return f"Viator unavailable ({e}). Carry on with search_web and find_place.", True
         return _json(found), False
 
@@ -384,7 +391,7 @@ def _research_with_agent(profile, step, record, pages):
 def _research_errors(delivery, profile):
     """The code's checks of a researcher delivery, sent back for the agent to fix."""
     errors = checks.delivery_errors(delivery, profile)
-    if validate_delivery(delivery, min_items=False):
+    if validate_delivery(delivery):
         return errors                                       # not the right shape: nothing else can be checked
     return errors + checks.min_age_errors(delivery)
 

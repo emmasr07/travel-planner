@@ -55,3 +55,42 @@ def test_the_brochure_page_shows_the_saved_sublist_and_downloads_the_pdf():
     html = (FRONTEND / "brochure.html").read_text()
     assert re.search(r'<a [^>]*id="download-pdf"', html)
     assert not re.search(r'aria-disabled="true"[^>]*>Download PDF', html)
+
+
+# --- roadmap step 5: the full flow and its failures ----------------------------------------------------------------
+
+def test_the_list_page_keeps_polling_through_a_lost_connection():
+    # A restart or a short outage: no answer (status 0) or a 5xx keeps the page and tries again; 404 is final.
+    js = (FRONTEND / "js" / "experiences.js").read_text()
+    assert "error.status === 0 || error.status >= 500" in js
+    assert "Lost the connection to the server: trying again" in js
+    load = js[js.index("async function load()"):js.index("function pollSearch()")]
+    assert "lostConnection(error)" in load and "setTimeout(load, POLL_MS)" in load
+    poll = js[js.index("function pollSearch()"):js.index("function searching()")]
+    assert "lostConnection(error)" in poll and poll.count("pollSearch();") == 2     # re-armed after a lost poll too
+
+
+def test_the_questionnaire_locks_back_while_it_sends_the_answers():
+    # Back during the POST re-enabled Next, so a second trip (a second paid run in agents mode) could start.
+    js = (FRONTEND / "js" / "plan.js").read_text()
+    send = js[js.index("async function findExperiences("):]
+    send = send[:send.index("\n  }\n")]
+    assert "backBtn.disabled = true" in send and "backBtn.disabled = false" in send
+
+
+def test_the_empty_list_says_when_everything_was_rejected():
+    js = (FRONTEND / "js" / "experiences.js").read_text()
+    empty = js[js.index("if (shown.length === 0)"):js.index("statusCard.hidden = true;")]
+    assert "trip.experiences.length" in empty and "failed the checks" in empty
+
+
+def test_the_access_code_is_asked_on_the_questionnaire_and_sent_in_a_header_only():
+    html = (FRONTEND / "plan.html").read_text()
+    field = re.search(r'<input[^>]*id="access-code"[^>]*>', html).group(0)
+    assert 'type="password"' in field and "data-field" not in field      # never part of the saved answers
+    assert 'id="try-demo"' in html
+    api = (FRONTEND / "js" / "api.js").read_text()
+    assert '"X-Access-Code"' in api and "tp.accessCode" in api
+    plan = (FRONTEND / "js" / "plan.js").read_text()
+    assert '"/api/trips?mode=demo"' in plan and "403" in plan and "429" in plan
+    assert "accessCode" not in plan[plan.index("function toProfile("):plan.index("function showSubmitError(")]

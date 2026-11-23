@@ -13,7 +13,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validator, model_validator
 
-from backend import agents, brochure, budget, checks, store
+from backend import access, agents, brochure, budget, checks, store
 from backend.schema import validate_verdicts
 from backend.sources.common import now_iso
 
@@ -101,10 +101,19 @@ class Change(BaseModel):
 
 # --- creating a trip and running its steps -------------------------------------------------------------------
 
-def create_trip(profile: Profile):
-    mode = agents.mode()
+def _paid_run(code):
+    """An agents run (a trip, a swap or a quick search) costs money: the access code (403), the setup (503), then
+    today's count (429). Called last, once the request is otherwise accepted, so a refused request never counts."""
+    access.require_code(code)
+    agents.settings()                               # NotReady (503) until scripts/create_agents.py has run
+    access.count_run()
+
+
+def create_trip(profile: Profile, *, demo=False, code=None):
+    """demo=True: a demo trip on the samples even when the server runs the agents (no code, never counted)."""
+    mode = "demo" if demo else agents.mode()
     if mode == "agents":
-        agents.settings()                           # NotReady (503) until scripts/create_agents.py has run
+        _paid_run(code)
         answers = profile.model_dump(mode="json")
         answers["timezone"] = None                  # found by code from the destination at the research step
         return _new_trip(mode, answers)
@@ -129,7 +138,7 @@ def _new_trip(mode, answers):
 def run_pipeline(trip_id):
     """Runs in the background after POST /api/trips. A step that fails stops here and sets `failed`."""
     trip = store.load(trip_id)
-    profile = trip["profile"]
+    profile, mode = trip["profile"], trip["mode"]
 
     def step(who, text):
         trip["steps"].append({"at": now_iso(), "who": who, "text": text})
@@ -141,18 +150,18 @@ def run_pipeline(trip_id):
 
     pages = {}                                         # url -> text of the pages the researcher read
     try:
-        delivery = agents.research(profile, step, record=record, pages=pages)
+        delivery = agents.research(profile, step, record=record, pages=pages, trip_mode=mode)
         trip["status"] = "checking"
         exps = delivery["experiences"]
         step("code", f"{len(exps)} experiences received: checking the schema, prices, dates, hours and ages")
-        errors = checks.delivery_errors(delivery, profile, min_items=trip["mode"] != "demo")
+        errors = checks.delivery_errors(delivery, profile)
         if errors:
             raise ValueError(f"the delivery does not match the schema ({len(errors)} errors), first: {errors[0]}")
-        step("code", _convert_prices(exps, agents.rates(profile, exps)))
+        step("code", _convert_prices(exps, agents.rates(profile, exps, trip_mode=mode)))
         for e in exps:
             e["user"] = {"status": "kept", "position": None}
             e["verdict"] = None
-        checks.check_all(profile, exps, pages=agents.source_pages(exps, pages))   # None in demo: not read
+        checks.check_all(profile, exps, pages=agents.source_pages(exps, pages, trip_mode=mode))  # demo: None
         alternatives = _keep_best_fit(profile, exps)
         if alternatives:
             days, pace = checks.trip_days(profile), profile["pace"]
@@ -165,7 +174,7 @@ def run_pipeline(trip_id):
         trip["status"] = "verifying"
         step("code", "checks done: now verifying the sources")
 
-        verdicts = agents.verify(profile, exps, step, record=record)
+        verdicts = agents.verify(profile, exps, step, record=record, trip_mode=mode)
         errors = validate_verdicts(verdicts)
         if errors:
             raise ValueError(f"the verdicts do not match the schema, first: {errors[0]}")
@@ -184,10 +193,36 @@ def run_pipeline(trip_id):
         store.save(trip)
 
 
+def recover_interrupted():
+    """At startup. The pipeline and the searches run in this process, so none survives a restart: a trip still in a
+    busy step, or a search still searching, was cut off and would wait forever. Each becomes failed with a plain
+    reason; everything done before is kept. A file that cannot be read is left as it is. Returns the ids changed."""
+    changed = []
+    for trip_id in store.trip_ids():
+        with _EDIT:
+            try:
+                trip = store.load(trip_id)
+            except (store.TripNotFound, ValueError):
+                continue
+            reasons = []
+            if trip.get("status") in BUSY:
+                reasons.append(f"the server restarted while the trip was {trip['status']}, so it stopped there")
+                trip["status"], trip["error"] = "failed", reasons[-1]
+            search = trip.get("search")
+            if isinstance(search, dict) and search.get("status") == "searching":
+                reasons.append("the server restarted during the search: ask again")
+                search.update(status="failed", error=reasons[-1])
+            if reasons:
+                trip.setdefault("steps", []).extend({"at": now_iso(), "who": "code", "text": r} for r in reasons)
+                store.save(trip)
+                changed.append(trip_id)
+    return changed
+
+
 def _keep_best_fit(profile, exps):
-    """The researcher lists 10-15 candidates, best fit first, and the pace allows fewer (chill 2, balanced 3, packed 4
-    a day). Going down the list, one is kept while its day has room; the others start removed, as alternatives the
-    user can restore. Rejected ones take no place (they stay hidden, as before). Returns how many are alternatives."""
+    """The researcher lists up to 15 candidates, best fit first, and the pace may allow fewer (chill 2, balanced 3,
+    packed 4 a day). Going down the list, one is kept while its day has room; the others start removed, as
+    alternatives the user can restore. Rejected ones take no place (they stay hidden, as before). Returns how many are alternatives."""
     for e in exps:
         e["user"] = {"status": "kept", "position": None}
     checks.recheck(profile, exps)                    # which are rejected, whatever is kept
@@ -313,7 +348,7 @@ def fit_budget(trip_id):
 
 # --- swap, quick search and picking an option ---------------------------------------------------------------------
 
-def start_swap(trip_id, exp_id):
+def start_swap(trip_id, exp_id, code=None):
     """Asks for 2-3 alternatives to one experience. The search runs in the background (run_search)."""
     with _EDIT:
         trip = get_trip(trip_id)
@@ -323,10 +358,10 @@ def start_swap(trip_id, exp_id):
             raise WrongState(f"{e['name']} was rejected by the checks: it is not on your list")
         request = (f"Alternatives to {e['name']} ({e['category']}): 2 to 3 experiences of a similar type and price, "
                    f"for the same time if possible")
-        return _start_search(trip, "swap", exp_id, request, e["schedule"]["day"], f"{e['name']}: swap asked")
+        return _start_search(trip, "swap", exp_id, request, e["schedule"]["day"], f"{e['name']}: swap asked", code)
 
 
-def start_quick(trip_id, ask: Ask):
+def start_quick(trip_id, ask: Ask, code=None):
     """A last-minute request for one day. The search runs in the background (run_search)."""
     with _EDIT:
         trip = get_trip(trip_id)
@@ -334,14 +369,18 @@ def start_quick(trip_id, ask: Ask):
         days = checks.trip_days(trip["profile"])
         if ask.day > days:
             raise BadInput("day", f"day {ask.day} is outside your {days}-day trip")
-        return _start_search(trip, "quick", None, ask.request, ask.day, f"quick search for day {ask.day}: {ask.request}")
+        return _start_search(trip, "quick", None, ask.request, ask.day,
+                             f"quick search for day {ask.day}: {ask.request}", code)
 
 
-def _start_search(trip, kind, for_id, request, day, said):
+def _start_search(trip, kind, for_id, request, day, said, code):
     if (trip.get("search") or {}).get("status") == "searching":
         raise WrongState("a swap or quick search is already running: wait for its options")
-    if agents.mode() == "agents":
-        agents.settings()
+    if trip.get("mode") == "agents":                 # a trip keeps the mode it was planned in
+        if agents.mode() != "agents":
+            raise WrongState("this trip was planned with the AI agents and this server runs the demo: "
+                             "swap and quick search are off for it")
+        _paid_run(code)
     trip["search"] = {"kind": kind, "for": for_id, "request": request, "day": day, "status": "searching",
                       "options": [], "error": None, "picked": None, "started": now_iso()}
     trip["steps"].append({"at": now_iso(), "who": "user", "text": said})
@@ -353,7 +392,7 @@ def run_search(trip_id):
     """Runs in the background after a swap or quick request: the options get the same conversion, checks and
     verification as the list. The trip itself stays ready; each step is saved without losing the user's changes."""
     trip = get_trip(trip_id)
-    profile, search = trip["profile"], trip["search"]
+    profile, search, mode = trip["profile"], trip["search"], trip.get("mode")
 
     def step(who, text):
         _update(trip_id, lambda t: t["steps"].append({"at": now_iso(), "who": who, "text": text}))
@@ -370,7 +409,7 @@ def run_search(trip_id):
                "taken": [e["id"] for e in trip["experiences"]],
                "for": next((e for e in trip["experiences"] if e["id"] == search["for"]), None)}
         pages = {}
-        delivery = agents.quick(profile, ask, step, record=record, pages=pages)
+        delivery = agents.quick(profile, ask, step, record=record, pages=pages, trip_mode=mode)
         errors = checks.delivery_errors(delivery, profile, quick=True)
         if errors:
             raise ValueError(f"the options do not match the schema ({len(errors)} errors), first: {errors[0]}")
@@ -379,12 +418,13 @@ def run_search(trip_id):
             _update(trip_id, lambda t: _search_done(t, []))
             step("code", f"no options found for {search['request']!r}: nothing invented")
             return
-        step("code", f"{len(options)} options received: " + _convert_prices(options, agents.rates(profile, options)))
+        step("code", f"{len(options)} options received: " +
+             _convert_prices(options, agents.rates(profile, options, trip_mode=mode)))
         for o in options:
             o["user"] = {"status": "kept", "position": None}
             o["verdict"] = None
-        checks.check_all(profile, options, pages=agents.source_pages(options, pages))
-        verdicts = agents.verify(profile, options, step, record=record)
+        checks.check_all(profile, options, pages=agents.source_pages(options, pages, trip_mode=mode))
+        verdicts = agents.verify(profile, options, step, record=record, trip_mode=mode)
         errors = validate_verdicts(verdicts)
         if errors:
             raise ValueError(f"the verdicts do not match the schema, first: {errors[0]}")

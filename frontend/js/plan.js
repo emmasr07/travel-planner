@@ -1,5 +1,7 @@
 // Questionnaire: shows one step at a time, keeps answers in sessionStorage, and only enables Next when the step is answered.
 // "Find experiences" sends the answers to POST /api/trips and opens the experience list for the new trip.
+// Agents mode: the last step asks once for the access code (kept for this tab by api.js, never in the answers); without
+// a right code (403) or over today's limit (429) the page offers a demo trip instead (POST /api/trips?mode=demo).
 
 (function () {
   const STORAGE_KEY = "tp.answers";
@@ -28,6 +30,11 @@
   const summaryText = document.getElementById("summary-text");
   const dateError = document.getElementById("date-error");
   const submitError = document.getElementById("submit-error");
+  const accessField = document.getElementById("access-field");
+  const accessInput = document.getElementById("access-code");
+  const demoOffer = document.getElementById("demo-offer");
+  const demoCities = document.getElementById("demo-cities");
+  const destinationLead = document.getElementById("destination-lead");
   // Which step to reopen when the server says a field is wrong.
   const FIELD_STEPS = {
     destination: 1, start_date: 2, end_date: 2, group_type: 3, group_size: 3, age_range: 4,
@@ -36,6 +43,8 @@
 
   let answers = load();
   let current = 1;
+  let cities = "";           // the demo's sample cities, from /api/config
+  let demoChosen = false;    // the visitor took the demo offer: this page now plans demo trips
 
   function load() {
     try {
@@ -190,29 +199,48 @@
   function showSubmitError(message) {
     submitError.textContent = message;
     submitError.hidden = !message;
+    if (!message) demoOffer.hidden = true;
   }
 
   async function findExperiences() {
     nextBtn.disabled = true;
+    backBtn.disabled = true;      // going back re-enables Next: one trip per click
     nextBtn.textContent = "Finding experiences…";
     showSubmitError("");
+    if (!demoChosen && !accessField.hidden) TP.setAccessCode(accessInput.value.trim());
     try {
-      const { id } = await TP.api.post("/api/trips", toProfile(answers));
+      const path = demoChosen ? "/api/trips?mode=demo" : "/api/trips";
+      const { id } = await TP.api.post(path, toProfile(answers));
       TP.rememberTrip(id);
       window.location.href = `experiences.html?trip=${encodeURIComponent(id)}`;
     } catch (error) {
+      backBtn.disabled = false;
+      if (error.status === 403) TP.setAccessCode("");      // a wrong code is not kept
       const step = error.field ? FIELD_STEPS[error.field.split(".")[0]] : null;
       if (step && step !== current) showStep(step, true);
       else showStep(current, false);
       showSubmitError(error.message.charAt(0).toUpperCase() + error.message.slice(1));
+      demoOffer.hidden = demoChosen || !(error.status === 403 || error.status === 429);
     }
   }
 
-  // Demo mode only has sample data for a few cities: say which on the first step.
+  document.getElementById("try-demo").addEventListener("click", () => {
+    demoChosen = true;
+    accessField.hidden = true;
+    if (cities) destinationLead.textContent = `Demo trip: we have sample data for ${cities}.`;
+    findExperiences();
+  });
+
+  // Demo mode only has sample data for a few cities: say which on the first step. Agents mode: ask for the code.
   TP.api.get("/api/config").then((config) => {
+    cities = config.demo_destinations.join(", ");
     if (config.mode === "demo" && config.demo_destinations.length) {
-      document.getElementById("destination-lead").textContent =
-        `Demo mode: we have sample data for ${config.demo_destinations.join(", ")}.`;
+      destinationLead.textContent = `Demo mode: we have sample data for ${cities}.`;
+    }
+    if (config.mode === "agents") {
+      accessField.hidden = false;
+      accessInput.value = TP.accessCode();
+      demoCities.textContent = cities ? `Sample data for ${cities}: no AI, not verified.` : "";
     }
   }).catch(() => { /* the default text stays */ });
 

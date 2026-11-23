@@ -71,10 +71,10 @@ def _ranges_text(ranges):
 
 # --- the delivery -----------------------------------------------------------------------------------------------
 
-def delivery_errors(delivery, profile, *, min_items=True, quick=False):
+def delivery_errors(delivery, profile, *, quick=False):
     """Schema errors first (they stop here); then duplicate ids and schedules that don't fit the trip.
     In agents mode these go back to the researcher to fix (up to 3 deliveries)."""
-    errors = validate_delivery(delivery, min_items, quick)
+    errors = validate_delivery(delivery, quick=quick)
     if errors:
         return errors
     exps = delivery["experiences"]

@@ -8,7 +8,6 @@
   "properties": {
     "experiences": {
       "type": "array",
-      "minItems": 10,
       "maxItems": 15,
       "items": { "$ref": "#/$defs/experience" }
     }

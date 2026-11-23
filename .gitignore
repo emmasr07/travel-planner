@@ -8,3 +8,5 @@ __pycache__/
 .DS_Store
 # Trip files hold questionnaire answers: never committed.
 data/trips/
+# Today's count of agents runs (backend/access.py): runtime state, never committed.
+data/agent-usage.json*

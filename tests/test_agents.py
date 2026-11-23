@@ -103,7 +103,7 @@ def test_the_researcher_prompt_says_where_min_age_and_free_come_from():
 
 
 def test_three_wrong_deliveries_stop_the_session(ready, monkeypatch):
-    bad = delivery(n=9)                                             # fewer than 10
+    bad = delivery(n=16)                                            # more than 15
     fake = install(monkeypatch, [[tool_use("deliver_experiences", bad)]] * 3 + [[]])
     with pytest.raises(agents.AgentFailed, match="still had errors after 3 deliveries"):
         research()
@@ -119,6 +119,19 @@ def test_viator_401_answers_viator_unavailable_and_the_agent_goes_on(ready, monk
     assert out == delivery()
     text, is_error = results(fake)[0]
     assert is_error and text.startswith("Viator unavailable")
+    assert fake_apis.VIATOR_KEY not in text
+
+
+@pytest.mark.parametrize("answer", [(500, {"message": "Internal error"}), (503, {"message": "Unavailable"})])
+def test_viator_down_answers_viator_unavailable_and_the_agent_goes_on(ready, monkeypatch, answer):
+    # Roadmap step 5, a source down: any Viator failure, not only a refused key, sends the agent on to the web.
+    ready.add("GET", fake_apis.VIATOR_PROD + "/partner/destinations", answer)
+    ask = {"destination": "Lisbon", "interests": ["food"], "start_date": "2026-12-04", "end_date": "2026-12-06"}
+    fake = install(monkeypatch, [[tool_use("search_viator", ask)], [tool_use("deliver_experiences", delivery())], []])
+    out, _, _, _ = research()
+    assert out == delivery()
+    text, is_error = results(fake)[0]
+    assert is_error and text.startswith("Viator unavailable") and "Carry on with search_web" in text
     assert fake_apis.VIATOR_KEY not in text
 
 
@@ -382,7 +395,7 @@ def test_the_tools_each_agent_gets():
         assert tool["input_schema"]["type"] == "object" and len(tool["description"]) > 100
         assert "$ref" not in json.dumps(tool)
     deliver = researcher[-1]["input_schema"]["properties"]["experiences"]
-    assert deliver["minItems"] == 10 and deliver["maxItems"] == 15
+    assert "minItems" not in deliver and deliver["maxItems"] == 15          # fewer when fewer are real
     assert deliver["items"]["properties"]["location"]["properties"]["source"]["required"] == [
         "provider", "url", "retrieved_at", "quote"]
 

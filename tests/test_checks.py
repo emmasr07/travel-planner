@@ -353,9 +353,12 @@ def test_delivery_schema_errors_are_listed():
     assert any("booking_url" in e for e in errors)
 
 
-def test_delivery_needs_ten_unless_never_padded():
-    assert any("too short" in e for e in checks.delivery_errors(delivery(experience()), P))
-    assert checks.delivery_errors(delivery(experience()), P, min_items=False) == []
+def test_a_delivery_holds_up_to_fifteen_never_padded():
+    # Roadmap step 5: no minimum. Fewer real results is fine and an empty list is allowed; more than 15 is too long.
+    assert checks.delivery_errors(delivery(experience()), P) == []
+    assert checks.delivery_errors({"experiences": []}, P) == []
+    too_many = {"experiences": [experience(f"e-{i}") for i in range(16)]}
+    assert any("too long" in e for e in checks.delivery_errors(too_many, P))
 
 
 WEB_PAGE = {"provider": "web", "url": "https://www.example.it/cooking-class", "retrieved_at": "2026-11-21T10:00:00+01:00",

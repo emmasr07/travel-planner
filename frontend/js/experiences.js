@@ -40,6 +40,7 @@
   let busy = false;      // a change is on its way to the API
   let dismissed = null;  // `started` of the search whose panel the user closed
   let polling = null;    // timer while a swap or quick search runs
+  let offline = false;   // the last poll got no answer: the page keeps what it shows and tries again
 
   // ---- helpers ----
   function esc(text) {
@@ -103,13 +104,37 @@
   }
 
   // ---- loading the trip ----
+  // A poll the server could not answer (restarting or down: no answer, or a 5xx) keeps what the page shows and tries
+  // again in 2 s; any other answer (404: no such trip) is final. After a restart, a trip that was cut off comes back
+  // as failed and says so.
+  function lostConnection(error) {
+    return error.status === 0 || error.status >= 500;
+  }
+
+  function connectionLost() {
+    offline = true;
+    showError("Lost the connection to the server: trying again…");
+  }
+
+  function connectionBack() {
+    if (!offline) return;
+    offline = false;
+    showError("");
+  }
+
   async function load() {
     try {
       trip = await TP.api.get(TP.tripPath(tripId));
     } catch (error) {
+      if (lostConnection(error)) {
+        connectionLost();
+        setTimeout(load, POLL_MS);
+        return;
+      }
       showStatus("We couldn't load your trip", `${esc(error.message)} <a href="plan.html">Plan a new trip</a>.`);
       return;
     }
+    connectionBack();
     render();
     if (BUSY.includes(trip.status)) setTimeout(load, POLL_MS);
     else if (searching()) pollSearch();
@@ -123,9 +148,15 @@
       try {
         trip = await TP.api.get(TP.tripPath(tripId));
       } catch (error) {
+        if (lostConnection(error)) {
+          connectionLost();
+          pollSearch();
+          return;
+        }
         showError(error.message);
         return;
       }
+      connectionBack();
       if (searching()) {
         renderSearch();
         pollSearch();
@@ -323,8 +354,13 @@
     const shown = visible();
     if (shown.length === 0) {
       document.getElementById("subtitle").textContent = intro;
+      const found = trip.experiences.length;      // all of them rejected, if any: hidden, never shown as fine
       showStatus("No experiences found",
-        `We found nothing in ${esc(p.destination)} for ${esc(p.interests.join(", "))}, and we never invent one. ` +
+        (found
+          ? `We found ${found === 1 ? "one place" : `${found} places`} in ${esc(p.destination)} for ` +
+            `${esc(p.interests.join(", "))}, but ${found === 1 ? "it" : "all of them"} failed the checks, ` +
+            "so nothing is shown, and we never invent one. "
+          : `We found nothing in ${esc(p.destination)} for ${esc(p.interests.join(", "))}, and we never invent one. `) +
         'Try widening your interests or your budget: <a href="plan.html">edit my answers</a>.');
       renderSearch();
       renderQuick();

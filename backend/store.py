@@ -38,6 +38,13 @@ def load(trip_id):
     return json.loads(target.read_text(encoding="utf-8"))
 
 
+def trip_ids():
+    """The id of every saved trip (the startup check for work a restart cut off)."""
+    if not TRIPS_DIR.exists():
+        return []
+    return sorted(p.stem for p in TRIPS_DIR.glob("*.json") if TRIP_ID.fullmatch(p.stem))
+
+
 def map_path(trip_id):
     return path(trip_id).with_suffix(".map.png")
 

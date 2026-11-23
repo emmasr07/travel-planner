@@ -1,23 +1,33 @@
 # FastAPI app: the API under /api (docs/backend-logic.md section 4), /health, and the frontend at / on one port.
 # Each route only translates HTTP to backend/trips.py and its errors back: 400 bad input (with the field),
-# 404 unknown trip, 409 wrong state, 501 not built yet, 503 agents mode not set up.
+# 403 no access code for a paid agents run, 404 unknown trip, 409 wrong state, 429 today's agents runs used up,
+# 501 not built yet, 503 agents mode not set up.
 import os
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import BackgroundTasks, FastAPI
+from typing import Literal
+
+from fastapi import BackgroundTasks, Depends, FastAPI, Header
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 load_dotenv()
 
-from backend import agents, store, trips  # noqa: E402  (after load_dotenv: agents reads MODE)
+from backend import access, agents, store, trips  # noqa: E402  (after load_dotenv: agents reads MODE)
 
 ROOT = Path(__file__).resolve().parent.parent
 PORT = int(os.getenv("PORT", "8000"))
 
-app = FastAPI(title="Travel Itinerary Planner")
+@asynccontextmanager
+async def _lifespan(app):
+    trips.recover_interrupted()       # a trip or search cut off by a restart becomes failed instead of waiting forever
+    yield
+
+
+app = FastAPI(title="Travel Itinerary Planner", lifespan=_lifespan)
 
 
 def _error(status, detail, field=None):
@@ -51,6 +61,16 @@ async def _wrong_state(request, exc):
     return _error(409, str(exc))
 
 
+@app.exception_handler(access.Forbidden)
+async def _forbidden(request, exc):
+    return _error(403, str(exc))
+
+
+@app.exception_handler(access.LimitReached)
+async def _limit(request, exc):
+    return _error(429, str(exc))
+
+
 @app.exception_handler(trips.NotBuilt)
 async def _not_built(request, exc):
     return _error(501, str(exc))
@@ -59,6 +79,12 @@ async def _not_built(request, exc):
 @app.exception_handler(trips.NotReady)
 async def _not_ready(request, exc):
     return _error(503, str(exc))
+
+
+def access_code(x_access_code: str | None = Header(default=None)):
+    """The X-Access-Code header the page sends with a paid agents request (never in the URL, so no access log shows
+    it). Only backend/access.py compares it; it is never stored."""
+    return x_access_code
 
 
 @app.get("/health")
@@ -72,8 +98,10 @@ def config():
 
 
 @app.post("/api/trips", status_code=201)
-def new_trip(profile: trips.Profile, background: BackgroundTasks):
-    trip = trips.create_trip(profile)
+def new_trip(profile: trips.Profile, background: BackgroundTasks, mode: Literal["demo"] | None = None,
+             code: str | None = Depends(access_code)):
+    """?mode=demo: a demo trip on the samples, also when the server runs the agents (no code needed)."""
+    trip = trips.create_trip(profile, demo=mode == "demo", code=code)
     background.add_task(trips.run_pipeline, trip["id"])
     return {"id": trip["id"]}
 
@@ -112,15 +140,15 @@ def brochure_map(trip_id: str):
 
 
 @app.post("/api/trips/{trip_id}/swap/{exp_id}", status_code=202)
-def swap(trip_id: str, exp_id: str, background: BackgroundTasks):
-    trip = trips.start_swap(trip_id, exp_id)
+def swap(trip_id: str, exp_id: str, background: BackgroundTasks, code: str | None = Depends(access_code)):
+    trip = trips.start_swap(trip_id, exp_id, code)
     background.add_task(trips.run_search, trip_id)
     return trip
 
 
 @app.post("/api/trips/{trip_id}/quick", status_code=202)
-def quick(trip_id: str, ask: trips.Ask, background: BackgroundTasks):
-    trip = trips.start_quick(trip_id, ask)
+def quick(trip_id: str, ask: trips.Ask, background: BackgroundTasks, code: str | None = Depends(access_code)):
+    trip = trips.start_quick(trip_id, ask, code)
     background.add_task(trips.run_search, trip_id)
     return trip
 

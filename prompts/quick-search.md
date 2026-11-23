@@ -22,7 +22,7 @@ same JSON for each experience), with these differences.
 
 ## What changes
 
-- Return **1 to 3** experiences that match the request, best fit first, not 10 to 15.
+- Return **1 to 3** experiences that match the request, best fit first, not a full list of up to 15.
 - Each must fit one of the `free_slots` on that `day` (its `schedule` inside the slot, including the duration).
 - Prefer options whose price fits `budget_left`. If none does, return the best options anyway and say in `doubts`
   that it goes over the budget. The code will show the warning.
