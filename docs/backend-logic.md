@@ -107,8 +107,11 @@ Each check returns `{"name", "result": "ok" | "warn" | "fail" | "skip", "detail"
 ## 6. The budget (always in `budget.py`)
 
 - Every price is converted to EUR by code (`amount_eur`), with the rate and date in `fx`.
-- Cost of one item for the group: `per: person` → amount × group size; `per: group` → amount; `per: free` → 0.
-- The budget is compared per person or in total, as the user chose in the questionnaire.
+- The budget is compared per person or in total, as the user chose in the questionnaire, so one item's cost
+  (`cost_eur`) is in that unit, from `amount_eur`:
+  - per-person budget: `per: person` → amount; `per: group` → amount ÷ group size;
+  - total budget: `per: person` → amount × group size; `per: group` → amount;
+  - `per: free` → 0 in both.
 - Items without a price are **not counted** and are listed under "not counted" so the user sees it.
 - Kept total over budget: the page shows red, `brochure` is refused (409), `fit-budget` is offered.
 - Money is `Decimal`, rounded to 2 places, never `float`.
