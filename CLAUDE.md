@@ -19,7 +19,7 @@ All commands from the project root (travel-planner/). Use the project's own Pyth
 - backend/main.py: FastAPI app; API routes under /api, defined before the static mount of frontend/.
 - backend/trips.py: the business layer: a trip's steps (researching, checking, verifying, ready, done, failed) and rules.
 - backend/store.py: the only file that reads and writes trip files (data/trips/<id>.json, not committed).
-- backend/checks.py: every code check (schema, source quote, season, age, price, hours, closure, overlap, pace, accessibility).
+- backend/checks.py: every code check (schema, source quote, season, age, price, hours, closure, suggestion, overlap, pace, accessibility).
 - backend/budget.py: all money arithmetic, with Decimal, rounded to 2 places.
 - backend/agents.py: the only file that calls the AI, or returns demo data when MODE=demo (each trip keeps its own mode). (backend/llm.py is an old stub: do not use.)
 - backend/access.py: who may start a paid agents run (ACCESS_CODE, sent in the X-Access-Code header, never stored) and how many a day (DAILY_AGENT_LIMIT, counted in data/agent-usage.json, not committed).

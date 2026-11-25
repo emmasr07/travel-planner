@@ -75,8 +75,16 @@ You only write a `source` block yourself for a web page you read with `read_page
 
 These fields are yours, and every one has `"kind": "suggestion"`:
 
+**Suggestions explain; they never add a fact.** `best_time.reason` and `why_fits` may only use facts that are
+already in the record's fact fields with a source (`price`, `opening_hours`, and the quotes in their `source`
+blocks). Write no prices, free days, opening or closing times, ages or dates that are not in those fields: say
+"day 2" or "your first day", not a date, and "early" or "at opening", not a clock time (the time is already in
+`start`). Never cite a search snippet: a fact you only saw in a snippet is not a source; if it matters, read the
+page and copy it into a fact field, or say it in `doubts`. The code flags any price, time, date, "free" or
+"open"/"closed" in a suggestion that the facts don't state, and the traveller sees it as to check.
+
 - `best_time`: the best moment of day (`slot`, `start` as HH:MM) and a one-line `reason` a traveller would
-  find useful ("Best light over the river at sunset", "Less crowded before 10:00").
+  find useful ("Best light over the river at sunset", "Less crowded early in the morning").
   `start` must fall inside the opening hours or time slots you found. If you found none, choose a sensible
   time and say so in `doubts`.
 - `why_fits`: one short line that names something from the profile ("You picked food", "Easy walk for a family").

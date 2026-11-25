@@ -16,7 +16,8 @@ AGE_FLOOR = {"18-24": 18, "25-34": 25, "35-49": 35, "50+": 50}
 WHEELCHAIR = re.compile(r"wheel\s*-?\s*chair", re.I)
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
 STATIC = ("schema", "source")     # decided once, at the checking step; the rest are re-run after every change
-ORDER = ("schema", "source", "season", "age", "price", "hours", "closure", "overlap", "pace", "accessibility")
+ORDER = ("schema", "source", "season", "age", "price", "hours", "closure", "suggestion", "overlap", "pace",
+         "accessibility")
 # Closure: words for "closed" in English, Portuguese, Italian, German, French and Spanish, as whole words.
 # "ferme" without the accent is a farm, so French needs the é.
 CLOSED = re.compile(r"\b(closed|encerrad[oa]s?|chius[oaie]|geschlossene?[nrs]?|fermée?s?|cerrad[oa]s?)\b", re.I)
@@ -32,6 +33,25 @@ CLOSED_DAYS = re.compile(
     r"|montags?|dienstags?|mittwochs?|donnerstags?|freitags?|samstags?|sonntags?|sonnabends?|feiertag\w*|wochenende\w*"
     r"|lundis?|mardis?|mercredis?|jeudis?|vendredis?|samedis?|dimanches?|fériés?"
     r"|lunes|martes|miércoles|miercoles|jueves|viernes|festivos?)\b", re.I)
+# Facts a suggestion (best_time.reason, why_fits) may only repeat from the record's sources, as a code can spot them:
+# a price (a currency next to a number), a clock time, a date (day and month), "free", and opening or closing.
+_MONTH = (r"(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?"
+          r"|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)")
+_NUMBER = r"\d+(?:[.,]\d{3})*(?:[.,]\d{1,2})?"
+CURRENCY = {"€": "EUR", "eur": "EUR", "euro": "EUR", "euros": "EUR", "$": "USD", "usd": "USD", "£": "GBP", "gbp": "GBP"}
+MONEY = re.compile(rf"(€|\$|£|\b(?:eur|usd|gbp)\b)\s?({_NUMBER})|\b({_NUMBER})\s?(€|\$|£|(?:eur|euros?|usd|gbp)\b)",
+                   re.I)
+CLOCK = re.compile(r"\b([01]?\d|2[0-3])[:.]([0-5]\d)(?:\s*([ap])\.?\s?m\b\.?)?", re.I)     # 16:30, 9.30, 8.30 am
+HOUR = re.compile(r"\b(1[0-2]|0?[1-9])\s*([ap])\.?\s?m\b\.?", re.I)                       # 9 a.m., 10pm
+DAY_MONTH = re.compile(rf"\b(\d{{1,2}})(?:st|nd|rd|th)?\s+(?:of\s+)?{_MONTH}\b", re.I)    # 6 Dec, 6th of December
+MONTH_DAY = re.compile(rf"\b{_MONTH}\.?\s+(?:the\s+)?(\d{{1,2}})(?:st|nd|rd|th)?\b", re.I)  # Dec 6, February the 2nd
+ISO_DATE = re.compile(r"\b\d{4}-(\d{2})-(\d{2})\b")
+# "free" as a price; not gluten-free, "free time", "leaves the evening free", "feel free".
+FREE = re.compile(r"(?<![-\w])(free|gratis|grátis|gratuit\w*|kostenlos\w*)\b", re.I)
+FREE_TIME = re.compile(r"\b(?:morning|afternoon|evening|night|day|time)\s+free\b"
+                       r"|\bfree\s+(?:time|morning|afternoon|evening|night)\b|\bfeel\s+free\b", re.I)
+# Opening and closing; not open-air or open-top, and "close" (near) is not one.
+OPENING = re.compile(r"\b(open(?:s|ed|ing)?(?![-\s](?:air|top)\b)|closed|closes|closing|closures?)\b", re.I)
 # Free slots for a quick search or a swap: gaps of at least MIN_SLOT_MIN between DAY_START and DAY_END, local time.
 DAY_START, DAY_END, MIN_SLOT_MIN = "08:00", "23:00", 30
 # The same place: the same name, or the same spot in the same category. In Matera Viator's meeting point and the
@@ -411,6 +431,94 @@ def closure(e):
     return result("closure", "ok", "the source does not say it is closed")
 
 
+def _blank(m):
+    return " " * len(m[0])      # keeps the other matches' positions
+
+
+def _money(text):
+    """(match, (amount, currency)) for each price written with its currency: "€16,50", "2 euros", "$1,200"."""
+    for m in MONEY.finditer(text):
+        symbol, number = (m[1], m[2]) if m[1] else (m[4], m[3])
+        number = re.sub(r"[.,](?=\d{3}\b)", "", number).replace(",", ".")
+        yield m, (budget.money(number), CURRENCY[symbol.lower()])
+
+
+def _hhmm(h, mins, half):
+    if half and half.lower() == "p" and h < 12:
+        h += 12
+    elif half and half.lower() == "a" and h == 12:
+        h = 0
+    return f"{h:02d}:{mins:02d}"
+
+
+def _times(text):
+    """(match, "HH:MM") for each clock time: "16:30", "8.30 am", "10 p.m."; a price's "16.50" is not one."""
+    text = MONEY.sub(_blank, text)
+    for m in CLOCK.finditer(text):
+        yield m, _hhmm(int(m[1]), int(m[2]), m[3])
+    for m in HOUR.finditer(CLOCK.sub(_blank, text)):
+        yield m, _hhmm(int(m[1]), 0, m[2])
+
+
+def _month(name):
+    return [mo.lower() for mo in MONTHS].index(name[:3].lower()) + 1
+
+
+def _dates(text):
+    """(match, (month, day)) for each date with its day: "6 Dec", "February the 2nd", "2026-12-06"."""
+    for m in DAY_MONTH.finditer(text):
+        yield m, (_month(m[2]), int(m[1]))
+    for m in MONTH_DAY.finditer(text):
+        yield m, (_month(m[1]), int(m[2]))
+    for m in ISO_DATE.finditer(text):
+        yield m, (int(m[1]), int(m[2]))
+
+
+def _frees(text):
+    return list(FREE.finditer(FREE_TIME.sub(_blank, text)))
+
+
+def _facts(e):
+    """What the record's sourced facts state: the price, the opening hours, and every web quote."""
+    p, oh = e["price"], e["opening_hours"]
+    texts = [b["quote"] for b in web_blocks(e)]
+    if p.get("source"):
+        texts.append(p.get("label") or "")
+    if oh and oh.get("source"):
+        texts += [oh["text"], *oh["slots"]]
+    text = "\n".join(texts)
+    money = {v for _, v in _money(text)}
+    if p.get("source") and p["amount"] is not None:
+        money.add((budget.money(p["amount"]), p["currency"]))
+    return {"money": money, "times": {v for _, v in _times(text)}, "dates": {v for _, v in _dates(text)},
+            "free": bool(p.get("source") and (p["per"] == "free" or p["amount"] == 0) or _frees(text)),
+            "opening": bool(oh and oh.get("source") or OPENING.search(text))}
+
+
+def _unsourced(text, facts):
+    """The words of `text` that name a price, time, date, "free" or opening the facts don't state, in text order."""
+    found = [(m.start(), m[0]) for kind, finder in (("money", _money), ("times", _times), ("dates", _dates))
+             for m, value in finder(text) if value not in facts[kind]]
+    if not facts["free"]:
+        found += [(m.start(), m[0]) for m in _frees(text)]
+    if not facts["opening"]:
+        found += [(m.start(), m[0]) for m in OPENING.finditer(text)]
+    return [word.strip() for _, word in sorted(found)]
+
+
+def suggestion(e):
+    """Warn when a suggestion names a price, clock time, date, "free" or opening/closing that the record's sourced
+    facts don't state. best_time's reason counts only while it is shown: while the user keeps the suggested time."""
+    best, facts = e.get("best_time") or {}, _facts(e)
+    texts = [best.get("reason") if best.get("start") == e["schedule"]["start"] else None,
+             (e.get("why_fits") or {}).get("text")]
+    words = list(dict.fromkeys(w for t in texts if t for w in _unsourced(t, facts)))
+    if words:
+        return result("suggestion", "warn",
+                      "suggestion mentions a fact not in the sources: " + ", ".join(f'"{w}"' for w in words))
+    return result("suggestion", "ok", "the suggestions mention no fact beyond the sources")
+
+
 def accessibility(e, profile):
     if not WHEELCHAIR.search(profile.get("notes") or ""):
         return result("accessibility", "skip", "no wheelchair need in your notes")
@@ -458,7 +566,7 @@ def recheck(profile, experiences):
     for e in experiences:
         kept = [c for c in e.get("checks", []) if c["name"] in STATIC]
         e["checks"] = kept + [season(e, profile), age(e, profile), price(e, profile), hours(e, profile), closure(e),
-                              accessibility(e, profile)]
+                              suggestion(e), accessibility(e, profile)]
     active = [e for e in experiences
               if e["user"]["status"] == "kept" and final_status(e["checks"], e.get("verdict")) != "rejected"]
     for e in experiences:

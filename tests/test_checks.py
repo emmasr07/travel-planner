@@ -25,7 +25,7 @@ def res(e, name):
 def test_every_check_is_there_in_order():
     [e] = run([checked()])
     assert [c["name"] for c in e["checks"]] == ["schema", "source", "season", "age", "price", "hours", "closure",
-                                                "overlap", "pace", "accessibility"]
+                                                "suggestion", "overlap", "pace", "accessibility"]
     assert all(set(c) == {"name", "result", "detail"} for c in e["checks"])
 
 

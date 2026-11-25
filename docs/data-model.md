@@ -112,8 +112,8 @@ the reason ("the server restarted while the trip was verifying, so it stopped th
 
 | Field | Type | Example | Checked by code |
 |---|---|---|---|
-| `best_time` | object | `{ "slot": "sunset", "start": "18:30", "reason": "Best light over the river", "kind": "suggestion" }` | only its shape: the hours check uses `schedule.start`; the reason is shown while the user keeps that time |
-| `why_fits` | object | `{ "text": "You picked food", "kind": "suggestion" }` | only its shape: shown as the AI wrote it, marked as a suggestion |
+| `best_time` | object | `{ "slot": "sunset", "start": "18:30", "reason": "Best light over the river", "kind": "suggestion" }` | the hours check uses `schedule.start`; the reason is shown while the user keeps that time, and meanwhile the `suggestion` check reads it |
+| `why_fits` | object | `{ "text": "You picked food", "kind": "suggestion" }` | shown as the AI wrote it, marked as a suggestion; the `suggestion` check reads it |
 | `schedule` | object | `{ "day": 1, "start": "18:30", "end": "20:30" }` | day within the trip and `end = start + duration_min` (sent back to the agent if not); then the `hours`, `overlap` and `pace` checks |
 
 ### 3d. Checks (from the code)
@@ -131,6 +131,7 @@ change. `skip` means the check could not apply (in demo mode no source page is r
 | `price` | warn if no price, a currency that could not be converted, or free / 0 with no source that says so; fail if it alone exceeds the whole budget |
 | `hours` | warn if `schedule.start` is outside `opening_hours`, the place is closed that day, or no hours are known (OpenStreetMap syntax or Viator's dated hours) |
 | `closure` | fail if the source's description says the place is closed or temporarily closed, in any of six languages (closed days such as "Closed on Mondays" are left to the hours check) |
+| `suggestion` | warn if `why_fits`, or `best_time.reason` while its time is kept, names a price, clock time, date, "free" or open/closed that the sourced facts (price, opening hours, web quotes) don't state: suggestions explain, they never add a fact |
 | `overlap` | warn if it overlaps another kept item that day in time, or (said on the later of the two) is the same place as an earlier kept item (same normalised name, or within 15 m in the same category), the same visit (a guided tour whose source says entry is included + an entry ticket to that place) or maybe the same visit (the tour's source doesn't say) |
 | `pace` | warn if its day holds more kept items than the pace allows (chill 2, balanced 3, packed 4) |
 | `accessibility` | warn if the notes mention a wheelchair and `wheelchair` is no / unknown |
