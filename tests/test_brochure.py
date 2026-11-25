@@ -230,7 +230,7 @@ def test_pdf_text_has_the_whole_plan(trip):
                   "10:00 – 12:00", "Alfama food walk", "A test suggestion", "You picked this time",
                   "€35", "regular adult", "per person", "Viator · checked 17 Nov, 13:42",
                   "Verified", "To check: no source states a price", "No price yet", "Book",
-                  "€55", "of €250 per person", "Not counted: Tram 28",
+                  "€55", "of €250.00 per person", "Not counted: Tram 28",
                   "Prices checked on 16 Nov 2026, 08:05 (Lisbon time). They may change before you book.",
                   "no key in this test"):
         assert piece in text, piece
@@ -258,6 +258,46 @@ def test_pdf_prints_polish_and_greek_names_exactly(caplog):
         text = drawn(built(t))
     assert "Łazienki Królewskie" in text and "Ακρόπολη" in text
     assert not [r for r in caplog.records if "missing" in r.getMessage().lower()]
+
+
+# --- display: money with 2 decimals, the city as written, one date for a one-day trip --------------------------------
+
+@pytest.mark.parametrize("amount, currency, text", [
+    ("409.5", "EUR", "€409.50"), (35, "EUR", "€35.00"), ("0", "EUR", "€0.00"), (1200, "GBP", "£1,200.00"),
+    (35, "CHF", "35.00 CHF")])
+def test_money_always_has_two_decimals(amount, currency, text):
+    assert brochure.money(amount, currency) == text
+
+
+def test_a_one_day_trip_shows_one_date():
+    assert brochure.date_range(profile(start_date="2026-12-04", end_date="2026-12-04")) == "4 Dec"
+    assert brochure.date_range(profile()) == "4–6 Dec"
+    assert brochure.date_range(profile(start_date="2026-11-30", end_date="2026-12-02")) == "30 Nov – 2 Dec"
+
+
+@pytest.mark.parametrize("typed, cities, shown", [
+    ("rome", ["Rome"], "Rome"),                                     # as the source writes it
+    ("Rome", ["Rome"], "Rome"),
+    ("ROMA", ["Rome"], "ROMA"),                                     # the user's own capitals stay
+    ("reggio di calabria", ["Reggio di Calabria"], "Reggio di Calabria"),
+    ("sao paulo", ["Campinas", "São Paulo"], "São Paulo"),          # accents set aside to compare
+    ("rome", ["Tivoli"], "Rome"),                                   # no source spells it: each word capitalised
+    ("new york", [], "New York"),
+])
+def test_city_name_as_typed_or_as_the_source_writes_it(typed, cities, shown):
+    exps = [{"location": {"city": c}} for c in cities]
+    assert brochure.city_name({"profile": {"destination": typed}, "experiences": exps}) == shown
+
+
+def test_pdf_writes_the_city_as_the_source_does_and_one_date_for_a_one_day_trip(trip):
+    trip["profile"]["destination"] = "lisbon"                       # typed in lowercase; the sources say Lisbon
+    t = built(trip)
+    t["profile"]["end_date"] = t["profile"]["start_date"]
+    doc = brochure.render(t)
+    assert "Lisbon" in doc.drawn and "lisbon" not in doc.drawn
+    assert doc.title == "Lisbon · your trip brochure"
+    assert any(line.startswith("4 Dec · ") for line in doc.drawn)
+    assert not any("4–4 Dec" in line for line in doc.drawn)
 
 
 # --- the API in demo mode ----------------------------------------------------------------------------------------------

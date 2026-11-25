@@ -34,12 +34,12 @@ Answers are saved as structured data (not one free-text blob) so the AI and the 
 
 ## 3. Experience list
 
-**Top bar:** destination, dates, and a **budget bar**: `€180 of €250 used`. It turns red when over budget.
+**Top bar:** destination, dates ("4–6 Dec"; one date for a one-day trip: "4 Dec"), and a **budget bar**: `€180.00 of €250.00 used`. It turns red when over budget. Money is always shown with 2 decimals, on the pages and in the PDF.
 
 **Each experience card shows:**
 - Name, photo, one-line description
 - Suggested day, best time of day, and duration (e.g. "Day 2 · sunset, 18:30 · 2h"), with a short reason ("best light at sunset", "less crowded early morning")
-- **Price, source, checked at** (e.g. "€35 · GetYourGuide · checked 10:42")
+- **Price, source, checked at** (e.g. "€35.00 · GetYourGuide · checked 10:42")
 - "Why this fits you" in one line, linked to their answers (e.g. "You picked food")
 - Buttons: ✓ Keep · ✕ Remove · ⇄ Swap
 

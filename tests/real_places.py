@@ -112,3 +112,25 @@ def fields(rec):
 def place(rec, kept=True, id=None, **over):
     """The record as the code sees it after the conversion step (tests.factories.checked); `id` for a copy."""
     return checked(id or rec["id"], kept=kept, **{**fields(rec), **over})
+
+# Rome trip rome-20261122-231553-9b61: the questionnaire (Sat 5 - Mon 7 Dec 2026) and the facts the hours check reads.
+ROME_PROFILE = {"destination": "rome", "start_date": "2026-12-05", "end_date": "2026-12-07", "timezone": "Europe/Rome",
+                "group_type": "couple", "group_size": 2, "budget": {"amount": "300", "currency": "EUR", "per": "person"}}
+TREVI_PAGE = {"provider": "web", "url": "https://www.turismoroma.it/en/places/trevi-fountain",
+              "retrieved_at": "2026-11-22T23:17:54+01:00",
+              "quote": "From February the 2nd 2026, to enter the basin of the Trevi Fountain (the part closest to the "
+                       "monument), tourists and non-residents must pay a ticket costing two euros, valid every day "
+                       "from 9 a.m. to 10 p.m. (including the first Sunday of the month)."}
+TREVI_HOURS = {"text": "Ticket valid every day from 9 a.m. to 10 p.m.", "slots": [], "source": TREVI_PAGE}
+# Piazza Navona has no opening hours anywhere. Geoapify's place details (asked again on 25 Nov 2026) give the OSM tags
+# place=square, tourism=attraction, wheelchair=yes; the geocode search the trip stored, and the details it returned:
+NAVONA_GEOCODE = ("https://api.geoapify.com/v1/geocode/search?text=Piazza+Navona%2C+Rome&format=json&limit=1"
+                  "&filter=circle%3A12.4829321%2C41.8933203%2C30000&bias=proximity%3A12.4829321%2C41.8933203")
+NAVONA_PLACE_ID = "519a4f0c7f3cf2284059e0394a1410f34440f00102f90162ce400000000000c0020192030d5069617a7a61204e61766f6e61"
+NAVONA_RAW = {"lit": "yes", "name": "Piazza Navona", "place": "square", "osm_id": 4247138, "osm_type": "w",
+              "tourism": "attraction", "heritage": 1, "old_name": "Stadio di Domiziano", "wheelchair": "yes"}
+NAVONA_CATEGORIES = ["heritage", "heritage.unesco", "tourism", "tourism.attraction", "tourism.sights",
+                     "tourism.sights.square", "wheelchair", "wheelchair.yes"]
+NAVONA_PUBLIC_SPACE = {"osm_tag": "place=square", "name": "Piazza Navona",
+                       "source": {"provider": "geoapify", "quote": None, "retrieved_at": "2026-11-25T09:12:50+01:00",
+                                  "url": f"https://api.geoapify.com/v2/place-details?id={NAVONA_PLACE_ID}"}}

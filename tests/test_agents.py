@@ -11,6 +11,7 @@ from tests import fake_apis
 from tests.agent_helpers import (PAGE_QUOTE, PAGE_URL, WEB, Steps, delivery, fake_http, from_the_web, install, set_up,
                                  verdicts)
 from tests.factories import checked, experience, profile
+from tests.real_places import NAVONA_RAW
 from tests.fake_anthropic import DROP, HANG, idle, session_error, tool_use, usage
 
 BUILT_IN = {"bash", "read", "write", "edit", "glob", "grep", "web_fetch", "web_search"}
@@ -165,6 +166,19 @@ def test_find_place_stays_within_30_km_of_the_city(ready, monkeypatch):
     assert place.url.params["filter"] == "circle:-9.1365919,38.7077507,30000"
     found = json.loads(results(fake)[0][0])
     assert found["lat"] == 38.70775 and found["source"]["provider"] == "geoapify"
+
+
+def test_find_place_keeps_a_public_space_for_the_code_never_for_the_agent(ready, monkeypatch):
+    ready.add("GET", fake_apis.GEO + "/v2/place-details", fake_apis.place_details(opening_hours=None, tags=NAVONA_RAW))
+    fake = install(monkeypatch, [[tool_use("find_place", {"name": "Piazza Navona", "city": "Lisbon"})],
+                                 [tool_use("deliver_experiences", delivery())], []])
+    places = {}
+    research(places=places)
+    found = json.loads(results(fake)[0][0])
+    assert "public_space" not in found                     # the agent gets what it always got: it can't copy or invent it
+    [(url, space)] = places.items()
+    assert url == found["source"]["url"]                   # the location the agent copies leads the code to it
+    assert (space["osm_tag"], space["name"]) == ("place=square", "Piazza Navona")
 
 
 def test_read_page_sends_the_agent_at_most_30000_characters(monkeypatch):

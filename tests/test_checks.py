@@ -4,7 +4,8 @@ import pytest
 
 from backend import checks
 from tests.factories import checked, experience, profile
-from tests.real_places import CAPITOLINE, LISBON, MATERA, PHOTO, PIZZA, TICKET, TOUR, place
+from tests.real_places import (CAPITOLINE, LISBON, MATERA, NAVONA, NAVONA_PUBLIC_SPACE, PHOTO, PIZZA, ROME_PROFILE,
+                               TICKET, TOUR, TREVI, TREVI_HOURS, place)
 
 P = profile()   # Lisbon, Fri 4 - Sun 6 Dec 2026, 4 friends aged 25-34, EUR 250 per person, balanced pace
 
@@ -205,6 +206,54 @@ def test_hours_on_a_day_viator_does_not_list_are_unknown_not_closed():
     e = run([at(3, "10:00", "12:00", **viator_hours("Open 2026-12-04 11:00:00–20:00:00"))])[0]
     assert result(e, "hours") == {"name": "hours", "result": "warn",
                                   "detail": "no opening hours from Viator for Sun 6 Dec"}
+
+
+# Hours written as a sentence, and public spaces: the real Trevi Fountain and Piazza Navona of trip
+# rome-20261122-231553-9b61 (day 2 is Sun 6 Dec 2026).
+ROME = profile(**ROME_PROFILE)
+
+
+def trevi(start="18:00", end="18:30", **over):
+    return place(TREVI, **{"opening_hours": TREVI_HOURS, "schedule": {"day": 2, "start": start, "end": end}, **over})
+
+
+def navona(**over):
+    return place(NAVONA, **{"opening_hours": None, **over})
+
+
+def test_hours_read_the_real_trevi_sentence():
+    [e] = run([trevi()], ROME)
+    assert result(e, "hours") == {"name": "hours", "result": "ok", "detail": "open 09:00-22:00 on Sun 6 Dec"}
+    [e] = run([trevi("21:45", "22:15")], ROME)
+    assert result(e, "hours") == {"name": "hours", "result": "warn",
+                                  "detail": "21:45-22:15 is outside the opening hours on Sun 6 Dec (09:00-22:00)"}
+
+
+def test_hours_read_an_italian_sentence():
+    hours = {"text": "tutti i giorni dalle 9 alle 18", "slots": [], "source": WEB}
+    [e] = run([trevi("10:00", "10:30", opening_hours=hours)], ROME)
+    assert result(e, "hours")["detail"] == "open 09:00-18:00 on Sun 6 Dec"
+    [e] = run([trevi(opening_hours=hours)], ROME)                               # 18:00-18:30: it closes at 18
+    assert res(e, "hours") == "warn"
+
+
+def test_an_unclear_sentence_stays_to_check():
+    hours = {"text": "Every day from 9 to 18, last entry at 17", "slots": [], "source": WEB}
+    [e] = run([trevi(opening_hours=hours)], ROME)
+    assert res(e, "hours") == "warn" and "too complex" in result(e, "hours")["detail"]
+
+
+def test_a_public_space_with_no_hours_is_always_open():
+    [e] = run([navona(public_space=NAVONA_PUBLIC_SPACE)], ROME)
+    assert result(e, "hours") == {"name": "hours", "result": "ok", "detail": "public space, always open"}
+    [e] = run([navona()], ROME)                                                 # no OSM tag: unknown, as before
+    assert result(e, "hours") == {"name": "hours", "result": "warn", "detail": "no opening hours known"}
+
+
+def test_a_public_space_with_hours_given_follows_them():
+    hours = {"text": "Mo-Fr 09:00-10:00", "slots": [], "source": WEB}
+    [e] = run([navona(public_space=NAVONA_PUBLIC_SPACE, opening_hours=hours)], ROME)
+    assert res(e, "hours") == "warn" and "closed on Sun 6 Dec" in result(e, "hours")["detail"]
 
 
 # --- closure: the source says the place is closed --------------------------------------------------------

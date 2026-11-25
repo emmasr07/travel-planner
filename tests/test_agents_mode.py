@@ -7,9 +7,12 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend import main, store
+from backend.sources import geoapify
+from tests import fake_apis
 from tests.agent_helpers import PAGE_URL, WEB, delivery, fake_http, from_the_web, install, set_up, verdicts
 from tests.factories import experience
 from tests.fake_anthropic import idle, tool_use, usage
+from tests.real_places import NAVONA_RAW
 
 client = TestClient(main.app)
 
@@ -89,6 +92,35 @@ def test_a_trip_uses_search_viator_when_the_key_works(http, monkeypatch):
     walk = next(e for e in trip["experiences"] if e["id"] == "item-0")
     assert walk["booking_url"] == url and walk["price"]["source"]["provider"] == "viator"
     assert "Checked by the code" in walk["verdict"]["note"]
+
+
+def test_a_square_found_by_find_place_is_always_open_and_a_tour_meeting_there_is_not(http, monkeypatch):
+    http.add("GET", fake_apis.GEO + "/v2/place-details",
+             fake_apis.place_details(opening_hours=None, wheelchair=None, tags=NAVONA_RAW))
+    near = "-9.1365919,38.7077507"                                   # the fake Lisbon centre
+    url = geoapify.public_url(geoapify.GEOCODE_URL, {"text": "Piazza Navona, Lisbon", "format": "json", "limit": 1,
+                                                     "filter": f"circle:{near},30000", "bias": f"proximity:{near}"})
+    spot = {"lat": 38.70775, "lng": -9.13618, "source": {"provider": "geoapify", "url": url, "quote": None,
+                                                         "retrieved_at": "2026-11-25T09:12:49+01:00"}}
+    exps = delivery()["experiences"]
+    exps[0].update(name="Piazza Navona", opening_hours=None, category="culture")
+    exps[1].update(name="Walking tour from Piazza Navona", opening_hours=None)
+    for e in exps[:2]:
+        e["location"].update(spot)
+    install(monkeypatch, [[tool_use("find_place", {"name": "Piazza Navona", "city": "Lisbon"})],
+                          [tool_use("deliver_experiences", {"experiences": exps})], []],
+            verify_script([e["id"] for e in exps]))
+    trip = new_trip()
+    assert trip["status"] == "ready", trip["error"]
+
+    by_id = {e["id"]: e for e in trip["experiences"]}
+    square, tour = by_id["item-0"], by_id["item-1"]
+    assert square["public_space"]["osm_tag"] == "place=square"
+    assert square["public_space"]["source"]["url"].startswith("https://api.geoapify.com/v2/place-details?id=")
+    assert next(c for c in square["checks"] if c["name"] == "hours") == {
+        "name": "hours", "result": "ok", "detail": "public space, always open"}
+    assert "public_space" not in tour                                # same spot, another name: not the square
+    assert next(c for c in tour["checks"] if c["name"] == "hours")["detail"] == "no opening hours known"
 
 
 def test_any_destination_works_without_a_sample(monkeypatch):

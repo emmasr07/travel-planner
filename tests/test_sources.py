@@ -10,6 +10,7 @@ from backend import budget
 from backend.sources import common, fx, geoapify, tavily, viator
 from tests import fake_apis as fa
 from tests.fake_apis import FakeAPIs
+from tests.real_places import NAVONA_CATEGORIES, NAVONA_PLACE_ID, NAVONA_PUBLIC_SPACE, NAVONA_RAW
 
 
 def log_lines():
@@ -443,6 +444,37 @@ def test_find_place_wheelchair_from_osm(osm, expected):
     assert place["opening_hours"] is None
     if expected == "unknown":
         assert place["accessibility"]["source"] is None
+
+
+# Public spaces: OpenStreetMap's tags in the place details say a place is a square, a fountain or a pedestrian street.
+def navona_apis(tags=NAVONA_RAW):
+    geo = fa.geocode(name="Piazza Navona", lat=41.8989282, lon=12.4731178, timezone="Europe/Rome",
+                     place_id=NAVONA_PLACE_ID)
+    return fa.geo_routes(FakeAPIs(), geo=geo, det=fa.place_details(opening_hours=None, wheelchair=None, tags=tags,
+                                                                     categories=NAVONA_CATEGORIES))
+
+
+def test_find_place_reads_the_real_piazza_navona_as_a_square():
+    with navona_apis().client() as c:
+        place = geoapify.find_place("Piazza Navona", "Rome", near=(41.8933203, 12.4829321), client=c)
+    space = place["public_space"]
+    assert (space["osm_tag"], space["name"]) == ("place=square", "Piazza Navona")
+    assert space["source"]["provider"] == "geoapify" and space["source"]["quote"] is None
+    assert space["source"]["url"] == NAVONA_PUBLIC_SPACE["source"]["url"]            # the place details, no key
+    assert place["opening_hours"] is None
+
+
+@pytest.mark.parametrize("tags, expected", [
+    ({"name": "Fontana di Trevi", "amenity": "fountain", "tourism": "attraction"}, "amenity=fountain"),
+    ({"name": "Via dei Condotti", "highway": "pedestrian"}, "highway=pedestrian"),
+    ({"name": "Musei Capitolini", "tourism": "museum"}, None),
+    ({"name": "Chiostro", "place": "square", "access": "private"}, None),              # not open to the public
+    ({"name": "Fontana", "amenity": "fountain", "access": "no"}, None),
+])
+def test_find_place_public_space_only_from_those_osm_tags(tags, expected):
+    with navona_apis(tags).client() as c:
+        place = geoapify.find_place(tags["name"], "Rome", client=c)
+    assert (place["public_space"] or {}).get("osm_tag") == expected
 
 
 def test_reverse_place_at_viator_coordinates():

@@ -149,14 +149,16 @@ def run_pipeline(trip_id):
         store.save(trip)
 
     pages = {}                                         # url -> text of the pages the researcher read
+    places = {}                                        # location source url -> public space find_place met
     try:
-        delivery = agents.research(profile, step, record=record, pages=pages, trip_mode=mode)
+        delivery = agents.research(profile, step, record=record, pages=pages, trip_mode=mode, places=places)
         trip["status"] = "checking"
         exps = delivery["experiences"]
         step("code", f"{len(exps)} experiences received: checking the schema, prices, dates, hours and ages")
         errors = checks.delivery_errors(delivery, profile)
         if errors:
             raise ValueError(f"the delivery does not match the schema ({len(errors)} errors), first: {errors[0]}")
+        attach_public_spaces(exps, places)
         step("code", _convert_prices(exps, agents.rates(profile, exps, trip_mode=mode)))
         for e in exps:
             e["user"] = {"status": "kept", "position": None}
@@ -192,6 +194,16 @@ def run_pipeline(trip_id):
         trip["status"] = "failed"
         trip["error"] = f"{type(exc).__name__}: {exc}"
         store.save(trip)
+
+
+def attach_public_spaces(experiences, places):
+    """A square, fountain or pedestrian street as OpenStreetMap tags it (geoapify.find_place), set by the code after the
+    schema check, never by the agent: only on the experience that is that place, located by that lookup and with the
+    same name (a tour that meets on a square is not the square). The hours check reads it."""
+    for e in experiences:
+        space = places.get((e["location"].get("source") or {}).get("url"))
+        if space and checks.same_name(e["name"], space["name"]):
+            e["public_space"] = space
 
 
 def recover_interrupted():
@@ -417,12 +429,13 @@ def run_search(trip_id):
                "budget_left": {"amount": left["left"], "currency": "EUR", "per": profile["budget"]["per"]},
                "taken": [e["id"] for e in trip["experiences"]],
                "for": next((e for e in trip["experiences"] if e["id"] == search["for"]), None)}
-        pages = {}
-        delivery = agents.quick(profile, ask, step, record=record, pages=pages, trip_mode=mode)
+        pages, places = {}, {}
+        delivery = agents.quick(profile, ask, step, record=record, pages=pages, trip_mode=mode, places=places)
         errors = checks.delivery_errors(delivery, profile, quick=True)
         if errors:
             raise ValueError(f"the options do not match the schema ({len(errors)} errors), first: {errors[0]}")
         options = delivery["experiences"]
+        attach_public_spaces(options, places)
         if not options:
             _update(trip_id, lambda t: _search_done(t, []))
             step("code", f"no options found for {search['request']!r}: nothing invented")

@@ -182,3 +182,37 @@ def test_agents_swap_runs_the_quick_researcher_then_the_verifier(monkeypatch):
     trip = client.post(f"/api/trips/{trip_id}/options/other-walk").json()
     status = {e["id"]: e["user"]["status"] for e in trip["experiences"]}
     assert status["item-0"] == "removed" and status["other-walk"] == "kept"
+
+
+def test_agents_quick_search_option_on_a_square_is_always_open(monkeypatch):
+    from backend.sources import geoapify
+    from tests import fake_apis
+    from tests.real_places import NAVONA_RAW
+    set_up(monkeypatch)
+    http = fake_http(monkeypatch)
+    http.add("GET", fake_apis.GEO + "/v2/place-details",
+             fake_apis.place_details(opening_hours=None, wheelchair=None, tags=NAVONA_RAW))
+    near = "-9.1365919,38.7077507"
+    url = geoapify.public_url(geoapify.GEOCODE_URL, {"text": "Piazza Navona, Lisbon", "format": "json", "limit": 1,
+                                                     "filter": f"circle:{near},30000", "bias": f"proximity:{near}"})
+    square = experience("piazza-navona", name="Piazza Navona", category="culture", opening_hours=None,
+                        schedule={"day": 1, "start": "18:00", "end": "20:00"},
+                        location={"lat": 38.70775, "lng": -9.13618,
+                                  "source": {"provider": "geoapify", "url": url, "quote": None,
+                                             "retrieved_at": "2026-11-25T09:12:49+01:00"}})
+    exps = [from_the_web(e) for e in delivery()["experiences"]]
+    install(monkeypatch,
+            [[tool_use("deliver_experiences", {"experiences": exps})], []],
+            [[tool_use("deliver_verdicts", verdicts(ids(exps)))], []],
+            [[tool_use("find_place", {"name": "Piazza Navona", "city": "Lisbon"})],
+             [tool_use("deliver_experiences", {"experiences": [square]})], []])
+    trip_id = new_trip(destination="Lisbon", end_date="2026-12-06", interests=["food", "culture"], pace="balanced")
+    assert get(trip_id)["status"] == "ready", get(trip_id)["error"]
+
+    r = client.post(f"/api/trips/{trip_id}/quick", json={"request": "a square in the evening", "day": 1})
+    assert r.status_code == 202, r.text
+    search = get(trip_id)["search"]
+    assert search["status"] == "ready", search["error"]
+    [option] = search["options"]
+    assert option["public_space"]["osm_tag"] == "place=square"
+    assert next(c for c in option["checks"] if c["name"] == "hours")["detail"] == "public space, always open"

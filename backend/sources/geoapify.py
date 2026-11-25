@@ -21,6 +21,10 @@ MIN_CONFIDENCE = 0.7
 NEAR_RADIUS_M = 30_000
 OSM_WHEELCHAIR = {"yes": "yes", "designated": "yes", "limited": "limited", "no": "no"}
 ENTRY_TAGS = ("male", "female", "lgbtq:men", "lgbtq:women")   # OSM tags that can say who may enter
+# OSM tags of a public space: a square, a fountain or a pedestrian street has no opening hours, it is always open
+# (the hours check says so). Not when OSM says the public may not enter (access=no or private).
+PUBLIC_SPACE_TAGS = (("place", "square"), ("amenity", "fountain"), ("highway", "pedestrian"))
+NO_ACCESS = ("no", "private")
 
 
 def find_place(name, city, *, near=None, client=None):
@@ -50,6 +54,7 @@ def find_place(name, city, *, near=None, client=None):
 
     hours = props.get("opening_hours") or raw.get("opening_hours")
     wheelchair = _wheelchair(props, raw)
+    space = _public_space_tag(raw)
     return {
         "matched_name": match.get("name"),
         "lat": match["lat"],
@@ -60,7 +65,16 @@ def find_place(name, city, *, near=None, client=None):
         "opening_hours": {"text": hours, "slots": [], "source": source_block(PROVIDER, details_url)} if hours else None,
         "accessibility": {"wheelchair": wheelchair, "notes": None,
                           "source": source_block(PROVIDER, details_url) if wheelchair != "unknown" else None},
+        "public_space": {"osm_tag": space, "name": raw.get("name") or props.get("name") or match.get("name"),
+                         "source": source_block(PROVIDER, details_url)} if space else None,
     }
+
+
+def _public_space_tag(raw):
+    """'place=square', 'amenity=fountain' or 'highway=pedestrian' when OSM tags the place so, else None."""
+    if raw.get("access") in NO_ACCESS:
+        return None
+    return next((f"{k}={v}" for k, v in PUBLIC_SPACE_TAGS if raw.get(k) == v), None)
 
 
 def reverse_place(lat, lng, *, client=None):

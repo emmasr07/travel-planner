@@ -25,7 +25,7 @@ All commands from the project root (travel-planner/). Use the project's own Pyth
 - backend/access.py: who may start a paid agents run (ACCESS_CODE, sent in the X-Access-Code header, never stored) and how many a day (DAILY_AGENT_LIMIT, counted in data/agent-usage.json, not committed).
 - backend/recheck.py: verifies Viator and Geoapify facts by fetching the same record again; the verifier agent checks only web pages.
 - backend/brochure.py: the brochure sublist, the static map call and the PDF (fpdf2), no AI. backend/fonts/: Inter TTF for the PDF (OFL licence in LICENSE.txt).
-- backend/sources/: data tools: viator.py, geoapify.py, fx.py (Frankfurter), tavily.py, osm_hours.py. Every record carries a source block; every call adds a line to data/sources-log.jsonl.
+- backend/sources/: data tools: viator.py, geoapify.py, fx.py (Frankfurter), tavily.py, osm_hours.py, text_hours.py (hours written as English/Italian sentences). Every record carries a source block; every call adds a line to data/sources-log.jsonl.
 - prompts/: agent instructions (researcher, verifier, quick-search). schemas/: the JSON the agents must return.
 - data/samples/: real sample places for Lisbon, London, Matera (demo mode and tests). scripts/: builds the samples.
 - frontend/: plain HTML, CSS and JavaScript, no framework; css/styles.css holds the design tokens.

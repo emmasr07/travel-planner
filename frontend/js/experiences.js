@@ -50,7 +50,7 @@
   // Formats an amount the API or a source gave; never adds anything up.
   function money(amount, currency = "EUR") {
     return new Intl.NumberFormat("en-IE", {
-      style: "currency", currency, minimumFractionDigits: 0, maximumFractionDigits: 2
+      style: "currency", currency, minimumFractionDigits: 2, maximumFractionDigits: 2
     }).format(Number(amount));
   }
 
@@ -68,10 +68,23 @@
   function shortDateRange(start, end) {
     const a = parseDate(start), b = parseDate(end);
     const fmt = (d, opts) => new Intl.DateTimeFormat("en-GB", { ...opts, timeZone: "UTC" }).format(d);
+    if (start === end) return fmt(a, { day: "numeric", month: "short" });            // a one-day trip: "4 Dec"
     if (a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth()) {
       return `${fmt(a, { day: "numeric" })}–${fmt(b, { day: "numeric", month: "short" })}`;
     }
     return `${fmt(a, { day: "numeric", month: "short" })} – ${fmt(b, { day: "numeric", month: "short" })}`;
+  }
+
+  // The destination as typed when the user used a capital letter; otherwise as the sources write it (an experience's
+  // location.city with the same letters: "rome" -> "Rome"); else each word capitalised. Same rule as brochure.city_name.
+  function cityName(t) {
+    const typed = t.profile.destination.trim();
+    if (typed !== typed.toLowerCase()) return typed;
+    const plain = (s) => s.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+      .replace(/[^\p{L}\p{N}\s]|_/gu, " ").split(/\s+/).filter(Boolean).join(" ");
+    const found = (t.experiences || []).map((e) => e.location && e.location.city)
+      .find((c) => c && plain(c) === plain(typed));
+    return found || typed.split(/\s+/).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   }
 
   function tripDayCount() {
@@ -340,8 +353,9 @@
 
   function render() {
     const p = trip.profile;
+    const city = cityName(trip);
     document.getElementById("title").textContent =
-      BUSY.includes(trip.status) ? `Finding experiences in ${p.destination}` : `Your experiences in ${p.destination}`;
+      BUSY.includes(trip.status) ? `Finding experiences in ${city}` : `Your experiences in ${city}`;
     const intro = `${shortDateRange(p.start_date, p.end_date)} · ${groupLabel(p)}`;
 
     if (BUSY.includes(trip.status)) {
@@ -360,10 +374,10 @@
       const found = trip.experiences.length;      // all of them rejected, if any: hidden, never shown as fine
       showStatus("No experiences found",
         (found
-          ? `We found ${found === 1 ? "one place" : `${found} places`} in ${esc(p.destination)} for ` +
+          ? `We found ${found === 1 ? "one place" : `${found} places`} in ${esc(city)} for ` +
             `${esc(p.interests.join(", "))}, but ${found === 1 ? "it" : "all of them"} failed the checks, ` +
             "so nothing is shown, and we never invent one. "
-          : `We found nothing in ${esc(p.destination)} for ${esc(p.interests.join(", "))}, and we never invent one. `) +
+          : `We found nothing in ${esc(city)} for ${esc(p.interests.join(", "))}, and we never invent one. `) +
         'Try widening your interests or your budget: <a href="plan.html">edit my answers</a>.');
       renderSearch();
       renderQuick();

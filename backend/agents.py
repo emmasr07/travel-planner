@@ -106,11 +106,13 @@ def sample_rates(destination):
 
 # --- research, verification and quick search ----------------------------------------------------------------
 
-def research(profile, step, record=None, pages=None, trip_mode=None):
+def research(profile, step, record=None, pages=None, trip_mode=None, places=None):
     """{"experiences": [...]} in the researcher's delivery shape. In agents mode `pages` (url -> text) collects the
-    pages the researcher read, for the code's source check, and `record` gets the session's cost."""
+    pages the researcher read, for the code's source check, `places` (location source url -> public_space) the public
+    spaces find_place met, for the code to attach (trips.attach_public_spaces), and `record` gets the session's cost."""
     if not _demo(trip_mode):
-        return _research_with_agent(profile, step, record, {} if pages is None else pages)
+        return _research_with_agent(profile, step, record, {} if pages is None else pages,
+                                    {} if places is None else places)
     slug, city, sample = find_sample(profile["destination"])
     step("researcher", f"demo mode, no AI: reading data/samples/{slug}.json ({len(sample)} places in {city})")
     _pause()
@@ -142,7 +144,7 @@ def verify(profile, experiences, step, record=None, trip_mode=None):
                           "contested_fields": [], "note": DEMO_NOTE} for e in experiences]}
 
 
-def quick(profile, ask, step, record=None, pages=None, trip_mode=None):
+def quick(profile, ask, step, record=None, pages=None, trip_mode=None, places=None):
     """0-3 options for a swap or a last-minute request (prompts/quick-search.md), in the researcher's delivery shape.
     ask: {kind: swap|quick, request, day, free_slots, budget_left, taken (ids in the trip), for (swapped item)}."""
     if _demo(trip_mode):
@@ -157,7 +159,7 @@ def quick(profile, ask, step, record=None, pages=None, trip_mode=None):
             return errors                                   # not the right shape: nothing else can be checked
         return errors + checks.min_age_errors(delivery) + checks.quick_errors(delivery, ask)
 
-    tools = _source_tools(city, {} if pages is None else pages)
+    tools = _source_tools(city, {} if pages is None else pages, {} if places is None else places)
     return _run("researcher", "quick", _json({"profile": profile, **message}), tools,
                 "deliver_experiences", check, step, record, title=f"quick search: {profile['destination']}",
                 overrides={"system": quick_prompt(), "tools": agent_tools("researcher", quick=True)})
@@ -317,8 +319,9 @@ def agent_tools(role, quick=False):
     ]
 
 
-def _source_tools(city, pages):
-    """name -> handler(input) -> (text, is_error) for the researcher's source tools. `pages` collects what was read."""
+def _source_tools(city, pages, places):
+    """name -> handler(input) -> (text, is_error) for the researcher's source tools. `pages` collects what was read;
+    `places` the public spaces find_place met, by the location source url the agent copies."""
     near = (city["lat"], city["lng"])
 
     def search_viator(i):
@@ -333,6 +336,9 @@ def _source_tools(city, pages):
         found = geoapify.find_place(i["name"], i["city"], near=near, client=HTTP)
         if not found:
             return f"No reliable match for {i['name']!r} in {i['city']}: leave it out, or try its official name.", False
+        space = found.pop("public_space", None)         # for the code only: the agent can't copy or invent it
+        if space:
+            places[found["source"]["url"]] = space
         return _json(found), False
 
     def search_web(i):
@@ -380,10 +386,10 @@ def _facts(e):
     return out
 
 
-def _research_with_agent(profile, step, record, pages):
+def _research_with_agent(profile, step, record, pages, places):
     settings()
     city = _city(profile, step)
-    return _run("researcher", "research", _json(profile), _source_tools(city, pages), "deliver_experiences",
+    return _run("researcher", "research", _json(profile), _source_tools(city, pages, places), "deliver_experiences",
                 lambda d: _research_errors(d, profile), step, record,
                 title=f"researcher: {profile['destination']}")
 

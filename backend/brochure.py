@@ -136,14 +136,26 @@ def plot_positions(stops):
 # --- text the page and the PDF share ---------------------------------------------------------------------------------
 
 def money(amount, currency="EUR"):
-    """'€35', '€35.5', '£1,200' or '35 CHF': formatting only (the amount is rounded by budget.money)."""
+    """'€35.00', '€409.50', '£1,200.00' or '35.00 CHF': always 2 decimals, formatting only (budget.money rounds)."""
     text = f"{budget.money(amount):,.2f}"
-    text = text[:-3] if text.endswith(".00") else text.rstrip("0") if "." in text else text
     return f"{SYMBOLS[currency]}{text}" if currency in SYMBOLS else f"{text} {currency}"
+
+
+def city_name(trip):
+    """The destination as the user typed it when they used a capital letter; otherwise as the sources write it (the
+    first experience's location.city with the same letters: "rome" -> "Rome"); else each word capitalised."""
+    typed = trip["profile"]["destination"].strip()
+    if typed != typed.lower():
+        return typed
+    cities = ((e.get("location") or {}).get("city") for e in trip.get("experiences") or [])
+    return next((c for c in cities if c and checks.same_name(c, typed)), None) or \
+        " ".join(w[:1].upper() + w[1:] for w in typed.split())
 
 
 def date_range(profile):
     a, b = date.fromisoformat(profile["start_date"]), date.fromisoformat(profile["end_date"])
+    if a == b:
+        return f"{a.day} {MONTHS[a.month - 1]}"
     if (a.year, a.month) == (b.year, b.month):
         return f"{a.day}–{b.day} {MONTHS[b.month - 1]}"
     return f"{a.day} {MONTHS[a.month - 1]} – {b.day} {MONTHS[b.month - 1]}"
@@ -244,12 +256,13 @@ def render(trip, map_png=None):
     p, b = trip["profile"], trip["brochure"]
     stops = b["stops"]
     doc = Sheet()
-    doc.set_title(f"{p['destination']} · your trip brochure")
+    city = city_name(trip)
+    doc.set_title(f"{city} · your trip brochure")
     doc.add_page()
     doc.say("Travel Planner", 12, bold=True)
     doc.ln(5)
     doc.say("Your trip brochure", 11, BLUE, bold=True)
-    doc.say(p["destination"], 30, bold=True, gap=1.15)
+    doc.say(city, 30, bold=True, gap=1.15)
     n = len(stops)
     doc.say(f"{date_range(p)} · {group_label(p)} · {n} {'experience' if n == 1 else 'experiences'}", 12, MUTED)
     if trip.get("mode") == "demo":

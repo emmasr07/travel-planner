@@ -64,7 +64,7 @@ the reason ("the server restarted while the trip was verifying, so it stopped th
 
 | Field | Type | Example |
 |---|---|---|
-| `destination` | string | `"Lisbon"` (demo: the sample's city name; agents: as typed) |
+| `destination` | string | `"Lisbon"` (demo: the sample's city name; agents: as typed). Shown as typed when it has a capital letter, otherwise as the sources write it (an experience's `location.city` with the same letters: "rome" → "Rome") |
 | `start_date`, `end_date` | date | `"2026-12-04"`, `"2026-12-06"` |
 | `timezone` | string | `"Europe/Lisbon"` (found by code: from the sample in demo mode, from Geoapify at the research step in agents mode) |
 | `group_type` | enum | solo / couple / friends / family / business |
@@ -90,6 +90,7 @@ the reason ("the server restarted while the trip was verifying, so it stopped th
 | `duration_min` | integer or null | `180` | |
 | `price` | object | `{ "amount", "currency", "per", "label", "amount_eur", "fx", "source" }` | `per`: person / group / free. `amount` null if no source states it. `label`: which of the place's prices, copied word for word ("Adult (non-resident)"); null if the source names none. Viator: the age band its schedule gives for the from-price ("Adult (18–65)", "Adult (18–99), when 2 book together"), null when the schedule doesn't show it; a Viator UNIT price (per vehicle or group) has `per` group. `amount_eur` and `fx` filled by code |
 | `opening_hours` | object or null | `{ "text": "Daily 10:00 and 14:00", "slots": ["10:00","14:00"], "source" }` | |
+| `public_space` | object, or absent | `{ "osm_tag": "place=square", "name": "Piazza Navona", "source" }` | **filled by code, never by the agent**: when `find_place` located the experience and OpenStreetMap tags that place `place=square`, `amenity=fountain` or `highway=pedestrian` (not `access=no/private`), and the experience has the same name; the source is Geoapify's place details. With no `opening_hours`, the hours check counts it as always open |
 | `months` | integer[] | `[]` | months it runs or is best, as the source states; `[]` = all year |
 | `min_age` | integer or null | `12` | only if a source states it; never from a price label or age band ("Adult (18–99)" is not 18+). Viator and Geoapify give none, so an agent's experience with a `min_age` and no web source goes back to the agent to fix |
 | `rating` | object or null | `{ "value": 4.7, "scale": 5, "review_count": 1243, "source" }` | |
@@ -129,7 +130,7 @@ change. `skip` means the check could not apply (in demo mode no source page is r
 | `season` | warn if `months` doesn't include the trip dates |
 | `age` | fail if the youngest traveller is under `min_age` |
 | `price` | warn if no price, a currency that could not be converted, or free / 0 with no source that says so; fail if it alone exceeds the whole budget |
-| `hours` | warn if `schedule.start` is outside `opening_hours`, the place is closed that day, or no hours are known (OpenStreetMap syntax or Viator's dated hours) |
+| `hours` | warn if `schedule.start` is outside `opening_hours`, the place is closed that day, or no hours are known (OpenStreetMap syntax, Viator's dated hours, or a simple English or Italian sentence; anything unclear warns); ok with no hours for a `public_space` ("public space, always open") |
 | `closure` | fail if the source's description says the place is closed or temporarily closed, in any of six languages (closed days such as "Closed on Mondays" are left to the hours check) |
 | `suggestion` | warn if `why_fits`, or `best_time.reason` while its time is kept, names a price, clock time, date, "free" or open/closed that the sourced facts (price, opening hours, web quotes) don't state: suggestions explain, they never add a fact |
 | `overlap` | warn if it overlaps another kept item that day in time, or (said on the later of the two) is the same place as an earlier kept item (same normalised name, or within 15 m in the same category), the same visit (a guided tour whose source says entry is included + an entry ticket to that place) or maybe the same visit (the tour's source doesn't say) |

@@ -215,16 +215,19 @@ def reverse(*, lat=38.70775, lon=-9.13618, name="Praça do Comércio", timezone=
     }]}
 
 
-def place_details(*, opening_hours="Tu-Su 10:00-18:00", wheelchair="yes"):
-    raw = {"osm_id": 123, "osm_type": "n"}
+def place_details(*, opening_hours="Tu-Su 10:00-18:00", wheelchair="yes", tags=None, categories=None):
+    """tags: more OSM tags in datasource.raw (place=square, amenity=fountain, name...); categories: Geoapify's."""
+    raw = {"osm_id": 123, "osm_type": "n", **(tags or {})}
     if opening_hours:
         raw["opening_hours"] = opening_hours
     if wheelchair:
         raw["wheelchair"] = wheelchair
-    props = {"feature_type": "details", "name": "Praça do Comércio",
+    props = {"feature_type": "details", "name": raw.get("name", "Praça do Comércio"),
              "datasource": {"sourcename": "openstreetmap", "raw": raw}}
     if opening_hours:
         props["opening_hours"] = opening_hours
+    if categories:
+        props["categories"] = list(categories)
     return {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": props}]}
 
 

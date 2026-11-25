@@ -21,7 +21,7 @@
   // Formats an amount the API or a source gave; never adds anything up.
   function money(amount, currency = "EUR") {
     return new Intl.NumberFormat("en-IE", {
-      style: "currency", currency, minimumFractionDigits: 0, maximumFractionDigits: 2
+      style: "currency", currency, minimumFractionDigits: 2, maximumFractionDigits: 2
     }).format(Number(amount));
   }
 
@@ -41,10 +41,23 @@
   function shortDateRange(start, end) {
     const a = parseDate(start), b = parseDate(end);
     const fmt = (d, opts) => new Intl.DateTimeFormat("en-GB", { ...opts, timeZone: "UTC" }).format(d);
+    if (start === end) return fmt(a, { day: "numeric", month: "short" });            // a one-day trip: "4 Dec"
     if (a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth()) {
       return `${fmt(a, { day: "numeric" })}–${fmt(b, { day: "numeric", month: "short" })}`;
     }
     return `${fmt(a, { day: "numeric", month: "short" })} – ${fmt(b, { day: "numeric", month: "short" })}`;
+  }
+
+  // The destination as typed when the user used a capital letter; otherwise as the sources write it (an experience's
+  // location.city with the same letters: "rome" -> "Rome"); else each word capitalised. Same rule as brochure.city_name.
+  function cityName(t) {
+    const typed = t.profile.destination.trim();
+    if (typed !== typed.toLowerCase()) return typed;
+    const plain = (s) => s.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+      .replace(/[^\p{L}\p{N}\s]|_/gu, " ").split(/\s+/).filter(Boolean).join(" ");
+    const found = (t.experiences || []).map((e) => e.location && e.location.city)
+      .find((c) => c && plain(c) === plain(typed));
+    return found || typed.split(/\s+/).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   }
 
   // "Fri 4 Dec" for a stop's date.
@@ -150,7 +163,7 @@
     const p = trip.profile;
     const listLink = `experiences.html?trip=${encodeURIComponent(tripId)}`;
     document.getElementById("edit-trip").href = listLink;
-    document.getElementById("title").textContent = p.destination;
+    document.getElementById("title").textContent = cityName(trip);
 
     if (trip.status !== "done" || !trip.brochure) {
       document.getElementById("subtitle").textContent = shortDateRange(p.start_date, p.end_date);

@@ -9,6 +9,7 @@ from datetime import date, timedelta
 from backend import budget
 from backend.schema import validate_delivery, validate_verdicts
 from backend.sources.osm_hours import has_holiday_rules, open_ranges
+from backend.sources.text_hours import open_ranges as text_open_ranges
 from backend.sources.viator import open_ranges as viator_open_ranges
 
 PACE_LIMIT = {"chill": 2, "balanced": 3, "packed": 4}
@@ -194,6 +195,11 @@ def _plain(text):
     return " ".join(re.sub(r"[^\w\s]|_", " ", text).split())
 
 
+def same_name(a, b):
+    """Two names for one place once case, accents and punctuation are set aside."""
+    return _plain(a) == _plain(b)
+
+
 def distance_m(a, b):
     """Metres between two experiences' coordinates (haversine)."""
     la, lb = a["location"], b["location"]
@@ -354,6 +360,8 @@ def price(e, profile):
 def hours(e, profile):
     oh, s = e["opening_hours"], e["schedule"]
     if not oh:
+        if e.get("public_space"):                # a square, fountain or pedestrian street, as OpenStreetMap tags it
+            return result("hours", "ok", "public space, always open")
         return result("hours", "warn", "no opening hours known")
     if oh["slots"]:
         if s["start"] in oh["slots"]:
@@ -365,8 +373,10 @@ def hours(e, profile):
         ranges = viator_open_ranges(oh["text"], when)
         if ranges is None:
             return result("hours", "warn", f"no opening hours from Viator for {day}")
-    else:                                                         # OpenStreetMap syntax
+    else:                                                         # OpenStreetMap syntax, else a simple sentence
         ranges = open_ranges(oh["text"], when)
+        if ranges is None:
+            ranges = text_open_ranges(oh["text"], when)
     if ranges is None:
         text = oh["text"] if len(oh["text"]) <= 60 else oh["text"][:59] + "…"
         return result("hours", "warn", f"opening hours too complex to check: {text}")

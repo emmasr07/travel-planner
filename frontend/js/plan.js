@@ -77,6 +77,7 @@
     const parse = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d)); };
     const a = parse(start), b = parse(end);
     const fmt = (d, opts) => new Intl.DateTimeFormat("en-GB", { ...opts, timeZone: "UTC" }).format(d);
+    if (start === end) return fmt(a, { day: "numeric", month: "short" });            // a one-day trip: "4 Dec"
     if (a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth()) {
       return `${fmt(a, { day: "numeric" })}–${fmt(b, { day: "numeric", month: "short" })}`;
     }
@@ -96,7 +97,9 @@
       parts.push(Object.keys(INTEREST_LABELS).filter((i) => answers.interests.includes(i)).map((i) => INTEREST_LABELS[i]).join(", "));
     }
     if (beforeStep > 6 && answers.budgetAmount) {
-      parts.push(`€${answers.budgetAmount} ${answers.budgetPer === "total" ? "total" : "per person"}`);
+      const amount = new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR", minimumFractionDigits: 2,
+        maximumFractionDigits: 2 }).format(Number(answers.budgetAmount));
+      parts.push(`${amount} ${answers.budgetPer === "total" ? "total" : "per person"}`);
     }
     return parts;
   }
