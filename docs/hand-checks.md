@@ -23,3 +23,6 @@
 | 22 Nov | Rome | Pizza, gelato & supplì class (Viator) | price, label | €99 pp · Adult (18–100) · verified | same on the Viator page | opened Viator link | ✅ (verified) |
 | 22 Nov | Rome | Private Colosseum photoshoot (Viator) | price, label | €45 pp · Adult (13–99), when 2 book together · verified | same on the Viator page | opened Viator link | ✅ (verified) |
 | 22 Nov | Rome | Capitoline Museums | fact in suggestion | "free on Sunday 6 Dec" written in the suggestion text, not checked by code or verifier | not checked yet | read the card | ⚠️ finding: facts can slip into suggestion text |
+| 25 Nov | Lisbon | Castelo de S. Jorge skip-the-line (Viator) | price, label | €31.00 pp · Adult (26–64) · verified | same on the Viator page | opened Viator link | ✅ (verified) |
+| 25 Nov | Lisbon | Belém Tower exterior tour (Viator) | price, label | €30.00 pp · Adult (25–64) · verified | same on the Viator page | opened Viator link | ✅ (verified) |
+| 25 Nov | Lisbon | Wine tour: private food & wine tastings (Viator) | price, label | €192.50 pp · Adult (18–99), when 2 book together · verified | same on the Viator page | opened Viator link | ✅ (verified) |
