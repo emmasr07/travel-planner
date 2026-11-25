@@ -69,3 +69,12 @@ def test_sample_is_valid(path):
         for block in source_blocks(e):
             assert block["provider"] in ("viator", "geoapify", "web", "frankfurter")
             assert datetime.fromisoformat(block["retrieved_at"]).utcoffset() is not None
+
+
+@pytest.mark.parametrize("path", FILES, ids=[p.stem for p in FILES])
+def test_no_place_is_in_a_sample_twice(path):
+    from backend import checks
+    exps = json.loads(path.read_text())["experiences"]
+    twins = [(e["name"], twin["name"]) for i, e in enumerate(exps)
+             for twin in [checks.twin_of(e, exps[:i])] if twin is not None]
+    assert twins == [], "run: PY -m scripts.build_sample <City> (it leaves out the later of two)"

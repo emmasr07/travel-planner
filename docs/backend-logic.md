@@ -46,7 +46,7 @@ through these steps. After each step the file is saved, and one line is added to
 | Status | What happens | Who |
 |---|---|---|
 | `researching` | the researcher proposes up to 15 experiences with the source tools, fewer when fewer are real (never padded; an empty list is allowed) | agent (or demo data) |
-| `checking` | schema check, currency conversion, all checks in section 5; going down the researcher's list (best fit first), an experience is kept while its day has room for the pace (chill 2, balanced 3, packed 4), the rest start removed as alternatives the user can restore (picked again after the verifier) | code |
+| `checking` | schema check, currency conversion, all checks in section 5; going down the researcher's list (best fit first), an experience is kept while its day has room for the pace (chill 2, balanced 3, packed 4), unless it is the same place (or the same visit) as one already kept; the rest start removed as alternatives the user can restore, a same-place one with a note "Same place as …" (picked again after the verifier) | code |
 | `verifying` | Viator and Geoapify facts: the code fetches the same record again and compares (`recheck.py`); facts from web pages: the verifier reopens the page | code + agent (or demo verdicts) |
 | `ready` | final status per experience; rejected ones are hidden; the user keeps, removes, swaps, changes times | code + user |
 | `done` | the brochure (sublist + PDF) is built from the kept experiences | code |
@@ -95,7 +95,7 @@ Each check returns `{"name", "result": "ok" | "warn" | "fail" | "skip", "detail"
 | `price` | the item alone costs more than the whole budget | no price, a currency that could not be converted, or free / 0 with no source that says so |
 | `hours` | — | `schedule.start` is outside `opening_hours`, or no hours are known. OpenStreetMap syntax ("Mo-Sa 07:00-14:00") or Viator's dated hours ("Open 2026-12-04 11:00:00–20:00:00"); a trip day Viator doesn't list is unknown, not closed |
 | `closure` | the source's description says the place is closed (closed, encerrado, chiuso, geschlossen, fermé, cerrado), e.g. "Encerrado temporariamente"; a sentence that only names closed days or holidays ("Closed on Mondays") is left to `hours`, unless it says temporarily or permanently | — |
-| `overlap` | — | two kept items overlap on the same day |
+| `overlap` | — | two kept items overlap in time on the same day; or, on the later of two kept items anywhere in the trip: the same place (the same name after normalising, or within 15 m in the same category), the same visit (a guided tour whose source says entry is included, and an entry ticket to that place), or maybe the same visit (the tour's source doesn't say; "skip-the-line" alone doesn't count). A tour whose source says entry is not included is no overlap |
 | `pace` | — | more items in a day than the pace allows (chill 2, balanced 3, packed 4) |
 | `accessibility` | — | the notes mention a wheelchair and `wheelchair` is `no` or `unknown` |
 

@@ -42,7 +42,7 @@ How to work:
 Every trip must pass these checks, in Python with a test each, before it reaches the page:
 5. Real facts only: every name, price, hours, address, rating and accessibility value is copied from a source, with its source block. Unknown is null or "unknown", never a guess. The model only writes suggestions (best_time, why_fits, schedule), each marked "kind": "suggestion".
 6. Within budget: budget.py converts every price to EUR and adds the kept items. Items without a price are listed as "not counted". Over budget: the bar turns red, the brochure is refused, and fit-budget proposes removals (last-added first); the user confirms. Nothing is removed silently.
-7. Right times: every experience is inside the trip dates, starts while the place is open (local time of the destination), fits its season (months), does not overlap another kept item that day, and respects the pace (chill 2, balanced 3, packed 4 per day).
+7. Right times: every experience is inside the trip dates, starts while the place is open (local time of the destination), fits its season (months), does not overlap another kept item that day, is not the same place or the same visit as another kept item (the later one starts as an alternative), and respects the pace (chill 2, balanced 3, packed 4 per day).
 8. Fits the group and interests: the category comes from the source, not the model; the youngest traveller meets min_age; a wheelchair need in the notes is checked against the accessibility field.
 9. Status: any fail or a "contradicted" verdict means rejected (hidden); any warn or "not_sure" means to_check (shown with a note); otherwise verified.
 

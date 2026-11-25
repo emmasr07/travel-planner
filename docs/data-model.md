@@ -131,7 +131,7 @@ change. `skip` means the check could not apply (in demo mode no source page is r
 | `price` | warn if no price, a currency that could not be converted, or free / 0 with no source that says so; fail if it alone exceeds the whole budget |
 | `hours` | warn if `schedule.start` is outside `opening_hours`, the place is closed that day, or no hours are known (OpenStreetMap syntax or Viator's dated hours) |
 | `closure` | fail if the source's description says the place is closed or temporarily closed, in any of six languages (closed days such as "Closed on Mondays" are left to the hours check) |
-| `overlap` | warn if it overlaps another kept item that day |
+| `overlap` | warn if it overlaps another kept item that day in time, or (said on the later of the two) is the same place as an earlier kept item (same normalised name, or within 15 m in the same category), the same visit (a guided tour whose source says entry is included + an entry ticket to that place) or maybe the same visit (the tour's source doesn't say) |
 | `pace` | warn if its day holds more kept items than the pace allows (chill 2, balanced 3, packed 4) |
 | `accessibility` | warn if the notes mention a wheelchair and `wheelchair` is no / unknown |
 
@@ -151,7 +151,8 @@ Who checks what (`backend/recheck.py`): facts whose source is Viator or Geoapify
 | Field | Who | Values |
 |---|---|---|
 | `user.status` | user | kept / removed (suggestions start as kept up to the pace limit per day, best fit first; the rest start removed) |
-| `user.alternative` | code | `true` on a candidate the code left out to keep the pace; gone once the user keeps or removes it |
+| `user.alternative` | code | `true` on a candidate the code left out to keep the pace, or because it is the same place as one kept; gone once the user keeps or removes it |
+| `user.same_as` | code | on an alternative left out for the same place (or the same visit, entry included): the id of the kept experience it repeats; the `overlap` check says "Same place as <name>"; gone once the user keeps or removes it |
 | `user.position` | user | order within the day after reordering; not used yet (no reordering), always null |
 | `cost_eur` | code | the item's cost in EUR in the budget's unit (per person or total, as the user chose), a 2-place string (`"30.00"`); null when it can't be counted (no price, or a currency with no rate) |
 | `status` | code | **verified** (all checks ok + confirmed) / **to_check** (any warn or not_sure: shown with a note, the user decides) / **rejected** (any fail or contradicted: not shown) |
@@ -293,4 +294,4 @@ TAVILY_API_KEY=
 ## 8. Still to do in step 3
 
 - **Item 4:** the agent instructions (researcher and verifier) as prompt files, following these rules, plus a single-search mode for last-minute requests.
-- **Item 5:** `data/samples/<city>.json` for the test destinations (Lisbon, London, Matera): up to 25 real places each, mixed so every interest can have a few, never padded, fetched from the sources above in this format (facts only; `best_time`, `why_fits` and `schedule` come later from the agent). `scripts/build_sample_places.py <city>` writes the Geoapify places; `scripts/build_sample.py <city>` then puts up to 15 Viator experiences (production) first and keeps those places, unchanged, up to 25. Viator items are placed only from Viator's own meeting-point coordinates: most products give only a Google place id or a hotel pickup, so Matera has 1.
+- **Item 5:** `data/samples/<city>.json` for the test destinations (Lisbon, London, Matera): up to 25 real places each, mixed so every interest can have a few, never padded, fetched from the sources above in this format (facts only; `best_time`, `why_fits` and `schedule` come later from the agent). `scripts/build_sample_places.py <city>` writes the Geoapify places; `scripts/build_sample.py <city>` then puts up to 15 Viator experiences (production) first and keeps those places, unchanged, up to 25, leaving out the later of two that are the same place (the trip's `overlap` rule; on 24 Nov this removed Ipogeo MateraSum, 5 duplicate Jerónimos/São Jorge items in Lisbon and a second Frameless in London). Viator items are placed only from Viator's own meeting-point coordinates: most products give only a Google place id or a hotel pickup, so Matera has 1.

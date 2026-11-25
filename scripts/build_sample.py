@@ -14,7 +14,7 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import urlparse
 
-from backend import budget
+from backend import budget, checks
 from backend.schema import SAMPLE_MAX_ITEMS, validate_sample
 from backend.sources import fx, geoapify, viator
 from backend.sources.common import SourceAuthError, SourceError
@@ -150,6 +150,25 @@ def merge(viator_items, existing):
     return interleave(ordered)
 
 
+def drop_same_places(experiences):
+    """The trip's rule for one experience per place (backend/checks.py): going down the list, an item that is the same
+    place as one already kept, or the same visit with entry included, is left out. Returns (kept, [(left out, twin)])."""
+    kept, dropped = [], []
+    for e in experiences:
+        twin = checks.twin_of(e, kept)
+        if twin is None:
+            kept.append(e)
+        else:
+            dropped.append((e, twin))
+    return kept, dropped
+
+
+def _why_dropped(e, twin):
+    if checks.same_place(twin, e):
+        return f"same place as {twin['name']}"
+    return f"same visit as {twin['name']}, whose source says entry is included"
+
+
 def _plural(n, word):
     return f"{n} {word}" if n == 1 else f"{n} {word}s"
 
@@ -208,7 +227,7 @@ def main(argv=None, *, client=None, load_env=True, out_dir=None):
     out_dir = Path(out_dir or SAMPLES_DIR)
     path = out_dir / f"{slug(args.destination)}.json"
     existing = json.loads(path.read_text(encoding="utf-8"))["experiences"] if path.exists() else []
-    merged = merge(exps, existing)
+    merged, dropped = drop_same_places(merge(exps, existing))
     data = {"experiences": merged}
     errors = validate_sample(data)
     if errors:
@@ -221,7 +240,10 @@ def main(argv=None, *, client=None, load_env=True, out_dir=None):
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     tours = [e for e in merged if e["id"].startswith("viator-")]
     places = len(merged) - len(tours)
-    left_out = len([e for e in existing if not e["id"].startswith("viator-")]) - places
+    for e, twin in dropped:
+        print(f"Left out {e['name']}: {_why_dropped(e, twin)}")
+    twins = len([e for e, _ in dropped if not e["id"].startswith("viator-")])
+    left_out = len([e for e in existing if not e["id"].startswith("viator-")]) - places - twins
     print(f"Wrote {path}: {_plural(len(tours), 'Viator experience')} and {_plural(places, 'Geoapify place')}"
           + (f" (the last {_plural(left_out, 'place')} of the old file left out to stay within {SAMPLE_MAX_ITEMS})" if left_out else ""))
     for e in tours:

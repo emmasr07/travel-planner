@@ -4,6 +4,7 @@ import pytest
 
 from backend import checks
 from tests.factories import checked, experience, profile
+from tests.real_places import CAPITOLINE, LISBON, MATERA, PHOTO, PIZZA, TICKET, TOUR, place
 
 P = profile()   # Lisbon, Fri 4 - Sun 6 Dec 2026, 4 friends aged 25-34, EUR 250 per person, balanced pace
 
@@ -289,6 +290,128 @@ def test_pace():
     assert {res(e, "pace") for e in day1} == {"ok"}
     run(day1[:2], profile(pace="chill"))
     assert {res(e, "pace") for e in day1[:2]} == {"ok"}
+
+
+# --- the same place, the same visit (part of the overlap check) -----------------------------------------------
+# Real names, coordinates and descriptions (tests/real_places.py): the Rome trip, the Matera and Lisbon samples.
+
+def test_the_same_spot_in_the_same_category_is_the_same_place():
+    mattress, ipogeo = place(MATERA["underground-mattress"]), place(MATERA["ipogeo-materasum"])
+    assert checks.distance_m(mattress, ipogeo) < 10                    # Viator's meeting point and the OSM node
+    assert checks.same_place(mattress, ipogeo) and checks.same_place(ipogeo, mattress)
+
+
+def test_the_same_name_after_normalising_is_the_same_place_wherever_it_is():
+    tickets = place(LISBON["jeronimos-entry-tickets"])
+    again = place(LISBON["jeronimos-entry-tickets"], id="again", name="JERÓNIMOS Monastery: entry-tickets!",
+                  location={"lat": 38.75, "lng": -9.10})
+    assert checks.distance_m(tickets, again) > 5000
+    assert checks.same_place(tickets, again)
+
+
+@pytest.mark.parametrize("a, b", [(MATERA["casa-noha"], MATERA["musma"]),                         # two museums
+                                  (LISBON["ministerium-cantina"], LISBON["nosolo-italia"])])      # two restaurants
+def test_neighbours_are_not_the_same_place(a, b):
+    a, b = place(a), place(b)
+    assert 15 < checks.distance_m(a, b) < 30
+    assert not checks.same_place(a, b)
+
+
+def test_another_category_at_the_same_pin_is_not_the_same_place():
+    tour, pizza = place(TOUR), place(PIZZA)          # Geoapify pinned the class "by Colosseum" on the Colosseum
+    assert checks.distance_m(tour, pizza) == 0
+    assert not checks.same_place(tour, pizza)
+
+
+def test_a_tour_and_a_ticket_to_that_place_may_be_the_same_visit():
+    tour, ticket = place(TOUR), place(TICKET)
+    assert 400 < checks.distance_m(tour, ticket) < 600 and not checks.same_place(tour, ticket)
+    # The tour's source says "skip-the-line" and "beyond standard entry tickets", never that entry is included.
+    assert checks.same_visit(tour, ticket) == "unsure"
+    assert checks.same_visit(ticket, tour) == "unsure"
+
+
+def test_skip_the_line_alone_does_not_say_entry_is_included():
+    tour = place(TOUR, description="Skip-the-line tour of the Colosseum.", tags=["Skip the line Tickets"])
+    assert checks.same_visit(tour, place(TICKET)) == "unsure"
+
+
+@pytest.mark.parametrize("text", [
+    "Entry tickets to the Colosseum, Roman Forum and Palatine Hill are included.",
+    "Includes entrance to the Colosseum and the Roman Forum.",
+    "A small-group tour with entry tickets.",
+    "Biglietto d'ingresso incluso.",
+])
+def test_a_tour_whose_source_says_entry_is_included_is_the_same_visit(text):
+    assert checks.same_visit(place(TOUR, description=text), place(TICKET)) == "included"
+
+
+@pytest.mark.parametrize("text", [
+    "Admission not included.",
+    "Entrance fees are not included: buy your ticket separately.",
+    "Ingresso non incluso.",
+])
+def test_a_tour_whose_source_says_entry_is_not_included_needs_the_ticket(text):
+    assert checks.same_visit(place(TOUR, description=text), place(TICKET)) is None
+
+
+def test_only_a_tour_and_a_ticket_to_the_same_place_can_be_the_same_visit():
+    tour, ticket = place(TOUR), place(TICKET)
+    assert checks.same_visit(place(PHOTO), ticket) is None                    # a photoshoot is no tour
+    assert checks.same_visit(place(PIZZA), ticket) is None                    # nor a cooking class
+    assert checks.same_visit(tour, place(CAPITOLINE)) is None                 # no ticket, another place
+    assert checks.same_visit(place(TICKET, id="ticket-2"), ticket) is None    # two tickets: same place, if anything
+
+
+def test_twin_of_finds_the_first_same_place_or_included_visit():
+    tour, pizza, photo = place(TOUR), place(PIZZA), place(PHOTO)
+    assert checks.twin_of(photo, [pizza, tour]) is tour
+    assert checks.twin_of(place(TICKET), [pizza, tour]) is None               # unsure: both stay
+    included = place(TOUR, description="Entry tickets are included.")
+    assert checks.twin_of(place(TICKET), [included]) is included
+
+
+def test_overlap_says_same_place_on_the_later_item_only():
+    tour, photo = place(TOUR), place(PHOTO)
+    run([tour, photo])
+    assert result(tour, "overlap") == {"name": "overlap", "result": "ok", "detail": "no overlap on day 1"}
+    assert result(photo, "overlap") == {"name": "overlap", "result": "warn",
+                                        "detail": "Same place as Colosseum Roman Forum and Palatine Hill Guided Tour"}
+    assert photo["status"] == "to_check"
+
+
+def test_overlap_says_the_ticket_may_be_the_same_visit():
+    tour, ticket = place(TOUR), place(TICKET)
+    run([tour, ticket])
+    assert res(tour, "overlap") == "ok"
+    assert result(ticket, "overlap")["detail"] == ("May be the same visit as Colosseum Roman Forum and Palatine Hill "
+                                                   "Guided Tour: check whether the tour includes entry")
+
+
+def test_overlap_says_the_same_visit_when_the_tour_includes_entry():
+    ticket, tour = place(TICKET), place(TOUR, description="Entry tickets are included.")
+    run([ticket, tour])                                                       # the ticket came first this time
+    assert res(ticket, "overlap") == "ok"
+    assert result(tour, "overlap")["detail"] == ("Same visit as Colosseum, Roman Forum and Palatine (official ticket): "
+                                                 "its source says entry is included")
+
+
+def test_overlap_says_both_a_time_clash_and_the_same_place():
+    tour = place(TOUR)
+    photo = place(PHOTO, schedule={"day": 1, "start": "12:00", "end": "13:30"})
+    run([tour, photo])
+    assert result(photo, "overlap")["detail"] == ("overlaps Colosseum Roman Forum and Palatine Hill Guided Tour "
+                                                  "(10:15-12:45) on day 1; Same place as Colosseum Roman Forum and "
+                                                  "Palatine Hill Guided Tour")
+
+
+def test_a_removed_or_rejected_twin_says_nothing():
+    tour, photo = place(TOUR, kept=False), place(PHOTO)
+    run([tour, photo])
+    assert res(photo, "overlap") == "ok"
+    tour, photo = place(TOUR, min_age=99), place(PHOTO)                      # the tour fails the age check
+    run([tour, photo])
+    assert res(photo, "overlap") == "ok"
 
 
 # --- accessibility ------------------------------------------------------------------------------------------

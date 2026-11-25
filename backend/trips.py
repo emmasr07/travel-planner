@@ -162,13 +162,14 @@ def run_pipeline(trip_id):
             e["user"] = {"status": "kept", "position": None}
             e["verdict"] = None
         checks.check_all(profile, exps, pages=agents.source_pages(exps, pages, trip_mode=mode))  # demo: None
-        alternatives = _keep_best_fit(profile, exps)
+        alternatives, same_place = _keep_best_fit(profile, exps)
         if alternatives:
             days, pace = checks.trip_days(profile), profile["pace"]
             kept = sum(budget.counts(e) for e in exps)
+            same = f" ({same_place} of them at the same place as one you keep)" if same_place else ""
             step("code", f"{kept} kept for {days} {'day' if days == 1 else 'days'} at a {pace} "
                          f"pace (up to {checks.PACE_LIMIT[pace]} a day), best fit first; {alternatives} more start as "
-                         "alternatives you can restore")
+                         f"alternatives you can restore{same}")
         trip["experiences"] = exps
         _refresh(trip)
         trip["status"] = "verifying"
@@ -221,29 +222,37 @@ def recover_interrupted():
 
 def _keep_best_fit(profile, exps):
     """The researcher lists up to 15 candidates, best fit first, and the pace may allow fewer (chill 2, balanced 3,
-    packed 4 a day). Going down the list, one is kept while its day has room; the others start removed, as
-    alternatives the user can restore. Rejected ones take no place (they stay hidden, as before). Returns how many are alternatives."""
+    packed 4 a day). Going down the list, one is kept while its day has room, unless it is the same place as one
+    already kept (or the same visit, with entry included: checks.twin_of); the others start removed, as alternatives
+    the user can restore, and a same-place one says which it repeats (`same_as`). Rejected ones take no place (they
+    stay hidden, as before). Returns (how many are alternatives, how many of them for the same place)."""
     for e in exps:
         e["user"] = {"status": "kept", "position": None}
     checks.recheck(profile, exps)                    # which are rejected, whatever is kept
-    limit, used, alternatives = checks.PACE_LIMIT[profile["pace"]], {}, 0
+    limit, used, kept, alternatives, same_place = checks.PACE_LIMIT[profile["pace"]], {}, [], 0, 0
     for e in exps:
         day = e["schedule"]["day"]
         if e["status"] == "rejected":
             continue
-        if used.get(day, 0) < limit:
+        twin = checks.twin_of(e, kept)
+        if twin is not None:
+            e["user"] = {"status": "removed", "position": None, "alternative": True, "same_as": twin["id"]}
+            alternatives, same_place = alternatives + 1, same_place + 1
+        elif used.get(day, 0) < limit:
             used[day] = used.get(day, 0) + 1
+            kept.append(e)
         else:
             e["user"] = {"status": "removed", "position": None, "alternative": True}
             alternatives += 1
     checks.recheck(profile, exps)
-    return alternatives
+    return alternatives, same_place
 
 
 def _set_status(e, status):
     """The user's own keep or remove: from now on it is their choice, not a code alternative."""
     e["user"]["status"] = status
     e["user"].pop("alternative", None)
+    e["user"].pop("same_as", None)
 
 
 def _convert_prices(exps, rates):

@@ -38,6 +38,12 @@ You only write a `source` block yourself for a web page you read with `read_page
    Leave out anything the notes rule out ("no museums"). The list may hold more than the days can: the code keeps,
    going down your list, each experience whose day still has room for the pace, and offers the rest to the
    traveller as alternatives (see `schedule` below).
+   **One experience per place.** Do not list two experiences for the same place: two tours of the same monument,
+   or a guided tour whose source says it includes entry plus a separate entry ticket to that place. The exception
+   is two clearly different experiences, such as a photoshoot outside and a ticket inside: then say why in the
+   second one's `why_fits` ("Photos outside the Colosseum; your ticket inside is on day 2"). The code treats two
+   items with the same name, or within 15 m of each other in the same category, as one place: the later one in
+   your list starts as an alternative.
 5. **Suggest when and why** (see "Suggestions" below).
 6. **Deliver** with one call to `deliver_experiences`. If it returns errors, fix exactly those and call it again.
 

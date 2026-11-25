@@ -289,16 +289,19 @@
   }
 
   function removedCard(e) {
-    // An alternative: a candidate the code left out to keep the pace (the user didn't remove it).
+    // An alternative: a candidate the code left out to keep the pace, or because it is the same place as one you
+    // keep (the user didn't remove it). For the same place, the overlap check says which ("Same place as …").
     const name = esc(e.name);
     const alt = e.user.alternative === true;
     const cost = e.cost_eur === null ? "not counted in your budget"
       : `${esc(money(e.cost_eur))} ${alt ? "if you add it" : "freed up"}`;
+    const same = alt && e.user.same_as ? e.checks.find((c) => c.name === "overlap") : null;
     return `
       <article class="card experience is-removed" data-id="${esc(e.id)}">
         <div>
           <h3 class="name">${name}</h3>
           <p class="caption">${alt ? "Alternative" : "Removed"} · ${cost}</p>
+          ${same ? `<p class="caption">${esc(same.detail)}</p>` : ""}
         </div>
         <button type="button" class="btn btn-secondary btn-sm btn-accent" data-action="restore" aria-label="Restore ${name}">Restore</button>
       </article>`;

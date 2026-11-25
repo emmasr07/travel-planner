@@ -94,3 +94,11 @@ def test_the_access_code_is_asked_on_the_questionnaire_and_sent_in_a_header_only
     plan = (FRONTEND / "js" / "plan.js").read_text()
     assert '"/api/trips?mode=demo"' in plan and "403" in plan and "429" in plan
     assert "accessCode" not in plan[plan.index("function toProfile("):plan.index("function showSubmitError(")]
+
+
+def test_a_same_place_alternative_shows_why_it_was_left_out():
+    # The note ("Same place as Colosseum Roman Forum and Palatine Hill Guided Tour: restore it ...") is the overlap
+    # check's detail, worded by backend/checks.py: the card only shows it.
+    js = (FRONTEND / "js" / "experiences.js").read_text()
+    card = js[js.index("function removedCard("):js.index("function renderBudget(")]
+    assert "e.user.same_as" in card and 'c.name === "overlap"' in card and "esc(" in card

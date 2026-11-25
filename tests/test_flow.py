@@ -164,6 +164,14 @@ def test_the_researcher_is_told_never_to_pad():
     assert "Choose up to 15" in prompt and "never pad" in prompt
 
 
+def test_the_researcher_is_told_one_experience_per_place():
+    prompt = agents.prompt("researcher")
+    rule = prompt[prompt.index("One experience per place"):]
+    rule = rule[:rule.index("\n5. ")]
+    assert "includes entry" in rule and "photoshoot outside" in rule and "`why_fits`" in rule
+    assert "15 m" in rule and "alternative" in rule
+
+
 # --- agents mode through the API: questionnaire -> list -> brochure -> PDF, and what goes wrong on the way ----------
 
 @pytest.fixture

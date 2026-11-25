@@ -1,6 +1,7 @@
 # Small builders for test data: a questionnaire profile and one experience in the shape the researcher delivers
 # (valid against schemas/experiences.schema.json). Prices are fixed test examples, never real quotes.
 import copy
+import zlib
 
 VIATOR = {"provider": "viator", "url": "https://www.viator.com/tours/Lisbon/x", "retrieved_at": "2026-11-17T14:42:00+01:00",
           "quote": None}
@@ -47,9 +48,20 @@ def profile(**over):
     return _merge(copy.deepcopy(PROFILE), over)
 
 
+def _own_place(id):
+    """Every id but the default gets its own name and spot (about ±2 km around Alfama, on a grid about 40 m apart),
+    so two made-up items are never the same place for the checks unless a test says so."""
+    if id == EXPERIENCE["id"]:
+        return {}
+    h = zlib.crc32(id.encode())
+    lat = round(EXPERIENCE["location"]["lat"] + (h % 97 - 48) * 0.0004 + 0.0002, 6)
+    lng = round(EXPERIENCE["location"]["lng"] + (h // 97 % 89 - 44) * 0.0005 + 0.00025, 6)
+    return {"name": id.replace("-", " ").capitalize(), "location": {"lat": lat, "lng": lng}}
+
+
 def experience(id="alfama-food-walk", **over):
     """As delivered by the researcher: amount_eur and fx are null."""
-    return _merge(copy.deepcopy(EXPERIENCE), {"id": id, **over})
+    return _merge(_merge(copy.deepcopy(EXPERIENCE), _own_place(id)), {"id": id, **over})
 
 
 def checked(id="alfama-food-walk", kept=True, **over):

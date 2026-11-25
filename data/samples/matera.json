@@ -321,56 +321,6 @@
       "doubts": "no price source yet; Wheelchair access not stated in OpenStreetMap"
     },
     {
-      "id": "osm-n6602521780",
-      "name": "Ipogeo MateraSum",
-      "description": "",
-      "category": "culture",
-      "tags": [
-        "entertainment",
-        "entertainment.museum"
-      ],
-      "location": {
-        "city": "Matera",
-        "address": "Ipogeo MateraSum, Recinto Venti Settembre, 75100 Matera MT, Italy",
-        "lat": 40.6677505,
-        "lng": 16.6068417,
-        "timezone": "Europe/Rome",
-        "source": {
-          "provider": "geoapify",
-          "url": "https://api.geoapify.com/v2/places?categories=entertainment.museum&filter=circle%3A16.6063265%2C40.667029%2C5000&bias=proximity%3A16.6063265%2C40.667029&limit=100",
-          "retrieved_at": "2026-11-18T18:38:29+01:00",
-          "quote": null
-        }
-      },
-      "duration_min": null,
-      "price": {
-        "amount": null,
-        "currency": "EUR",
-        "per": "person",
-        "amount_eur": null,
-        "fx": null,
-        "source": null
-      },
-      "opening_hours": null,
-      "months": [],
-      "min_age": null,
-      "rating": null,
-      "indoor_outdoor": "unknown",
-      "accessibility": {
-        "wheelchair": "unknown",
-        "notes": null,
-        "source": null
-      },
-      "suitable_for": {
-        "values": [],
-        "kind": "fact"
-      },
-      "booking_url": "https://www.wikimatera.it/cosa-vedere-a-matera/matera-sotterranea-gioielli-nelle-viscere-della-terra/materasum-citta-sotterranea/",
-      "photo_url": null,
-      "certainty": "medium",
-      "doubts": "no price source yet; No opening hours in OpenStreetMap; Wheelchair access not stated in OpenStreetMap"
-    },
-    {
       "id": "osm-n2614103176",
       "name": "Il Terrazzino",
       "description": "",

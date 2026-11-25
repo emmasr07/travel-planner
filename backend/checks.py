@@ -1,7 +1,9 @@
 # The code checks of docs/backend-logic.md section 5, one function each, and the final status per experience.
 # Every check returns {"name", "result": "ok" | "warn" | "fail" | "skip", "detail"}. Money comparisons are asked
 # of budget.py; times are local to the destination ("HH:MM" on trip day N), compared in minutes after midnight.
+import math
 import re
+import unicodedata
 from datetime import date, timedelta
 
 from backend import budget
@@ -32,6 +34,23 @@ CLOSED_DAYS = re.compile(
     r"|lunes|martes|miércoles|miercoles|jueves|viernes|festivos?)\b", re.I)
 # Free slots for a quick search or a swap: gaps of at least MIN_SLOT_MIN between DAY_START and DAY_END, local time.
 DAY_START, DAY_END, MIN_SLOT_MIN = "08:00", "23:00", 30
+# The same place: the same name, or the same spot in the same category. In Matera Viator's meeting point and the
+# OpenStreetMap node of one museum are 8 m apart, while two different restaurants in Lisbon are 19 m apart.
+SAME_PLACE_M = 15
+# The same visit: a guided tour and an entry ticket that name the same place, pinned at two spots of it
+# (Rome: the Colosseum and the Roman Forum, 493 m apart).
+SAME_VISIT_M = 1000
+# Words read on the plain text (lowercase, no accents or punctuation).
+TOUR = re.compile(r"\b(tours?|guided|visita guidata|visite guidee|visita guiada|fuhrung)\b")
+ENTRY = re.compile(r"\b(tickets?|entry|entrance|admission|bigliett[oi]|ingress[oi]|entradas?|bilhetes?|eintritt"
+                   r"|billets?)\b")
+INCLUDED = re.compile(r"\b(inclu\w*|inklusive|inbegriffen)\b|\bwith (entry|entrance|admission)\b")
+NOT_INCLUDED = re.compile(r"\b(not|non|no|nao|nicht|pas|sans)( \w+){0,2} (inclu\w*|inbegriffen)\b|\bexclud\w*"
+                          r"|\bwithout( \w+)? (entry|entrance|admission|tickets?)\b")
+# Words too common to say two names are about one place.
+GENERIC = set("tour tours guided guide ticket tickets entry entrance admission official skip line private small group "
+              "with from visit experience self semi hour hours host full museum museums museo musei museu national "
+              "city town historic center centre".split())
 
 
 def result(name, res, detail):
@@ -146,6 +165,95 @@ def free_slots(profile, experiences, day):
     return [{"start": clock(a), "end": clock(b)} for a, b in slots]
 
 
+# --- the same place, the same visit -----------------------------------------------------------------------------
+
+def _plain(text):
+    """Lowercase, accents and punctuation removed: "Jerónimos: Entry-Tickets!" -> "jeronimos entry tickets"."""
+    text = unicodedata.normalize("NFKD", text or "")
+    text = "".join(ch for ch in text if not unicodedata.combining(ch)).lower()
+    return " ".join(re.sub(r"[^\w\s]|_", " ", text).split())
+
+
+def distance_m(a, b):
+    """Metres between two experiences' coordinates (haversine)."""
+    la, lb = a["location"], b["location"]
+    p1, p2 = math.radians(la["lat"]), math.radians(lb["lat"])
+    dp, dl = p2 - p1, math.radians(lb["lng"] - la["lng"])
+    h = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * 6_371_000 * math.asin(math.sqrt(h))
+
+
+def same_place(a, b):
+    """The same name after normalising, or within SAME_PLACE_M in the same category (a cooking class pinned on the
+    Colosseum is not the Colosseum)."""
+    if _plain(a["name"]) == _plain(b["name"]):
+        return True
+    return a["category"] == b["category"] and distance_m(a, b) <= SAME_PLACE_M
+
+
+def _is_tour(e):
+    return bool(TOUR.search(_plain(e["name"])))
+
+
+def _is_ticket(e):
+    return not _is_tour(e) and bool(ENTRY.search(_plain(f"{e['name']} {(e['price'] or {}).get('label') or ''}")))
+
+
+def _place_words(e):
+    city = set(_plain(e["location"].get("city")).split())
+    return {w for w in _plain(e["name"]).split() if len(w) >= 4 and w not in GENERIC and w not in city}
+
+
+def _says_entry(tour):
+    """What the tour's own text (name, description, tags) says about entry: "included", "not included" or None."""
+    included = excluded = False
+    for sentence in re.split(r"[.;!?\n]+", "\n".join([tour["name"], tour.get("description") or "", *tour["tags"]])):
+        text = _plain(sentence)
+        if not ENTRY.search(text):
+            continue
+        if NOT_INCLUDED.search(text):
+            excluded = True
+        elif INCLUDED.search(text):
+            included = True
+    if included != excluded:
+        return "included" if included else "not included"
+    return None
+
+
+def same_visit(a, b):
+    """A guided tour and an entry ticket to the same place: "included" when the tour's source says entry is included,
+    "unsure" when it says nothing (or both), None when it says entry is not included or they are not such a pair."""
+    if _is_tour(a) and _is_ticket(b):
+        tour, ticket = a, b
+    elif _is_tour(b) and _is_ticket(a):
+        tour, ticket = b, a
+    else:
+        return None
+    if tour["category"] != ticket["category"]:
+        return None
+    if not same_place(tour, ticket) and not (_place_words(tour) & _place_words(ticket)
+                                             and distance_m(tour, ticket) <= SAME_VISIT_M):
+        return None
+    says = _says_entry(tour)
+    return None if says == "not included" else says or "unsure"
+
+
+def twin_of(e, others):
+    """The first of `others` that is the same place as e, or the same visit with entry included; else None."""
+    return next((o for o in others if same_place(o, e) or same_visit(o, e) == "included"), None)
+
+
+def _twin_reason(e, other):
+    if same_place(other, e):
+        return f"Same place as {other['name']}"
+    visit = same_visit(other, e)
+    if visit == "included":
+        return f"Same visit as {other['name']}: its source says entry is included"
+    if visit == "unsure":
+        return f"May be the same visit as {other['name']}: check whether the tour includes entry"
+    return None
+
+
 # --- one check each ---------------------------------------------------------------------------------------------
 
 def schema_ok():
@@ -252,22 +360,29 @@ def hours(e, profile):
                   f"{s['start']}-{s['end']} is outside the opening hours on {day} ({_ranges_text(ranges)}){note}")
 
 
-def overlap(e, active):
+def overlap(e, active, everyone=()):
+    """A time clash with another kept item that day; and, said on the later of the two only, the same place or the
+    same visit as an earlier kept item anywhere in the trip."""
     if e not in active:
-        return result("overlap", "skip", _why_left_out(e))
+        return result("overlap", "skip", _why_left_out(e, everyone))
     start, end = visit(e)
     day = e["schedule"]["day"]
     clashes = [o for o in active if o is not e and o["schedule"]["day"] == day
                and visit(o)[0] < end and start < visit(o)[1]]
-    if not clashes:
+    reasons = []
+    if clashes:
+        names = "; ".join(f"{o['name']} ({o['schedule']['start']}-{o['schedule']['end']})" for o in clashes)
+        reasons.append(f"overlaps {names} on day {day}")
+    earlier = active[:next(i for i, o in enumerate(active) if o is e)]
+    reasons += [r for r in (_twin_reason(e, o) for o in earlier) if r]
+    if not reasons:
         return result("overlap", "ok", f"no overlap on day {day}")
-    names = "; ".join(f"{o['name']} ({o['schedule']['start']}-{o['schedule']['end']})" for o in clashes)
-    return result("overlap", "warn", f"overlaps {names} on day {day}")
+    return result("overlap", "warn", "; ".join(reasons))
 
 
-def pace(e, active, profile):
+def pace(e, active, profile, everyone=()):
     if e not in active:
-        return result("pace", "skip", _why_left_out(e))
+        return result("pace", "skip", _why_left_out(e, everyone))
     day, limit = e["schedule"]["day"], PACE_LIMIT[profile["pace"]]
     n = sum(1 for o in active if o["schedule"]["day"] == day)
     if n > limit:
@@ -305,10 +420,17 @@ def accessibility(e, profile):
     return result("accessibility", "ok", f"wheelchair access: {wheelchair}")
 
 
-def _why_left_out(e):
+def _why_left_out(e, everyone=()):
     if e["user"]["status"] == "kept":
         return "rejected by the checks"
-    return "an alternative: restore it to add it to your plan" if e["user"].get("alternative") else "removed by you"
+    if not e["user"].get("alternative"):
+        return "removed by you"
+    twin = next((o for o in everyone if o["id"] == e["user"].get("same_as")), None)
+    if twin is None:
+        return "an alternative: restore it to add it to your plan"
+    if same_place(twin, e):
+        return f"Same place as {twin['name']}: restore it to add it to your plan"
+    return f"Same visit as {twin['name']}, whose source says entry is included: restore it to add it to your plan"
 
 
 # --- all of them ------------------------------------------------------------------------------------------------
@@ -340,6 +462,6 @@ def recheck(profile, experiences):
     active = [e for e in experiences
               if e["user"]["status"] == "kept" and final_status(e["checks"], e.get("verdict")) != "rejected"]
     for e in experiences:
-        e["checks"] += [overlap(e, active), pace(e, active, profile)]
+        e["checks"] += [overlap(e, active, experiences), pace(e, active, profile, experiences)]
         e["checks"].sort(key=lambda c: ORDER.index(c["name"]))
         e["status"] = final_status(e["checks"], e.get("verdict"))

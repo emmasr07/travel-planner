@@ -220,3 +220,39 @@ def test_main_stops_on_401_and_writes_nothing(tmp_path, capsys):
     out = capsys.readouterr().out
     assert "viator" in out and "401" in out
     assert fa.VIATOR_KEY not in out
+
+
+# --- one experience per place: the same rule as the trip (backend/checks.py) ------------------------------------
+
+def sample_place(rec):
+    """A real sample record (tests/real_places.py) as the sample file holds it."""
+    from tests.real_places import fields
+    e = experience(rec["id"], **fields(rec))
+    for field in SUGGESTION_FIELDS:
+        e.pop(field)
+    return e
+
+
+def test_the_same_place_twice_becomes_one_item_the_earlier_one():
+    from tests.real_places import MATERA
+    mattress, casa_noha, ipogeo, musma = (sample_place(MATERA[k]) for k in
+                                          ("underground-mattress", "casa-noha", "ipogeo-materasum", "musma"))
+    kept, dropped = build_sample.drop_same_places([mattress, casa_noha, ipogeo, musma])
+    assert kept == [mattress, casa_noha, musma]                       # Casa Noha and Musma: 27 m apart, both kept
+    assert dropped == [(ipogeo, mattress)]                            # Ipogeo MateraSum: 8 m from Viator's point
+
+
+def test_main_leaves_out_a_place_already_there_as_a_viator_experience(tmp_path, capsys):
+    at_the_meeting_point = place("osm-n2", "food")
+    at_the_meeting_point["location"].update(lat=38.70776, lng=-9.13617)      # 1 m from Viator's meeting point
+    old = [place("osm-n1", "culture"), at_the_meeting_point]
+    (tmp_path / "lisbon.json").write_text(json.dumps({"experiences": old}))
+    apis = lisbon_apis([product("P1")])                                     # Tour P1, food, at the meeting point
+    with apis.client() as c:
+        code = build_sample.main(["Lisbon"], client=c, load_env=False, out_dir=tmp_path)
+    assert code == 0
+    data = json.loads((tmp_path / "lisbon.json").read_text())
+    assert [e["id"] for e in data["experiences"]] == ["osm-n1", "viator-p1"]
+    out = capsys.readouterr().out
+    assert "Left out Osm-N2: same place as Tour P1" in out
+    assert "Wrote " in out and "1 Viator experience and 1 Geoapify place\n" in out     # not "left out to stay within"
