@@ -1,0 +1,373 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Travel Planner Presentation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: full-screen sections you step through like slides (arrows / space / dots), built on the app's own design system: neutral surfaces, one blue accent, Inter. */
+:root {
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --ink: #1d1d1f;
+  --muted: #5f5f64;
+  --line: #e2e2e7;
+  --blue: #0a66e8;
+  --blue-soft: #eaf2fe;
+  --good: #1a7f37;
+  --good-soft: #e7f4ea;
+  --bad: #c2000f;
+  --bad-soft: #fde9ea;
+  --warn: #8a5a00;
+  --warn-soft: #fdf3dc;
+  --font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --shadow: 0 4px 16px rgba(0,0,0,.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111113; --surface: #1c1c1f; --ink: #f2f2f4; --muted: #a3a3ab; --line: #2e2e33;
+    --blue: #5b9dff; --blue-soft: #16253d; --good: #5cc97a; --good-soft: #15291b;
+    --bad: #ff6b74; --bad-soft: #351619; --warn: #f2c25b; --warn-soft: #33290f;
+    --shadow: 0 4px 16px rgba(0,0,0,.4); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111113; --surface: #1c1c1f; --ink: #f2f2f4; --muted: #a3a3ab; --line: #2e2e33;
+  --blue: #5b9dff; --blue-soft: #16253d; --good: #5cc97a; --good-soft: #15291b;
+  --bad: #ff6b74; --bad-soft: #351619; --warn: #f2c25b; --warn-soft: #33290f;
+  --shadow: 0 4px 16px rgba(0,0,0,.4); color-scheme: dark;
+}
+html { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+section {
+  scroll-snap-align: start;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: center;
+  padding-block: 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  border-bottom: 1px solid var(--line);
+  box-sizing: border-box;
+}
+section.alt { background: var(--surface); }
+.wrap { width: 100%; max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.eyebrow { font-size: 14px; font-weight: 600; color: var(--blue); letter-spacing: .02em; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: clamp(44px, 8vw, 92px); line-height: 1.02; font-weight: 700; letter-spacing: -.045em; text-wrap: balance; }
+h2 { font-size: clamp(32px, 5vw, 54px); line-height: 1.08; font-weight: 700; letter-spacing: -.035em; text-wrap: balance; }
+h3 { font-size: 19px; line-height: 1.3; font-weight: 600; letter-spacing: -.01em; }
+.lead { font-size: clamp(18px, 2.2vw, 22px); color: var(--muted); max-width: 62ch; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; color: var(--muted); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); padding: 24px; min-width: 0; }
+section.alt .card { background: var(--bg); box-shadow: none; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.grid-2 { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.pill.good { background: var(--good-soft); color: var(--good); }
+.pill.bad { background: var(--bad-soft); color: var(--bad); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.blue { background: var(--blue-soft); color: var(--blue); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 28px; border-radius: 999px; background: var(--blue); color: #fff; font-weight: 600; font-size: 17px; text-decoration: none; }
+.btn:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.num { font-size: clamp(40px, 6vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+
+/* Title */
+.title-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-card { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+.mini { flex: 1 1 260px; display: flex; flex-direction: column; gap: 10px; }
+.mini .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.mini .row:last-child { border-bottom: 0; }
+.mini .src { font-size: 13px; color: var(--muted); }
+
+/* Pipeline */
+.pipe { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); counter-reset: none; }
+.step { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); min-width: 0; }
+.step .who { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.who.you { color: var(--muted); } .who.ai { color: var(--blue); } .who.code { color: var(--good); }
+.step p { font-size: 14px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Rules table */
+.table-box { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; color: var(--muted); font-weight: 600; }
+td:first-child { font-weight: 600; white-space: nowrap; }
+
+/* Results */
+.stat { display: flex; flex-direction: column; gap: 6px; }
+.bars { display: flex; flex-direction: column; gap: 12px; }
+.bar-row { display: grid; grid-template-columns: 150px 1fr 64px; gap: 12px; align-items: center; font-size: 15px; }
+.bar-track { height: 14px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--blue); }
+.bar-fill.good { background: var(--good); }
+.bar-row .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+@media (max-width: 520px) { .bar-row { grid-template-columns: 1fr 56px; } .bar-row .bar-track { grid-column: 1 / -1; grid-row: 2; } }
+
+/* Findings */
+.finding { display: flex; flex-direction: column; gap: 10px; }
+.finding .top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+
+/* Demo */
+.demo-steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; }
+.demo-steps li { padding-left: 4px; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; background: var(--blue-soft); color: var(--ink); padding: 2px 6px; border-radius: 6px; }
+
+/* Nav dots */
+.dots { position: fixed; right: calc(14px + env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 5; }
+.dots button { width: 12px; height: 12px; border-radius: 50%; border: 0; padding: 0; background: var(--line); cursor: pointer; }
+.dots button[aria-current="true"] { background: var(--blue); }
+@media (max-width: 700px) { .dots { display: none; } }
+.hint { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); font-size: 13px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 6px 14px; border-radius: 999px; z-index: 5; }
+@media (max-width: 700px) { .hint { display: none; } }
+</style>
+
+<nav class="dots" aria-label="Sections" id="dots"></nav>
+<div class="hint">Use ← → or space to move between sections</div>
+
+<!-- 1 Title -->
+<section id="start" data-label="Title">
+  <div class="wrap">
+    <span class="eyebrow">AI in Strategic Management · Group project · December 2026</span>
+    <h1>Your trip, sorted in minutes.</h1>
+    <p class="lead">Travel Planner turns a destination, dates, a group, its interests and a budget into a day-by-day plan of real experiences, where every price, opening time and rating comes with its source.</p>
+    <p class="small">Group 8: Ana Amorbi, Liesje Bo, Lissa Bottram, Joe Ariel Chalon, Edoardo Ghitturi, Emma Sofia Ronco, Selma Sorensen</p>
+    <div class="hero-card">
+      <div class="card mini" aria-label="Example from a real AI trip">
+        <span class="small">From a real AI trip · Rome, 5–7 Dec, couple, €300 pp</span>
+        <div class="row"><span>Colosseum guided tour</span><span><strong>€130</strong> <span class="pill good">verified</span></span></div>
+        <div class="row"><span class="src">Adult (13–99) · Viator · checked 23:16</span></div>
+        <div class="row"><span>Pasta & tiramisu class</span><span><strong>€99</strong> <span class="pill good">verified</span></span></div>
+        <div class="row"><span>Capitoline Museums</span><span><strong>€16.50</strong> <span class="pill warn">to check</span></span></div>
+        <div class="row"><span class="src">Opening hours too complex for the code to confirm</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 Problem -->
+<section id="problem" class="alt" data-label="Problem">
+  <div class="wrap">
+    <span class="eyebrow">The problem</span>
+    <h2>Planning a trip means a dozen tabs, and an AI that can invent the details.</h2>
+    <div class="grid">
+      <div class="card"><h3>Too many sources</h3><p class="muted">Tours on one site, opening hours on another, prices in another currency, a map somewhere else.</p></div>
+      <div class="card"><h3>Chatbots sound sure</h3><p class="muted">A language model can write a confident price, season or minimum age that no page actually states.</p></div>
+      <div class="card"><h3>Budgets break late</h3><p class="muted">You find out the plan is over budget only after you have chosen everything.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 Thesis -->
+<section id="thesis" data-label="Thesis">
+  <div class="wrap">
+    <span class="eyebrow">Our thesis</span>
+    <h2>Let the AI choose and explain. Let the code check and count. Let a second check judge the first.</h2>
+    <div class="grid-2">
+      <div class="card"><h3>We believe</h3><p class="muted">Travellers reach a plan they trust faster than planning by hand, because an agent can read many messy pages quickly and pull out what fits their dates, group and budget.</p></div>
+      <div class="card"><h3>It breaks if</h3><p class="muted">The agent makes facts up. So every fact carries its source and the time it was checked, the code does all arithmetic and checks, and facts are re-checked before an item is called verified.</p></div>
+      <div class="card"><h3>We know it works if</h3><p class="muted">On experiences checked by hand against their sources, the ones marked <span class="pill good">verified</span> are right at least 19 times out of 20.</p></div>
+      <div class="card"><h3>Scope</h3><p class="muted">Experiences only: tours, food, culture, nature, nightlife. No flights or hotels. Any destination.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 How it works -->
+<section id="how" class="alt" data-label="How it works">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>Seven steps from questionnaire to brochure.</h2>
+    <div class="pipe" role="list">
+      <div class="step" role="listitem"><span class="who you">You</span><h3>Questionnaire</h3><p>Destination, dates, group, age, interests, budget, pace.</p></div>
+      <div class="step" role="listitem"><span class="who code">Sources</span><h3>Real data</h3><p>Viator, Geoapify (OpenStreetMap), Tavily web search, Frankfurter exchange rates.</p></div>
+      <div class="step" role="listitem"><span class="who ai">AI agent</span><h3>Researcher</h3><p>Picks 10–15 experiences, copies facts with their source, suggests the best time and why.</p></div>
+      <div class="step" role="listitem"><span class="who code">Code</span><h3>Checks</h3><p>Schema, budget, season, age, opening hours, overlaps, pace, closures, accessibility.</p></div>
+      <div class="step" role="listitem"><span class="who code">Code + AI</span><h3>Verifier</h3><p>Code re-asks Viator and Geoapify; a second agent re-reads web pages. Verdict per item.</p></div>
+      <div class="step" role="listitem"><span class="who you">You</span><h3>Choose</h3><p>Keep, remove, swap, change times, ask for something last-minute.</p></div>
+      <div class="step" role="listitem"><span class="who code">Code</span><h3>Brochure + PDF</h3><p>Day by day, with a map, prices, sources and booking links. No AI.</p></div>
+    </div>
+    <div class="legend"><span class="pill blue">AI: chooses and explains</span><span class="pill good">Code: facts, checks, maths</span><span class="pill warn">You: decide</span></div>
+  </div>
+</section>
+
+<!-- 5 Rules -->
+<section id="rules" data-label="Rules">
+  <div class="wrap">
+    <span class="eyebrow">The one rule</span>
+    <h2>Every field has an owner.</h2>
+    <div class="card table-box">
+      <table>
+        <thead><tr><th>Kind</th><th>Who fills it</th><th>Example</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td>Fact</td><td>A source</td><td>€130 · Adult (13–99) · Viator · checked 23:16</td><td>Copied exactly, never guessed. Unknown stays empty.</td></tr>
+          <tr><td>Suggestion</td><td>The AI</td><td>"Morning, 10:15: first slot before the 16:30 winter closing"</td><td>Marked as a suggestion and checked against the facts.</td></tr>
+          <tr><td>Check</td><td>The code</td><td>€409.50 of €300 · over budget</td><td>The AI never does arithmetic.</td></tr>
+          <tr><td>Verdict</td><td>Code re-check + verifier agent</td><td>confirmed / contradicted / not sure</td><td>Verified only if every check passes and the source confirms.</td></tr>
+          <tr><td>Choice</td><td>You</td><td>Keep, remove, swap</td><td>Nothing is removed without you.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 6 Demo -->
+<section id="demo" class="alt" data-label="Live demo">
+  <div class="wrap">
+    <span class="eyebrow">Live demo</span>
+    <h2>Try it.</h2>
+    <div class="grid-2">
+      <div class="card" style="display:flex;flex-direction:column;gap:16px">
+        <h3>What we will show</h3>
+        <ol class="demo-steps">
+          <li>A free demo trip to Lisbon, London or Matera.</li>
+          <li>A real AI trip to any city (with our access code).</li>
+          <li>A card's source, check time and verified status.</li>
+          <li>Over budget, then <em>Fit it to my budget</em>.</li>
+          <li>Swap, a last-minute search, the brochure and the PDF.</li>
+        </ol>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:16px;justify-content:center">
+        <a class="btn" id="appLink" href="http://127.0.0.1:8000" target="_blank" rel="noopener">Open Travel Planner</a>
+        <p class="small" id="appNote">travel-planner.marcellovittorio-ronco.workers.dev</p>
+        <p class="small">Sign in with an approved Google account.</p>
+        <p class="small">Code: <a href="https://github.com/emmasr07/travel-planner" target="_blank" rel="noopener">github.com/emmasr07/travel-planner</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 Results -->
+<section id="results" data-label="Results">
+  <div class="wrap">
+    <span class="eyebrow">Results</span>
+    <h2>Verified means right.</h2>
+    <div class="grid">
+      <div class="card stat"><span class="num">24</span><span class="muted">facts and items checked by hand against their sources</span></div>
+      <div class="card stat"><span class="num">7 / 7</span><span class="muted">items marked verified were correct (a small sample; more checks are the next step)</span></div>
+      <div class="card stat"><span class="num">$0.24</span><span class="muted">cost of our latest AI-planned trip (from $0.75), with a hard cap of $1.50</span></div>
+      <div class="card stat"><span class="num">~1 min</span><span class="muted">from questionnaire to a checked list of experiences</span></div>
+    </div>
+    <div class="grid-2">
+      <div class="card" style="display:flex;flex-direction:column;gap:16px">
+        <h3>Rome: items reaching "verified"</h3>
+        <div class="bars" role="img" aria-label="Rome trip 1: 0 of 9 verified. Rome trip 2, after the code re-check: 5 of 9 verified.">
+          <div class="bar-row"><span>Trip 1 (21 Nov)</span><div class="bar-track"><div class="bar-fill good" style="width:0%"></div></div><span class="v">0 / 9</span></div>
+          <div class="bar-row"><span>Trip 2 (22 Nov)</span><div class="bar-track"><div class="bar-fill good" style="width:55.6%"></div></div><span class="v">5 / 9</span></div>
+        </div>
+        <p class="small">The verifier could not open Viator pages, so nothing was confirmed. The fix: the code re-asks the Viator and Geoapify APIs; the agent only reads web pages.</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:16px">
+        <h3>Cost per real AI trip (US$)</h3>
+        <div class="bars" role="img" aria-label="Lisbon 18 Nov $0.77, Rome 21 Nov $0.66, Rome 22 Nov $0.75, Lisbon 25 Nov $0.24. Cap $1.50.">
+          <div class="bar-row"><span>Lisbon · 18 Nov</span><div class="bar-track"><div class="bar-fill" style="width:51.3%"></div></div><span class="v">$0.77</span></div>
+          <div class="bar-row"><span>Rome · 21 Nov</span><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><span class="v">$0.66</span></div>
+          <div class="bar-row"><span>Rome · 22 Nov</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="v">$0.75</span></div>
+          <div class="bar-row"><span>Lisbon · 25 Nov</span><div class="bar-track"><div class="bar-fill good" style="width:16%"></div></div><span class="v">$0.24</span></div>
+        </div>
+        <p class="small">Bars drawn against the $1.50 cap per trip (researcher $1.00 + verifier $0.50). Model: Claude Sonnet. Stricter agent instructions cut wasted searches: the latest trip was within budget, with no duplicates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 Findings -->
+<section id="findings" class="alt" data-label="What testing revealed">
+  <div class="wrap">
+    <span class="eyebrow">What testing revealed</span>
+    <h2>Real data found problems our sample data never showed.</h2>
+    <div class="grid">
+      <div class="card finding"><div class="top"><h3>A group price counted per person</h3><span class="pill good">fixed</span></div><p class="muted">A €360 private tuk-tuk tour would have cost a group of 4 €1,440 in the budget.</p></div>
+      <div class="card finding"><div class="top"><h3>A guessed minimum age</h3><span class="pill good">fixed</span></div><p class="muted">"Adult (18–99)" was read as "18+", which would have hidden the Vatican Museums from families.</p></div>
+      <div class="card finding"><div class="top"><h3>A closed museum suggested</h3><span class="pill good">fixed</span></div><p class="muted">The source said "Encerrado temporariamente". Closed places are now rejected, in six languages.</p></div>
+      <div class="card finding"><div class="top"><h3>The source itself was wrong</h3><span class="pill warn">caught by hand</span></div><p class="muted">OpenStreetMap lists Casa Noha in Matera at "Recinto Canove"; the real address is "Recinto Cavone".</p></div>
+      <div class="card finding"><div class="top"><h3>The verifier was blocked</h3><span class="pill good">fixed</span></div><p class="muted">Viator pages refuse automated readers, so the code now re-checks API facts itself.</p></div>
+      <div class="card finding"><div class="top"><h3>The same place three times</h3><span class="pill good">fixed</span></div><p class="muted">The Colosseum appeared three times in one Rome trip. Items within 15 m in the same category now count as one place; repeats become alternatives.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 Limits -->
+<section id="limits" data-label="Limits and next steps">
+  <div class="wrap">
+    <span class="eyebrow">Limits and next steps</span>
+    <h2>What we would do next.</h2>
+    <div class="grid-2">
+      <div class="card" style="display:flex;flex-direction:column;gap:12px">
+        <h3>Known limits</h3>
+        <ul class="demo-steps">
+          <li>Items with no price online are shown but not counted in the budget.</li>
+          <li>Complex opening hours (seasonal, holiday rules) stay "to check".</li>
+          <li>The public version runs from a laptop, so it is online only while that laptop is on.</li>
+          <li>The PDF font does not cover Japanese, Chinese or Arabic names.</li>
+        </ul>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px">
+        <h3>Ideas from our team</h3>
+        <ul class="demo-steps">
+          <li>Calendar export and reminders.</li>
+          <li>Offline access to the brochure.</li>
+          <li>Packing lists from weather and indoor/outdoor tags.</li>
+          <li>Local essentials: plugs, emergency numbers, transport.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 End -->
+<section id="end" class="alt" data-label="Questions">
+  <div class="wrap">
+    <span class="eyebrow">Thank you</span>
+    <h1>Questions?</h1>
+    <p class="lead">Every fact with its source. Every sum done by code. Every verified item checked twice.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  // Put the public app link here after the deploy.
+  var APP_URL = "https://travel-planner.marcellovittorio-ronco.workers.dev";
+  if (APP_URL) {
+    document.getElementById("appLink").href = APP_URL;
+    document.getElementById("appNote").textContent = APP_URL.replace(/^https?:\/\//, "");
+  }
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section"));
+  var dots = document.getElementById("dots");
+  sections.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", "Go to " + (s.dataset.label || "section " + (i + 1)));
+    b.addEventListener("click", function () { s.scrollIntoView(); });
+    dots.appendChild(b);
+  });
+  var buttons = dots.querySelectorAll("button");
+
+  function current() {
+    var mid = window.innerHeight / 3, idx = 0;
+    sections.forEach(function (s, i) { if (s.getBoundingClientRect().top <= mid) idx = i; });
+    return idx;
+  }
+  function mark() {
+    var c = current();
+    buttons.forEach(function (b, i) { b.setAttribute("aria-current", i === c ? "true" : "false"); });
+  }
+  window.addEventListener("scroll", mark, { passive: true });
+  mark();
+
+  document.addEventListener("keydown", function (e) {
+    var t = e.target && e.target.tagName;
+    if (t === "INPUT" || t === "TEXTAREA" || t === "SELECT") return;
+    var c = current();
+    if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey)) {
+      e.preventDefault(); sections[Math.min(c + 1, sections.length - 1)].scrollIntoView();
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp" || (e.key === " " && e.shiftKey)) {
+      e.preventDefault(); sections[Math.max(c - 1, 0)].scrollIntoView();
+    } else if (e.key === "Home") { e.preventDefault(); sections[0].scrollIntoView(); }
+    else if (e.key === "End") { e.preventDefault(); sections[sections.length - 1].scrollIntoView(); }
+  });
+})();
+</script>
+
+</body></html>
